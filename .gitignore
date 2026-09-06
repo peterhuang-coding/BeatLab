@@ -1,0 +1,11 @@
+# 运行时产物与大数据（不入库）
+.venv/
+.models/
+library/
+kit/
+beats/
+staging/
+db.sqlite
+__pycache__/
+*.pyc
+.DS_Store
