@@ -383,13 +383,40 @@ def _stem_file(library_path: str, stem: str) -> str:
     return str(base / "stems" / f"{stem}.wav")
 
 
+def _estimate_root_note(library_path: str | None, start_sec: float, end_sec: float) -> int | None:
+    """无 key 元数据时从 hero 窗口估主音高 → 最近 MIDI 音名（作 bass 根音）。"""
+    try:
+        import librosa
+        import numpy as np
+        if not library_path:
+            return None
+        y, sr = librosa.load(str(library_path), sr=22050, mono=True,
+                             offset=max(0.0, float(start_sec)),
+                             duration=max(1.0, float(end_sec) - float(start_sec)))
+        if len(y) < sr // 2:
+            return None
+        pitches, magnitudes = librosa.piptrack(y=y, sr=sr, fmin=60, fmax=1000)
+        idx = int(magnitudes.argmax())
+        f0 = pitches[idx // magnitudes.shape[1], idx % magnitudes.shape[1]]
+        if not f0 or f0 <= 0:
+            return None
+        return int(round(69 + 12 * np.log2(float(f0) / 440.0)))
+    except Exception:
+        return None
+
+
 def _base_manifest(run_id: str, kind: str, hero: dict, supporting: list[dict],
                    assets_by_id: dict, bpm: float, seed: int) -> dict:
     hero_asset = assets_by_id.get(str(hero.get("asset_id"))) or {}
     asset_bpm = float(hero_asset.get("bpm") or hero_asset.get("bpm_est") or 0.0)
     stretch = round(bpm / asset_bpm, 4) if asset_bpm and abs(bpm - asset_bpm) > 0.5 else 1.0
     key_text = hero_asset.get("key_note") or hero_asset.get("key")
-    bass_root = parse_key_note(key_text) or 33          # 无 key 用 A1=33
+    bass_root = parse_key_note(key_text) if key_text else None
+    if bass_root is None:    # 无 key：从 hero 窗口实测音高，bass 跟 hero 同调
+        bass_root = _estimate_root_note(hero_asset.get("library_path"),
+                                        float(hero.get("start_sec", 0)),
+                                        float(hero.get("end_sec", 0)))
+    bass_root = bass_root or 33          # 兜底 A1=33
     return {
         "recipe_id": f"{run_id}:{kind}",
         "kind": kind,

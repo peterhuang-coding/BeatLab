@@ -242,7 +242,7 @@ def generate_bass(rng: random.Random, sections: list[common.Section], root: int)
 def _placement(section: str, bar: int, step: int, sample_id: str, chop_index: int, pad: int,
                midi_note: int, gain: float, file: str, start: float, end: float,
                stem: str = "", lp_hz: float | None = None, reverse: bool = False,
-               fade_gain: float = 1.0) -> dict:
+               fade_gain: float = 1.0, stretch_to: float | None = None) -> dict:
     p = {
         "section": section, "bar": bar, "step": step, "sample_id": sample_id,
         "chop_index": chop_index, "pad": pad, "midi_note": midi_note,
@@ -255,6 +255,8 @@ def _placement(section: str, bar: int, step: int, sample_id: str, chop_index: in
         p["lp_hz"] = lp_hz
     if reverse:
         p["reverse"] = True
+    if stretch_to is not None:
+        p["stretch_to"] = round(stretch_to, 4)
     return p
 
 
@@ -326,18 +328,23 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 if mut.get("dropout") == "odd_bars" and k % 2 == 1:
                     bar_idx += 1
                     continue
-                if k % phrase_bars:          # 乐句触发：hero 音频自然放完再触发下一次
-                    bar_idx += 1
-                    continue
+                # 网格锁定：hero 窗口按小节切块，每块拉伸到精确 1 小节
+                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
+                pb = max(1, round(entry_dur / bar_s))
+                chunk = entry_dur / pb
+                ci = k % pb
+                cs = entry["start_sec"] + ci * chunk
+                ce = min(cs + chunk, entry["end_sec"])
                 lp = mut.get("lp_hz")
                 fade = 1.0
                 if mut.get("fade_out") and sec["bars"] > 0:
                     fade = 1.0 - 0.35 * k / sec["bars"]
-                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
                 p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
                                common.MIDI_CHOP_BASE, mut.get("hero_gain", 0.9),
-                               hero_file, entry["start_sec"], entry["end_sec"],
-                               stem=hero_stem, lp_hz=lp, fade_gain=fade)
+                               hero_file, cs, ce,
+                               stem=hero_stem, lp_hz=lp, fade_gain=fade,
+                               stretch_to=bar_s)
                 placements.append(p)
                 bar_idx += 1
         elif kind == "chop":
@@ -372,17 +379,20 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 if mut.get("dropout") == "hero_off":
                     bar_idx += 1
                     continue
-                if k % phrase_bars:          # 乐句触发，同上
-                    bar_idx += 1
-                    continue
+                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
+                pb = max(1, round(entry_dur / bar_s))
+                chunk = entry_dur / pb
+                ci = k % pb
+                cs = entry["start_sec"] + ci * chunk
+                ce = min(cs + chunk, entry["end_sec"])
                 fade = 1.0
                 if mut.get("fade_out") and sec["bars"] > 0:
                     fade = 1.0 - 0.35 * k / sec["bars"]
-                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
                 p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
                                common.MIDI_CHOP_BASE, 0.85,
-                               hero_file, entry["start_sec"], entry["end_sec"],
-                               stem=hero_stem, fade_gain=fade)
+                               hero_file, cs, ce,
+                               stem=hero_stem, fade_gain=fade, stretch_to=bar_s)
                 if hero_stem == "vocal":   # 目标 stem 是人声 → 走 vocal 层（render 分轨路由）
                     vocals.append(p)
                 else:
@@ -421,6 +431,11 @@ def build_spec_for_recipe(recipe: dict, kind: str, run_id: str, hero: dict,
     """一个 Recipe → 一个 BeatSpec（鼓/bass/摆放全部来自 manifest 参数）。"""
     hero_asset = assets_by_id.get(str(hero.get("asset_id"))) or {}
     hero_file = str(hero_asset.get("library_path") or hero_asset.get("path") or "")
+    if kind == "stem":       # stem recipe 必须用分离轨文件，不是整曲 source
+        stem_name = str(hero.get("stem") or "other")
+        sp = recipes._stem_path(str(hero_asset.get("library_path") or ""), stem_name)
+        if Path(sp).exists():
+            hero_file = sp
     profile = groove_override or recipe["groove_profile"]
     if profile not in recipes.GROOVE_PROFILES:
         print(f"[WARN] 未知 groove {profile}，回退 boom-bap")

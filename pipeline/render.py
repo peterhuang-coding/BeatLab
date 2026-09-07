@@ -267,6 +267,19 @@ _CHOP_HP_SOS = None
 _LP_CACHE: dict[float, Any] = {}
 
 
+def _stretch_to(seg: np.ndarray, target_s: float) -> np.ndarray:
+    """把 seg 拉伸到 target_s（保调不变速），网格锁定用；rate 超 0.5-2 截断。"""
+    import librosa
+    cur = len(seg) / SR
+    if cur <= 0 or target_s <= 0:
+        return seg
+    rate = cur / target_s
+    if abs(rate - 1.0) < 0.01:
+        return seg
+    rate = max(0.5, min(2.0, rate))
+    return librosa.effects.time_stretch(seg, rate=rate).astype(np.float32)
+
+
 def _hp_chop(seg: np.ndarray) -> np.ndarray:
     """切片 100Hz 高通：切掉低频残渣，避免与 kick/bass 互掩。"""
     if len(seg) < 64:
@@ -404,6 +417,8 @@ def _render_layers(spec, recipe: dict, kit: dict, n: int) -> dict:
         if seg is None:
             n_chop_miss += 1
             continue
+        if pl.get("stretch_to"):          # 网格锁定：compose 指定目标时长则拉伸对齐
+            seg = _stretch_to(seg, float(pl["stretch_to"]))
         t = int(pl.get("bar", 0)) * bar_s + int(pl.get("step", 0)) * step_s
         _add(layers, "chops", seg, t, common.clamp(float(pl.get("gain", 0.7)), 0, 1),
              float(pl.get("pan", 0)), n)
