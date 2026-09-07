@@ -1,22 +1,25 @@
-"""BeatLab 模块 C：选品评分（100 分 rubric）。
-
-对 samples 表中每个音源计算 9 项 0-1 特征并写入 scores 表：
-  drums_presence  闸门1：demucs 鼓 stem RMS 占比；无 stem 时退化为 40-120Hz 频带 onset 占比（备注 fallback）
-  vocal_free      闸门2：1 - vocal stem RMS 占比；无 stem 时用 300-3400Hz 包络调制深度估计人声可能性取反
-  structure_hit   闸门3：chroma SSM(path_enhance+agglomerative) 分段后按 onset 密度/能量分布判定 1/0.5/0
-  key_bpm_conf    beat 追踪周期强度 + chroma 主峰纯度加权
-  loopability     首尾 2s 频谱互相关 + 全曲能量平稳度
-  timbre_uniqueness  MFCC 时变方差 + 频谱质心偏离
-  harmonicity     谱平坦度反比
-  dynamics_space  crest factor + 中侧能量比（立体声宽度）
-  source_prior    tags/文件名关键词命中加分
+"""BeatLab 模块 C2：三层评分（asset quality / moment ranking / recipe prior）。
 
 用法：
-  .venv/bin/python pipeline/score.py <sample_id> [<sample_id> ...]
-  .venv/bin/python pipeline/score.py --all       # 全库评分
-  .venv/bin/python pipeline/score.py --pool      # 全库评分后输出 passed 清单
+  .venv/bin/python pipeline/score.py --assets [asset_id ...]   # 层1 资产质量：9 项 rubric + 三闸门
+  .venv/bin/python pipeline/score.py --moments [--top N]       # 层2 Moment 排序：8 维加权 + 类型多样
+  .venv/bin/python pipeline/score.py --recipe-prior            # 层3 Recipe 先验：feedback → loop/chop/stem
+  （兼容旧用法：--all ≡ --assets 全库；--pool ≡ --assets 后输出 passed 清单；裸 id 列表 ≡ --assets id...）
 
-总分逻辑（common.Score.total）：三闸门任一为 0 → 总分减半；total ≥ SCORE_PASS 记 passed=1。
+层 1 asset_quality：原 9 项 rubric 逻辑保留（三闸门、任一为 0 总分减半、SCORE_PASS）。
+  写回策略：优先 common.upsert_asset_quality（数据层 helper，把 9 项写回 assets 层）；
+  否则回退旧 scores 表（兼容旧表）；两不可则仅打印不落库。
+层 2 moment_ranking：读 moments 表（common.get_moments），按 8 维默认权重加权
+  （loopability .25 / memorability .2 / key_stability .15 / drum_state .1 / vocal_state .1
+   / timbre_uniqueness .1 / structure_position .05 / space .05），
+  diversity 约束（Top-N 内每类型 ≤2）输出稳定排序（同分按 asset_id/type/start_sec 确定性排序）。
+层 3 recipe_prior：读 feedback 表（若有行）对 loop/chop/stem 默认先验
+  (0.34/0.33/0.33) 做来源级升权/降权（kept ×(1+0.15n)，rejected ×(1-0.25n)，clamp [0.05,0.9]）；
+  无反馈行时输出默认值。
+
+数据层契约（Dev-1 冻结）：common.get_assets / common.get_moments /
+common.upsert_asset_quality / common.get_feedback。helper 缺失时 moment 层给出清晰报错；
+asset_quality 与 recipe_prior 在 helper 缺失时回退旧表（兼容旧表）。
 """
 from __future__ import annotations
 
@@ -36,7 +39,7 @@ import common
 SR = 22050
 HOP = 512
 
-# ---------- 特征计算 ----------
+# ---------- 层1 特征计算（原 9 项 rubric，逻辑保留） ----------
 
 # 各特征映射参数（0-1 归一化阈值，调研/听感标定）
 KEYWORDS_PRIOR = {
@@ -47,6 +50,48 @@ KEYWORDS_PRIOR = {
     "groove": 0.2, "latin": 0.2, "afro": 0.2, "fusion": 0.2, "break": 0.3,
     "drum": 0.15, "percussion": 0.15, "kit": 0.15, "loop": 0.1,
 }
+
+# ---------- 层2 常量 ----------
+DEFAULT_MOMENT_WEIGHTS = {
+    "loopability": 0.25, "memorability": 0.20, "key_stability": 0.15,
+    "drum_state": 0.10, "vocal_state": 0.10, "timbre_uniqueness": 0.10,
+    "structure_position": 0.05, "space": 0.05,
+}
+MOMENT_TOP_N_MAX_PER_TYPE = 2   # diversity 约束：Top-N 内每类型上限
+
+# ---------- 层3 常量 ----------
+DEFAULT_RECIPE_PRIORS = {"loop": 0.34, "chop": 0.33, "stem": 0.33}
+KEEP_VERDICTS = {"kept", "keep", "liked", "retained"}
+REJECT_VERDICTS = {"rejected", "reject", "disliked", "regenerate"}
+PRIOR_KEEP_FACTOR = 0.15
+PRIOR_REJECT_FACTOR = 0.25
+
+
+def _row_get(row: Any, key: str, default=None):
+    if isinstance(row, dict):
+        return row.get(key, default)
+    try:
+        return row[key]
+    except (KeyError, IndexError, TypeError):
+        return default
+
+
+def _row_lib_path(row: Any) -> str:
+    """library 路径：优先行内 library_path；否则按 library/<category>/<id>/source.wav 约定。"""
+    lp = _row_get(row, "library_path", None)
+    if lp:
+        return str(lp)
+    category = _row_get(row, "category", "unknown")
+    return str(common.ROOT / "library" / str(category) / str(row["id"]) / "source.wav")
+
+
+def _table_exists(conn, name: str) -> bool:
+    try:
+        return conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
+        ).fetchone() is not None
+    except sqlite3.Error:
+        return False
 
 
 def _rms(x: np.ndarray) -> float:
@@ -296,11 +341,11 @@ def _source_prior(tags: list[str], orig_path: str | None) -> float:
     return round(common.clamp(total, 0.0, 1.0), 4)
 
 
-# ---------- 单条评分 ----------
+# ---------- 层1 单条评分 ----------
 
 def score_sample(sample: dict[str, Any]) -> tuple[common.Score, list[str]]:
-    """对一条 samples 记录计算 9 项特征。返回 (Score, fallback 备注列表)。"""
-    lib_path = sample["library_path"]
+    """对一条 samples/assets 记录计算 9 项特征。返回 (Score, fallback 备注列表)。"""
+    lib_path = _row_lib_path(sample)
     notes: list[str] = []
     path = Path(lib_path)
     if not path.exists():
@@ -316,7 +361,7 @@ def score_sample(sample: dict[str, Any]) -> tuple[common.Score, list[str]]:
 
     tags: list[str] = []
     try:
-        tags = json.loads(sample.get("tags") or "[]")
+        tags = json.loads(_row_get(sample, "tags", "[]") or "[]")
     except json.JSONDecodeError:
         tags = []
 
@@ -330,7 +375,7 @@ def score_sample(sample: dict[str, Any]) -> tuple[common.Score, list[str]]:
         timbre_uniqueness=_timbre_uniqueness(y, sr),
         harmonicity=_harmonicity(y, sr),
         dynamics_space=_dynamics_space(path, y, sr),
-        source_prior=_source_prior(tags, sample.get("orig_path")),
+        source_prior=_source_prior(tags, _row_get(sample, "orig_path", None)),
     ), notes
 
 
@@ -358,7 +403,7 @@ ON CONFLICT(sample_id) DO UPDATE SET
 
 
 def upsert_score(conn, score: common.Score) -> float:
-    """按 common.Score.total() 逻辑落库，返回 total。"""
+    """旧 scores 表落库（兼容旧表），返回 total。"""
     total = score.total()
     passed = 1 if total >= common.SCORE_PASS else 0
     conn.execute(
@@ -373,7 +418,20 @@ def upsert_score(conn, score: common.Score) -> float:
     return total
 
 
-# ---------- CLI ----------
+def _persist_asset_quality(conn, score: common.Score) -> float:
+    """层1 写回策略：优先 common.upsert_asset_quality（数据层 helper）；
+    否则回退旧 scores 表（兼容旧表）；两不可则仅打印不落库。"""
+    total = score.total()
+    upsert_asset_quality = getattr(common, "upsert_asset_quality", None)
+    if upsert_asset_quality is not None:
+        passed = 1 if total >= common.SCORE_PASS else 0
+        upsert_asset_quality(score.sample_id, {**vars(score)}, total, passed)
+        return total
+    if _table_exists(conn, "scores"):
+        return upsert_score(conn, score)
+    print(f"[score] {score.sample_id}: 无 common.upsert_asset_quality 且无旧 scores 表，仅打印不落库")
+    return total
+
 
 def _print_sample(score: common.Score, total: float, notes: list[str]) -> None:
     gates = " ".join(f"{k}={getattr(score, k):.2f}" for k in common.GATE_KEYS)
@@ -387,6 +445,9 @@ def _print_sample(score: common.Score, total: float, notes: list[str]) -> None:
 
 
 def _print_pool(conn) -> None:
+    if not _table_exists(conn, "scores"):
+        print("[score] 无旧 scores 表，passed 清单不可用")
+        return
     rows = conn.execute(
         "SELECT sample_id, total, drums_presence, vocal_free, structure_hit "
         "FROM scores WHERE passed=1 ORDER BY total DESC"
@@ -399,45 +460,207 @@ def _print_pool(conn) -> None:
         )
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="BeatLab 模块 C：选品评分")
-    parser.add_argument("ids", nargs="*", help="sample_id 列表")
-    parser.add_argument("--all", action="store_true", help="全库评分")
-    parser.add_argument("--pool", action="store_true", help="评分后输出 passed 清单")
-    args = parser.parse_args(argv)
+# ---------- 层2 moment ranking ----------
 
-    if not args.ids and not args.all and not args.pool:
-        parser.print_help()
-        return 2
+def load_moments() -> list[dict]:
+    """读 moments 表（经 common.get_moments）。helper 缺失时清晰报错。"""
+    get_moments = getattr(common, "get_moments", None)
+    if get_moments is None:
+        raise RuntimeError(
+            "[score] common.get_moments 缺失：需要数据层（Dev-1）合入后的 common.py。"
+            "当前环境无法访问 moments 表；联调前自测请 monkeypatch common.get_moments。")
+    return [dict(m) if not isinstance(m, dict) else m for m in get_moments()]
 
+
+def _moment_total(scores: dict) -> float:
+    return round(sum(scores.get(k, 0.0) * w for k, w in DEFAULT_MOMENT_WEIGHTS.items()), 4)
+
+
+def rank_moments(moments: list[dict], top_n: int | None = None) -> list[dict]:
+    """8 维加权排序 + diversity 约束（Top-N 内每类型 ≤2）。
+
+    排序确定性：总分降序，同分按 (asset_id, type, start_sec) 升序。
+    返回带 "_total" 的排序列表（top_n=None 时返回全部，不做类型截断）。
+    """
+    rows: list[dict] = []
+    for m in moments:
+        try:
+            scores = json.loads(m.get("scores_json") or "{}")
+        except json.JSONDecodeError:
+            scores = {}
+        rows.append({**m, "_total": _moment_total(scores)})
+    rows.sort(key=lambda r: (-r["_total"], str(r.get("asset_id", "")),
+                             str(r.get("type", "")), float(r.get("start_sec") or 0.0)))
+    if top_n is None:
+        return rows
+    out: list[dict] = []
+    type_counts: dict[str, int] = {}
+    for r in rows:
+        t = str(r.get("type", ""))
+        if type_counts.get(t, 0) >= MOMENT_TOP_N_MAX_PER_TYPE:
+            continue
+        out.append(r)
+        type_counts[t] = type_counts.get(t, 0) + 1
+        if len(out) >= top_n:
+            break
+    return out
+
+
+def _print_ranking(rows: list[dict], top_n: int) -> None:
+    types = {str(r.get("type")) for r in rows}
+    print(f"MOMENT RANKING (top {len(rows)} / 请求 {top_n}, 类型数={len(types)}):")
+    for i, r in enumerate(rows, 1):
+        try:
+            scores = json.loads(r.get("scores_json") or "{}")
+        except json.JSONDecodeError:
+            scores = {}
+        top_dims = " ".join(
+            f"{k}={scores.get(k, 0):.2f}" for k in ("loopability", "memorability", "key_stability"))
+        print(f"  {i:2d}. {r['_total']:.3f} {r.get('asset_id', '?')} {r.get('type', '?'):16s} "
+              f"{r.get('start_sec', 0):6.2f}-{r.get('end_sec', 0):6.2f}s  {top_dims}")
+    if len(types) < 3 and len(rows) >= 3:
+        print(f"  [提示] Top-{len(rows)} 仅 {len(types)} 种类型，素材库类型覆盖不足")
+
+
+# ---------- 层3 recipe prior ----------
+
+def load_feedback() -> list[dict]:
+    """读 feedback 表。优先 common.get_feedback；否则 get_db + 表存在性守卫（兼容旧表）。"""
+    get_feedback = getattr(common, "get_feedback", None)
+    if get_feedback is not None:
+        return [dict(f) if not isinstance(f, dict) else f for f in get_feedback()]
     conn = common.get_db()
-    conn.row_factory = sqlite3.Row  # common.get_db 默认返回元组，这里按列名取值
-    if args.ids:
-        rows = conn.execute(
-            f"SELECT * FROM samples WHERE id IN ({','.join('?' * len(args.ids))})",
-            args.ids,
-        ).fetchall()
-        missing = set(args.ids) - {r["id"] for r in rows}
-        if missing:
-            print(f"skip（samples 表无记录）: {sorted(missing)}", file=sys.stderr)
+    if not _table_exists(conn, "feedback"):
+        return []
+    conn.row_factory = sqlite3.Row
+    return [dict(r) for r in conn.execute("SELECT * FROM feedback").fetchall()]
+
+
+def recipe_priors(feedback: list[dict]) -> dict:
+    """来源级先验：kept 升权 ×(1+0.15n)，rejected 降权 ×(1-0.25n)，clamp [0.05, 0.9]。
+
+    无反馈行 → 输出默认先验 (0.34/0.33/0.33)。反馈行假定字段：
+    source / recipe_type(loop|chop|stem) / verdict(kept|rejected 等)。
+    """
+    if not feedback:
+        return {"default": dict(DEFAULT_RECIPE_PRIORS), "per_source": {}, "feedback_n": 0}
+    per_source: dict[str, dict] = {}
+    n_used = 0
+    for fb in feedback:
+        source = str(fb.get("source") or "unknown")
+        rt = str(fb.get("recipe_type") or "").lower()
+        verdict = str(fb.get("verdict") or "").lower()
+        if rt not in DEFAULT_RECIPE_PRIORS:
+            continue
+        n_used += 1
+        s = per_source.setdefault(source, {"kept": {}, "rejected": {}})
+        if verdict in KEEP_VERDICTS:
+            s["kept"][rt] = s["kept"].get(rt, 0) + 1
+        elif verdict in REJECT_VERDICTS:
+            s["rejected"][rt] = s["rejected"].get(rt, 0) + 1
+    adjusted: dict[str, dict] = {}
+    for source, s in per_source.items():
+        priors: dict[str, float] = {}
+        for rt, p in DEFAULT_RECIPE_PRIORS.items():
+            k = s["kept"].get(rt, 0)
+            r = s["rejected"].get(rt, 0)
+            factor = (1 + PRIOR_KEEP_FACTOR * k) * (1 - PRIOR_REJECT_FACTOR * r)
+            priors[rt] = round(common.clamp(p * factor, 0.05, 0.9), 4)
+        adjusted[source] = priors
+    return {"default": dict(DEFAULT_RECIPE_PRIORS), "per_source": adjusted, "feedback_n": n_used}
+
+
+def _print_priors(result: dict) -> None:
+    d = result["default"]
+    print(f"RECIPE PRIOR (feedback 行数={result['feedback_n']}):")
+    print(f"  默认先验  loop={d['loop']}  chop={d['chop']}  stem={d['stem']}")
+    for source, priors in sorted(result["per_source"].items()):
+        print(f"  来源 {source}:  loop={priors['loop']}  chop={priors['chop']}  stem={priors['stem']}")
+    if not result["per_source"]:
+        print("  无 feedback 行 → 使用默认先验")
+
+
+# ---------- CLI ----------
+
+def _run_assets(ids: list[str], pool_flag: bool) -> int:
+    """层1 资产质量：评分全部/指定 assets（helper 优先，旧 samples 表兜底）。"""
+    get_assets = getattr(common, "get_assets", None)
+    conn = common.get_db()
+    conn.row_factory = sqlite3.Row
+    if get_assets is not None:
+        rows = get_assets(asset_ids=ids) if ids else get_assets()
+        if ids:
+            found = {str(r["id"]) for r in rows}
+            for sid in ids:
+                if sid not in found:
+                    print(f"skip（assets 表无记录）: {sid}", file=sys.stderr)
     else:
-        rows = conn.execute("SELECT * FROM samples ORDER BY id").fetchall()
+        if ids:
+            rows = conn.execute(
+                f"SELECT * FROM samples WHERE id IN ({','.join('?' * len(ids))})",
+                ids,
+            ).fetchall()
+            missing = set(ids) - {r["id"] for r in rows}
+            if missing:
+                print(f"skip（samples 表无记录）: {sorted(missing)}", file=sys.stderr)
+        else:
+            rows = conn.execute("SELECT * FROM samples ORDER BY id").fetchall()
     if not rows:
-        print("samples 表为空，无音源可评分。", file=sys.stderr)
+        print("assets/samples 表为空，无音源可评分。", file=sys.stderr)
+        return 0
 
     for row in rows:
+        sample = dict(row)
         try:
-            score, notes = score_sample(dict(row))
+            score, notes = score_sample(sample)
         except Exception as e:  # 单条失败不阻断其余
-            print(f"[{row['id']}] ERROR: {e}", file=sys.stderr)
+            print(f"[{sample['id']}] ERROR: {e}", file=sys.stderr)
             continue
-        total = upsert_score(conn, score)
+        total = _persist_asset_quality(conn, score)
         _print_sample(score, total, notes)
     conn.commit()
 
-    if args.pool:
+    if pool_flag:
         _print_pool(conn)
     return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="score.py",
+        description="BeatLab 模块 C2：三层评分（asset quality / moment ranking / recipe prior）",
+    )
+    parser.add_argument("--assets", action="store_true", help="层1 资产质量：9 项 rubric + 三闸门")
+    parser.add_argument("--moments", action="store_true", help="层2 Moment 排序：8 维加权 + 类型多样")
+    parser.add_argument("--recipe-prior", action="store_true", help="层3 Recipe 先验：feedback → loop/chop/stem")
+    parser.add_argument("--top", type=int, default=5, help="--moments 输出 Top-N（默认 5）")
+    parser.add_argument("--all", action="store_true", help="兼容旧用法：等价 --assets（全库）")
+    parser.add_argument("--pool", action="store_true", help="兼容旧用法：--assets 后输出 passed 清单")
+    parser.add_argument("ids", nargs="*", help="--assets 时可指定 asset/sample id")
+    args = parser.parse_args(argv)
+
+    if args.moments:
+        try:
+            moments = load_moments()
+        except RuntimeError as exc:
+            print(exc, file=sys.stderr)
+            return 2
+        if not moments:
+            print("moments 表为空：先运行 pipeline/moments.py 生成 Sample Moments。")
+            return 0
+        ranked = rank_moments(moments, top_n=max(1, args.top))
+        _print_ranking(ranked, max(1, args.top))
+        return 0
+
+    if args.recipe_prior:
+        _print_priors(recipe_priors(load_feedback()))
+        return 0
+
+    if args.assets or args.all or args.pool or args.ids:
+        return _run_assets(args.ids, args.pool)
+
+    parser.print_help()
+    return 2
 
 
 if __name__ == "__main__":
