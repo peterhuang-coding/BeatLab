@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""BeatLab 总编排：A 摄入 → D 拆轨切片 → C 选品评分 → E 编排 → F 渲染+.als → G 交付。
+"""BeatLab P0 CLI 骨架：ingest / separate / score / compose / render / report / all。
 
-每个节点也可单独手动运行（每节点可手动介入）：
-    .venv/bin/python pipeline/pipeline.py ingest <路径...>     # A/B 整合分类
-    .venv/bin/python pipeline/pipeline.py separate --best 8   # D 拆轨切片（--best 限制数量）
-    .venv/bin/python pipeline/pipeline.py score --all         # C 选品评分
-    .venv/bin/python pipeline/pipeline.py compose --best 3    # E 3-4 分钟编排
-    .venv/bin/python pipeline/pipeline.py render <beat_id>    # F 渲染 + .als
-    .venv/bin/python pipeline/pipeline.py report <beat_id>    # G HTML 交付 + 桌面镜像
-    .venv/bin/python pipeline/pipeline.py all [素材路径...]    # 全程（正向循环一次）
+子命令：
+    pipeline.py ingest [--source local_dir] --path <目录> [--limit N] [--force]   # 供给层
+    pipeline.py separate <参数...>      # 理解层（转调 separate.py，旧命令保持可用）
+    pipeline.py score <参数...>         # 理解层（转调 score.py）
+    pipeline.py compose <参数...>       # 生成层（转调 compose.py）
+    pipeline.py render <参数...>        # 渲染（转调 render.py）
+    pipeline.py report <参数...>        # Review（转调 report.py）
+    pipeline.py all [--path <目录>]     # P0 闭环（占位，各层落地后串联）
 """
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -19,8 +20,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import common  # noqa: E402
 
-PY = common.ROOT / ".venv" / "bin" / "python"
-PIPE = common.PIPELINE
+# PIPE 指向本文件所在目录（部署=ROOT/pipeline；BEATLAB_ROOT 测试隔离时仍可转调）
+PIPE = Path(__file__).resolve().parent
+_VENV_PY = common.ROOT / ".venv" / "bin" / "python"
+PY = _VENV_PY if _VENV_PY.exists() else Path(sys.executable)
+
+DELEGATED = ("separate", "score", "compose", "render", "report")
 
 
 def run(script: str, *args: str) -> None:
@@ -29,51 +34,44 @@ def run(script: str, *args: str) -> None:
     subprocess.run(cmd, check=True)
 
 
-def latest_beat_id() -> str:
-    beats = common.ROOT / "beats"
-    if not beats.exists():
-        sys.exit("没有 beats 目录，compose 还没跑？")
-    dirs = [p for p in beats.iterdir() if p.is_dir()]
-    if not dirs:
-        sys.exit("beats 目录为空")
-    return max(dirs, key=lambda p: p.stat().st_mtime).name
+def main() -> int:
+    parser = argparse.ArgumentParser(prog="pipeline.py",
+                                     description="BeatLab P0 总编排 CLI（各节点也可单独运行）")
+    sub = parser.add_subparsers(dest="cmd")
 
+    p_ingest = sub.add_parser("ingest", help="Connector 统一摄入（增量 + rights + provenance）")
+    p_ingest.add_argument("paths", nargs="*", help="位置路径（兼容旧用法）")
+    p_ingest.add_argument("--source", default="local_dir", help="connector 名（P0 仅 local_dir）")
+    p_ingest.add_argument("--path", dest="source_path", help="来源目录")
+    p_ingest.add_argument("--limit", type=int, default=None)
+    p_ingest.add_argument("--force", action="store_true")
 
-def main() -> None:
-    argv = sys.argv[1:]
-    if not argv or argv[0] in ("-h", "--help"):
-        print(__doc__)
-        sys.exit(0)
+    for name in DELEGATED:
+        sp = sub.add_parser(name, help=f"转调 {name}.py（旧子命令保持可用）")
+        sp.add_argument("rest", nargs=argparse.REMAINDER, help=f"{name}.py 的参数（透传）")
 
-    cmd = argv[0]
-    rest = argv[1:]
+    sub.add_parser("all", help="P0 闭环一次（占位）")
+    args = parser.parse_args()
 
-    if cmd == "ingest":
-        run("ingest.py", *rest)
-    elif cmd == "separate":
-        run("separate.py", *rest)
-    elif cmd == "score":
-        run("score.py", *rest)
-    elif cmd == "compose":
-        run("compose.py", *rest)
-    elif cmd == "render":
-        run("render.py", *rest)
-    elif cmd == "report":
-        run("report.py", *rest)
-    elif cmd == "all":
-        if rest:
-            run("ingest.py", *rest)
-        run("separate.py", "--all", "--skip-if-done")
-        run("score.py", "--all")
-        run("compose.py", "--best", "3")
-        beat_id = latest_beat_id()
-        run("render.py", beat_id)
-        run("report.py", beat_id)
-        print(f"\n=== 正向循环完成: {beat_id} ===")
-        print(f"试听页: {common.MIRROR_ROOT}/{common.today_str()}/")
-    else:
-        sys.exit(f"未知命令: {cmd}")
+    if args.cmd is None:
+        parser.print_help()
+        return 0
+    if args.cmd == "ingest":
+        argv: list[str] = []
+        if args.source_path:
+            argv += ["--source", args.source, "--path", args.source_path]
+        if args.limit is not None:
+            argv += ["--limit", str(args.limit)]
+        if args.force:
+            argv += ["--force"]
+        run("ingest.py", *argv, *args.paths)
+    elif args.cmd in DELEGATED:
+        run(f"{args.cmd}.py", *args.rest)
+    elif args.cmd == "all":
+        print("P0 闭环占位：ingest → separate → score → compose → render → report")
+        print("各层模块落地后在此串联；先验证供给层：pipeline.py ingest --path <目录>")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
