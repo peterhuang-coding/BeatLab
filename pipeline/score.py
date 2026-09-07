@@ -361,8 +361,9 @@ def score_sample(sample: dict[str, Any]) -> tuple[common.Score, list[str]]:
 
     tags: list[str] = []
     try:
-        tags = json.loads(_row_get(sample, "tags", "[]") or "[]")
-    except json.JSONDecodeError:
+        raw_tags = _row_get(sample, "tags", "[]")
+        tags = raw_tags if isinstance(raw_tags, list) else json.loads(raw_tags or "[]")
+    except (json.JSONDecodeError, TypeError):
         tags = []
 
     return common.Score(
@@ -484,9 +485,10 @@ def rank_moments(moments: list[dict], top_n: int | None = None) -> list[dict]:
     """
     rows: list[dict] = []
     for m in moments:
+        raw = m.get("scores_json") or m.get("scores")
         try:
-            scores = json.loads(m.get("scores_json") or "{}")
-        except json.JSONDecodeError:
+            scores = raw if isinstance(raw, dict) else json.loads(raw or "{}")
+        except (json.JSONDecodeError, TypeError):
             scores = {}
         rows.append({**m, "_total": _moment_total(scores)})
     rows.sort(key=lambda r: (-r["_total"], str(r.get("asset_id", "")),
@@ -511,8 +513,9 @@ def _print_ranking(rows: list[dict], top_n: int) -> None:
     print(f"MOMENT RANKING (top {len(rows)} / 请求 {top_n}, 类型数={len(types)}):")
     for i, r in enumerate(rows, 1):
         try:
-            scores = json.loads(r.get("scores_json") or "{}")
-        except json.JSONDecodeError:
+            raw = r.get("scores_json") or r.get("scores")
+            scores = raw if isinstance(raw, dict) else json.loads(raw or "{}")
+        except (json.JSONDecodeError, TypeError):
             scores = {}
         top_dims = " ".join(
             f"{k}={scores.get(k, 0):.2f}" for k in ("loopability", "memorability", "key_stability"))

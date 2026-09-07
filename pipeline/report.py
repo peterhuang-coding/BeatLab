@@ -255,17 +255,18 @@ def detect_target(target: str) -> tuple[str, list[str]]:
         raise FileNotFoundError(f"report: beats/{target} 不存在")
     if (base / "spec.json").exists():
         return "legacy", [target]
-    cands = sorted(p.name for p in base.iterdir() if p.is_dir() and (p / "spec.json").exists())
+    cands = sorted(p.name for p in base.iterdir() if p.is_dir() and (
+        (p / "spec.json").exists() or (p / "recipe.json").exists() or (p / "full_mix.wav").exists()))
     if cands:
         return "run", cands
-    raise FileNotFoundError(f"report: beats/{target} 下既无 spec.json 也无候选子目录（每候选需含 spec.json）")
+    raise FileNotFoundError(f"report: beats/{target} 下既无 spec.json 也无候选子目录（每候选需含 spec/recipe/full_mix）")
 
 
 def candidate_dir(run_id: str, candidate_id: str) -> Path:
     """候选目录解析：run 结构 beats/<run>/<cand>/ 优先，legacy beats/<beat>/ 回退。"""
     base = common.ROOT / "beats" / run_id
     d = base / candidate_id
-    if d.is_dir() and (d / "spec.json").exists():
+    if d.is_dir() and ((d / "spec.json").exists() or (d / "recipe.json").exists() or (d / "full_mix.wav").exists()):
         return d
     if run_id == candidate_id and (base / "spec.json").exists():
         return base
@@ -273,8 +274,11 @@ def candidate_dir(run_id: str, candidate_id: str) -> Path:
 
 
 def load_spec(cand_dir: Path):
-    """读候选 spec.json → BeatSpec；缺失/损坏返回 None（页面降级展示）。"""
+    """读候选 spec.json → BeatSpec；缺失/损坏返回 None（页面降级展示）。
+    P0 run 结构：spec 在 beats/<run>/specs/<cand>.json。"""
     sp = cand_dir / "spec.json"
+    if not sp.is_file():
+        sp = cand_dir.parent / "specs" / f"{cand_dir.name}.json"
     if not sp.is_file():
         return None
     try:
@@ -311,7 +315,7 @@ def _copy_candidate_files(src: Path, dst: Path) -> list[str]:
     """复制候选交付物到 dst（beat.wav/.als/midi/stems/manifests/spec/手记），返回已复制清单。"""
     dst.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
-    for rel in ("beat.wav", "spec.json", "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt"):
+    for rel in ("beat.wav", "full_mix.wav", "spec.json", "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt"):
         f = src / rel
         if f.is_file():
             shutil.copy2(f, dst / rel)
@@ -490,7 +494,9 @@ def _cand_data(run_id: str, cand_id: str):
     cd = candidate_dir(run_id, cand_id)
     manifests = load_manifests(cd)
     spec = load_spec(cd)
-    wav = cd / "beat.wav"
+    wav = cd / "full_mix.wav"
+    if not wav.exists():
+        wav = cd / "beat.wav"
     dur, bins = read_wav_bins(wav) if wav.exists() else (0.0, [])
     return cd, manifests, spec, wav, dur, bins
 

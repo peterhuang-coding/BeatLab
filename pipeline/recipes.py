@@ -96,23 +96,26 @@ def _rows(fn, *args) -> list[dict]:
 
 
 def get_moments() -> list[dict]:
-    return _rows(common.get_moments)
+    return _rows(common.get_moments, common.get_db())
 
 
 def get_assets() -> list[dict]:
-    return _rows(common.get_assets)
+    return _rows(common.get_assets, common.get_db())
 
 
 def upsert_job(job_id: str, status: str) -> None:
-    _adapt_call(common.upsert_job, job_id, status)
+    _adapt_call(common.upsert_job, common.get_db(),
+                {"id": job_id, "type": "run", "state": status})
 
 
 def mark_job(job_id: str, status: str) -> None:
-    _adapt_call(common.mark_job, job_id, status)
+    _adapt_call(common.mark_job, common.get_db(), job_id, status)
 
 
 def upsert_run(run_id: str, **fields: Any) -> None:
-    _adapt_call(common.upsert_run, run_id, **fields)
+    if "status" in fields:          # 调用方用 status，common 契约用 state
+        fields["state"] = fields.pop("status")
+    _adapt_call(common.upsert_run, common.get_db(), {"id": run_id, **fields})
 
 
 def job_status(job_id: str) -> str | None:

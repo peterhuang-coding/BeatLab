@@ -82,7 +82,7 @@ def _get_separator():
         _SEPARATOR = Separator(
             log_level=logging.INFO,       # 保留下载进度等关键日志
             model_file_dir=str(MODELS),
-            output_dir=str(ROOT),         # 每次分离前会重定向到样本的 raw 目录
+            output_dir=str(common.ROOT),         # 每次分离前会重定向到样本的 raw 目录
             output_format="WAV",
             sample_rate=SR,
         )
@@ -246,7 +246,7 @@ def _build_segments(onset_t: np.ndarray, dur: float) -> list[tuple[float, float]
     return segs
 
 
-def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[Chop]:
+def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[common.Chop]:
     """切片并写 slices/chop_XX.wav，返回 Chop 列表（按时间升序，pad=1..16）。"""
     onset_t, strengths = _detect_chop_points(y, sr)
     if len(onset_t) == 0:
@@ -258,7 +258,7 @@ def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[Cho
 
     max_strength = float(strengths.max()) if len(strengths) else 1.0
     order = sorted(np.argsort(-strengths)[:MAX_CHOPS].tolist(), key=lambda i: float(onset_t[i]))
-    chops: list[Chop] = []
+    chops: list[common.Chop] = []
     pad = 0
     for i in order:
         start, end = segs[i]
@@ -270,7 +270,7 @@ def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[Cho
         seg = _fade_edges(seg, sr, CHOP_FADE_S)
         pad += 1
         sf.write(str(slices_dir / f"chop_{pad:02d}.wav"), seg, sr)
-        chops.append(Chop(
+        chops.append(common.Chop(
             stem=stem,
             file=f"slices/chop_{pad:02d}.wav",
             start_sec=round(s0 / sr, 3),
@@ -342,8 +342,10 @@ def process_sample(row: sqlite3.Row, skip_if_done: bool) -> bool:
     sid = row["id"]
     src = Path(row["library_path"])
     map_path = src.parent / "slice_map.json"
-    if skip_if_done and map_path.exists():
-        print(f"[separate] {sid}: slice_map.json 已存在，跳过（--skip-if-done）")
+    stems_dir = src.parent / "stems"
+    stems_ok = all((stems_dir / f"{s}.wav").exists() for s in STEM_NAMES)
+    if skip_if_done and (map_path.exists() or stems_ok):
+        print(f"[separate] {sid}: 已有 stems/slice_map，跳过（--skip-if-done）")
         return True
     if not src.exists():
         print(f"[separate] {sid}: source 不存在（{src}），跳过")
@@ -359,6 +361,11 @@ def process_sample(row: sqlite3.Row, skip_if_done: bool) -> bool:
 
     # 1) 拆轨
     stems = _separate_stems(src, stems_dir)
+    if stems:
+        try:  # stem cache：资产标记 stems_ready，理解层免重拆
+            common.set_stems_ready(common.get_db(), sid, True)
+        except Exception:
+            pass
     stems_status = {
         "ok": len(stems) == len(STEM_NAMES),
         "model": SEPARATION_MODEL,
@@ -374,14 +381,14 @@ def process_sample(row: sqlite3.Row, skip_if_done: bool) -> bool:
     chop_src = stems.get("other") or src
     chop_stem = "other" if "other" in stems else "source"
     print(f"[separate] {sid}: 切片源 = {chop_stem}")
-    y, sr = load_audio_mono(chop_src, sr=SR)
+    y, sr = common.load_audio_mono(chop_src, sr=SR)
     sr = int(round(sr))  # common.load_audio_mono 返回 float sr，soundfile 写文件需要 int
     chops = _make_chops(y, sr, chop_stem, slices_dir)
 
     # 3) 人声 phrase 候选（用 sample 的 bpm 算 bar 时长）
     phrases: list[dict] = []
     if "vocal" in stems:
-        vy, vsr = load_audio_mono(stems["vocal"], sr=SR)
+        vy, vsr = common.load_audio_mono(stems["vocal"], sr=SR)
         vsr = int(round(vsr))
         bpm = float(row["bpm"] or DEFAULT_BPM)
         phrases = _make_vocal_phrases(vy, vsr, bpm, phrases_dir)
@@ -403,7 +410,31 @@ def process_sample(row: sqlite3.Row, skip_if_done: bool) -> bool:
 
 # ---------- 样本选择 ----------
 def _select_rows(conn: sqlite3.Connection, ids: list[str], all_flag: bool, pool_flag: bool) -> list[sqlite3.Row]:
-    """按 CLI 参数选择样本行。--pool = 已通过评分闸门（scores.passed=1）的样本。"""
+    """按 CLI 参数选择样本行。P0 以 assets 表为准（含 library_path/stems_ready）；
+    旧 samples 表仅作兜底。--pool = 已通过评分闸门（scores.passed=1）的样本。"""
+    def _has(table: str) -> bool:
+        return conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (table,)
+        ).fetchone() is not None
+
+    if _has("assets"):
+        if ids:
+            placeholders = ",".join("?" * len(ids))
+            rows = conn.execute(
+                f"SELECT * FROM assets WHERE id IN ({placeholders}) ORDER BY ingested_at, id", ids
+            ).fetchall()
+            found = {r["id"] for r in rows}
+            for sid in ids:
+                if sid not in found:
+                    print(f"[separate] {sid}: 不在 assets 表中，跳过")
+            return rows
+        if all_flag:
+            return conn.execute("SELECT * FROM assets ORDER BY ingested_at, id").fetchall()
+        return conn.execute(
+            "SELECT a.* FROM assets a JOIN scores sc ON sc.sample_id = a.id "
+            "WHERE sc.passed = 1 ORDER BY a.ingested_at, a.id"
+        ).fetchall()
+    # 旧 samples 兜底（原逻辑）
     if ids:
         placeholders = ",".join("?" * len(ids))
         rows = conn.execute(
