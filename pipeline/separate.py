@@ -1,22 +1,29 @@
-"""BeatLab 模块 D：拆轨（audio-separator）+ 切片 + 人声 phrase 候选。
+"""BeatLab 模块 D：拆轨（audio-separator，stem cache）+ 切片 + 人声 phrase 候选。
 
 用法：
-    .venv/bin/python pipeline/separate.py [sample_id ... | --all | --pool] [--skip-if-done]
+    .venv/bin/python pipeline/separate.py [sample_id ... | --all | --pool]
+                                          [--skip-if-done] [--window start:end]
 
 对每个样本（目录 library/<category>/<id>/）：
-1. 拆轨：audio-separator + Demucs v4 htdemucs_ft（4 stems）
-   → stems/{drums,vocal,bass,other}.wav（audio-separator 输出命名不同会自动改名对齐）
+1. 拆轨（stem cache 化）：先经 common.get_assets 查 assets.stems_ready，
+   已拆且 stems/{drums,vocal,bass,other}.wav 齐全 → 跳过拆轨；否则
+   audio-separator + Demucs v4 htdemucs_ft（4 stems）拆轨成功后经
+   common.set_stems_ready 标记。helper 缺失（数据层未合入）时打印提示、
+   按旧行为直接拆轨，不 crash。
 2. 切片：stems/other.wav（无 other 则 source.wav）onset 检测
    → 合并过近 onset → 零点吸附 → 首尾线性 fade → 取 onset_strength 最高的 ≤16 片
    → slices/chop_XX.wav（XX=01..16，pad=XX，midi_note=MIDI_CHOP_BASE+pad-1）
 3. 人声：vocal stem 上按 1-2 小节（sample.bpm 算 bar 时长）能量窗口挑 ≤4 段候选
    → vocal_phrases/phrase_XX.wav（XX=01..04，start/end/gain_hint 记入 slice_map.json）
-4. 产物：slice_map.json = {"chops": [...], "vocal_phrases": [...], "stems": {...}}
+4. 产物：slice_map.json = {"chops": [...], "vocal_phrases": [...], "stems": {...},
+   "segments": {...}}。slice_map.json / meta.json 规则：只增键不改键（保留全部旧键）。
+   --window start:end 时按时间范围裁剪处理（P0 入口），并新增 "window" 键。
 
 模型下载网络不稳：重试 MODEL_RETRIES 次（间隔递增），仍失败则优雅降级 ——
 跳过拆轨、用 source.wav 切片，slice_map.json 的 stems 字段标记失败原因，不 crash。
 
-samples 表暂无 stems/slices 字段，本模块不写库（留待 schema 升级后补）。
+数据层契约（Dev-1 冻结）：common.get_assets / common.set_stems_ready。
+helper 缺失时本模块按旧行为降级（samples 表 SQL 选择 + 不查/不写 cache）。
 """
 from __future__ import annotations
 
@@ -36,10 +43,10 @@ import librosa
 import numpy as np
 import soundfile as sf
 
-from common import MIDI_CHOP_BASE, ROOT, Chop, clamp, get_db, load_audio_mono
+import common
 
 # ---------- 常量 ----------
-MODELS = ROOT / ".models"               # 模型权重目录（audio-separator model_file_dir）
+MODELS = common.ROOT / ".models"        # 模型权重目录（audio-separator model_file_dir）
 SEPARATION_MODEL = "htdemucs_ft.yaml"   # audio-separator 文档名（Demucs v4, 4-stem, 优先 htdemucs_ft）
 STEM_NAMES = ("drums", "vocal", "bass", "other")
 MODEL_RETRIES = 3                       # 模型下载/加载重试次数
