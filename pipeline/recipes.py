@@ -195,12 +195,17 @@ def _is_supporting_type(t: str) -> bool:
 
 
 def select_hero(moments: list[dict]) -> dict:
-    """一个 beat 只有一个 Hero：Top-3 中按（主类型优先, explain 质量）选 1。"""
+    """一个 beat 只有一个 Hero：主类型（旋律/人声/bass）优先；Top-3 无则放宽到
+    Top-10；全库无主类型才退回得分最高者（texture 是 supporting 素材，不该做 Hero）。"""
     ranked = moment_ranking(moments)
     if not ranked:
         raise ValueError("没有可用 moments：请先运行理解层（Moments 产出）")
-    top = ranked[: min(3, len(ranked))]
-    return max(top, key=lambda m: (_is_primary(str(m.get("type", ""))), _explain_score(m)))
+    for top_n in (3, 10):
+        pool = ranked[: min(top_n, len(ranked))]
+        primary = [m for m in pool if _is_primary(str(m.get("type", "")))]
+        if primary:
+            return max(primary, key=_explain_score)
+    return ranked[0]
 
 
 def select_supporting(moments: list[dict], hero: dict, max_n: int = 2) -> list[dict]:

@@ -520,7 +520,7 @@ def _column_html(i: int, run_id: str, cand_id: str, media_base: Callable[[str], 
         for a, b, c, d in _moment_rows(spec, manifests)
     ) or '<tr><td colspan="4">（无 Moment 数据）</td></tr>'
     compat = '<span class="compat">兼容模式 · 单候选</span>' if mode == "legacy" else ""
-    audio_src = _q(media_base(cand_id) + "beat.wav")
+    audio_src = _q(media_base(cand_id) + wav.name)
     return f"""
 <div class="column{' legacy' if mode == 'legacy' else ''}" id="col-{i}" data-cand="{html.escape(cand_id)}">
   <div class="chead">
@@ -532,7 +532,7 @@ def _column_html(i: int, run_id: str, cand_id: str, media_base: Callable[[str], 
   </div>
   <audio controls preload="none" src="{audio_src}"></audio>
   {_wave_svg(bins, color)}
-  <div class="mono" style="margin-top:4px">beat.wav · {sub}</div>
+  <div class="mono" style="margin-top:4px">{wav.name} · {sub}</div>
   <h3>Recipe 摘要</h3>
   <table class="mini">{recipe_table}</table>
   <h3>Moment 使用</h3>

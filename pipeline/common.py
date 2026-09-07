@@ -371,9 +371,12 @@ _MOMENT_COLUMNS = ("id", "asset_id", "type", "start_sec", "end_sec", "bars",
 
 
 def upsert_moment(conn: sqlite3.Connection, moment: dict) -> None:
-    """INSERT OR REPLACE。scores/explain/risks 传 dict/list（内部序列化）。"""
+    """INSERT OR REPLACE。scores/explain/risks 传 dict/list（内部序列化）。
+    id 缺失时按 asset:type:start-end 自动生成（hero 选择与 supporting 依赖 id 非空）。"""
     m = {c: None for c in _MOMENT_COLUMNS}
     m.update(moment)
+    if not m.get("id"):
+        m["id"] = f"{m['asset_id']}:{m['type']}:{float(m['start_sec'] or 0):07.3f}-{float(m['end_sec'] or 0):07.3f}"
     m["scores_json"] = _dumps(moment.get("scores", moment.get("scores_json")))
     m["explain_json"] = _dumps(moment.get("explain", moment.get("explain_json")))
     m["risks_json"] = _dumps(moment.get("risks", moment.get("risks_json")))

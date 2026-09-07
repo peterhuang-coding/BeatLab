@@ -279,7 +279,8 @@ def _supporting_pools(supporting: list[dict], assets_by_id: dict) -> tuple[list[
 
 
 def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[dict],
-                assets_by_id: dict, hero_file: str) -> tuple[list[dict], list[dict]]:
+                assets_by_id: dict, hero_file: str,
+                hook_hero: dict | None = None) -> tuple[list[dict], list[dict]]:
     """按 Recipe 摆放 chop/vocal。返回 (chop_placements, vocal_placements)。
     bar 为全局小节号（0 起）；段落差异来自 manifest 的 mutation（滤波/mute/密度/辅助素材）。"""
     kind = recipe["kind"]
@@ -289,6 +290,17 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
     hero_stem = str(hero.get("stem") or "source")
     hero_entry = {"file": hero_file, "start_sec": float(hero["start_sec"]),
                   "end_sec": float(hero["end_sec"])}
+    # 乐句触发周期：hero 窗口能覆盖几小节，就隔几小节触发一次（不再每小节重触发同一片段）
+    bpm = float((recipe.get("transform") or {}).get("bpm") or 92)
+    bar_s = 60.0 / bpm * 4
+    hero_dur = max(0.5, float(hero.get("end_sec", 0)) - float(hero.get("start_sec", 0)))
+    phrase_bars = max(1, round(hero_dur / bar_s))
+    # hook 段对比：同 hero 素材的第二个 Moment（若存在）
+    hook_hero_entry = None
+    if hook_hero and str(hook_hero.get("asset_id")) == hero_asset_id:
+        hook_hero_entry = {"file": hero_file,
+                           "start_sec": float(hook_hero["start_sec"]),
+                           "end_sec": float(hook_hero["end_sec"])}
     texture_pool, vocal_pool = _supporting_pools(supporting, assets_by_id)
     placements: list[dict] = []
     vocals: list[dict] = []
@@ -314,12 +326,19 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 if mut.get("dropout") == "odd_bars" and k % 2 == 1:
                     bar_idx += 1
                     continue
+                if k % phrase_bars:          # 乐句触发：hero 音频自然放完再触发下一次
+                    bar_idx += 1
+                    continue
                 lp = mut.get("lp_hz")
                 fade = 1.0
                 if mut.get("fade_out") and sec["bars"] > 0:
                     fade = 1.0 - 0.35 * k / sec["bars"]
-                placements.append(hero_p(sec_name, bar_idx, mut.get("hero_gain", 0.9),
-                                         lp_hz=lp, fade_gain=fade))
+                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
+                               common.MIDI_CHOP_BASE, mut.get("hero_gain", 0.9),
+                               hero_file, entry["start_sec"], entry["end_sec"],
+                               stem=hero_stem, lp_hz=lp, fade_gain=fade)
+                placements.append(p)
                 bar_idx += 1
         elif kind == "chop":
             style = mut.get("chop_style", "long_tail")
@@ -353,36 +372,45 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 if mut.get("dropout") == "hero_off":
                     bar_idx += 1
                     continue
+                if k % phrase_bars:          # 乐句触发，同上
+                    bar_idx += 1
+                    continue
                 fade = 1.0
                 if mut.get("fade_out") and sec["bars"] > 0:
                     fade = 1.0 - 0.35 * k / sec["bars"]
-                p = hero_p(sec_name, bar_idx, 0.85, fade_gain=fade)
+                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
+                               common.MIDI_CHOP_BASE, 0.85,
+                               hero_file, entry["start_sec"], entry["end_sec"],
+                               stem=hero_stem, fade_gain=fade)
                 if hero_stem == "vocal":   # 目标 stem 是人声 → 走 vocal 层（render 分轨路由）
                     vocals.append(p)
                 else:
                     placements.append(p)
                 bar_idx += 1
 
-    # 辅助素材（texture/transition/vocal accent）
-    hook_bar = sum(s["bars"] for s in recipe["arrangement"]["sections"]
-                   if s["name"] in ("intro", "verse"))
-    outro_bar = sum(s["bars"] for s in recipe["arrangement"]["sections"]) - 2
-    for i, t in enumerate(texture_pool[:2]):
-        if kind in ("loop", "stem"):
+    # 辅助素材：每 verse/intro 一个 texture 垫、每 hook 一个人声 phrase
+    # （此前整首只有 2-3 个事件 → 听感"只有一个采样"）
+    ti = vi = 0
+    bar_pos = 0
+    for sec in recipe["arrangement"]["sections"]:
+        sec_name = sec["name"]
+        bars = int(sec["bars"])
+        if sec_name in ("intro", "verse", "verse_variation", "outro") and ti < len(texture_pool):
+            t = texture_pool[ti]
             placements.append(_placement(
-                "hook", hook_bar + min(2, i), 8, t["sample_id"], 0, 15 + i,
-                common.MIDI_CHOP_BASE + 14 + i, 0.5, t["file"],
+                sec_name, bar_pos, 8, t["sample_id"], 0, 15 + (ti % 2),
+                common.MIDI_CHOP_BASE + 14 + (ti % 2), 0.35, t["file"],
                 t["start_sec"], t["end_sec"], stem=t["stem"]))
-        if kind == "chop":
-            placements.append(_placement(
-                "verse_variation", 0, 6, t["sample_id"], 0, 15 + i,
-                common.MIDI_CHOP_BASE + 14 + i, 0.4, t["file"],
-                t["start_sec"], t["end_sec"], stem=t["stem"]))
-    for i, v in enumerate(vocal_pool[:1]):
-        vocals.append(_placement(
-            "hook", hook_bar + 4, 12, v["sample_id"], 0, 16,
-            common.MIDI_CHOP_BASE + 15, 0.5, v["file"],
-            v["start_sec"], v["end_sec"], stem=v["stem"]))
+            ti += 1
+        if sec_name == "hook" and vi < len(vocal_pool):
+            v = vocal_pool[vi]
+            vocals.append(_placement(
+                sec_name, bar_pos, 12, v["sample_id"], 0, 16,
+                common.MIDI_CHOP_BASE + 15, 0.5, v["file"],
+                v["start_sec"], v["end_sec"], stem=v["stem"]))
+            vi += 1
+        bar_pos += bars
     return placements, vocals
 
 
@@ -406,8 +434,13 @@ def build_spec_for_recipe(recipe: dict, kind: str, run_id: str, hero: dict,
     ms_tick = _ms_per_tick(bpm)
 
     # 先摆切片（chop kind 的起始步 = sample onset），再生成带避让的鼓
+    hook_hero = next(
+        (s for s in supporting
+         if str(s.get("asset_id")) == str(hero.get("asset_id")) and s.get("id") != hero.get("id")),
+        None)
     chop_placements, vocal_placements = place_chops(rng, recipe, hero, supporting,
-                                                    assets_by_id, hero_file)
+                                                    assets_by_id, hero_file,
+                                                    hook_hero=hook_hero)
     avoid_by_bar: dict[int, set[int]] = {}
     if kind == "chop":
         for p in chop_placements:
