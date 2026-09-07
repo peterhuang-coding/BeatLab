@@ -503,6 +503,54 @@ def upsert_feedback(conn: sqlite3.Connection, fb: dict) -> None:
     conn.commit()
 
 
+def get_feedback(conn: sqlite3.Connection, run_id: str | None = None,
+                 verdict: str | None = None) -> list[dict]:
+    """读 feedback 行（dims/reasons 已反序列化）。run_id/verdict 可选过滤。"""
+    q = "SELECT * FROM feedback"
+    conds, params = [], []
+    if run_id:
+        conds.append("run_id = ?")
+        params.append(run_id)
+    if verdict:
+        conds.append("verdict = ?")
+        params.append(verdict)
+    if conds:
+        q += " WHERE " + " AND ".join(conds)
+    rows = conn.execute(q, params).fetchall()
+    out = []
+    for r in rows:
+        d = dict(r)
+        d["dims"] = _loads(d.pop("dims_json", None))
+        d["reasons"] = _loads(d.pop("reasons_json", None))
+        out.append(d)
+    return out
+
+
+def upsert_asset_quality(conn: sqlite3.Connection, sample_id: str,
+                         fields: dict, total: float, passed: bool) -> None:
+    """层1 资产质量写回：落到旧 scores 表（九项特征 + total/passed）。"""
+    f = {c: None for c in ("sample_id", "drums_presence", "vocal_free", "structure_hit",
+                           "key_bpm_conf", "loopability", "timbre_uniqueness",
+                           "harmonicity", "dynamics_space", "source_prior",
+                           "total", "passed", "scored_at")}
+    f.update({k: fields.get(k) for k in f if k in fields})
+    f["sample_id"] = sample_id
+    f["total"] = total
+    f["passed"] = int(bool(passed))
+    f["scored_at"] = now_iso()
+    conn.execute(
+        """INSERT OR REPLACE INTO scores
+           (sample_id, drums_presence, vocal_free, structure_hit, key_bpm_conf,
+            loopability, timbre_uniqueness, harmonicity, dynamics_space, source_prior,
+            total, passed, scored_at)
+           VALUES (:sample_id, :drums_presence, :vocal_free, :structure_hit,
+            :key_bpm_conf, :loopability, :timbre_uniqueness, :harmonicity,
+            :dynamics_space, :source_prior, :total, :passed, :scored_at)""",
+        f,
+    )
+    conn.commit()
+
+
 # ---------- dataclass（历史模块兼容） ----------
 @dataclass
 class SampleEntry:

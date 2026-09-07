@@ -425,7 +425,7 @@ def _persist_asset_quality(conn, score: common.Score) -> float:
     upsert_asset_quality = getattr(common, "upsert_asset_quality", None)
     if upsert_asset_quality is not None:
         passed = 1 if total >= common.SCORE_PASS else 0
-        upsert_asset_quality(score.sample_id, {**vars(score)}, total, passed)
+        upsert_asset_quality(conn, score.sample_id, {**vars(score)}, total, passed)
         return total
     if _table_exists(conn, "scores"):
         return upsert_score(conn, score)
@@ -469,7 +469,7 @@ def load_moments() -> list[dict]:
         raise RuntimeError(
             "[score] common.get_moments 缺失：需要数据层（Dev-1）合入后的 common.py。"
             "当前环境无法访问 moments 表；联调前自测请 monkeypatch common.get_moments。")
-    return [dict(m) if not isinstance(m, dict) else m for m in get_moments()]
+    return [dict(m) if not isinstance(m, dict) else m for m in get_moments(common.get_db())]
 
 
 def _moment_total(scores: dict) -> float:
@@ -528,7 +528,7 @@ def load_feedback() -> list[dict]:
     """读 feedback 表。优先 common.get_feedback；否则 get_db + 表存在性守卫（兼容旧表）。"""
     get_feedback = getattr(common, "get_feedback", None)
     if get_feedback is not None:
-        return [dict(f) if not isinstance(f, dict) else f for f in get_feedback()]
+        return [dict(f) if not isinstance(f, dict) else f for f in get_feedback(common.get_db())]
     conn = common.get_db()
     if not _table_exists(conn, "feedback"):
         return []
@@ -588,7 +588,9 @@ def _run_assets(ids: list[str], pool_flag: bool) -> int:
     conn = common.get_db()
     conn.row_factory = sqlite3.Row
     if get_assets is not None:
-        rows = get_assets(asset_ids=ids) if ids else get_assets()
+        rows = get_assets(conn)
+        if ids:
+            rows = [r for r in rows if str(r["id"]) in ids]
         if ids:
             found = {str(r["id"]) for r in rows}
             for sid in ids:

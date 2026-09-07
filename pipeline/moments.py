@@ -569,8 +569,9 @@ def analyze_asset(asset: Any, write_db: bool = True) -> tuple[list[dict], str]:
 
     if write_db:
         upsert_moment = _require("upsert_moment")
+        conn = common.get_db()
         for m in kept:
-            upsert_moment({
+            upsert_moment(conn, {
                 "asset_id": m["asset_id"],
                 "type": m["type"],
                 "start_sec": m["start_sec"],
@@ -612,7 +613,10 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     get_assets = _require("get_assets")
-    assets = get_assets(asset_ids=args.asset_ids) if args.asset_ids else get_assets()
+    conn = common.get_db()
+    assets = get_assets(conn)
+    if args.asset_ids:
+        assets = [a for a in assets if a["id"] in args.asset_ids]
     if not assets:
         print("[moments] 没有可分析的 assets")
         return 0

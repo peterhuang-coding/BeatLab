@@ -437,7 +437,7 @@ def main(argv: list[str] | None = None) -> int:
         parser.print_help()
         return 0
 
-    conn = get_db()
+    conn = common.get_db()
     conn.row_factory = sqlite3.Row
     rows = _select_rows(conn, args.sample_ids, args.all, args.pool)
     if not rows:
