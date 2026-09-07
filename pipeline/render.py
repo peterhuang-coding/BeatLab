@@ -1,23 +1,24 @@
-"""BeatLab 模块 F：渲染 + .als 伴生。
+"""BeatLab 生成层 · 模块 H3：三候选批量渲染 + dry stems + 三 manifests（render 改造，PRD §8）。
 
 用法:
-    .venv/bin/python pipeline/render.py <beat_id> [--no-als] [--force-kit] [--no-midi]
+    .venv/bin/python pipeline/render.py <run_id> [--force-kit] [--no-als] [--root PATH]
 
-功能:
-1. one-shot 库自动构建（build_kit）：扫所有已分离样本的 library/<id>/stems/drums.wav，
-   onset 切片 -> 每片特征（spectral centroid / 时长 / 40-120Hz 能量占比 / 高频占比 /
-   decay）-> 启发式分类 kick/snare/hat/oh/perc，每类取响度 top2 存 ROOT/kit/kit.json
-   （{kick:[file...], snare:[...], hat:[...], oh:[...], perc:[...]}，路径相对 ROOT）。
+功能（一次 render 调用渲染一个 run 的 3 个候选）:
+1. one-shot kit 自动构建（build_kit）：沿用旧逻辑 —— 扫 library stems/drums.wav，
+   onset 切片 → 特征 → 启发式分类 kick/snare/hat/oh/perc，每类响度 top2 存 ROOT/kit/kit.json；
    某类为空时 numpy 合成兜底（ROOT/kit/synth/），保证渲染永不失败。
-2. 渲染（render_beat）：按 BeatSpec 逐 bar 混鼓层 one-shot（velocity->增益、
-   offset_ms->平移）+ 切片（读 slice_map.json）+ 人声 phrase + 正弦 sub bass，
-   峰值归一 -1dB + tanh 软限幅，输出 44.1k 16bit 立体声 ROOT/beats/<id>/beat.wav。
-3. .als 伴生（patch_als）：复制 Live 12 模板 Quick Start Beat.als，gzip 解压后
-   patch Tempo/Manual 为 bpm 并注入 beat_id 注释（做法同 ai-beat-sketcher 的
-   build_live_set.py）；模板不存在则跳过并警告。另写 ABLETON_HANDOFF.txt，并在
-   compose 未产出 midi 时按 pattern 兜底生成 midi/drums|bass|chops.mid。
+2. 候选渲染（render_candidate）：按 BeatSpec + Recipe manifest 分层渲染 ——
+   drums（one-shot + velocity→增益 + offset_ms→平移）、chops（切片窗 + HP100 + 段落 LP + reverse）、
+   bass（正弦 sub，根音来自 manifest）、vocal（人声 phrase + stem 人声 hero）。
+   输出 <kind>/full_mix.wav（tanh 软限幅 + 峰值归一 -1dB，44.1k 16bit 立体声）
+   + <kind>/stems/{chops,drums,bass,vocal}.wav（dry 分轨：各层直出、峰值归一，不做专业分轨质量）。
+3. DAW 交付（PRD §8）：<kind>/chops/ 切片段 WAV（manifest 全部切片物化）、
+   <kind>/recipe.json、<kind>/provenance.json（hero source/rights/moment 区间、切片来源、pipeline 版本）、
+   根目录 run_manifest.json（三候选清单）；.als patch 沿用旧逻辑（take_<run_id>.als）。
+4. 任务可恢复：jobs 状态 generated 后重跑跳过（job_id == run_id）；
+   render 只写 beats/<run_id>/（kit 构建沿用旧逻辑写 ROOT/kit/）。
 
-只 import common（+ numpy/soundfile/mido）；接口经文件系统与 SQLite 交换。
+只 import common + recipes（+ numpy/soundfile）；接口经 SQLite 与文件系统交换。
 """
 from __future__ import annotations
 
@@ -28,51 +29,32 @@ import random
 import re
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
 import soundfile as sf
 
 import common
+import recipes
 
 SR = 44100                 # 渲染统一采样率
 STEPS_PER_BAR = 16
 PEAK_DBFS = -1.0           # 峰值归一目标（dBFS）
 KIT_CLASSES = ("kick", "snare", "hat", "oh", "perc")
 KIT_PAN = {"hat": 0.25, "oh": 0.15, "perc": -0.25}   # 非中心鼓件轻微声像展开
+STEM_LAYERS = ("chops", "drums", "bass", "vocal")
 LIVE12_TEMPLATE = "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Templates/Quick Start Beat.als"
 
 
-# ---------- spec 解析 ----------
-def load_spec(beat_id: str) -> tuple:
-    """从 ROOT/beats/<id>/spec.json 或 db beats.spec_path 读 BeatSpec，返回 (spec, beat_dir)。"""
-    beat_dir = common.ROOT / "beats" / beat_id
-    spec_path = beat_dir / "spec.json"
-    if not spec_path.exists():
-        conn = common.get_db()
-        try:
-            row = conn.execute(
-                "select spec_path from beats where beat_id=?", (beat_id,)
-            ).fetchone()
-            if row and row[0]:
-                spec_path = Path(row[0])
-        finally:
-            conn.close()
-    if not spec_path.exists():
-        sys.exit(f"render: 找不到 {beat_id} 的 spec（{spec_path} 与 db 均无）")
-    return common.BeatSpec.from_json(spec_path.read_text(encoding="utf-8")), beat_dir
-
-
-# ---------- 1. one-shot 库自动构建 ----------
+# ---------- 1. one-shot 库自动构建（沿用旧逻辑） ----------
 def _scan_drums() -> list:
-    """扫所有已分离样本的 drums.wav（兼容 library/<id>/ 与 library/<cat>/<id>/ 两级）。"""
     hits = sorted(common.LIBRARY.glob("*/stems/drums.wav"))
     hits += sorted(common.LIBRARY.glob("*/*/stems/drums.wav"))
     return hits
 
 
 def _slice_segments(y: np.ndarray, sr: int) -> list:
-    """onset 切片：backtrack 边界，丢弃 <15ms 的碎缝与过长段。"""
     import librosa
     onsets = librosa.onset.onset_detect(y=y, sr=sr, backtrack=True, units="samples")
     bounds = [0] + [int(o) for o in onsets] + [len(y)]
@@ -85,7 +67,6 @@ def _slice_segments(y: np.ndarray, sr: int) -> list:
 
 
 def _trim_edges(seg: np.ndarray, thr: float = 0.005) -> np.ndarray:
-    """去掉首尾低于峰值 0.5% 的静音尾巴，让 decay 更干净。"""
     peak = np.max(np.abs(seg)) + 1e-12
     nz = np.where(np.abs(seg) > peak * thr)[0]
     if nz.size == 0:
@@ -94,8 +75,6 @@ def _trim_edges(seg: np.ndarray, thr: float = 0.005) -> np.ndarray:
 
 
 def _features(y: np.ndarray, sr: int) -> dict | None:
-    """单段特征：centroid / 时长 / 低频(40-120Hz)占比 / 中频(150-500Hz)占比 /
-    高频(>6kHz)占比 / decay（RMS 包络峰值->10% 时间）/ rms。"""
     y = y - np.mean(y)
     n = len(y)
     if n < int(0.01 * sr):
@@ -112,7 +91,6 @@ def _features(y: np.ndarray, sr: int) -> dict | None:
         m = (freqs >= lo) & (freqs <= hi)
         return float(np.sum(Y[m] ** 2)) / total
 
-    # RMS 包络（32 样本窗）峰值到 10% 的耗时
     win = max(32, n // 512)
     frames = n // win
     if frames > 0:
@@ -134,8 +112,6 @@ def _features(y: np.ndarray, sr: int) -> dict | None:
 
 
 def _classify(f: dict) -> str | None:
-    """启发式分类：kick（低质心+高低频比）、snare（中频 burst+噪）、
-    hat（高质心+短）、oh（高质心+长衰减），其余归 perc。"""
     if f["duration"] > 1.2 or f["duration"] < 0.015:
         return None
     if f["centroid"] < 2000 and f["low"] > 0.25 and f["duration"] < 0.6:
@@ -150,7 +126,6 @@ def _classify(f: dict) -> str | None:
 
 
 def _synth_kick(sr: int) -> np.ndarray:
-    """兜底 kick：150->45Hz 正弦扫频 + 指数衰减。"""
     dur = 0.45
     t = np.arange(int(dur * sr)) / sr
     f = 45 + (150 - 45) * np.exp(-t * 8)
@@ -160,7 +135,6 @@ def _synth_kick(sr: int) -> np.ndarray:
 
 
 def _synth_snare(sr: int) -> np.ndarray:
-    """兜底 snare：带通白噪（150-8kHz）+ 180Hz 共振，短衰减。"""
     dur = 0.25
     n = int(dur * sr)
     t = np.arange(n) / sr
@@ -175,7 +149,6 @@ def _synth_snare(sr: int) -> np.ndarray:
 
 
 def _synth_hat(sr: int, dur: float, seed: int) -> np.ndarray:
-    """兜底 hat/oh：高通白噪（>6kHz），hat 20ms、oh 300ms。"""
     n = int(dur * sr)
     t = np.arange(n) / sr
     noise = np.random.default_rng(seed).standard_normal(n)
@@ -184,13 +157,20 @@ def _synth_hat(sr: int, dur: float, seed: int) -> np.ndarray:
     Y[freqs < 6000] = 0
     hp = np.fft.irfft(Y, n)
     env = np.exp(-t * (3.0 / dur))
-    if dur >= 0.1:                      # oh 加 5ms 起音防咔哒
+    if dur >= 0.1:
         env = np.minimum(t / 0.005, 1.0) * env
     return hp * env
 
 
+def _synth_perc(sr: int) -> np.ndarray:
+    """perc 兜底：短促中频敲击（1.2kHz 正弦 + 快速衰减）。"""
+    dur = 0.08
+    t = np.arange(int(dur * sr)) / sr
+    sig = np.sin(2 * np.pi * 1200 * t)
+    return sig * np.exp(-t * 60.0)
+
+
 def ensure_synth_kit() -> dict:
-    """numpy 合成兜底 kit，写 ROOT/kit/synth/，返回 {class: [相对 ROOT 路径]}。"""
     synth_dir = common.ROOT / "kit" / "synth"
     synth_dir.mkdir(parents=True, exist_ok=True)
     out = {}
@@ -199,6 +179,7 @@ def ensure_synth_kit() -> dict:
         "snare": _synth_snare,
         "hat": lambda sr: _synth_hat(sr, 0.02, 13),
         "oh": lambda sr: _synth_hat(sr, 0.3, 17),
+        "perc": lambda sr: _synth_perc(sr),
     }
     for cls, gen in gens.items():
         y = gen(SR).astype(np.float32)
@@ -210,9 +191,6 @@ def ensure_synth_kit() -> dict:
 
 
 def _isolate(cls: str, seg: np.ndarray, sr: int) -> np.ndarray:
-    """按鼓类别滤波隔离：drums stem 是全组鼓混音，切片里混着其他鼓的串音。
-    kick 低通留鼓皮冲击 / snare 带通 / hat·oh 高通截短 / perc 中频带通；
-    尾部指数衰减去掉杂散尾音，峰值归一。"""
     from scipy.signal import butter, sosfiltfilt
     caps = {"kick": 0.25, "snare": 0.20, "hat": 0.10, "oh": 0.40, "perc": 0.20}
     seg = seg[: int(caps[cls] * sr)]
@@ -237,7 +215,7 @@ def _isolate(cls: str, seg: np.ndarray, sr: int) -> np.ndarray:
 
 
 def build_kit(force: bool = False) -> dict:
-    """构建 one-shot kit：真实切片每类响度 top2 + 缺类合成兜底。"""
+    """构建 one-shot kit：真实切片每类响度 top2 + 缺类合成兜底（沿用旧逻辑）。"""
     kit_json = common.ROOT / "kit" / "kit.json"
     if kit_json.exists() and not force:
         try:
@@ -253,7 +231,7 @@ def build_kit(force: bool = False) -> dict:
     for drums in _scan_drums():
         try:
             y, sr = common.load_audio_mono(drums, sr=SR)
-        except Exception as exc:                     # 单文件损坏不阻塞整体
+        except Exception as exc:
             print(f"[kit] 跳过 {drums}: {exc}", file=sys.stderr)
             continue
         for s, e in _slice_segments(y, sr):
@@ -284,13 +262,14 @@ def build_kit(force: bool = False) -> dict:
     return chosen
 
 
-# ---------- 2. 渲染 ----------
+# ---------- 2. 候选渲染（分层 + dry stems） ----------
 _CHOP_HP_SOS = None
+_LP_CACHE: dict[float, Any] = {}
 
 
 def _hp_chop(seg: np.ndarray) -> np.ndarray:
-    """切片 100Hz 高通：切掉切片里的低频残渣，避免与 kick/bass 互掩。"""
-    if len(seg) < 64:          # 残片（<1.5ms）不滤波，防御 sosfiltfilt 的 padlen 下限
+    """切片 100Hz 高通：切掉低频残渣，避免与 kick/bass 互掩。"""
+    if len(seg) < 64:
         return seg
     global _CHOP_HP_SOS
     if _CHOP_HP_SOS is None:
@@ -300,13 +279,42 @@ def _hp_chop(seg: np.ndarray) -> np.ndarray:
     return sosfiltfilt(_CHOP_HP_SOS, seg)
 
 
-def _load_cached(cache: dict, rel_path: str) -> np.ndarray:
-    """按相对 ROOT 路径读单声道 float32（缓存；异采样率重采样对齐）。"""
+def _lp_at(seg: np.ndarray, hz: float) -> np.ndarray:
+    """段落级低通（Section Mutation 滤波）；缓存 SOS 系数。"""
+    if len(seg) < 64 or not hz or hz <= 0:
+        return seg
+    from scipy.signal import butter, sosfiltfilt
+    hz = float(hz)
+    if hz not in _LP_CACHE:
+        _LP_CACHE[hz] = butter(2, hz, fs=SR, output="sos")
+    return sosfiltfilt(_LP_CACHE[hz], seg)
+
+
+def _resolve_rel(rel: str) -> Path | None:
+    """相对路径解析：优先 ROOT 相对；绝对路径直接用。"""
+    if not rel:
+        return None
+    p = Path(rel)
+    if p.is_absolute():
+        return p if p.exists() else None
+    cands = [common.ROOT / rel, common.LIBRARY / rel]
+    for c in cands:
+        if c.exists():
+            return c
+    return None
+
+
+def _load_cached(cache: dict, rel_path: str) -> np.ndarray | None:
     if rel_path in cache:
         return cache[rel_path]
+    p = _resolve_rel(rel_path)
+    if p is None:
+        return None
     import librosa
-    p = common.ROOT / rel_path
-    y, sr = sf.read(p, dtype="float32", always_2d=False)
+    try:
+        y, sr = sf.read(p, dtype="float32", always_2d=False)
+    except Exception:
+        return None
     if y.ndim > 1:
         y = y.mean(axis=1)
     if sr != SR:
@@ -315,108 +323,63 @@ def _load_cached(cache: dict, rel_path: str) -> np.ndarray:
     return y
 
 
-def _norm_slice_map(data) -> dict:
-    """slice_map.json 容错归一为 {sample_id: [entries]}；entry 为 dict 或 [file,start,end]。"""
-    if isinstance(data, dict) and "slices" in data:
-        data = data["slices"]
-    if isinstance(data, dict) and "chops" in data:
-        data = data["chops"]
-    if isinstance(data, list):
-        return {"*": data}
-    return data
-
-
-def _match_entry(entries: list, chop_index: int) -> dict | None:
-    """在 entries 里按 index/pad 双约定找 chop_index（0 基）。"""
-    for en in entries:
-        en = dict(zip(("file", "start_sec", "end_sec"), en)) if isinstance(en, (list, tuple)) else en
-        idx = en.get("index")
-        pad = en.get("pad")
-        if (idx is not None and int(idx) == chop_index) or (pad is not None and int(pad) in (chop_index, chop_index + 1)):
-            return en
-    if 0 <= chop_index < len(entries):
-        en = entries[chop_index]
-        return dict(zip(("file", "start_sec", "end_sec"), en)) if isinstance(en, (list, tuple)) else en
-    return None
-
-
-def _find_chop(global_map: dict | None, beat_id: str, sample_id: str, chop_index: int) -> dict | None:
-    """定位切片段：先查全局 slice_map，再查 library/<cat>/<sample_id>/slice_map.json（只读一次，不自递归）。"""
-    for sm in (global_map,):
-        if not sm:
-            continue
-        entries = sm.get(sample_id) or sm.get("*")
-        if entries:
-            found = _match_entry(entries, chop_index)
-            if found:
-                return found
-    if sample_id:                        # 逐样本兜底
-        for cat in common.CATEGORIES:
-            p = common.LIBRARY / cat / sample_id / "slice_map.json"
-            if not p.exists():
-                continue
-            try:
-                data = _norm_slice_map(json.loads(p.read_text(encoding="utf-8")))
-            except (json.JSONDecodeError, OSError):
-                return None
-            entries = data.get(sample_id) or data.get("*") if isinstance(data, dict) else data
-            if not entries:
-                return None
-            return _match_entry(entries, chop_index)
-    return None
-
-
-def _resolve_lib_file(beat_id: str, sample_id: str, file: str) -> Path | None:
-    """把切片/人声的 file 解析为绝对路径：绝对路径直接用，否则按
-    library/<cat>/<id>/ 与 beats/<id>/ 依次尝试。"""
-    if not file:
+def _slice_window(cache: dict, rel: str, start: float, end: float, reverse: bool,
+                  lp_hz: float | None) -> np.ndarray | None:
+    """读整曲并按窗口切片（+HP100 去低频、+可选段落 LP、+可选 reverse）。"""
+    y = _load_cached(cache, rel)
+    if y is None:
         return None
-    p = Path(file)
-    if p.is_absolute():
-        return p if p.exists() else None
-    cands = []
-    if sample_id:
-        for cat in common.CATEGORIES:
-            cands.append(common.LIBRARY / cat / sample_id / file)
-        cands.append(common.LIBRARY / sample_id / file)
-    cands += [common.LIBRARY / file, common.ROOT / "beats" / beat_id / file]
-    for c in cands:
-        if c.exists():
-            return c
-    return None
+    s = int(float(start) * SR)
+    e = max(s + 64, int(float(end) * SR))
+    seg = y[s: min(e, len(y))]
+    if len(seg) < 64:
+        return None
+    seg = _hp_chop(seg)
+    if lp_hz:
+        seg = _lp_at(seg, lp_hz)
+    if reverse:
+        seg = seg[::-1].copy()
+    return seg
 
 
-def render_beat(spec, kit: dict, beat_dir: Path) -> Path:
-    """按 BeatSpec 渲染 beat.wav（44.1k 16bit 立体声），返回输出路径。"""
+def _new_layers(n: int) -> dict[str, tuple[np.ndarray, np.ndarray]]:
+    return {k: (np.zeros(n, dtype=np.float32), np.zeros(n, dtype=np.float32)) for k in STEM_LAYERS}
+
+
+def _add(layers: dict, name: str, sig: np.ndarray, t: float, gain: float,
+         pan: float, n: int) -> None:
+    i = int(t * SR)
+    if i >= n or gain <= 0 or i < 0:
+        return
+    seg = sig[: max(0, n - i)]
+    gl = gain * np.cos((pan + 1) * np.pi / 4)     # 等功率声像
+    gr = gain * np.sin((pan + 1) * np.pi / 4)
+    L, R = layers[name]
+    L[i: i + len(seg)] += seg * gl
+    R[i: i + len(seg)] += seg * gr
+
+
+def _kit_for_recipe(recipe: dict, kit_fallback: dict) -> dict[str, list[str]]:
+    """manifest drum_kit 优先（recipe 可复现）；路径缺失回退 build_kit 结果。"""
+    out = {}
+    for cls in KIT_CLASSES:
+        paths = [p for p in (recipe.get("drum_kit") or {}).get(cls) or [] if p]
+        ok = [p for p in paths if (common.ROOT / p).exists()]
+        out[cls] = ok or kit_fallback.get(cls) or []
+    return out
+
+
+def _render_layers(spec, recipe: dict, kit: dict, n: int) -> dict:
+    """按 BeatSpec 渲染 4 层（chops/drums/bass/vocal），返回 {layer: (L, R)}。"""
     step_s = 60.0 / spec.bpm / 4
     bar_s = step_s * STEPS_PER_BAR
-    total_bars = spec.total_bars or sum(s.bars for s in spec.sections) or 1
-    n = int(total_bars * bar_s * SR) + int(0.5 * SR)     # 0.5s 尾巴余量
-    L = np.zeros(n, dtype=np.float32)
-    R = np.zeros(n, dtype=np.float32)
-    cache = {}
-    rng = random.Random(spec.beat_id)                    # 确定性随机选 one-shot
-    slice_map = None
-    for p in (beat_dir / "slice_map.json", common.ROOT / "slice_map.json"):
-        if p.exists():
-            try:
-                slice_map = _norm_slice_map(json.loads(p.read_text(encoding="utf-8")))
-            except (json.JSONDecodeError, OSError):
-                pass
-            break
+    layers = _new_layers(n)
+    cache: dict[str, np.ndarray] = {}
+    rng = random.Random(spec.beat_id)              # 确定性随机选 one-shot
+    kit = _kit_for_recipe(recipe, kit)
 
-    def add(sig: np.ndarray, t: float, gain: float, pan: float = 0.0) -> None:
-        i = int(t * SR)
-        if i >= n or gain <= 0 or i < 0:
-            return
-        seg = sig[: max(0, n - i)]
-        gl = gain * np.cos((pan + 1) * np.pi / 4)        # 等功率声像
-        gr = gain * np.sin((pan + 1) * np.pi / 4)
-        L[i: i + len(seg)] += seg * gl
-        R[i: i + len(seg)] += seg * gr
-
-    # 鼓层：bar 全局序号，step 0..15
-    for bar in range(total_bars):
+    # 鼓层
+    for bar in range(spec.total_bars):
         pat = spec.drum_pattern.get(str(bar)) or spec.drum_pattern.get(bar) or {}
         for track, steps in pat.items():
             choices = kit.get(track)
@@ -429,52 +392,39 @@ def render_beat(spec, kit: dict, beat_dir: Path) -> Path:
                 off = float(params.get("offset_ms", 0)) / 1000.0
                 t = bar * bar_s + int(step_k) * step_s + off
                 y = _load_cached(cache, rng.choice(choices))
-                add(y, t, common.clamp(gain, 0, 1), KIT_PAN.get(track, 0.0))
+                if y is not None:
+                    _add(layers, "drums", y, t, common.clamp(gain, 0, 1), KIT_PAN.get(track, 0.0), n)
 
-    # 切片：chop_placements 读 slice_map.json 对应片段
-    n_chop_played = n_chop_miss = n_vocal_played = n_vocal_miss = 0
+    # 切片层（hero/supporting 全部走窗切；lp_hz/reverse 为段落 mutation）
+    n_chop_played = n_chop_miss = 0
     for pl in spec.chop_placements:
-        # compose 已内嵌 file/start/end 时直接消费；否则回退 _find_chop 解析
-        entry = pl if pl.get("file") else _find_chop(
-            slice_map, spec.beat_id, str(pl.get("sample_id", "")), int(pl.get("chop_index", 0))
-        )
-        if entry is None:
+        seg = _slice_window(cache, str(pl.get("file", "")), float(pl.get("start_sec", 0)),
+                            float(pl.get("end_sec", 0)), bool(pl.get("reverse", False)),
+                            pl.get("lp_hz"))
+        if seg is None:
             n_chop_miss += 1
             continue
-        path = _resolve_lib_file(spec.beat_id, str(pl.get("sample_id", "")), str(entry.get("file", "")))
-        if path is None:
-            n_chop_miss += 1
-            continue
-        rel = str(path.relative_to(common.ROOT)) if path.is_relative_to(common.ROOT) else str(path)
-        y = _load_cached(cache, rel)
         t = int(pl.get("bar", 0)) * bar_s + int(pl.get("step", 0)) * step_s
-        # 切片文件本身即已切好的片段：整段播放（start_sec/end_sec 是原曲时间戳，
-        # 只对整曲文件有意义——此处若再按它切片会全部越界静默丢弃）
-        seg = _hp_chop(y)
-        if len(seg) > int(4 * SR):
-            seg = seg[: int(4 * SR)]
-        if len(seg) < 64:
-            n_chop_miss += 1
-            continue
-        add(seg, t, common.clamp(float(pl.get("gain", 0.7)) * 1.0, 0, 1), float(pl.get("pan", 0)))
+        _add(layers, "chops", seg, t, common.clamp(float(pl.get("gain", 0.7)), 0, 1),
+             float(pl.get("pan", 0)), n)
         n_chop_played += 1
 
-    # 人声 phrase 垫底
+    # 人声层（vocal accent + stem 人声 hero）
+    n_vocal_played = 0
     for vp in spec.vocal_placements:
-        path = _resolve_lib_file(spec.beat_id, str(vp.get("sample_id", "")), str(vp.get("file", "")))
-        if path is None:
-            n_vocal_miss += 1
+        seg = _slice_window(cache, str(vp.get("file", "")), float(vp.get("start_sec", 0)),
+                            float(vp.get("end_sec", 0)), bool(vp.get("reverse", False)),
+                            vp.get("lp_hz"))
+        if seg is None:
             continue
-        rel = str(path.relative_to(common.ROOT)) if path.is_relative_to(common.ROOT) else str(path)
-        y = _load_cached(cache, rel)
-        cap = int(8 * SR)                                # phrase 最长 8s
+        cap = int(8 * SR)                          # phrase 最长 8s
         t = int(vp.get("bar", 0)) * bar_s + int(vp.get("step", 0)) * step_s
-        # phrase 文件同样已是切好的片段：整段播放
-        add(y[:cap], t, common.clamp(float(vp.get("gain", 0.6)) * 1.5, 0, 1))
+        _add(layers, "vocal", seg[:cap], t, common.clamp(float(vp.get("gain", 0.6)) * 1.5, 0, 1),
+             0.0, n)
         n_vocal_played += 1
 
-    # bass：正弦 sub（根音频率）+ velocity 包络 + 轻度软削波
-    for bar in range(total_bars):
+    # bass：正弦 sub（根音频率）+ velocity 包络 + 轻度软削波（沿旧逻辑）
+    for bar in range(spec.total_bars):
         pat = spec.bass_pattern.get(str(bar)) or spec.bass_pattern.get(bar) or {}
         for step_k, note in (pat or {}).items():
             f = 440.0 * 2 ** ((int(note) - 69) / 12)
@@ -485,32 +435,133 @@ def render_beat(spec, kit: dict, beat_dir: Path) -> Path:
             env = np.minimum(tt / 0.005, 1.0) * np.exp(-tt / (dur * 0.6))
             sig = np.sin(2 * np.pi * f * tt) * env * 0.5
             sig = np.tanh(1.5 * sig) * 0.7
-            i = int(t0 * SR)
-            seg = sig[: max(0, n - i)]
-            L[i: i + len(seg)] += seg
-            R[i: i + len(seg)] += seg
+            _add(layers, "bass", sig, t0, 1.0, 0.0, n)
 
-    print(f"[mix] chops={n_chop_played}/{len(spec.chop_placements)} "
+    print(f"[render] chops={n_chop_played}/{len(spec.chop_placements)} "
           f"vocals={n_vocal_played}/{len(spec.vocal_placements)}", flush=True)
+    return layers
 
-    # 混音：tanh 软限幅 -> 峰值归一 -1dB
+
+def _write_stereo(path: Path, L: np.ndarray, R: np.ndarray, dry: bool) -> None:
+    """dry=False：tanh 软限幅 + 峰值归一 -1dB（master）；dry=True：仅峰值归一（分轨直出）。"""
     mix = np.stack([L, R], axis=1)
-    mix = np.tanh(mix)
-    mix = mix * (10 ** (PEAK_DBFS / 20) / (np.max(np.abs(mix)) + 1e-12))
-    out = beat_dir / "beat.wav"
-    sf.write(out, mix, SR, subtype="PCM_16")
+    if not dry:
+        mix = np.tanh(mix)
+    peak = np.max(np.abs(mix)) + 1e-12
+    mix = mix * (10 ** (PEAK_DBFS / 20) / peak)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    sf.write(path, mix, SR, subtype="PCM_16")
+
+
+def _materialize_chops(recipe: dict, cand_dir: Path) -> list[Path]:
+    """manifest 全部切片物化（DAW 交付：所有使用过的 chop WAV），返回文件列表。"""
+    chops_dir = cand_dir / "chops"
+    chops_dir.mkdir(parents=True, exist_ok=True)
+    cache: dict[str, np.ndarray] = {}
+    out: list[Path] = []
+    for c in recipe.get("chops", []):
+        y = _load_cached(cache, str(c.get("file", "")))
+        if y is None:
+            print(f"[chops] 素材缺失，跳过物化: {c.get('file')}", file=sys.stderr)
+            continue
+        s = int(float(c.get("start_sec", 0)) * SR)
+        e = max(s + 64, int(float(c.get("end_sec", 0)) * SR))
+        seg = y[s: min(e, len(y))]
+        if len(seg) < 64:
+            continue
+        if c.get("reverse"):
+            seg = seg[::-1].copy()
+        peak = np.max(np.abs(seg)) + 1e-12
+        seg = seg / peak * 0.9
+        pad = int(c.get("pad", 1))
+        role = str(c.get("role", "pad"))
+        p = chops_dir / f"{role}_{pad:02d}.wav" if role != "pad" else chops_dir / f"pad{pad:02d}.wav"
+        sf.write(p, seg, SR, subtype="PCM_16")
+        out.append(p)
     return out
 
 
-# ---------- 3. .als 伴生 + handoff + midi 兜底 ----------
-def patch_als(beat_id: str, bpm: float, beat_dir: Path) -> Path | None:
-    """复制 Live 12 模板并 patch Tempo/Manual 为 bpm、注入 beat_id 注释。
-    模板不存在时跳过并返回 None。"""
+def render_candidate(spec, recipe: dict, kit: dict, cand_dir: Path) -> dict[str, Path]:
+    """渲染一个候选：full_mix.wav + 4 dry stems + chops/ 物化，返回产物路径表。"""
+    step_s = 60.0 / spec.bpm / 4
+    bar_s = step_s * STEPS_PER_BAR
+    total_bars = spec.total_bars or sum(s.bars for s in spec.sections) or 1
+    n = int(total_bars * bar_s * SR) + int(0.5 * SR)   # 0.5s 尾巴余量
+    layers = _render_layers(spec, recipe, kit, n)
+
+    out: dict[str, Path] = {}
+    mix_path = cand_dir / "full_mix.wav"
+    mix_l = mix_r = None
+    for name in STEM_LAYERS:
+        L, R = layers[name]
+        _write_stereo(cand_dir / "stems" / f"{name}.wav", L, R, dry=True)
+        out[f"stem_{name}"] = cand_dir / "stems" / f"{name}.wav"
+        if mix_l is None:
+            mix_l, mix_r = L.copy(), R.copy()
+        else:
+            mix_l += L
+            mix_r += R
+    _write_stereo(mix_path, mix_l, mix_r, dry=False)
+    out["full_mix"] = mix_path
+    out["chops_dir"] = cand_dir / "chops"
+    out["chop_files"] = _materialize_chops(recipe, cand_dir)
+    return out
+
+
+# ---------- 3. manifests ----------
+def _run_manifest(run_id: str, specs: dict, recipes_manifest: dict, bpm: float) -> dict:
+    loop = recipes_manifest.get("loop") or {}
+    priors = (loop.get("pipeline") or {}).get("params", {}).get("recipe_prior", {})
+    return {
+        "run_id": run_id,
+        "seed": recipes._seed(run_id),
+        "bpm": round(float(bpm), 2),
+        "hero_moment_id": (loop.get("hero") or {}).get("moment_id"),
+        "hero_asset_id": (loop.get("hero") or {}).get("asset_id"),
+        "status": "generated",
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "recipe_prior": priors,
+        "stems_note": "dry layer bounces (pre-master, 44.1k 16bit)，非专业分轨质量",
+        "candidates": [
+            {
+                "kind": k, "recipe_id": (recipes_manifest[k].get("recipe_id")),
+                "beat_id": f"{run_id}-{k}",
+                "groove_profile": recipes_manifest[k].get("groove_profile"),
+                "duration_s": round(specs[k].total_bars * 240.0 / specs[k].bpm, 2),
+                "full_mix": f"{k}/full_mix.wav",
+                "stems": {n: f"{k}/stems/{n}.wav" for n in STEM_LAYERS},
+                "recipe": f"{k}/recipe.json",
+                "provenance": f"{k}/provenance.json",
+                "chops_dir": f"{k}/chops",
+                "midi_dir": f"{k}/midi",
+            }
+            for k in recipes.RECIPE_KINDS
+        ],
+    }
+
+
+def _already_generated(run_id: str) -> bool:
+    """任务可恢复：run_manifest generated 且三候选产物齐全，或 jobs 状态 == generated。"""
+    run_dir = common.ROOT / "beats" / run_id
+    rm = run_dir / "run_manifest.json"
+    if rm.exists():
+        try:
+            data = json.loads(rm.read_text(encoding="utf-8"))
+            if data.get("status") == "generated" and all(
+                    (run_dir / k / "full_mix.wav").exists() for k in recipes.RECIPE_KINDS):
+                return True
+        except (json.JSONDecodeError, OSError):
+            pass
+    return recipes.job_status(run_id) == "generated"
+
+
+# ---------- 4. .als 伴生 + handoff（沿用旧逻辑） ----------
+def patch_als(run_id: str, bpm: float, run_dir: Path) -> Path | None:
     src = Path(LIVE12_TEMPLATE)
     if not src.exists():
         print(f"[als] 模板不存在，跳过 .als: {LIVE12_TEMPLATE}", file=sys.stderr)
         return None
-    target = beat_dir / f"take_{beat_id}.als"
+    target = run_dir / f"take_{run_id}.als"
     shutil.copy(src, target)
     bpm_s = str(int(bpm)) if float(bpm).is_integer() else f"{float(bpm):.1f}"
     xml = gzip.decompress(target.read_bytes()).decode("utf-8")
@@ -522,17 +573,16 @@ def patch_als(beat_id: str, bpm: float, beat_dir: Path) -> Path | None:
     if nsub == 0:
         print("[als] 警告: 模板中未找到 Tempo/Manual，BPM 未写入", file=sys.stderr)
     xml = xml.replace(
-        "<LiveSet>", f"<LiveSet><!-- beat_id={beat_id}; bpm={bpm_s} -->", 1
+        "<LiveSet>", f"<LiveSet><!-- run_id={run_id}; bpm={bpm_s} -->", 1
     )
     target.write_bytes(gzip.compress(xml.encode("utf-8")))
     return target
 
 
-def write_handoff(beat_id: str, bpm: float, beat_dir: Path, als: Path | None) -> Path:
-    """ABLETON_HANDOFF.txt：.als 打开与 midi/audio 拖入说明。"""
+def write_handoff(run_id: str, bpm: float, run_dir: Path, als: Path | None) -> Path:
     lines = [
-        f"BeatLab take: {beat_id} @ {bpm:g} BPM",
-        "=" * 56,
+        f"BeatLab run: {run_id} @ {bpm:g} BPM（三个候选：loop / chop / stem）",
+        "=" * 64,
     ]
     if als:
         lines += [
@@ -543,131 +593,94 @@ def write_handoff(beat_id: str, bpm: float, beat_dir: Path, als: Path | None) ->
         lines += ["未生成 .als（Live 12 模板缺失），可手动新建 Live Set 并设 BPM。"]
     lines += [
         "",
-        "== 加载本 beat 的 MIDI（.als 已带 Drums/Bass/切片 轨时拖入即可）==",
-        "1. midi/drums.mid -> Drums Track（打击乐轨）",
-        "2. midi/bass.mid  -> Bass Track",
-        "3. midi/chops.mid -> 切片 Track（C3 起 pad B1-B16）",
-        "4. beat.wav -> 任意 Audio Track（本 beat 的完整混音，可直接试听）",
+        "== 三个候选（每候选目录结构相同）==",
+        "  <kind>/full_mix.wav         完整混音试听",
+        "  <kind>/stems/*.wav          dry 分轨（chops/drums/bass/vocal，",
+        "                              直出层 bounce、非专业分轨质量）",
+        "  <kind>/chops/               所有使用过的切片段 WAV（拖入 Drum Rack）",
+        "  <kind>/midi/drums.mid       拖入 Drums Track",
+        "  <kind>/midi/bass.mid        拖入 Bass Track",
+        "  <kind>/midi/chops.mid       拖入切片 Track（C3 起 pad）",
+        "  <kind>/recipe.json          Recipe manifest（Ableton 逐轨重建依据）",
+        "  <kind>/provenance.json      来源/权利/切片/版本 追溯",
         "",
         "== 关联产物 ==",
-        f"- 试听/交付页: {common.MIRROR_ROOT}/{common.today_str()}/{beat_id}_*.html",
-        f"- 工程目录: {beat_dir}",
+        f"- 工程目录: {run_dir}",
+        f"- 试听/交付镜像: {common.MIRROR_ROOT}/{common.today_str()}/（report 模块产出）",
     ]
-    out = beat_dir / "ABLETON_HANDOFF.txt"
+    out = run_dir / "ABLETON_HANDOFF.txt"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return out
 
 
-def export_midi_fallback(spec, beat_dir: Path) -> Path | None:
-    """compose 未产出 midi 时按 pattern 兜底生成 midi/drums|bass|chops.mid。"""
-    midi_dir = beat_dir / "midi"
-    if midi_dir.exists() and any(midi_dir.glob("*.mid")):
-        return midi_dir
-    import mido
-    tpb = 480
-    step_ticks = tpb // 4
-    total_bars = spec.total_bars or sum(s.bars for s in spec.sections) or 1
-    events = []                                          # (tick, on/off, note, vel, chan)
+# ---------- 5. 入口 ----------
+def render_run(run_id: str, *, force_kit: bool = False, no_als: bool = False,
+               root: str | Path | None = None) -> dict | None:
+    """批量渲染一个 run 的 3 个候选；jobs 状态 generated 后重跑跳过；只写 beats/<run_id>/。"""
+    if root:
+        recipes.set_test_root(root)
+    if _already_generated(run_id):
+        print(f"[render] run {run_id} 已 generated，跳过（任务可恢复）")
+        return None
+    run_dir = common.ROOT / "beats" / run_id
+    specs: dict[str, common.BeatSpec] = {}
+    manifests: dict[str, dict] = {}
+    for kind in recipes.RECIPE_KINDS:
+        spec_path = run_dir / "specs" / f"{kind}.json"
+        recipe_path = run_dir / "recipes" / f"{kind}.json"
+        if not spec_path.exists() or not recipe_path.exists():
+            sys.exit(f"[ERROR] run {run_id} 缺少 {kind} 的 spec/recipe：请先运行 compose")
+        specs[kind] = recipes.spec_load(spec_path.read_text(encoding="utf-8"))
+        manifests[kind] = json.loads(recipe_path.read_text(encoding="utf-8"))
 
-    def add_hit(bar: int, step: int, note: int, vel: float, chan: int) -> None:
-        t0 = (bar * STEPS_PER_BAR + step) * step_ticks
-        events.append((t0, "on", note, int(common.clamp(vel, 0, 1) * 127), chan))
-        events.append((t0 + int(step_ticks * 0.9), "off", note, 0, chan))
-
-    note_map = {"kick": common.MIDI_KICK, "snare": common.MIDI_SNARE,
-                "hat": common.MIDI_HAT, "oh": common.MIDI_OH, "perc": common.MIDI_PERC}
-    for bar in range(total_bars):
-        pat = spec.drum_pattern.get(str(bar)) or spec.drum_pattern.get(bar) or {}
-        for track, steps in pat.items():
-            if track not in note_map:
-                continue
-            for step_s, params in (steps or {}).items():
-                params = params or {}
-                vel = float(params.get("velocity", 1.0))
-                vel = vel / 127.0 if vel > 1 else vel
-                add_hit(bar, int(step_s), note_map[track], vel, 9)
-        bpat = spec.bass_pattern.get(str(bar)) or spec.bass_pattern.get(bar) or {}
-        for step_s, note in (bpat or {}).items():
-            add_hit(bar, int(step_s), int(note), 0.8, 0)
-    for pl in spec.chop_placements:
-        note = int(pl.get("midi_note", 0) or common.MIDI_CHOP_BASE + int(pl.get("pad", 1)) - 1)
-        add_hit(int(pl.get("bar", 0)), int(pl.get("step", 0)), note,
-                float(pl.get("gain", 0.7)), 2)
-
-    midi_dir.mkdir(parents=True, exist_ok=True)
-    for name, chan in (("drums", 9), ("bass", 0), ("chops", 2)):
-        evs = sorted(e for e in events if e[4] == chan)
-        mf = mido.MidiFile(ticks_per_beat=tpb)
-        tr = mido.MidiTrack()
-        mf.tracks.append(tr)
-        if chan == 9:
-            tr.append(mido.Message("program_change", channel=9, program=0, time=0))
-        last = 0
-        for t, typ, note, vel, _c in evs:
-            tr.append(mido.Message("note_on" if typ == "on" else "note_off",
-                                   channel=chan, note=note, velocity=vel, time=t - last))
-            last = t
-        mf.save(midi_dir / f"{name}.mid")
-    return midi_dir
-
-
-# ---------- db 落库 ----------
-def update_db(spec, wav: Path, als: Path | None, midi_dir: Path | None, spec_path: Path) -> None:
-    """beats 表 upsert 渲染产物路径（不覆盖 compose 已写的字段）。"""
-    conn = common.get_db()
-    try:
-        conn.execute(
-            """insert or replace into beats
-               (beat_id, created_at, bpm, style, duration_s, sample_ids,
-                spec_path, wav_path, als_path, midi_dir)
-               values (?,?,?,?,?,?,?,?,?,?)""",
-            (spec.beat_id, spec.created_at or common.today_str(), spec.bpm, spec.style,
-             float(sf.info(wav).duration), json.dumps(spec.sample_ids),
-             str(spec_path), str(wav),
-             str(als) if als else None, str(midi_dir) if midi_dir else None),
-        )
-        conn.commit()
-    finally:
-        conn.close()
-
-
-# ---------- CLI ----------
-def main() -> None:
-    ap = argparse.ArgumentParser(description="BeatLab 模块 F：渲染 + .als 伴生")
-    ap.add_argument("beat_id", help="要渲染的 beat id")
-    ap.add_argument("--no-als", action="store_true", help="跳过 .als 生成")
-    ap.add_argument("--force-kit", action="store_true", help="强制重建 one-shot kit")
-    ap.add_argument("--no-midi", action="store_true", help="跳过 midi 兜底导出")
-    args = ap.parse_args()
-
-    spec, beat_dir = load_spec(args.beat_id)
-    beat_dir.mkdir(parents=True, exist_ok=True)
-    spec_path = beat_dir / "spec.json"
-    if not spec_path.exists():                       # 供下游（report）直接读取
-        spec_path.write_text(spec.to_json(), encoding="utf-8")
-
-    kit = build_kit(force=args.force_kit)
+    kit = build_kit(force=force_kit)
     counts = {k: len(v) for k, v in kit.items()}
     synth_n = sum(1 for v in kit.values() if any("synth" in p for p in v))
     print(f"[kit] kick={counts['kick']} snare={counts['snare']} hat={counts['hat']} "
           f"oh={counts['oh']} perc={counts['perc']}（synth 兜底 {synth_n} 类）")
 
-    wav = render_beat(spec, kit, beat_dir)
-    print(f"[render] {wav} ({sf.info(wav).duration:.2f}s)")
+    assets_by_id = {str(a.get("id")): a for a in recipes.get_assets()}
+    bpm = specs["loop"].bpm
+    for kind in recipes.RECIPE_KINDS:
+        cand_dir = run_dir / kind
+        cand_dir.mkdir(parents=True, exist_ok=True)
+        spec = specs[kind]
+        manifest = manifests[kind]
+        files = render_candidate(spec, manifest, kit, cand_dir)
+        (cand_dir / "recipe.json").write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        prov = recipes.build_provenance(manifest, assets_by_id, run_id)
+        prov["generated_at"] = datetime.now().isoformat(timespec="seconds")
+        (cand_dir / "provenance.json").write_text(
+            json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"[render] {kind}: {files['full_mix']} "
+              f"(+4 dry stems, {len(files['chop_files'])} chop wavs)")
 
-    als = None if args.no_als else patch_als(spec.beat_id, spec.bpm, beat_dir)
+    rm = _run_manifest(run_id, specs, manifests, bpm)
+    (run_dir / "run_manifest.json").write_text(
+        json.dumps(rm, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    als = None if no_als else patch_als(run_id, bpm, run_dir)
     if als:
         print(f"[als] {als}")
-
-    handoff = write_handoff(spec.beat_id, spec.bpm, beat_dir, als)
+    handoff = write_handoff(run_id, bpm, run_dir, als)
     print(f"[handoff] {handoff}")
 
-    midi_dir = None if args.no_midi else export_midi_fallback(spec, beat_dir)
-    if midi_dir:
-        print(f"[midi] 兜底导出: {midi_dir}")
+    recipes.mark_job(run_id, "generated")
+    recipes.upsert_run(run_id, status="generated",
+                       generated_at=rm["generated_at"], candidates=rm["candidates"])
+    print(f"[render] run {run_id} 完成（3 full_mix + 12 dry stems + 3 manifests）")
+    return rm
 
-    update_db(spec, wav, als, midi_dir, spec_path)
-    print("[render] 完成")
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="BeatLab 生成层：批量渲染 run 的三候选 + dry stems + manifests")
+    ap.add_argument("run_id", help="要渲染的 run id（job_id == run_id）")
+    ap.add_argument("--force-kit", action="store_true", help="强制重建 one-shot kit")
+    ap.add_argument("--no-als", action="store_true", help="跳过 .als 生成")
+    ap.add_argument("--root", help="隔离根目录（默认 common.ROOT）")
+    args = ap.parse_args()
+    render_run(args.run_id, force_kit=args.force_kit, no_als=args.no_als, root=args.root)
 
 
 if __name__ == "__main__":
