@@ -78,7 +78,12 @@ def upsert_feedback(row: dict) -> str:
     """写入/更新一条反馈（契约: common.upsert_feedback 优先）。"""
     fn = getattr(common, "upsert_feedback", None)
     if fn is not None:
-        return fn(row)
+        conn = common.get_db()
+        try:
+            fn(conn, row)
+        finally:
+            conn.close()
+        return row["id"]
     conn = common.get_db()
     try:
         conn.execute(FEEDBACK_DDL)
@@ -103,7 +108,22 @@ def get_feedback(run_id: str | None = None, candidate_id: str | None = None) -> 
     """查询反馈行（契约: common.get_feedback 优先），返回 dict 列表。"""
     fn = getattr(common, "get_feedback", None)
     if fn is not None:
-        return [dict(r) if not isinstance(r, dict) else r for r in fn(run_id, candidate_id)]
+        conn = common.get_db()
+        try:
+            rows = fn(conn, run_id=run_id)
+        finally:
+            conn.close()
+        out = []
+        for raw in rows:
+            row = dict(raw)
+            if candidate_id and row.get("candidate_id") != candidate_id:
+                continue
+            row["dims_json"] = json.dumps(
+                row.pop("dims", {}) or {}, ensure_ascii=False, sort_keys=True)
+            row["reasons_json"] = json.dumps(
+                row.pop("reasons", []) or [], ensure_ascii=False)
+            out.append(row)
+        return out
     conn = common.get_db()
     try:
         conn.execute(FEEDBACK_DDL)

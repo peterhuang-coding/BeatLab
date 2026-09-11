@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import (  # noqa: E402
-    get_db, now_iso, upsert_asset, upsert_job, upsert_rights,
+    get_db, mark_job, now_iso, upsert_asset, upsert_job, upsert_rights,
 )
 import crawler  # noqa: E402
 import library  # noqa: E402
@@ -33,6 +33,19 @@ SPEECH_KEYWORDS = (
     "speech", "访谈", "对白", "lecture", "名言", "podcast", "播客",
     "interview", "对话", "口播", "独白", "talk", "voice", "vocal",
 )
+
+
+class _DeferredCommitConnection:
+    """供 common helper 使用，由摄入入口统一控制事务提交。"""
+
+    def __init__(self, conn):
+        self._conn = conn
+
+    def execute(self, *args, **kwargs):
+        return self._conn.execute(*args, **kwargs)
+
+    def commit(self) -> None:
+        pass
 
 
 def guess_category(duration_s: float | None, title: str) -> str:
@@ -95,13 +108,15 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
             "stems_ready": 0,
             "ingested_at": ingested_at,
         }
-        upsert_asset(conn, asset)
+        transaction_conn = _DeferredCommitConnection(conn)
+        conn.execute("BEGIN")
+        upsert_asset(transaction_conn, asset)
         # rights：本地目录无法确认许可 → needs_review + unknown_license
-        upsert_rights(conn, asset_id, state="needs_review", basis="unknown_license",
+        upsert_rights(transaction_conn, asset_id, state="needs_review", basis="unknown_license",
                       snapshot={"orig_path": asset["orig_path"], "license": None,
                                 "source": source, "ingested_at": ingested_at})
         # 状态机：discovered → ingested（后续层用 mark_job 推进）
-        upsert_job(conn, {
+        upsert_job(transaction_conn, {
             "id": asset_id, "type": "asset", "state": "ingested",
             "payload": {"source": source, "orig_path": asset["orig_path"],
                         "category": category, "duration_s": round(duration, 3)},
@@ -112,8 +127,24 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
             "source": source, "ingested_at": ingested_at,
             "rights": "needs_review/unknown_license",
         })
+        conn.commit()
         return "ok", f"{category}/{asset_id} {duration:.1f}s"
     except Exception as e:
+        conn.rollback()
+        error = str(e)
+        try:
+            job = conn.execute("SELECT state FROM jobs WHERE id = ?", (asset_id,)).fetchone()
+            if job:
+                mark_job(conn, asset_id, job["state"], error=error, inc_attempts=True)
+            else:
+                upsert_job(conn, {
+                    "id": asset_id, "type": "asset", "state": "discovered",
+                    "payload": {"source": source, "orig_path": str(orig.resolve()),
+                                "md5": digest},
+                    "error": error, "attempts": 1,
+                })
+        except Exception:
+            conn.rollback()
         return "fail", f"处理失败: {e}"
 
 

@@ -175,13 +175,15 @@ def _get_jobs():
         c.close()
 
 
-common.get_moments = _get_moments
-common.get_assets = _get_assets
-common.upsert_job = _upsert_job
-common.mark_job = _mark_job
-common.upsert_run = _upsert_run
-common.get_jobs = _get_jobs
-common.get_feedback = lambda: []
+# compose/render 只通过 recipes 契约层访问这些能力；测试在该边界注入
+# Dev-3 的旧版轻量表，避免 common.get_db() 尝试把夹具升级为生产 Schema。
+recipes.get_moments = _get_moments
+recipes.get_assets = _get_assets
+recipes.upsert_job = _upsert_job
+recipes.mark_job = _mark_job
+recipes.upsert_run = _upsert_run
+recipes.job_status = lambda job_id: ((job_row(job_id) or {}).get("status"))
+recipes.get_feedback_rows = lambda: []
 
 
 def job_row(run_id):

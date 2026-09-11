@@ -146,6 +146,9 @@ table.mini tr:last-child td { border-bottom: none; }
 JS_CORE = r"""
 const state = {};
 CFG.candidates.forEach(c => state[c] = {dims: {}, reasons: []});
+const FILE_MODE = window.location.protocol === 'file:';
+const API_BASE = FILE_MODE ? ('http://' + CFG.host) : '';
+function apiURL(path){ return API_BASE + path; }
 function col(i){ return document.getElementById('col-' + i); }
 function setStatus(i, txt, ok){
   const el = col(i).querySelector('.status');
@@ -162,8 +165,10 @@ async function svcProbe(){
   try {
     const c = new AbortController();
     const t = setTimeout(() => c.abort(), 1600);
-    const r = await fetch('/api/ping', {signal: c.signal});
-    ok = !!(r && r.ok);
+    const r = await fetch(apiURL('/api/ping'), FILE_MODE
+      ? {signal: c.signal, mode: 'no-cors'}
+      : {signal: c.signal});
+    ok = !!(r && (r.ok || (FILE_MODE && r.type === 'opaque')));
     clearTimeout(t);
   } catch (e) { ok = false; }
   const b = document.getElementById('svcbanner');
@@ -173,8 +178,14 @@ async function svcProbe(){
     : '本地服务未启动 — 页面仍可浏览试听；提交反馈 / Keep / Export 需先运行: .venv/bin/python pipeline/feedback.py serve';
 }
 async function postAPI(path, payload){
-  const r = await fetch(path, {method: 'POST', headers: {'Content-Type': 'application/json'},
-                               body: JSON.stringify(payload)});
+  const options = {method: 'POST', body: JSON.stringify(payload)};
+  if (FILE_MODE) {
+    options.mode = 'no-cors';
+  } else {
+    options.headers = {'Content-Type': 'application/json'};
+  }
+  const r = await fetch(apiURL(path), options);
+  if (FILE_MODE) return {message: '请求已发送'};
   const data = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(data.error || ('HTTP ' + r.status));
   return data;
@@ -191,9 +202,10 @@ const ACTIONS = {
   rate:       {path: '/api/feedback',   verdict: 'rated'},
 };
 async function loadBadges(){
+  if (FILE_MODE) return;
   let rows = [];
   try {
-    const r = await fetch('/api/feedback?run_id=' + encodeURIComponent(CFG.runId));
+    const r = await fetch(apiURL('/api/feedback?run_id=' + encodeURIComponent(CFG.runId)));
     if (r.ok) rows = await r.json();
   } catch (e) { return; }
   rows.forEach(row => {

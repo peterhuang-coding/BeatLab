@@ -140,14 +140,12 @@ def job_status(job_id: str) -> str | None:
 
 
 def get_feedback_rows() -> list[dict]:
-    """读 feedback 行（Dev-4 契约未冻结时返回 []，不影响生成）。"""
-    fn = getattr(common, "get_feedback", None)
-    if fn is None:
-        return []
+    """按 common 冻结契约读取 feedback 行。"""
+    conn = common.get_db()
     try:
-        return _rows(fn)
-    except Exception:
-        return []
+        return _rows(common.get_feedback, conn)
+    finally:
+        conn.close()
 
 
 def _json_val(v: Any, default: Any) -> Any:
@@ -249,7 +247,7 @@ def recipe_prior(feedback_rows: list[dict]) -> dict[str, float]:
             for kw, (kind, mul) in _PRIOR_ADJUST.items():
                 if kw in str(r):
                     prior[kind] = round(prior[kind] * mul, 4)
-        dims = _json_val(row.get("dim_scores"), {})
+        dims = _json_val(row.get("dims") or row.get("dim_scores"), {})
         if isinstance(dims, dict):   # 分维度低分：素材/切法/鼓/结构 低 → 微调
             chop_v = float(dims.get("切法") or dims.get("chop") or 0)
             loop_v = float(dims.get("素材") or dims.get("material") or 0)

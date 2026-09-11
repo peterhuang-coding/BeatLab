@@ -276,7 +276,7 @@ def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[com
             start_sec=round(s0 / sr, 3),
             end_sec=round(s1 / sr, 3),
             pad=pad,
-            midi_note=MIDI_CHOP_BASE + pad - 1,
+            midi_note=common.MIDI_CHOP_BASE + pad - 1,
             confidence=round(float(strengths[i]) / max_strength, 3) if max_strength > 0 else 0.0,
         ))
     return chops
@@ -285,9 +285,9 @@ def _make_chops(y: np.ndarray, sr: int, stem: str, slices_dir: Path) -> list[com
 # ---------- 人声 phrase ----------
 def _phrase_windows(y: np.ndarray, sr: int, bpm: float) -> tuple[np.ndarray, float]:
     """按 bpm 算 1-2 小节能量窗口：返回 (窗口起点数组, 窗口秒数)。"""
-    bpm = clamp(float(bpm), 40.0, 240.0)
+    bpm = common.clamp(float(bpm), 40.0, 240.0)
     bar_s = 4.0 * 60.0 / bpm
-    win_s = clamp(bar_s * PHRASE_BARS, 1.0, PHRASE_MAX_S)
+    win_s = common.clamp(bar_s * PHRASE_BARS, 1.0, PHRASE_MAX_S)
     dur = len(y) / sr
     if dur < PHRASE_MIN_S:
         return np.asarray([]), win_s
@@ -326,7 +326,7 @@ def _make_vocal_phrases(y: np.ndarray, sr: int, bpm: float, phrases_dir: Path) -
         seg = _fade_edges(seg, sr, PHRASE_FADE_S)
         sf.write(str(phrases_dir / f"phrase_{n:02d}.wav"), seg, sr)
         peak = float(np.max(np.abs(seg))) if len(seg) else 0.0
-        gain_hint = round(clamp(PHRASE_TARGET_PEAK_DB - 20.0 * math.log10(peak), -30.0, 30.0), 1) if peak > 1e-6 else 0.0
+        gain_hint = round(common.clamp(PHRASE_TARGET_PEAK_DB - 20.0 * math.log10(peak), -30.0, 30.0), 1) if peak > 1e-6 else 0.0
         phrases.append({
             "file": f"vocal_phrases/phrase_{n:02d}.wav",
             "start_sec": round(start, 3),

@@ -458,12 +458,12 @@ def _render_layers(spec, recipe: dict, kit: dict, n: int) -> dict:
 
 
 def _write_stereo(path: Path, L: np.ndarray, R: np.ndarray, dry: bool) -> None:
-    """dry=False：tanh 软限幅 + 峰值归一 -1dB（master）；dry=True：仅峰值归一（分轨直出）。"""
+    """dry=False：tanh 软限幅 + 峰值归一 -1dB（master）；dry=True：保留原始相对增益。"""
     mix = np.stack([L, R], axis=1)
     if not dry:
         mix = np.tanh(mix)
-    peak = np.max(np.abs(mix)) + 1e-12
-    mix = mix * (10 ** (PEAK_DBFS / 20) / peak)
+        peak = np.max(np.abs(mix)) + 1e-12
+        mix = mix * (10 ** (PEAK_DBFS / 20) / peak)
     path.parent.mkdir(parents=True, exist_ok=True)
     sf.write(path, mix, SR, subtype="PCM_16")
 

@@ -8,13 +8,14 @@
     pipeline.py compose <参数...>       # 生成层（转调 compose.py）
     pipeline.py render <参数...>        # 渲染（转调 render.py）
     pipeline.py report <参数...>        # Review（转调 report.py）
-    pipeline.py all [--path <目录>]     # P0 闭环（占位，各层落地后串联）
+    pipeline.py all [--run-id <ID>] [--path <目录>]  # P0 端到端闭环
 """
 from __future__ import annotations
 
 import argparse
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -50,7 +51,13 @@ def main() -> int:
         sp = sub.add_parser(name, help=f"转调 {name}.py（旧子命令保持可用）")
         sp.add_argument("rest", nargs=argparse.REMAINDER, help=f"{name}.py 的参数（透传）")
 
-    sub.add_parser("all", help="P0 闭环一次（占位）")
+    p_all = sub.add_parser("all", help="P0 端到端闭环一次")
+    p_all.add_argument("paths", nargs="*", help="位置路径（兼容 ingest 旧用法）")
+    p_all.add_argument("--source", default="local_dir", help="connector 名（P0 仅 local_dir）")
+    p_all.add_argument("--path", dest="source_path", help="来源目录")
+    p_all.add_argument("--limit", type=int, default=None)
+    p_all.add_argument("--force", action="store_true")
+    p_all.add_argument("--run-id", help="compose/render/report 共用的 run id（默认按当前时间生成）")
     args = parser.parse_args()
 
     if args.cmd is None:
@@ -68,8 +75,21 @@ def main() -> int:
     elif args.cmd in DELEGATED:
         run(f"{args.cmd}.py", *args.rest)
     elif args.cmd == "all":
-        print("P0 闭环占位：ingest → separate → score → compose → render → report")
-        print("各层模块落地后在此串联；先验证供给层：pipeline.py ingest --path <目录>")
+        run_id = args.run_id or datetime.now().strftime("run-%Y%m%d-%H%M%S")
+        argv = []
+        if args.source_path:
+            argv += ["--source", args.source, "--path", args.source_path]
+        if args.limit is not None:
+            argv += ["--limit", str(args.limit)]
+        if args.force:
+            argv += ["--force"]
+        if args.source_path or args.paths:
+            run("ingest.py", *argv, *args.paths)
+        run("separate.py", "--all")
+        run("score.py", "--all")
+        run("compose.py", run_id)
+        run("render.py", run_id)
+        run("report.py", run_id)
     return 0
 
 

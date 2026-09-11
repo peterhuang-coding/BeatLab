@@ -433,7 +433,7 @@ def build_spec_for_recipe(recipe: dict, kind: str, run_id: str, hero: dict,
     hero_file = str(hero_asset.get("library_path") or hero_asset.get("path") or "")
     if kind == "stem":       # stem recipe 必须用分离轨文件，不是整曲 source
         stem_name = str(hero.get("stem") or "other")
-        sp = recipes._stem_path(str(hero_asset.get("library_path") or ""), stem_name)
+        sp = recipes._stem_file(str(hero_asset.get("library_path") or ""), stem_name)
         if Path(sp).exists():
             hero_file = sp
     profile = groove_override or recipe["groove_profile"]
