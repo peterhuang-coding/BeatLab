@@ -1,49 +1,123 @@
 # BeatLab
 
-端到端自动生成采样型 beats 的个人流水线：把一堆音频丢进来，自动产出 3-4 分钟的 beat（音频 + Ableton Live .als + MIDI）。
+本地采样型 beat 制作流水线：导入音频 → 拆轨 → 找采样片段 → 围绕一个 Hero Sample 生成 Loop / Chop / Stem 三个候选 → 试听、反馈与 Ableton 交付。
 
-Kanye / Drake / Tyler 式的"老歌采样混合 + 人声垫底"路线：采样切片 + 鼓 + bass + 编排，而非直接 AI 生成整段音频。
+当前版本生成 **三个 60–90 秒的制作草稿**。3–4 分钟完整编排、双机任务队列和进一步质量改进见 [产品规划](docs/PRD.md)，不代表已经实现。
 
-## 链路（每节点可单独手动跑）
+新增一条明确写好音符与段落的整曲制作路线：`song` 用采样乐器渲染原创乐谱，输出统一增益的 WAV 分轨和 MIDI。第一首《窗边来信》是 88 BPM、52 小节的 Soul / Hip-hop 器乐曲。它是人工编排的质量基准，自动 Hero Sample 选择器还没有达到同样的音乐验收。
 
-```
-pipeline.py ingest   <路径...>   # A/B 摄入+整合分类（44.1k 规整、md5 去重、粗分类、BPM/key）
-pipeline.py separate --all       # D   拆轨（htdemucs 4-stem）+ 16 片瞬态切片 + 人声 phrase
-pipeline.py score    --all       # C   选品评分（100 分 rubric，三闸门：鼓/无vocal/结构）
-pipeline.py compose  --best 3    # E   3-4 分钟编排（结构伸缩 + MPC swing 逐 tick + 切片摆放）
-pipeline.py render   <beat_id>   # F   渲染 beat.wav + 鼓 one-shot kit + .als 伴生 + MIDI
-pipeline.py report   <beat_id>   # G   暗色试听页 + 桌面日期目录镜像
-pipeline.py all [路径...]        # 全程正向循环
-```
+乐句翻采基准《Dust Letters》从完整演奏取句，经变调、重排、短重复、倒放与八度变化形成新主题，提供原片段→采样 solo→成品对照。两条制作路线均已有用户正向反馈；创作方法见 [采样制作手册](docs/sampling-playbook.md)。
 
-## 依赖
+当前执行顺序、未完成项和验收门槛在 [MVP 总计划](docs/superpowers/plans/2026-09-12-beatlab-mvp.md)。用户已选择 **音乐质量 → Ableton 还原 → 素材来源与商品包**；后续提交推送必须带上计划与执行进度。
 
-Python 3.11+（Apple Silicon 实测）。核心库：`librosa soundfile mido essentia audio-separator onnxruntime scipy numpy`
+## 安装
+
+macOS Apple Silicon，Python 3.12，系统需有 `ffmpeg` / `ffprobe`；乐句独立变调/伸缩还需要 `rubberband` CLI（macOS 可用 `brew install rubberband`）。项目路径可以位于外置硬盘，带空格也可。
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install librosa soundfile mido essentia audio-separator onnxruntime
+# 在项目目录运行；已有 Python 3.12 和 uv 时
+uv venv --python 3.12 .venv
+uv pip sync --python .venv/bin/python requirements.txt
+
+# 或使用 Python 自带 venv / pip
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 ```
 
-拆轨模型（htdemucs ONNX）首次运行自动下载到 `.models/`（~321MB）。
+`requirements.in` 记录直接依赖，`requirements.txt` 锁定版本。Essentia 当前未被代码调用，不需要额外安装。拆轨使用 audio-separator 的 Demucs v4 `htdemucs_ft.yaml`，首次运行下载约 321 MB 权重到 `.models/`。
 
-## 目录
+## 运行
 
-- `pipeline/` — 全部代码（`common.py` 是共享契约：路径/SQLite schema/评分权重/MIDI 映射）
-- `library/<分类>/<id>/` — 整合分类后的音源（source.wav + stems/ + slices/ + slice_map.json）
-- `beats/<beat_id>/` — 每次编排的产出（spec.json + MIDI + beat.wav + .als）
-- `db.sqlite` — samples/scores/beats 三表
-- `kit/` — 从鼓轨自动提取并经类别滤波隔离的 one-shot 鼓组
+```bash
+./beatlab ingest --path "/你的音频目录" --limit 10
+./beatlab separate --all --skip-if-done
+./beatlab moments --all
+./beatlab score --all
 
-## 关键设计决策（2026-08 grill-me 拍板）
+# 每次新创作使用新的 run_id；以下步骤使用同一个 ID
+./beatlab compose my-first-run --bpm 92
+./beatlab render my-first-run
+./beatlab report my-first-run
 
-1. 用途：自用/创作/练手；发布时灰色采样单独清权（Tracklib 通道）
-2. 目标形态：3-4 分钟完整 beat（intro/verse/chorus/bridge/outro），非 loop 拖长
-3. 素材：混合全放开（老录音/对白/电影剪辑）；自动爬取只走安全池
-4. 部署：本机跑全链路，重活后台
-5. Phase 1 = 正向循环；Phase 2 = 反馈闭环（critic/best-of-N/点赞重加权）
+# 浏览器打开 http://127.0.0.1:8793/；Ctrl+C 停止服务
+./beatlab feedback serve --port 8793
+```
 
-## 已知边界
+所有模块也可通过 `.venv/bin/python pipeline/<模块名>.py` 单独运行。`./beatlab all` 仍是旧版占位入口，**没有执行全流程**，请使用上面的逐步命令。当前 Regenerate 只记录待办请求，尚无后台 worker 自动执行。
 
-- 鼓 one-shot 来自 demucs 鼓轨切片 + 类别滤波隔离（kick 低通 150Hz / snare 带通 / hat·oh 高通 5.5kHz），非专业采样包品质
-- 切片不跨调对齐：多音源切片同段堆叠可能打架（Phase 2 做主音源聚焦+调性对齐）
-- .als 为 Live 12 模板 + BPM patch；MIDI 拖入对应轨道使用
+在线 Review 支持三个候选对比试听、打分、Keep / Reject / Export。直接打开静态 HTML 可以试听，提交反馈需从本地服务访问。端口被其他项目占用时，用 `--port` 换空闲端口。
+
+### 从老录音发现乐句
+
+```bash
+./beatlab ingest --source citizen_dj --path blues --limit 6 --timeout 120
+./beatlab ingest --source citizen_dj --path jazz --limit 6 --timeout 120
+```
+
+来源为 [Library of Congress Citizen DJ](https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/) 的官方公开 WAV 乐句目录。先从不同作品各取一段，再取同一作品的其它片段；这是目录发现策略，尚不代表音乐质量排名。每次默认最多尝试 10 个新下载，`--limit` 上限 100；重复运行会跳过已入库内容并继续发现，下载失败保留原因。跨合集同内容按哈希去重，改坏的缓存重新获取。
+
+下载原件、目录快照和来源记录在 `library/sources/citizen_dj/<blues|jazz>/`；标准化乐句在 `library/loops/<id>/source.wav`，SQLite 保留作品链接和具体合集的许可依据。原曲时间标签与 remix 毫秒偏移分别保留，未宣称它们是逐采样点精确对齐。该来源的年代和音色与 60–70 年代 Soul 不同；后者的挖歌/清样接入见 [老歌采样计划](docs/superpowers/plans/2026-09-13-old-record-crate.md)。
+
+## 数据与迁移
+
+### 整曲、Ableton 与商品草稿
+
+```bash
+# 首次依赖本机 Live 12 Core Library 的六个 one-shot；生成明确乐谱
+.venv/bin/python examples/windowlight_score.py
+./beatlab song --score examples/windowlight.json --out beats/windowlight-v1
+./beatlab ableton_export --song beats/windowlight-v1 --out exports/windowlight-v1/AbletonProject
+./beatlab package --song beats/windowlight-v1 --out exports/windowlight-v1/ReleaseDraft
+```
+
+输出目录已有内容时使用新的版本名。`song`、`ableton_export`、`package` 不写用户反馈数据库；这条路线尚未接自动 Regenerate。
+
+Ableton 输出实际音频轨、段落标记、收集后的 WAV，以及另存的 MIDI/score。音色与混音处理已烧录在音频分轨中；单独 MIDI 不会还原音色。导出器校验文件哈希、音频长度、非静音和分轨相加误差，Live 实际打开及回渲染须另做验收。
+
+`ReleaseDraft` 含原混音 WAV、MP3 试听、真实逐乐器 trackouts ZIP、MIDI、来源与校验信息、封面草图和固定路径的 DJ M3U8。始终标记为草稿；不自动上架，也不把未知的素材许可标成可商用。
+
+这台机器本次使用的六个音色还归档到 `library/instruments/windowlight-v1/`，来源和 SHA-256 在 `source_catalog.json`。可用 `beats/windowlight-v1/score.collected.json` 重做新版，避免依赖应用目录。原始第三方音色不进 Git，也不作为采样包转售。
+
+默认数据根目录是代码所在的项目目录，与终端的当前目录无关：
+
+- `library/<分类>/<id>/`：音源、stems、切片和分析结果。
+- `beats/<run_id>/`：三个候选的 WAV、分轨、切片、MIDI、Recipe 与来源记录。
+- `db.sqlite`：素材、片段、生成任务和反馈。
+- `.models/`、`kit/`：模型权重和鼓组缓存。
+- `exports/<日期>/`：静态试听页与交付镜像。
+
+`BEATLAB_ROOT` 可覆盖数据根目录；`BEATLAB_MIRROR_ROOT` 可单独覆盖导出目录。代码和 Python 环境仍从当前仓库加载。
+
+```bash
+BEATLAB_ROOT="/外置硬盘/BeatLab-data" ./beatlab feedback serve --port 8793
+```
+
+GitHub 只包含代码，**不包含素材、旧作品、数据库、模型或虚拟环境**。迁移已有库时：
+
+1. 保留原目录；确认原始数据已下载，iCloud 占位文件仅有文件名和逻辑大小，不代表本机已有内容。
+2. 在目标目录重新安装 `.venv`，不要复制带旧机器路径的 Python 环境。
+3. 复制 `library/`、`beats/`、`kit/`、`.models/`；通过 SQLite backup API 备份数据库。
+4. 核查数据库和 JSON 中的文件引用。运行路径需指向新副本，`orig_path` 等来源证据应保留；不能盲目全局替换路径。
+5. 比较文件数量与内容哈希、检查 SQLite 完整性，再实测试听和渲染。源文件保留到验证结束。
+
+这些运行数据都被 `.gitignore` 排除。
+
+## Ableton 与已知边界
+
+- 传统 `render` 路线仍只复制内置 Quick Start Beat 模板并修改 BPM，需按 `ABLETON_HANDOFF.txt` 拖入媒体。上面的 `song → ableton_export` 路线才会生成实际装入分轨的音频工程。
+- 缺少模板可用 `render <run_id> --no-als`；WAV、MIDI、切片和分轨不依赖 Ableton。
+- 本轮 `compose` 对指定 Hero stem 缺失会报错；需检查四条 stem 是否真实生成，源 BPM 未知时仍会标记并使用时长 fallback，尚无全局下拍校准。
+- 自动鼓组和混音是制作草稿，最终质量需要试听判断。
+- 素材保留来源与 rights 状态，发布前按实际许可处理采样。
+
+## 验证
+
+```bash
+.venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
+
+# 用合成音频实跑摄入、片段分析、编排、渲染、静态试听；结果保存在 .cache/smoke-*。
+# 不使用用户录音，也不下载模型或测试 Demucs 推理。
+.venv/bin/python tests/smoke_pipeline.py
+```
+
+`tests/accept_d3.py` 是早期生成层 mock 验收脚本；完整链路验证应使用真实 SQLite 契约并隔离数据根目录。隔离的测试结果不能代替真实音乐素材的制作质量验收。

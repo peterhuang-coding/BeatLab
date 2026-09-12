@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import (  # noqa: E402
-    get_db, now_iso, upsert_asset, upsert_job, upsert_rights,
+    CATEGORIES, get_db, now_iso, upsert_asset, upsert_job, upsert_rights,
 )
 import crawler  # noqa: E402
 import library  # noqa: E402
@@ -75,7 +75,9 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
         if existing and not force:
             return "skip", f"已入库 {existing['id']}"
 
-        category = guess_category(entry.get("duration_s"), entry["title"])
+        category = entry.get('category') or guess_category(entry.get("duration_s"), entry["title"])
+        if category not in CATEGORIES:
+            raise ValueError('Invalid asset category')
         final, duration = library.store_asset(orig, category, asset_id, force=force)
 
         ingested_at = now_iso()
@@ -85,7 +87,9 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
             "library_path": str(final),
             "orig_path": str(orig.resolve()),
             "title": entry["title"],
-            "license": None,
+            "license": entry.get('license'),
+            "source_url": entry.get('source_url'),
+            "genre": entry.get('genre'),
             "md5": digest,
             "size_bytes": entry.get("size_bytes"),
             "duration_s": round(duration, 3),
@@ -96,10 +100,10 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
             "ingested_at": ingested_at,
         }
         upsert_asset(conn, asset)
-        # rights：本地目录无法确认许可 → needs_review + unknown_license
-        upsert_rights(conn, asset_id, state="needs_review", basis="unknown_license",
-                      snapshot={"orig_path": asset["orig_path"], "license": None,
-                                "source": source, "ingested_at": ingested_at})
+        rights=entry.get('rights') or {'state':'needs_review','basis':'unknown_license'}
+        snapshot={"orig_path":asset['orig_path'],"license":asset['license'],
+                  "source":source,"ingested_at":ingested_at,"provenance":entry.get('provenance')}
+        upsert_rights(conn,asset_id,state=rights['state'],basis=rights['basis'],snapshot=snapshot)
         # 状态机：discovered → ingested（后续层用 mark_job 推进）
         upsert_job(conn, {
             "id": asset_id, "type": "asset", "state": "ingested",
@@ -110,7 +114,8 @@ def ingest_entry(conn, entry: dict, source: str, force: bool) -> tuple[str, str]
             "id": asset_id, "category": category, "orig_path": asset["orig_path"],
             "md5": digest, "duration_s": round(duration, 3),
             "source": source, "ingested_at": ingested_at,
-            "rights": "needs_review/unknown_license",
+            "rights": rights,
+            "provenance": entry.get('provenance'),
         })
         return "ok", f"{category}/{asset_id} {duration:.1f}s"
     except Exception as e:
@@ -123,7 +128,7 @@ def ingest_dir(conn, path: str, source: str = "local_dir",
     """爬取并摄入一个来源目录。返回 {ok, skip, fail, discovered, failures}。"""
     result = crawler.crawl(source, path, limit=limit, timeout_s=timeout_s,
                            force=force, conn=conn)
-    stats = {"ok": 0, "skip": result["skipped"], "fail": 0,
+    stats = {"ok": 0, "skip": result["skipped"], "fail": len(result["failures"]),
              "discovered": len(result["discovered"]), "failures": result["failures"]}
     if result["skipped"]:
         print(f"[跳过] {result['skipped']} 个文件已入库（增量扫描）")
@@ -140,15 +145,15 @@ def ingest_dir(conn, path: str, source: str = "local_dir",
 def main() -> int:
     parser = argparse.ArgumentParser(description="BeatLab ingest：Connector 统一摄入入口（P0）")
     parser.add_argument("paths", nargs="*", help="文件或目录（兼容旧用法，等价 --source local_dir --path）")
-    parser.add_argument("--source", default="local_dir", help="connector 名（P0 仅 local_dir）")
+    parser.add_argument("--source", default="local_dir", help="local_dir 或 citizen_dj")
     parser.add_argument("--path", dest="source_path", help="来源目录")
     parser.add_argument("--limit", type=int, default=None, help="本次最多摄入 N 个新文件")
     parser.add_argument("--timeout", type=float, default=None, help="扫描超时（秒）")
     parser.add_argument("--force", action="store_true", help="已入库也重做")
     args = parser.parse_args()
 
-    if args.source != "local_dir":
-        print(f"P0 仅支持 --source local_dir，收到: {args.source}")
+    if args.source not in ("local_dir","citizen_dj"):
+        print(f"未知来源: {args.source}")
         return 2
     targets: list[str] = []
     if args.source_path:
@@ -167,7 +172,7 @@ def main() -> int:
         fail += stats["fail"]
     print(f"\n汇总: 成功 {ok} / 跳过 {skip} / 失败 {fail}")
     conn.close()
-    return 0
+    return 1 if fail else 0
 
 
 if __name__ == "__main__":

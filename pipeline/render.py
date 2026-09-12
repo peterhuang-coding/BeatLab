@@ -432,9 +432,14 @@ def _render_layers(spec, recipe: dict, kit: dict, n: int) -> dict:
                             vp.get("lp_hz"))
         if seg is None:
             continue
-        cap = int(8 * SR)                          # phrase 最长 8s
+        if vp.get("stretch_to"):
+            # Stem heroes use the same source-to-target grid as chops. A
+            # target bar can exceed the accent cap at a slow tempo.
+            seg = _stretch_to(seg, float(vp["stretch_to"]))
+        else:
+            seg = seg[:int(8 * SR)]                # 非网格 vocal accent 最长 8s
         t = int(vp.get("bar", 0)) * bar_s + int(vp.get("step", 0)) * step_s
-        _add(layers, "vocal", seg[:cap], t, common.clamp(float(vp.get("gain", 0.6)) * 1.5, 0, 1),
+        _add(layers, "vocal", seg, t, common.clamp(float(vp.get("gain", 0.6)) * 1.5, 0, 1),
              0.0, n)
         n_vocal_played += 1
 

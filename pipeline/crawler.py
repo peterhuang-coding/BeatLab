@@ -39,7 +39,7 @@ def crawl(source_name: str, path: str, limit: int | None = None,
     skipped = 0
     try:
         connector_cls = get_connector(source_name)
-        connector = connector_cls()
+        connector = connector_cls({'limit': limit, 'timeout_s': timeout_s})
         known = set() if force else known_md5s(conn)
         entries = connector.scan(path, known)
         skipped = getattr(connector, "skipped", 0)
@@ -51,8 +51,8 @@ def crawl(source_name: str, path: str, limit: int | None = None,
 
     discovered: list[dict] = []
     failures: list[dict] = []
-    deadline = (t0 + timeout_s) if timeout_s else None
-    truncated = False
+    deadline = (t0 + timeout_s) if timeout_s and not getattr(connector,'enforces_deadline',False) else None
+    truncated = getattr(connector, 'truncated', False)
     for entry in entries:
         if limit is not None and len(discovered) >= limit:
             truncated = True
@@ -64,7 +64,9 @@ def crawl(source_name: str, path: str, limit: int | None = None,
             failures.append(entry)
         else:
             discovered.append(entry)
-    set_source_crawl(conn, source_name, "ok", last_cursor=now_iso())
+    state='partial' if failures and discovered else 'failed' if failures else 'ok'
+    set_source_crawl(conn, source_name, state,
+                     error="; ".join(e['error'] for e in failures) or None, last_cursor=now_iso())
     if own:
         conn.close()
     return {

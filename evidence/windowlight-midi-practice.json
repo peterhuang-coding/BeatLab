@@ -1,0 +1,163 @@
+{
+  "project": "/Volumes/SanDisk2TB/BeatLab/exports/windowlight-midi-practice",
+  "midi_files": [
+    {
+      "file": "MIDI/01-Foundation.mid",
+      "beats": 32.0,
+      "notes": 96
+    },
+    {
+      "file": "MIDI/02-Pocket.mid",
+      "beats": 32.0,
+      "notes": 136
+    },
+    {
+      "file": "MIDI/03-Vocal-Call-Response.mid",
+      "beats": 32.0,
+      "notes": 156
+    },
+    {
+      "file": "MIDI/04-Fill-Turnaround.mid",
+      "beats": 32.0,
+      "notes": 172
+    },
+    {
+      "file": "Practice-32-bars.mid",
+      "beats": 128.0,
+      "notes": 560
+    }
+  ],
+  "native_midi_tracks": 1,
+  "samplers": 16,
+  "clips": [
+    {
+      "name": "01-Foundation",
+      "start": 0.0,
+      "notes": 96
+    },
+    {
+      "name": "02-Pocket",
+      "start": 32.0,
+      "notes": 136
+    },
+    {
+      "name": "03-Vocal-Call-Response",
+      "start": 64.0,
+      "notes": 156
+    },
+    {
+      "name": "04-Fill-Turnaround",
+      "start": 96.0,
+      "notes": 172
+    }
+  ],
+  "media_hash_checks": 16,
+  "unique_global_targets": 2453,
+  "v2_unchanged_sha256": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7",
+  "preview": {
+    "peak_dbfs": -11.704618454876679,
+    "duration_seconds": 88.27272108843538,
+    "rendering": "actual exported MIDI + collected pads, approximate software sampler; not Live rerender"
+  },
+  "live_validation": "not verified: native Go to Folder dialog did not respond to automation after reconnect",
+  "tests": "54/54 passed in 4.392s; .cache/windowlight-midi-tests.log",
+  "files": [
+    {
+      "file": "MIDI/01-Foundation.mid",
+      "sha256": "6460a2734d486073133912b394974a6add5a087fe0847395dd6c000d36383df8"
+    },
+    {
+      "file": "MIDI/02-Pocket.mid",
+      "sha256": "5dbca68869b8b94601b009fc4c74a30a5ed3003b296b7b41095f087fa61d0818"
+    },
+    {
+      "file": "MIDI/03-Vocal-Call-Response.mid",
+      "sha256": "e5ba429a9613a05436068be0c5772087db66ed64ecbdc20aea364dc312441db9"
+    },
+    {
+      "file": "MIDI/04-Fill-Turnaround.mid",
+      "sha256": "c60193ad93fd6964b140b64425d51d01cb6b5d3111cdf4170280942e018d1737"
+    },
+    {
+      "file": "Practice-32-bars.mid",
+      "sha256": "69b22f995549fd0eb7834ab99842dd20abc3996ebeb7bc93860687dc3ea0b214"
+    },
+    {
+      "file": "Practice-demo.wav",
+      "sha256": "0a5f6c0403b9d6f8ebcf3e8515e94153f0653790ca50347b41fc5edb2059887c"
+    },
+    {
+      "file": "Samples/36-Kick.wav",
+      "sha256": "99841d94a5a0ee0bf554c8a47a75c5c78ea165053043f3562695d160ca7d309c"
+    },
+    {
+      "file": "Samples/37-Snare.wav",
+      "sha256": "abcba7d755e19874623c3808a915daab30965d4c1a6a68cbfc7d23da99352043"
+    },
+    {
+      "file": "Samples/38-Closed-Hat.wav",
+      "sha256": "be561d0e7322c030be967b90079447d326a2573a05fe864eaedfbff3929c841b"
+    },
+    {
+      "file": "Samples/39-Open-Hat.wav",
+      "sha256": "38118d5b2867be4c5e893ae4637f00a63ef33f9e07fb18cee2c482edf737249e"
+    },
+    {
+      "file": "Samples/40-Rim.wav",
+      "sha256": "da2759b161f515ff8944598a999a1349898c7d2f8f6a270bc618dd1a28e733cd"
+    },
+    {
+      "file": "Samples/41-Shaker.wav",
+      "sha256": "288325b7e3f5e0e921f1320d754297239c34c19178aabe16194aef339c979347"
+    },
+    {
+      "file": "Samples/42-Oh-F.wav",
+      "sha256": "a575589886b08dd604922acc120996f33247a625920e7d7980d2ea00defc012b"
+    },
+    {
+      "file": "Samples/43-Oh-G.wav",
+      "sha256": "a511a10b065d5dd1a829c775650909829a45510005fb23d63a6866adbf1d42f7"
+    },
+    {
+      "file": "Samples/44-Oh-A.wav",
+      "sha256": "ca8d981e3a5a86b72b9a23643c49add03dbf9af689a0e91d7b4cff3b327b83a9"
+    },
+    {
+      "file": "Samples/45-Oh-B.wav",
+      "sha256": "5558f3c2867abf5b9bd7592b860d3f4b58fd2b9c9ce142c2dc97c3cc628fd95e"
+    },
+    {
+      "file": "Samples/46-Oh-C.wav",
+      "sha256": "6fe105256823f731423c719a5deec2f96923855bed323d9ecaee4891e90363a9"
+    },
+    {
+      "file": "Samples/47-Oh-D.wav",
+      "sha256": "dcafec0f8add8a2f2d878b5aac9be1e9f71127dfefa328435755452cff692c3d"
+    },
+    {
+      "file": "Samples/48-Ah-A.wav",
+      "sha256": "4e2c958e6e217976736de01697a91de4a0c1b3bc2050a634e50c7c5607b932ee"
+    },
+    {
+      "file": "Samples/49-Ah-C.wav",
+      "sha256": "4060309b14a0b55cde13b40ea38425571929a40b4f8e9d12ce38ff515650d7c7"
+    },
+    {
+      "file": "Samples/50-Ah-D.wav",
+      "sha256": "2d97ee0144fb03cb3004346eca8b6a6adc2b38c5ff1b67060a2dc8728eb358d3"
+    },
+    {
+      "file": "Samples/51-Ah-E.wav",
+      "sha256": "8ec564e9bdb1d50fb5a38e3268d2474554e5141a1441e0494b004e9996a24adc"
+    },
+    {
+      "file": "Windowlight 16 Pads.adg",
+      "sha256": "791a72e7f9390341884c69863b36b2f5ed36dbabbae1c3e98b690f640db452db"
+    },
+    {
+      "file": "Windowlight Practice.als",
+      "sha256": "78fa5d418a13acd117bfcf6aeffcb5c598bd34a8acb35a66273d1345ca32afcb"
+    }
+  ],
+  "initial_test_failure": "New tests passed alone; full-suite flat pipeline import path caused 3 errors, fixed with bounded package/flat import compatibility; failed log retained."
+}

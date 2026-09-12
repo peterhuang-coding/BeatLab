@@ -1,0 +1,15 @@
+{
+  "parent_audio_unchanged": true,
+  "tracks": 12,
+  "ableton_audio_clips": 12,
+  "all_collected_media_match": true,
+  "package_files_verified": 20,
+  "zip_members_match": true,
+  "release_master_matches": true,
+  "matched_preview_lufs": {
+    "windowlight-v1-hook-matched.wav": -14.9,
+    "windowlight-v2-hook-matched.wav": -14.9
+  },
+  "live_rerender": "unverified",
+  "v2_taste": "pending"
+}

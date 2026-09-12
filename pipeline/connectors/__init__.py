@@ -32,5 +32,6 @@ def get_connector(name: str):
         ) from None
 
 
-# 内置 connector：本地目录（P0 唯一来源）
+# 内置来源：本地目录与官方公开老录音乐句。
 from . import local_dir  # noqa: E402,F401
+from . import citizen_dj  # noqa: E402,F401

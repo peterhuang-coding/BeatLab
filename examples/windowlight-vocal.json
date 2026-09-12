@@ -1,0 +1,7428 @@
+{
+  "title": "窗边来信 · Windowlight — Vocal Cut",
+  "bpm": 88,
+  "bars": 52,
+  "tail_seconds": 2,
+  "fade_seconds": 2,
+  "sections": [
+    {
+      "name": "Intro",
+      "start_bar": 0,
+      "bars": 4
+    },
+    {
+      "name": "Verse A",
+      "start_bar": 4,
+      "bars": 12
+    },
+    {
+      "name": "Hook A",
+      "start_bar": 16,
+      "bars": 8
+    },
+    {
+      "name": "Bridge",
+      "start_bar": 24,
+      "bars": 4
+    },
+    {
+      "name": "Verse B",
+      "start_bar": 28,
+      "bars": 12
+    },
+    {
+      "name": "Hook B",
+      "start_bar": 40,
+      "bars": 8
+    },
+    {
+      "name": "Outro",
+      "start_bar": 48,
+      "bars": 4
+    }
+  ],
+  "tracks": [
+    {
+      "id": "rhodes",
+      "name": "Warm Rhodes",
+      "sample": "rhodes.aif",
+      "root_midi": 60,
+      "gain_db": -13,
+      "highpass_hz": 125,
+      "lowpass_hz": 4800,
+      "room": 0.16,
+      "pan": -0.08,
+      "events": [
+        {
+          "beat": 0.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3613
+        },
+        {
+          "beat": 0.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3785
+        },
+        {
+          "beat": 0.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3776
+        },
+        {
+          "beat": 0.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3955
+        },
+        {
+          "beat": 4.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.4039
+        },
+        {
+          "beat": 4.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3868
+        },
+        {
+          "beat": 4.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.4048
+        },
+        {
+          "beat": 4.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3914
+        },
+        {
+          "beat": 8.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3963
+        },
+        {
+          "beat": 8.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.4043
+        },
+        {
+          "beat": 8.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.3962
+        },
+        {
+          "beat": 8.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.379
+        },
+        {
+          "beat": 12.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3873
+        },
+        {
+          "beat": 12.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3704
+        },
+        {
+          "beat": 12.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3751
+        },
+        {
+          "beat": 12.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3829
+        },
+        {
+          "beat": 16.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3896
+        },
+        {
+          "beat": 16.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3862
+        },
+        {
+          "beat": 16.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3841
+        },
+        {
+          "beat": 16.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3977
+        },
+        {
+          "beat": 20.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3738
+        },
+        {
+          "beat": 20.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.4026
+        },
+        {
+          "beat": 20.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.4042
+        },
+        {
+          "beat": 20.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.4034
+        },
+        {
+          "beat": 22.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2589
+        },
+        {
+          "beat": 22.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.2799
+        },
+        {
+          "beat": 22.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2527
+        },
+        {
+          "beat": 22.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.2689
+        },
+        {
+          "beat": 24.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.394
+        },
+        {
+          "beat": 24.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3938
+        },
+        {
+          "beat": 24.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.3556
+        },
+        {
+          "beat": 24.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3586
+        },
+        {
+          "beat": 28.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3653
+        },
+        {
+          "beat": 28.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3868
+        },
+        {
+          "beat": 28.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.3642
+        },
+        {
+          "beat": 28.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3909
+        },
+        {
+          "beat": 30.72,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.2624
+        },
+        {
+          "beat": 30.739,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2907
+        },
+        {
+          "beat": 30.758,
+          "note": 62,
+          "duration_beats": 0.95,
+          "velocity": 0.2901
+        },
+        {
+          "beat": 30.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2826
+        },
+        {
+          "beat": 32.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3652
+        },
+        {
+          "beat": 32.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3733
+        },
+        {
+          "beat": 32.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3557
+        },
+        {
+          "beat": 32.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3811
+        },
+        {
+          "beat": 36.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.4029
+        },
+        {
+          "beat": 36.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3868
+        },
+        {
+          "beat": 36.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.39
+        },
+        {
+          "beat": 36.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3784
+        },
+        {
+          "beat": 38.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.2629
+        },
+        {
+          "beat": 38.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2444
+        },
+        {
+          "beat": 38.758,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.2647
+        },
+        {
+          "beat": 38.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2636
+        },
+        {
+          "beat": 40.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.4009
+        },
+        {
+          "beat": 40.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3582
+        },
+        {
+          "beat": 40.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3782
+        },
+        {
+          "beat": 40.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3569
+        },
+        {
+          "beat": 44.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3995
+        },
+        {
+          "beat": 44.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3863
+        },
+        {
+          "beat": 44.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3802
+        },
+        {
+          "beat": 44.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3631
+        },
+        {
+          "beat": 46.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.2698
+        },
+        {
+          "beat": 46.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.274
+        },
+        {
+          "beat": 46.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2592
+        },
+        {
+          "beat": 46.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2602
+        },
+        {
+          "beat": 48.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3655
+        },
+        {
+          "beat": 48.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3571
+        },
+        {
+          "beat": 48.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3868
+        },
+        {
+          "beat": 48.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3818
+        },
+        {
+          "beat": 52.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3968
+        },
+        {
+          "beat": 52.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3973
+        },
+        {
+          "beat": 52.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3772
+        },
+        {
+          "beat": 52.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3978
+        },
+        {
+          "beat": 54.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2439
+        },
+        {
+          "beat": 54.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.2846
+        },
+        {
+          "beat": 54.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2622
+        },
+        {
+          "beat": 54.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.2767
+        },
+        {
+          "beat": 56.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.4011
+        },
+        {
+          "beat": 56.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3777
+        },
+        {
+          "beat": 56.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3576
+        },
+        {
+          "beat": 56.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3793
+        },
+        {
+          "beat": 60.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3892
+        },
+        {
+          "beat": 60.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3667
+        },
+        {
+          "beat": 60.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.39
+        },
+        {
+          "beat": 60.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.389
+        },
+        {
+          "beat": 62.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.2528
+        },
+        {
+          "beat": 62.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2805
+        },
+        {
+          "beat": 62.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2542
+        },
+        {
+          "beat": 62.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2757
+        },
+        {
+          "beat": 64.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.39915
+        },
+        {
+          "beat": 64.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.38736000000000004
+        },
+        {
+          "beat": 64.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.38466
+        },
+        {
+          "beat": 64.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.39312
+        },
+        {
+          "beat": 68.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.39357000000000003
+        },
+        {
+          "beat": 68.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.40950000000000003
+        },
+        {
+          "beat": 68.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40176
+        },
+        {
+          "beat": 68.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.38682
+        },
+        {
+          "beat": 70.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.28826999999999997
+        },
+        {
+          "beat": 70.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.25497000000000003
+        },
+        {
+          "beat": 70.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.27441
+        },
+        {
+          "beat": 70.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.29241
+        },
+        {
+          "beat": 72.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3843
+        },
+        {
+          "beat": 72.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.38952000000000003
+        },
+        {
+          "beat": 72.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.37494000000000005
+        },
+        {
+          "beat": 72.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.38961
+        },
+        {
+          "beat": 76.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.37404000000000004
+        },
+        {
+          "beat": 76.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.39303
+        },
+        {
+          "beat": 76.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.38232
+        },
+        {
+          "beat": 76.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.39321
+        },
+        {
+          "beat": 78.72,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.28359
+        },
+        {
+          "beat": 78.739,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.28089
+        },
+        {
+          "beat": 78.758,
+          "note": 62,
+          "duration_beats": 0.95,
+          "velocity": 0.27108000000000004
+        },
+        {
+          "beat": 78.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.26388
+        },
+        {
+          "beat": 80.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.41724
+        },
+        {
+          "beat": 80.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.39456
+        },
+        {
+          "beat": 80.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.39564
+        },
+        {
+          "beat": 80.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40392
+        },
+        {
+          "beat": 84.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.40428
+        },
+        {
+          "beat": 84.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.41535000000000005
+        },
+        {
+          "beat": 84.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.40923
+        },
+        {
+          "beat": 84.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.41841
+        },
+        {
+          "beat": 86.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.28755000000000003
+        },
+        {
+          "beat": 86.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.29871
+        },
+        {
+          "beat": 86.758,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.28395000000000004
+        },
+        {
+          "beat": 86.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.28026
+        },
+        {
+          "beat": 88.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.40365
+        },
+        {
+          "beat": 88.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.37899
+        },
+        {
+          "beat": 88.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.39537000000000005
+        },
+        {
+          "beat": 88.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40887
+        },
+        {
+          "beat": 92.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.40581
+        },
+        {
+          "beat": 92.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.39474
+        },
+        {
+          "beat": 92.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.39429
+        },
+        {
+          "beat": 92.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.41418
+        },
+        {
+          "beat": 94.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.29231999999999997
+        },
+        {
+          "beat": 94.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.29087999999999997
+        },
+        {
+          "beat": 94.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.27702000000000004
+        },
+        {
+          "beat": 94.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.29862
+        },
+        {
+          "beat": 96.02,
+          "note": 52,
+          "duration_beats": 2.5,
+          "velocity": 0.3952
+        },
+        {
+          "beat": 96.039,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3805
+        },
+        {
+          "beat": 96.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3621
+        },
+        {
+          "beat": 96.077,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.4005
+        },
+        {
+          "beat": 100.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.4038
+        },
+        {
+          "beat": 100.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.371
+        },
+        {
+          "beat": 100.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3706
+        },
+        {
+          "beat": 100.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3848
+        },
+        {
+          "beat": 104.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3806
+        },
+        {
+          "beat": 104.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3834
+        },
+        {
+          "beat": 104.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3625
+        },
+        {
+          "beat": 104.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3763
+        },
+        {
+          "beat": 108.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3913
+        },
+        {
+          "beat": 108.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3565
+        },
+        {
+          "beat": 108.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3914
+        },
+        {
+          "beat": 108.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3913
+        },
+        {
+          "beat": 112.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.4045
+        },
+        {
+          "beat": 112.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3745
+        },
+        {
+          "beat": 112.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3867
+        },
+        {
+          "beat": 112.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3851
+        },
+        {
+          "beat": 116.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3912
+        },
+        {
+          "beat": 116.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.4044
+        },
+        {
+          "beat": 116.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3684
+        },
+        {
+          "beat": 116.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3745
+        },
+        {
+          "beat": 118.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2695
+        },
+        {
+          "beat": 118.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.286
+        },
+        {
+          "beat": 118.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2512
+        },
+        {
+          "beat": 118.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.2881
+        },
+        {
+          "beat": 120.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3883
+        },
+        {
+          "beat": 120.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3811
+        },
+        {
+          "beat": 120.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.3983
+        },
+        {
+          "beat": 120.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.402
+        },
+        {
+          "beat": 124.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.3912
+        },
+        {
+          "beat": 124.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3891
+        },
+        {
+          "beat": 124.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.3936
+        },
+        {
+          "beat": 124.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3568
+        },
+        {
+          "beat": 126.72,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.2902
+        },
+        {
+          "beat": 126.739,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2458
+        },
+        {
+          "beat": 126.758,
+          "note": 62,
+          "duration_beats": 0.95,
+          "velocity": 0.2422
+        },
+        {
+          "beat": 126.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2881
+        },
+        {
+          "beat": 128.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3886
+        },
+        {
+          "beat": 128.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3585
+        },
+        {
+          "beat": 128.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3712
+        },
+        {
+          "beat": 128.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3557
+        },
+        {
+          "beat": 132.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3962
+        },
+        {
+          "beat": 132.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3899
+        },
+        {
+          "beat": 132.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.4037
+        },
+        {
+          "beat": 132.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3896
+        },
+        {
+          "beat": 134.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.255
+        },
+        {
+          "beat": 134.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2422
+        },
+        {
+          "beat": 134.758,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.2616
+        },
+        {
+          "beat": 134.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.263
+        },
+        {
+          "beat": 136.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3957
+        },
+        {
+          "beat": 136.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.375
+        },
+        {
+          "beat": 136.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3759
+        },
+        {
+          "beat": 136.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.402
+        },
+        {
+          "beat": 140.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3596
+        },
+        {
+          "beat": 140.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3726
+        },
+        {
+          "beat": 140.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3768
+        },
+        {
+          "beat": 140.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.4019
+        },
+        {
+          "beat": 142.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.2595
+        },
+        {
+          "beat": 142.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2478
+        },
+        {
+          "beat": 142.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2599
+        },
+        {
+          "beat": 142.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.284
+        },
+        {
+          "beat": 144.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3932
+        },
+        {
+          "beat": 144.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3896
+        },
+        {
+          "beat": 144.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3625
+        },
+        {
+          "beat": 144.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3753
+        },
+        {
+          "beat": 148.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3751
+        },
+        {
+          "beat": 148.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3697
+        },
+        {
+          "beat": 148.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3953
+        },
+        {
+          "beat": 148.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.404
+        },
+        {
+          "beat": 150.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2817
+        },
+        {
+          "beat": 150.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.25
+        },
+        {
+          "beat": 150.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2823
+        },
+        {
+          "beat": 150.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.2643
+        },
+        {
+          "beat": 152.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3762
+        },
+        {
+          "beat": 152.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3909
+        },
+        {
+          "beat": 152.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3984
+        },
+        {
+          "beat": 152.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3881
+        },
+        {
+          "beat": 156.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.4045
+        },
+        {
+          "beat": 156.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.4036
+        },
+        {
+          "beat": 156.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3601
+        },
+        {
+          "beat": 156.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.363
+        },
+        {
+          "beat": 158.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.2683
+        },
+        {
+          "beat": 158.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2849
+        },
+        {
+          "beat": 158.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.2501
+        },
+        {
+          "beat": 158.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.2637
+        },
+        {
+          "beat": 160.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.40788
+        },
+        {
+          "beat": 160.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.41346
+        },
+        {
+          "beat": 160.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.38078999999999996
+        },
+        {
+          "beat": 160.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.41436
+        },
+        {
+          "beat": 164.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.40526999999999996
+        },
+        {
+          "beat": 164.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.41139000000000003
+        },
+        {
+          "beat": 164.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3807
+        },
+        {
+          "beat": 164.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.41292
+        },
+        {
+          "beat": 166.72,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.27774
+        },
+        {
+          "beat": 166.739,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.28764
+        },
+        {
+          "beat": 166.758,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.29268
+        },
+        {
+          "beat": 166.777,
+          "note": 67,
+          "duration_beats": 0.95,
+          "velocity": 0.27153000000000005
+        },
+        {
+          "beat": 168.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.39555
+        },
+        {
+          "beat": 168.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.39501000000000003
+        },
+        {
+          "beat": 168.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.38754
+        },
+        {
+          "beat": 168.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.39051
+        },
+        {
+          "beat": 172.02,
+          "note": 55,
+          "duration_beats": 2.5,
+          "velocity": 0.38781
+        },
+        {
+          "beat": 172.039,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.4176
+        },
+        {
+          "beat": 172.058,
+          "note": 62,
+          "duration_beats": 2.5,
+          "velocity": 0.41211
+        },
+        {
+          "beat": 172.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40428
+        },
+        {
+          "beat": 174.72,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.28269
+        },
+        {
+          "beat": 174.739,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.28665
+        },
+        {
+          "beat": 174.758,
+          "note": 62,
+          "duration_beats": 0.95,
+          "velocity": 0.29061000000000003
+        },
+        {
+          "beat": 174.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.27638999999999997
+        },
+        {
+          "beat": 176.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.38178
+        },
+        {
+          "beat": 176.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.40752
+        },
+        {
+          "beat": 176.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.39114
+        },
+        {
+          "beat": 176.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.41463
+        },
+        {
+          "beat": 180.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.38187000000000004
+        },
+        {
+          "beat": 180.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.37728
+        },
+        {
+          "beat": 180.058,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.39348
+        },
+        {
+          "beat": 180.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40959
+        },
+        {
+          "beat": 182.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.25893
+        },
+        {
+          "beat": 182.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.2556
+        },
+        {
+          "beat": 182.758,
+          "note": 60,
+          "duration_beats": 0.95,
+          "velocity": 0.26721
+        },
+        {
+          "beat": 182.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.25911
+        },
+        {
+          "beat": 184.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.39204
+        },
+        {
+          "beat": 184.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.37566
+        },
+        {
+          "beat": 184.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.38997000000000004
+        },
+        {
+          "beat": 184.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.378
+        },
+        {
+          "beat": 188.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.38367
+        },
+        {
+          "beat": 188.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.37395
+        },
+        {
+          "beat": 188.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.40968
+        },
+        {
+          "beat": 188.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.40797
+        },
+        {
+          "beat": 190.72,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.27945000000000003
+        },
+        {
+          "beat": 190.739,
+          "note": 57,
+          "duration_beats": 0.95,
+          "velocity": 0.26892
+        },
+        {
+          "beat": 190.758,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.29439
+        },
+        {
+          "beat": 190.777,
+          "note": 64,
+          "duration_beats": 0.95,
+          "velocity": 0.29808
+        },
+        {
+          "beat": 192.02,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.4014
+        },
+        {
+          "beat": 192.039,
+          "note": 60,
+          "duration_beats": 2.5,
+          "velocity": 0.3841
+        },
+        {
+          "beat": 192.058,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.4007
+        },
+        {
+          "beat": 192.077,
+          "note": 67,
+          "duration_beats": 2.5,
+          "velocity": 0.3655
+        },
+        {
+          "beat": 196.02,
+          "note": 53,
+          "duration_beats": 2.5,
+          "velocity": 0.3867
+        },
+        {
+          "beat": 196.039,
+          "note": 57,
+          "duration_beats": 2.5,
+          "velocity": 0.3867
+        },
+        {
+          "beat": 196.058,
+          "note": 59,
+          "duration_beats": 2.5,
+          "velocity": 0.3873
+        },
+        {
+          "beat": 196.077,
+          "note": 64,
+          "duration_beats": 2.5,
+          "velocity": 0.3714
+        },
+        {
+          "beat": 200.02,
+          "note": 52,
+          "duration_beats": 6.8,
+          "velocity": 0.3264
+        },
+        {
+          "beat": 200.039,
+          "note": 55,
+          "duration_beats": 6.8,
+          "velocity": 0.3107
+        },
+        {
+          "beat": 200.058,
+          "note": 59,
+          "duration_beats": 6.8,
+          "velocity": 0.321
+        },
+        {
+          "beat": 200.077,
+          "note": 62,
+          "duration_beats": 6.8,
+          "velocity": 0.3289
+        }
+      ]
+    },
+    {
+      "id": "bass",
+      "name": "Electric Bass",
+      "sample": "bass.aif",
+      "root_midi": 36,
+      "gain_db": -12,
+      "highpass_hz": 32,
+      "lowpass_hz": 1100,
+      "events": [
+        {
+          "beat": 8.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 10.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 12.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 14.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 16.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 18.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 20.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 22.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 24.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 26.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 28.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 30.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 32.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 34.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 36.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 38.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 40.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 42.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 44.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 46.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 48.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 50.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 52.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 54.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 56.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 58.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 60.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 62.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 63.64,
+          "note": 40,
+          "duration_beats": 0.25,
+          "velocity": 0.44
+        },
+        {
+          "beat": 64.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 65.812,
+          "note": 53,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 66.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 68.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 69.812,
+          "note": 53,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 70.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 72.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 73.812,
+          "note": 52,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 74.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 76.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 77.812,
+          "note": 52,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 78.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 80.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 81.812,
+          "note": 50,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 82.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 84.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 85.812,
+          "note": 50,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 86.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 88.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 89.812,
+          "note": 55,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 90.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 92.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 93.812,
+          "note": 55,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 94.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 95.64,
+          "note": 35,
+          "duration_beats": 0.25,
+          "velocity": 0.44
+        },
+        {
+          "beat": 96.012,
+          "note": 36,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 100.012,
+          "note": 33,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 104.012,
+          "note": 38,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 108.012,
+          "note": 43,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 111.64,
+          "note": 40,
+          "duration_beats": 0.25,
+          "velocity": 0.44
+        },
+        {
+          "beat": 112.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 114.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 116.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 118.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 120.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 122.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 124.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 126.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 128.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 130.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 132.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 134.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 136.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 138.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 140.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 142.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 144.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 146.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 148.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 150.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 152.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 154.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 156.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 158.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 159.64,
+          "note": 40,
+          "duration_beats": 0.25,
+          "velocity": 0.44
+        },
+        {
+          "beat": 160.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 161.812,
+          "note": 53,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 162.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 164.012,
+          "note": 41,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 165.812,
+          "note": 53,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 166.662,
+          "note": 41,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 168.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 169.812,
+          "note": 52,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 170.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 172.012,
+          "note": 40,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 173.812,
+          "note": 52,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 174.662,
+          "note": 40,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 176.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 177.812,
+          "note": 50,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 178.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 180.012,
+          "note": 38,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 181.812,
+          "note": 50,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 182.662,
+          "note": 38,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 184.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 185.812,
+          "note": 55,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 186.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 188.012,
+          "note": 43,
+          "duration_beats": 1.3,
+          "velocity": 0.77
+        },
+        {
+          "beat": 189.812,
+          "note": 55,
+          "duration_beats": 0.48,
+          "velocity": 0.48
+        },
+        {
+          "beat": 190.662,
+          "note": 43,
+          "duration_beats": 0.72,
+          "velocity": 0.58
+        },
+        {
+          "beat": 191.64,
+          "note": 40,
+          "duration_beats": 0.25,
+          "velocity": 0.44
+        },
+        {
+          "beat": 192.012,
+          "note": 41,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 196.012,
+          "note": 43,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        },
+        {
+          "beat": 200.012,
+          "note": 36,
+          "duration_beats": 2.7,
+          "velocity": 0.64
+        }
+      ]
+    },
+    {
+      "id": "piano",
+      "name": "Piano melody",
+      "sample": "piano.aif",
+      "root_midi": 60,
+      "gain_db": -17,
+      "highpass_hz": 220,
+      "lowpass_hz": 5800,
+      "room": 0.25,
+      "pan": 0.1,
+      "events": [
+        {
+          "beat": 48.55,
+          "note": 72,
+          "duration_beats": 0.6,
+          "velocity": 0.46
+        },
+        {
+          "beat": 50.7,
+          "note": 74,
+          "duration_beats": 0.7,
+          "velocity": 0.46
+        },
+        {
+          "beat": 54.0,
+          "note": 69,
+          "duration_beats": 1.35,
+          "velocity": 0.46
+        },
+        {
+          "beat": 56.55,
+          "note": 67,
+          "duration_beats": 0.6,
+          "velocity": 0.46
+        },
+        {
+          "beat": 58.7,
+          "note": 71,
+          "duration_beats": 0.7,
+          "velocity": 0.46
+        },
+        {
+          "beat": 62.0,
+          "note": 71,
+          "duration_beats": 1.35,
+          "velocity": 0.46
+        },
+        {
+          "beat": 68.55,
+          "note": 72,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 70.0,
+          "note": 69,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 76.55,
+          "note": 71,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 78.0,
+          "note": 67,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 84.55,
+          "note": 69,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 86.0,
+          "note": 65,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 92.55,
+          "note": 74,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 94.0,
+          "note": 71,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 144.55,
+          "note": 72,
+          "duration_beats": 0.6,
+          "velocity": 0.46
+        },
+        {
+          "beat": 146.7,
+          "note": 74,
+          "duration_beats": 0.7,
+          "velocity": 0.46
+        },
+        {
+          "beat": 150.0,
+          "note": 69,
+          "duration_beats": 1.35,
+          "velocity": 0.46
+        },
+        {
+          "beat": 152.55,
+          "note": 67,
+          "duration_beats": 0.6,
+          "velocity": 0.46
+        },
+        {
+          "beat": 154.7,
+          "note": 71,
+          "duration_beats": 0.7,
+          "velocity": 0.46
+        },
+        {
+          "beat": 158.0,
+          "note": 71,
+          "duration_beats": 1.35,
+          "velocity": 0.46
+        },
+        {
+          "beat": 164.55,
+          "note": 72,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 166.0,
+          "note": 69,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 172.55,
+          "note": 71,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 174.0,
+          "note": 67,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 180.55,
+          "note": 69,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 182.0,
+          "note": 65,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 188.55,
+          "note": 74,
+          "duration_beats": 0.8,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 190.0,
+          "note": 71,
+          "duration_beats": 1.35,
+          "velocity": 0.5456
+        },
+        {
+          "beat": 191.35,
+          "note": 72,
+          "duration_beats": 0.48,
+          "velocity": 0.35200000000000004
+        },
+        {
+          "beat": 200.6,
+          "note": 71,
+          "duration_beats": 0.5,
+          "velocity": 0.42
+        },
+        {
+          "beat": 201.6,
+          "note": 67,
+          "duration_beats": 0.6,
+          "velocity": 0.42
+        },
+        {
+          "beat": 202.7,
+          "note": 64,
+          "duration_beats": 1.0,
+          "velocity": 0.42
+        },
+        {
+          "beat": 204.0,
+          "note": 60,
+          "duration_beats": 3.5,
+          "velocity": 0.42
+        }
+      ]
+    },
+    {
+      "id": "kick",
+      "name": "Kick",
+      "sample": "kick.wav",
+      "root_midi": 36,
+      "gain_db": -11,
+      "lowpass_hz": 4600,
+      "drum": true,
+      "events": [
+        {
+          "beat": 16,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 18.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 20,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 22.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 24,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 25.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 26.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 28,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 30.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 32,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 34.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 36,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 38.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 40,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 41.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 42.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 44,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 46.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 48,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 50.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 54.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 56,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 57.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 58.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 60,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 62.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 63.65,
+          "note": 36,
+          "duration_beats": 0.3,
+          "velocity": 0.42
+        },
+        {
+          "beat": 64,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 66.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 68,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 70.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 71.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 72,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 73.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 74.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 76,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 78.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 79.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 80,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 82.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 84,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 86.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 87.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 88,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 89.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 90.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 92,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 94.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 95.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 95.65,
+          "note": 36,
+          "duration_beats": 0.3,
+          "velocity": 0.42
+        },
+        {
+          "beat": 111.65,
+          "note": 36,
+          "duration_beats": 0.3,
+          "velocity": 0.42
+        },
+        {
+          "beat": 112,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 114.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 116,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 118.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 120,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 121.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 122.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 124,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 126.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 128,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 130.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 132,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 134.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 136,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 137.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 138.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 140,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 142.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 144,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 146.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 148,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 150.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 152,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 153.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 154.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 156,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 158.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 159.65,
+          "note": 36,
+          "duration_beats": 0.3,
+          "velocity": 0.42
+        },
+        {
+          "beat": 160,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 162.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 164,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 166.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 167.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 168,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 169.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 170.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 172,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 174.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 175.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 176,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 178.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 180,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 182.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 183.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 184,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 185.78,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.57
+        },
+        {
+          "beat": 186.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 188,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 190.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 191.55,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.6
+        },
+        {
+          "beat": 191.65,
+          "note": 36,
+          "duration_beats": 0.3,
+          "velocity": 0.42
+        },
+        {
+          "beat": 192,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 194.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        },
+        {
+          "beat": 196,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.86
+        },
+        {
+          "beat": 198.52,
+          "note": 36,
+          "duration_beats": 0.56,
+          "velocity": 0.7
+        }
+      ]
+    },
+    {
+      "id": "snare",
+      "name": "Soft snare",
+      "sample": "snare.wav",
+      "root_midi": 38,
+      "gain_db": -17,
+      "highpass_hz": 150,
+      "lowpass_hz": 5200,
+      "drum": true,
+      "events": [
+        {
+          "beat": 17.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.679
+        },
+        {
+          "beat": 19.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7078
+        },
+        {
+          "beat": 21.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6666
+        },
+        {
+          "beat": 23.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7084
+        },
+        {
+          "beat": 25.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7508
+        },
+        {
+          "beat": 27.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6964
+        },
+        {
+          "beat": 29.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.675
+        },
+        {
+          "beat": 30.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 31.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7077
+        },
+        {
+          "beat": 31.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 31.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 33.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6748
+        },
+        {
+          "beat": 35.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6952
+        },
+        {
+          "beat": 37.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6907
+        },
+        {
+          "beat": 39.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7323
+        },
+        {
+          "beat": 41.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7067
+        },
+        {
+          "beat": 43.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6779
+        },
+        {
+          "beat": 45.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7392
+        },
+        {
+          "beat": 46.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 47.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7534
+        },
+        {
+          "beat": 47.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 47.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 49.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7293
+        },
+        {
+          "beat": 51.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6798
+        },
+        {
+          "beat": 53.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7046
+        },
+        {
+          "beat": 55.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7379
+        },
+        {
+          "beat": 57.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6765
+        },
+        {
+          "beat": 59.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6844
+        },
+        {
+          "beat": 61.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6939
+        },
+        {
+          "beat": 62.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 63.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.698
+        },
+        {
+          "beat": 63.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 63.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 65.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7455
+        },
+        {
+          "beat": 67.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6897
+        },
+        {
+          "beat": 69.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6959
+        },
+        {
+          "beat": 71.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7464
+        },
+        {
+          "beat": 73.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6926
+        },
+        {
+          "beat": 75.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6934
+        },
+        {
+          "beat": 77.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.702
+        },
+        {
+          "beat": 78.79,
+          "note": 38,
+          "duration_beats": 0.28,
+          "velocity": 0.23
+        },
+        {
+          "beat": 78.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 79.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7173
+        },
+        {
+          "beat": 79.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 79.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 81.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7426
+        },
+        {
+          "beat": 83.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7396
+        },
+        {
+          "beat": 85.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7399
+        },
+        {
+          "beat": 87.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7184
+        },
+        {
+          "beat": 89.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6783
+        },
+        {
+          "beat": 91.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6796
+        },
+        {
+          "beat": 93.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7267
+        },
+        {
+          "beat": 94.79,
+          "note": 38,
+          "duration_beats": 0.28,
+          "velocity": 0.23
+        },
+        {
+          "beat": 94.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 95.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6892
+        },
+        {
+          "beat": 95.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 95.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 113.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6973
+        },
+        {
+          "beat": 115.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7102
+        },
+        {
+          "beat": 117.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6751
+        },
+        {
+          "beat": 119.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6781
+        },
+        {
+          "beat": 121.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.726
+        },
+        {
+          "beat": 123.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6713
+        },
+        {
+          "beat": 125.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7219
+        },
+        {
+          "beat": 126.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 127.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7436
+        },
+        {
+          "beat": 127.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 127.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 129.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7427
+        },
+        {
+          "beat": 131.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7342
+        },
+        {
+          "beat": 133.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6989
+        },
+        {
+          "beat": 135.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.75
+        },
+        {
+          "beat": 137.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.725
+        },
+        {
+          "beat": 139.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7114
+        },
+        {
+          "beat": 141.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6844
+        },
+        {
+          "beat": 142.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 143.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6703
+        },
+        {
+          "beat": 143.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 143.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 145.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7517
+        },
+        {
+          "beat": 147.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6759
+        },
+        {
+          "beat": 149.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7157
+        },
+        {
+          "beat": 151.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7123
+        },
+        {
+          "beat": 153.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6908
+        },
+        {
+          "beat": 155.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.724
+        },
+        {
+          "beat": 157.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7366
+        },
+        {
+          "beat": 158.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 159.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6915
+        },
+        {
+          "beat": 159.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 159.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 161.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7021
+        },
+        {
+          "beat": 163.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7511
+        },
+        {
+          "beat": 165.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7202
+        },
+        {
+          "beat": 167.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.747
+        },
+        {
+          "beat": 169.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6801
+        },
+        {
+          "beat": 171.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7542
+        },
+        {
+          "beat": 173.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6857
+        },
+        {
+          "beat": 174.79,
+          "note": 38,
+          "duration_beats": 0.28,
+          "velocity": 0.23
+        },
+        {
+          "beat": 174.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 175.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.75
+        },
+        {
+          "beat": 175.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 175.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 177.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.752
+        },
+        {
+          "beat": 179.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.678
+        },
+        {
+          "beat": 181.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7383
+        },
+        {
+          "beat": 183.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.678
+        },
+        {
+          "beat": 185.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6989
+        },
+        {
+          "beat": 187.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6687
+        },
+        {
+          "beat": 189.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6795
+        },
+        {
+          "beat": 190.79,
+          "note": 38,
+          "duration_beats": 0.28,
+          "velocity": 0.23
+        },
+        {
+          "beat": 190.79,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.23
+        },
+        {
+          "beat": 191.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7277
+        },
+        {
+          "beat": 191.55,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.33
+        },
+        {
+          "beat": 191.8,
+          "note": 38,
+          "duration_beats": 0.23,
+          "velocity": 0.26
+        },
+        {
+          "beat": 193.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.68
+        },
+        {
+          "beat": 195.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.6814
+        },
+        {
+          "beat": 197.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.732
+        },
+        {
+          "beat": 199.025,
+          "note": 38,
+          "duration_beats": 0.5,
+          "velocity": 0.7132
+        }
+      ]
+    },
+    {
+      "id": "hat",
+      "name": "Closed hat",
+      "sample": "hat.wav",
+      "root_midi": 42,
+      "gain_db": -28,
+      "highpass_hz": 2300,
+      "lowpass_hz": 8200,
+      "pan": 0.15,
+      "drum": true,
+      "events": [
+        {
+          "beat": 15.9937,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5965
+        },
+        {
+          "beat": 16.9999,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5943
+        },
+        {
+          "beat": 17.5718,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3784
+        },
+        {
+          "beat": 17.9949,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5928
+        },
+        {
+          "beat": 18.9937,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5671
+        },
+        {
+          "beat": 19.5677,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3102
+        },
+        {
+          "beat": 19.9944,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5825
+        },
+        {
+          "beat": 21.0026,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5459
+        },
+        {
+          "beat": 21.5712,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.34
+        },
+        {
+          "beat": 21.9966,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5727
+        },
+        {
+          "beat": 22.9937,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5879
+        },
+        {
+          "beat": 23.5638,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3285
+        },
+        {
+          "beat": 24.0044,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6023
+        },
+        {
+          "beat": 25.0034,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5422
+        },
+        {
+          "beat": 25.5641,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3139
+        },
+        {
+          "beat": 26.0018,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5696
+        },
+        {
+          "beat": 26.9938,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.546
+        },
+        {
+          "beat": 27.5767,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3087
+        },
+        {
+          "beat": 28.0016,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5465
+        },
+        {
+          "beat": 28.9994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5382
+        },
+        {
+          "beat": 29.5666,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3782
+        },
+        {
+          "beat": 30.0047,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6046
+        },
+        {
+          "beat": 31.0037,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6212
+        },
+        {
+          "beat": 31.5721,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3254
+        },
+        {
+          "beat": 31.9996,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.593
+        },
+        {
+          "beat": 32.9949,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5766
+        },
+        {
+          "beat": 33.5685,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3083
+        },
+        {
+          "beat": 34.0047,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5974
+        },
+        {
+          "beat": 35.0003,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6009
+        },
+        {
+          "beat": 35.5678,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3816
+        },
+        {
+          "beat": 35.9975,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5638
+        },
+        {
+          "beat": 37.0058,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6146
+        },
+        {
+          "beat": 37.5651,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3881
+        },
+        {
+          "beat": 38.0043,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6162
+        },
+        {
+          "beat": 39.0029,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5907
+        },
+        {
+          "beat": 39.5698,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.39
+        },
+        {
+          "beat": 39.9982,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6109
+        },
+        {
+          "beat": 41.0018,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5359
+        },
+        {
+          "beat": 41.5729,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3886
+        },
+        {
+          "beat": 42.0041,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.617
+        },
+        {
+          "beat": 43.0036,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5559
+        },
+        {
+          "beat": 43.5674,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.388
+        },
+        {
+          "beat": 43.9962,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5404
+        },
+        {
+          "beat": 44.9961,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.553
+        },
+        {
+          "beat": 45.5692,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3933
+        },
+        {
+          "beat": 46.0009,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6104
+        },
+        {
+          "beat": 46.9945,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5897
+        },
+        {
+          "beat": 47.5682,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3199
+        },
+        {
+          "beat": 47.9958,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5707
+        },
+        {
+          "beat": 49.0,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5385
+        },
+        {
+          "beat": 49.575,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3184
+        },
+        {
+          "beat": 50.0061,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6135
+        },
+        {
+          "beat": 50.9994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5524
+        },
+        {
+          "beat": 51.5692,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3172
+        },
+        {
+          "beat": 51.998,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5477
+        },
+        {
+          "beat": 52.9985,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.617
+        },
+        {
+          "beat": 53.5689,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3678
+        },
+        {
+          "beat": 53.9971,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5566
+        },
+        {
+          "beat": 55.0006,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5627
+        },
+        {
+          "beat": 55.5715,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3294
+        },
+        {
+          "beat": 55.9938,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5572
+        },
+        {
+          "beat": 57.0051,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5914
+        },
+        {
+          "beat": 57.5687,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3891
+        },
+        {
+          "beat": 57.994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6045
+        },
+        {
+          "beat": 59.0058,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6205
+        },
+        {
+          "beat": 59.5673,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3771
+        },
+        {
+          "beat": 59.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6037
+        },
+        {
+          "beat": 61.0014,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5777
+        },
+        {
+          "beat": 61.5656,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3272
+        },
+        {
+          "beat": 61.9952,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5934
+        },
+        {
+          "beat": 63.0064,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5398
+        },
+        {
+          "beat": 63.5698,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3701
+        },
+        {
+          "beat": 64.0069,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5599
+        },
+        {
+          "beat": 64.5667,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3728
+        },
+        {
+          "beat": 64.9946,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5778
+        },
+        {
+          "beat": 65.5726,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3114
+        },
+        {
+          "beat": 65.9978,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5972
+        },
+        {
+          "beat": 66.5741,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3807
+        },
+        {
+          "beat": 67.0032,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5736
+        },
+        {
+          "beat": 67.5695,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3065
+        },
+        {
+          "beat": 68.0028,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5372
+        },
+        {
+          "beat": 68.5764,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3446
+        },
+        {
+          "beat": 68.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5486
+        },
+        {
+          "beat": 69.5697,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3482
+        },
+        {
+          "beat": 70.0025,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5959
+        },
+        {
+          "beat": 70.5757,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3439
+        },
+        {
+          "beat": 71.0055,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5748
+        },
+        {
+          "beat": 71.5761,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3246
+        },
+        {
+          "beat": 71.9987,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5981
+        },
+        {
+          "beat": 72.5713,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3077
+        },
+        {
+          "beat": 73.0036,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5462
+        },
+        {
+          "beat": 73.5726,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3426
+        },
+        {
+          "beat": 73.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5777
+        },
+        {
+          "beat": 74.5721,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3745
+        },
+        {
+          "beat": 74.9981,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5794
+        },
+        {
+          "beat": 75.5664,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3351
+        },
+        {
+          "beat": 76.0037,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5406
+        },
+        {
+          "beat": 76.571,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3391
+        },
+        {
+          "beat": 76.994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6064
+        },
+        {
+          "beat": 77.5704,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3723
+        },
+        {
+          "beat": 78.0032,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5929
+        },
+        {
+          "beat": 78.5725,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3127
+        },
+        {
+          "beat": 79.0015,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6144
+        },
+        {
+          "beat": 79.567,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3101
+        },
+        {
+          "beat": 80.0009,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5931
+        },
+        {
+          "beat": 80.5679,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3754
+        },
+        {
+          "beat": 81.0059,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6103
+        },
+        {
+          "beat": 81.5754,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3113
+        },
+        {
+          "beat": 82.0013,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.552
+        },
+        {
+          "beat": 82.5641,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3324
+        },
+        {
+          "beat": 82.9951,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5552
+        },
+        {
+          "beat": 83.5697,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3259
+        },
+        {
+          "beat": 83.9986,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5779
+        },
+        {
+          "beat": 84.5755,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3496
+        },
+        {
+          "beat": 84.9986,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6205
+        },
+        {
+          "beat": 85.5653,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3257
+        },
+        {
+          "beat": 85.9946,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6121
+        },
+        {
+          "beat": 86.5697,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3506
+        },
+        {
+          "beat": 87.0016,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5937
+        },
+        {
+          "beat": 87.5664,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3733
+        },
+        {
+          "beat": 87.9933,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.579
+        },
+        {
+          "beat": 88.5669,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3912
+        },
+        {
+          "beat": 89.0051,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6014
+        },
+        {
+          "beat": 89.5632,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3108
+        },
+        {
+          "beat": 89.9986,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5978
+        },
+        {
+          "beat": 90.5677,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3327
+        },
+        {
+          "beat": 90.9993,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6115
+        },
+        {
+          "beat": 91.5731,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3757
+        },
+        {
+          "beat": 92.0047,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6169
+        },
+        {
+          "beat": 92.5652,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3496
+        },
+        {
+          "beat": 92.9965,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.572
+        },
+        {
+          "beat": 93.5737,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3331
+        },
+        {
+          "beat": 93.9985,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5737
+        },
+        {
+          "beat": 94.568,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3233
+        },
+        {
+          "beat": 94.9981,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6169
+        },
+        {
+          "beat": 95.5749,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3715
+        },
+        {
+          "beat": 111.9994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6112
+        },
+        {
+          "beat": 112.997,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6064
+        },
+        {
+          "beat": 113.5632,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3725
+        },
+        {
+          "beat": 113.9995,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5998
+        },
+        {
+          "beat": 114.994,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5541
+        },
+        {
+          "beat": 115.5721,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3717
+        },
+        {
+          "beat": 115.9998,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5725
+        },
+        {
+          "beat": 116.9932,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6089
+        },
+        {
+          "beat": 117.568,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3887
+        },
+        {
+          "beat": 117.9974,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5866
+        },
+        {
+          "beat": 119.0055,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5515
+        },
+        {
+          "beat": 119.5668,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3597
+        },
+        {
+          "beat": 120.0022,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5677
+        },
+        {
+          "beat": 121.002,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6086
+        },
+        {
+          "beat": 121.5734,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3694
+        },
+        {
+          "beat": 122.0055,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6101
+        },
+        {
+          "beat": 122.9965,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6246
+        },
+        {
+          "beat": 123.5768,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3229
+        },
+        {
+          "beat": 123.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5475
+        },
+        {
+          "beat": 125.0013,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5612
+        },
+        {
+          "beat": 125.5701,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3179
+        },
+        {
+          "beat": 126.0047,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6125
+        },
+        {
+          "beat": 126.9934,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6183
+        },
+        {
+          "beat": 127.5643,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3635
+        },
+        {
+          "beat": 127.9962,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6028
+        },
+        {
+          "beat": 128.9966,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6212
+        },
+        {
+          "beat": 129.5667,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3333
+        },
+        {
+          "beat": 129.9946,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5438
+        },
+        {
+          "beat": 131.0052,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5528
+        },
+        {
+          "beat": 131.5732,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3686
+        },
+        {
+          "beat": 132.0061,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5773
+        },
+        {
+          "beat": 132.9995,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5871
+        },
+        {
+          "beat": 133.5653,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3338
+        },
+        {
+          "beat": 134.0027,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5603
+        },
+        {
+          "beat": 135.006,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5634
+        },
+        {
+          "beat": 135.572,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3878
+        },
+        {
+          "beat": 136.0036,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5948
+        },
+        {
+          "beat": 137.0058,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5517
+        },
+        {
+          "beat": 137.5765,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.348
+        },
+        {
+          "beat": 137.9947,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5897
+        },
+        {
+          "beat": 138.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6163
+        },
+        {
+          "beat": 139.5634,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3216
+        },
+        {
+          "beat": 139.9935,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5459
+        },
+        {
+          "beat": 141.0063,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6192
+        },
+        {
+          "beat": 141.5761,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3824
+        },
+        {
+          "beat": 142.0015,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5547
+        },
+        {
+          "beat": 143.0057,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5926
+        },
+        {
+          "beat": 143.5682,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3782
+        },
+        {
+          "beat": 143.9986,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6224
+        },
+        {
+          "beat": 144.997,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.585
+        },
+        {
+          "beat": 145.5651,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3245
+        },
+        {
+          "beat": 146.0044,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5482
+        },
+        {
+          "beat": 146.9967,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.579
+        },
+        {
+          "beat": 147.5712,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3614
+        },
+        {
+          "beat": 147.9956,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5667
+        },
+        {
+          "beat": 148.9976,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.602
+        },
+        {
+          "beat": 149.5769,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3396
+        },
+        {
+          "beat": 149.9962,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6196
+        },
+        {
+          "beat": 151.0046,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5994
+        },
+        {
+          "beat": 151.5709,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3673
+        },
+        {
+          "beat": 151.9979,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5465
+        },
+        {
+          "beat": 152.9996,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5997
+        },
+        {
+          "beat": 153.5733,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3383
+        },
+        {
+          "beat": 153.9974,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5889
+        },
+        {
+          "beat": 155.0022,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6242
+        },
+        {
+          "beat": 155.5678,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3404
+        },
+        {
+          "beat": 156.0035,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5397
+        },
+        {
+          "beat": 157.0044,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6223
+        },
+        {
+          "beat": 157.573,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3149
+        },
+        {
+          "beat": 158.001,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6126
+        },
+        {
+          "beat": 158.9937,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5452
+        },
+        {
+          "beat": 159.5732,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3292
+        },
+        {
+          "beat": 159.9932,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6206
+        },
+        {
+          "beat": 160.5686,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3295
+        },
+        {
+          "beat": 161.0035,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5351
+        },
+        {
+          "beat": 161.5768,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3426
+        },
+        {
+          "beat": 161.9933,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5559
+        },
+        {
+          "beat": 162.5737,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3126
+        },
+        {
+          "beat": 162.9977,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6012
+        },
+        {
+          "beat": 163.5663,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.317
+        },
+        {
+          "beat": 163.9945,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5556
+        },
+        {
+          "beat": 164.5647,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3683
+        },
+        {
+          "beat": 164.9941,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5807
+        },
+        {
+          "beat": 165.5708,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3924
+        },
+        {
+          "beat": 165.9969,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5855
+        },
+        {
+          "beat": 166.5631,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3773
+        },
+        {
+          "beat": 167.0031,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5492
+        },
+        {
+          "beat": 167.5737,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.35
+        },
+        {
+          "beat": 168.0024,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5771
+        },
+        {
+          "beat": 168.5695,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3209
+        },
+        {
+          "beat": 169.0061,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5815
+        },
+        {
+          "beat": 169.5697,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3845
+        },
+        {
+          "beat": 169.9933,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5653
+        },
+        {
+          "beat": 170.576,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.307
+        },
+        {
+          "beat": 171.0039,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5664
+        },
+        {
+          "beat": 171.5719,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3055
+        },
+        {
+          "beat": 172.0031,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5392
+        },
+        {
+          "beat": 172.5667,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3806
+        },
+        {
+          "beat": 173.0003,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5871
+        },
+        {
+          "beat": 173.5712,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3307
+        },
+        {
+          "beat": 173.9989,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5681
+        },
+        {
+          "beat": 174.5744,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3793
+        },
+        {
+          "beat": 175.0004,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5712
+        },
+        {
+          "beat": 175.5767,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3182
+        },
+        {
+          "beat": 175.9991,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6126
+        },
+        {
+          "beat": 176.5673,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3947
+        },
+        {
+          "beat": 177.0001,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.566
+        },
+        {
+          "beat": 177.5734,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3475
+        },
+        {
+          "beat": 178.0049,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5894
+        },
+        {
+          "beat": 178.565,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3074
+        },
+        {
+          "beat": 179.0038,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5486
+        },
+        {
+          "beat": 179.5721,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3083
+        },
+        {
+          "beat": 179.9984,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.549
+        },
+        {
+          "beat": 180.5699,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3849
+        },
+        {
+          "beat": 180.9955,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5731
+        },
+        {
+          "beat": 181.5668,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3287
+        },
+        {
+          "beat": 181.9984,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5683
+        },
+        {
+          "beat": 182.5733,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3292
+        },
+        {
+          "beat": 183.0024,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5937
+        },
+        {
+          "beat": 183.57,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3681
+        },
+        {
+          "beat": 184.0037,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5905
+        },
+        {
+          "beat": 184.5679,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3463
+        },
+        {
+          "beat": 185.0061,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.577
+        },
+        {
+          "beat": 185.5729,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.346
+        },
+        {
+          "beat": 185.9963,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5746
+        },
+        {
+          "beat": 186.5642,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3771
+        },
+        {
+          "beat": 186.9996,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5814
+        },
+        {
+          "beat": 187.5723,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3211
+        },
+        {
+          "beat": 188.0035,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5371
+        },
+        {
+          "beat": 188.5741,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3914
+        },
+        {
+          "beat": 188.9947,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6214
+        },
+        {
+          "beat": 189.5751,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3845
+        },
+        {
+          "beat": 190.0009,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.601
+        },
+        {
+          "beat": 190.5714,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3211
+        },
+        {
+          "beat": 191.005,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6054
+        },
+        {
+          "beat": 191.5701,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3584
+        },
+        {
+          "beat": 191.9982,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.6081
+        },
+        {
+          "beat": 193.0028,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5358
+        },
+        {
+          "beat": 193.5713,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3396
+        },
+        {
+          "beat": 194.0054,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.588
+        },
+        {
+          "beat": 195.003,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5409
+        },
+        {
+          "beat": 195.5637,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3438
+        },
+        {
+          "beat": 195.9947,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5533
+        },
+        {
+          "beat": 196.9965,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.612
+        },
+        {
+          "beat": 197.5719,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3617
+        },
+        {
+          "beat": 198.0002,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5829
+        },
+        {
+          "beat": 199.0018,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.5433
+        },
+        {
+          "beat": 199.5746,
+          "note": 42,
+          "duration_beats": 0.18,
+          "velocity": 0.3728
+        }
+      ]
+    },
+    {
+      "id": "vocal_oh",
+      "name": "Vocal Oh chops",
+      "sample": "vocal_oh.aif",
+      "root_midi": 56,
+      "gain_db": -15.5,
+      "highpass_hz": 125,
+      "lowpass_hz": 5800,
+      "room": 0.24,
+      "pan": -0.08,
+      "events": [
+        {
+          "beat": 10.56,
+          "note": 59,
+          "duration_beats": 0.68,
+          "velocity": 0.38
+        },
+        {
+          "beat": 30.28,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 46.28,
+          "note": 62,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 62.28,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 64.15,
+          "note": 60,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 64.74,
+          "note": 60,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 65.65,
+          "note": 57,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 66.38,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 72.15,
+          "note": 59,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 72.74,
+          "note": 62,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 73.65,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 74.38,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 80.15,
+          "note": 57,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 80.74,
+          "note": 60,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 81.65,
+          "note": 57,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 82.38,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 88.15,
+          "note": 59,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 88.74,
+          "note": 62,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 89.65,
+          "note": 60,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 90.38,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 98.5,
+          "note": 60,
+          "duration_beats": 1.15,
+          "velocity": 0.54
+        },
+        {
+          "beat": 126.28,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 142.28,
+          "note": 62,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 158.28,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.43
+        },
+        {
+          "beat": 160.15,
+          "note": 60,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 160.74,
+          "note": 60,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 161.65,
+          "note": 57,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 162.38,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 168.15,
+          "note": 59,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 168.74,
+          "note": 62,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 169.65,
+          "note": 59,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 170.38,
+          "note": 55,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 175.05,
+          "note": 59,
+          "duration_beats": 0.25,
+          "velocity": 0.37
+        },
+        {
+          "beat": 176.15,
+          "note": 57,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 176.74,
+          "note": 60,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 177.65,
+          "note": 57,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 178.38,
+          "note": 53,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 184.15,
+          "note": 59,
+          "duration_beats": 0.42,
+          "velocity": 0.67
+        },
+        {
+          "beat": 184.74,
+          "note": 62,
+          "duration_beats": 0.7,
+          "velocity": 0.78
+        },
+        {
+          "beat": 185.65,
+          "note": 60,
+          "duration_beats": 0.52,
+          "velocity": 0.66
+        },
+        {
+          "beat": 186.38,
+          "note": 59,
+          "duration_beats": 0.95,
+          "velocity": 0.76
+        },
+        {
+          "beat": 191.05,
+          "note": 59,
+          "duration_beats": 0.25,
+          "velocity": 0.37
+        },
+        {
+          "beat": 192.3,
+          "note": 60,
+          "duration_beats": 0.85,
+          "velocity": 0.48
+        }
+      ]
+    },
+    {
+      "id": "vocal_ah",
+      "name": "Vocal Ah responses",
+      "sample": "vocal_ah.aif",
+      "root_midi": 59,
+      "gain_db": -18.5,
+      "highpass_hz": 145,
+      "lowpass_hz": 5500,
+      "room": 0.3,
+      "pan": 0.16,
+      "events": [
+        {
+          "beat": 15.36,
+          "note": 62,
+          "duration_beats": 0.48,
+          "velocity": 0.32
+        },
+        {
+          "beat": 31.3,
+          "note": 55,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 47.3,
+          "note": 59,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 63.3,
+          "note": 60,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 71.48,
+          "note": 64,
+          "duration_beats": 0.46,
+          "velocity": 0.4
+        },
+        {
+          "beat": 79.48,
+          "note": 62,
+          "duration_beats": 0.46,
+          "velocity": 0.4
+        },
+        {
+          "beat": 87.48,
+          "note": 60,
+          "duration_beats": 0.46,
+          "velocity": 0.4
+        },
+        {
+          "beat": 95.48,
+          "note": 62,
+          "duration_beats": 0.46,
+          "velocity": 0.4
+        },
+        {
+          "beat": 106.5,
+          "note": 57,
+          "duration_beats": 1.05,
+          "velocity": 0.46
+        },
+        {
+          "beat": 127.3,
+          "note": 55,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 143.3,
+          "note": 59,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 159.3,
+          "note": 60,
+          "duration_beats": 0.58,
+          "velocity": 0.39
+        },
+        {
+          "beat": 163.5,
+          "note": 67,
+          "duration_beats": 0.36,
+          "velocity": 0.38
+        },
+        {
+          "beat": 167.48,
+          "note": 64,
+          "duration_beats": 0.46,
+          "velocity": 0.49
+        },
+        {
+          "beat": 171.5,
+          "note": 67,
+          "duration_beats": 0.36,
+          "velocity": 0.38
+        },
+        {
+          "beat": 175.48,
+          "note": 62,
+          "duration_beats": 0.46,
+          "velocity": 0.49
+        },
+        {
+          "beat": 179.5,
+          "note": 65,
+          "duration_beats": 0.36,
+          "velocity": 0.38
+        },
+        {
+          "beat": 183.48,
+          "note": 60,
+          "duration_beats": 0.46,
+          "velocity": 0.49
+        },
+        {
+          "beat": 187.5,
+          "note": 71,
+          "duration_beats": 0.36,
+          "velocity": 0.38
+        },
+        {
+          "beat": 191.48,
+          "note": 62,
+          "duration_beats": 0.46,
+          "velocity": 0.49
+        },
+        {
+          "beat": 198.55,
+          "note": 59,
+          "duration_beats": 0.7,
+          "velocity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "choir",
+      "name": "Wordless harmony",
+      "sample": "choir.wav",
+      "root_midi": 72,
+      "gain_db": -27,
+      "highpass_hz": 230,
+      "lowpass_hz": 4200,
+      "room": 0.32,
+      "pan": 0.08,
+      "events": [
+        {
+          "beat": 96.04,
+          "note": 64,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 96.04,
+          "note": 67,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 100.04,
+          "note": 64,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 100.04,
+          "note": 69,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 104.04,
+          "note": 65,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 104.04,
+          "note": 69,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 108.04,
+          "note": 62,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 108.04,
+          "note": 67,
+          "duration_beats": 2.9,
+          "velocity": 0.45
+        },
+        {
+          "beat": 176.04,
+          "note": 65,
+          "duration_beats": 3.1,
+          "velocity": 0.34
+        },
+        {
+          "beat": 176.04,
+          "note": 69,
+          "duration_beats": 3.1,
+          "velocity": 0.34
+        },
+        {
+          "beat": 184.04,
+          "note": 67,
+          "duration_beats": 3.1,
+          "velocity": 0.34
+        },
+        {
+          "beat": 184.04,
+          "note": 71,
+          "duration_beats": 3.1,
+          "velocity": 0.34
+        },
+        {
+          "beat": 200.1,
+          "note": 64,
+          "duration_beats": 6.5,
+          "velocity": 0.4
+        },
+        {
+          "beat": 200.1,
+          "note": 67,
+          "duration_beats": 6.5,
+          "velocity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "shaker",
+      "name": "Shaker pocket",
+      "sample": "shaker.wav",
+      "root_midi": 70,
+      "gain_db": -31,
+      "highpass_hz": 1900,
+      "lowpass_hz": 7600,
+      "pan": -0.26,
+      "drum": true,
+      "events": [
+        {
+          "beat": 64.5651,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4795
+        },
+        {
+          "beat": 65.0626,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4564
+        },
+        {
+          "beat": 65.5704,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4261
+        },
+        {
+          "beat": 66.5664,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.411
+        },
+        {
+          "beat": 67.0755,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4937
+        },
+        {
+          "beat": 67.5769,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3794
+        },
+        {
+          "beat": 68.5682,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4914
+        },
+        {
+          "beat": 69.0779,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5192
+        },
+        {
+          "beat": 69.5768,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5195
+        },
+        {
+          "beat": 70.5674,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4185
+        },
+        {
+          "beat": 71.0692,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4082
+        },
+        {
+          "beat": 71.5647,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3911
+        },
+        {
+          "beat": 72.5678,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4388
+        },
+        {
+          "beat": 73.0626,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.53
+        },
+        {
+          "beat": 73.5717,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.474
+        },
+        {
+          "beat": 74.5621,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3823
+        },
+        {
+          "beat": 75.0757,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.39
+        },
+        {
+          "beat": 75.5698,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3759
+        },
+        {
+          "beat": 76.5706,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5116
+        },
+        {
+          "beat": 77.0689,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3738
+        },
+        {
+          "beat": 77.5771,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4119
+        },
+        {
+          "beat": 78.5679,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5078
+        },
+        {
+          "beat": 79.0665,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4068
+        },
+        {
+          "beat": 79.5767,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.381
+        },
+        {
+          "beat": 80.5648,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4166
+        },
+        {
+          "beat": 81.0664,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3784
+        },
+        {
+          "beat": 81.565,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3808
+        },
+        {
+          "beat": 82.5627,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4361
+        },
+        {
+          "beat": 83.0764,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4169
+        },
+        {
+          "beat": 83.5755,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4427
+        },
+        {
+          "beat": 84.5674,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3809
+        },
+        {
+          "beat": 85.0711,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4864
+        },
+        {
+          "beat": 85.5664,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5133
+        },
+        {
+          "beat": 86.5704,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4355
+        },
+        {
+          "beat": 87.0667,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.442
+        },
+        {
+          "beat": 87.5724,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4177
+        },
+        {
+          "beat": 88.5638,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.458
+        },
+        {
+          "beat": 89.0663,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3945
+        },
+        {
+          "beat": 89.5642,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3853
+        },
+        {
+          "beat": 90.577,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4918
+        },
+        {
+          "beat": 91.0765,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3888
+        },
+        {
+          "beat": 91.5757,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.393
+        },
+        {
+          "beat": 92.5754,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5178
+        },
+        {
+          "beat": 93.0741,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4712
+        },
+        {
+          "beat": 93.572,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5185
+        },
+        {
+          "beat": 94.5627,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4617
+        },
+        {
+          "beat": 95.0659,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5011
+        },
+        {
+          "beat": 95.5759,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.378
+        },
+        {
+          "beat": 112.5635,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4039
+        },
+        {
+          "beat": 113.5775,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4679
+        },
+        {
+          "beat": 114.5677,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5103
+        },
+        {
+          "beat": 115.5734,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3828
+        },
+        {
+          "beat": 116.5774,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4425
+        },
+        {
+          "beat": 117.5736,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4415
+        },
+        {
+          "beat": 118.5739,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3768
+        },
+        {
+          "beat": 119.5712,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.526
+        },
+        {
+          "beat": 120.5686,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4864
+        },
+        {
+          "beat": 121.5662,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.512
+        },
+        {
+          "beat": 122.577,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5058
+        },
+        {
+          "beat": 123.5692,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4584
+        },
+        {
+          "beat": 124.5657,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3756
+        },
+        {
+          "beat": 125.5635,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4588
+        },
+        {
+          "beat": 126.5708,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4869
+        },
+        {
+          "beat": 127.5626,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4661
+        },
+        {
+          "beat": 128.5647,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5082
+        },
+        {
+          "beat": 129.5623,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4288
+        },
+        {
+          "beat": 130.5721,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4617
+        },
+        {
+          "beat": 131.5679,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4335
+        },
+        {
+          "beat": 132.5738,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4483
+        },
+        {
+          "beat": 133.5722,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4643
+        },
+        {
+          "beat": 134.5721,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4825
+        },
+        {
+          "beat": 135.573,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4947
+        },
+        {
+          "beat": 136.5665,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4023
+        },
+        {
+          "beat": 137.5679,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4585
+        },
+        {
+          "beat": 138.5727,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4627
+        },
+        {
+          "beat": 139.5675,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3909
+        },
+        {
+          "beat": 140.5708,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4216
+        },
+        {
+          "beat": 141.575,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4063
+        },
+        {
+          "beat": 142.5731,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3735
+        },
+        {
+          "beat": 143.5769,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4193
+        },
+        {
+          "beat": 144.5729,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.505
+        },
+        {
+          "beat": 145.5732,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4218
+        },
+        {
+          "beat": 146.5732,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4752
+        },
+        {
+          "beat": 147.5696,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4185
+        },
+        {
+          "beat": 148.5767,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4437
+        },
+        {
+          "beat": 149.5748,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5143
+        },
+        {
+          "beat": 150.5684,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3748
+        },
+        {
+          "beat": 151.5736,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4296
+        },
+        {
+          "beat": 152.5723,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4867
+        },
+        {
+          "beat": 153.57,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4416
+        },
+        {
+          "beat": 154.5647,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5039
+        },
+        {
+          "beat": 155.577,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4888
+        },
+        {
+          "beat": 156.5645,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3922
+        },
+        {
+          "beat": 157.5758,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5281
+        },
+        {
+          "beat": 158.5657,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5235
+        },
+        {
+          "beat": 159.5626,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3954
+        },
+        {
+          "beat": 160.5632,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3889
+        },
+        {
+          "beat": 161.0736,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4475
+        },
+        {
+          "beat": 161.5687,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4536
+        },
+        {
+          "beat": 162.5733,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4525
+        },
+        {
+          "beat": 163.0636,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5046
+        },
+        {
+          "beat": 163.5671,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4345
+        },
+        {
+          "beat": 164.563,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3946
+        },
+        {
+          "beat": 165.0723,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4324
+        },
+        {
+          "beat": 165.5665,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4267
+        },
+        {
+          "beat": 166.5643,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.511
+        },
+        {
+          "beat": 167.0765,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4746
+        },
+        {
+          "beat": 167.5766,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4184
+        },
+        {
+          "beat": 168.5711,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4457
+        },
+        {
+          "beat": 169.0744,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4335
+        },
+        {
+          "beat": 169.5694,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4472
+        },
+        {
+          "beat": 170.5745,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4658
+        },
+        {
+          "beat": 171.0738,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.49
+        },
+        {
+          "beat": 171.5687,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4376
+        },
+        {
+          "beat": 172.5676,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4431
+        },
+        {
+          "beat": 173.0721,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3932
+        },
+        {
+          "beat": 173.5671,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4212
+        },
+        {
+          "beat": 174.5675,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4079
+        },
+        {
+          "beat": 175.0636,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4245
+        },
+        {
+          "beat": 175.5734,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4275
+        },
+        {
+          "beat": 176.5708,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4872
+        },
+        {
+          "beat": 177.0719,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4648
+        },
+        {
+          "beat": 177.5655,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4068
+        },
+        {
+          "beat": 178.5643,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4443
+        },
+        {
+          "beat": 179.0634,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.494
+        },
+        {
+          "beat": 179.577,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5258
+        },
+        {
+          "beat": 180.5713,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4285
+        },
+        {
+          "beat": 181.0704,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3902
+        },
+        {
+          "beat": 181.5747,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4737
+        },
+        {
+          "beat": 182.5756,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4272
+        },
+        {
+          "beat": 183.0625,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4618
+        },
+        {
+          "beat": 183.5741,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4294
+        },
+        {
+          "beat": 184.5697,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3811
+        },
+        {
+          "beat": 185.0712,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.519
+        },
+        {
+          "beat": 185.574,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.5095
+        },
+        {
+          "beat": 186.5689,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4989
+        },
+        {
+          "beat": 187.066,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4369
+        },
+        {
+          "beat": 187.5753,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4639
+        },
+        {
+          "beat": 188.5652,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4989
+        },
+        {
+          "beat": 189.0747,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3762
+        },
+        {
+          "beat": 189.5704,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4302
+        },
+        {
+          "beat": 190.5683,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4043
+        },
+        {
+          "beat": 191.0662,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.3805
+        },
+        {
+          "beat": 191.5673,
+          "note": 70,
+          "duration_beats": 0.21,
+          "velocity": 0.4714
+        }
+      ]
+    },
+    {
+      "id": "rim",
+      "name": "Rim syncopation",
+      "sample": "rim.wav",
+      "root_midi": 37,
+      "gain_db": -24,
+      "highpass_hz": 260,
+      "lowpass_hz": 5200,
+      "pan": 0.2,
+      "drum": true,
+      "events": [
+        {
+          "beat": 21.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 29.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 37.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 45.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 53.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 61.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 69.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 71.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 77.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 79.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 85.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 87.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 93.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 95.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 117.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 119.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 125.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 127.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 133.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 135.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 141.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 143.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 149.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 151.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 157.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 159.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 165.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 167.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 173.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 175.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 181.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 183.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        },
+        {
+          "beat": 189.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.38
+        },
+        {
+          "beat": 191.78,
+          "note": 37,
+          "duration_beats": 0.23,
+          "velocity": 0.3
+        }
+      ]
+    },
+    {
+      "id": "open_hat",
+      "name": "Open hat transitions",
+      "sample": "open_hat.wav",
+      "root_midi": 46,
+      "gain_db": -30,
+      "highpass_hz": 2300,
+      "lowpass_hz": 7400,
+      "pan": 0.12,
+      "drum": true,
+      "events": [
+        {
+          "beat": 70.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 78.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 86.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 94.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 166.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 174.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 182.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        },
+        {
+          "beat": 190.56,
+          "note": 46,
+          "duration_beats": 0.44,
+          "velocity": 0.48
+        }
+      ]
+    }
+  ],
+  "license": {
+    "source": "Ableton Live Core Library instrument and drum one-shots",
+    "use": "New original composition; private local project",
+    "source_url": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+    "commercial_status": "needs_review",
+    "restriction": "Do not redistribute Core Library samples as a sample pack; verify user license before sale."
+  },
+  "sample_root": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2",
+  "revision": {
+    "parent_run": "windowlight-v1",
+    "parent_mix_sha256": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+    "feedback": "很好，还需要一些人声采样啥的 复杂点",
+    "changes": [
+      "wordless vocal hook and responses",
+      "piano answers vocal phrases",
+      "bridge and outro vocal harmony",
+      "shaker/rim/open-hat and transition fills"
+    ]
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "song": "/Volumes/SanDisk2TB/BeatLab/beats/windowlight-v2",
+  "manifest": {
+    "title": "窗边来信 · Windowlight — Vocal Cut",
+    "bpm": 88.0,
+    "bars": 52,
+    "duration_seconds": 143.81818594104308,
+    "sample_rate": 44100,
+    "tracks": [
+      {
+        "id": "rhodes",
+        "name": "Warm Rhodes",
+        "file": "stems/rhodes.wav",
+        "midi": "midi/rhodes.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/rhodes.aif",
+        "source_sha256": "ff996ef90e8aeba293edf894947cb8ce33b257e6a6683abc1f85de8eec4f4e88",
+        "sha256": "e73440c4d60ece9f7d9ac086f19dba96032288aca18bfa70bddc5725808de4a1"
+      },
+      {
+        "id": "bass",
+        "name": "Electric Bass",
+        "file": "stems/bass.wav",
+        "midi": "midi/bass.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/bass.aif",
+        "source_sha256": "7e609418b26327ca51139320fcba02501f094c20f1605f1e1c5c0e7f81cdb070",
+        "sha256": "4394f7e05d962b3f38a180f015b42f5fe5220f80b52ff1e3bc3c6fc209a2c2ee"
+      },
+      {
+        "id": "piano",
+        "name": "Piano melody",
+        "file": "stems/piano.wav",
+        "midi": "midi/piano.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/piano.aif",
+        "source_sha256": "a59e11902b4fda0c4d1902c62d5b4bb1fb2b4dd61772b5681b538d212c1f7b72",
+        "sha256": "9012a01fb04f7fd89a059bd511707212620f7ae8c29dc525fed41ebae8338a2b"
+      },
+      {
+        "id": "kick",
+        "name": "Kick",
+        "file": "stems/kick.wav",
+        "midi": "midi/kick.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/kick.wav",
+        "source_sha256": "53c117cb27daa6cf0ce1678416f52e17ce0c2b32111cd2f2d023b9dbef792948",
+        "sha256": "4c1986244d110637d90cc972c889fedfb9a4b381dad5100c9a13afa11199c76f"
+      },
+      {
+        "id": "snare",
+        "name": "Soft snare",
+        "file": "stems/snare.wav",
+        "midi": "midi/snare.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/snare.wav",
+        "source_sha256": "7d22c1d00103f02b7506ecdc6944214f08be024d5efa1f1ad8df79e13e52370f",
+        "sha256": "1913b323a4176736cf4cc6ab552a1dd32bf574a072b45ef080689f54b4b64774"
+      },
+      {
+        "id": "hat",
+        "name": "Closed hat",
+        "file": "stems/hat.wav",
+        "midi": "midi/hat.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/hat.wav",
+        "source_sha256": "ea6a890a7215f72e9c4d22367b0f95ed344b7654f6613c02f4fc8417e4b0d6fa",
+        "sha256": "5b522e6133dcdc08236c9f5fa592e625b8216ffc1bb98ca2bef0c1e0a78490ca"
+      },
+      {
+        "id": "vocal_oh",
+        "name": "Vocal Oh chops",
+        "file": "stems/vocal_oh.wav",
+        "midi": "midi/vocal_oh.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/vocal_oh.aif",
+        "source_sha256": "bb7d9889e3c3329aa2b2680f418f6ad14f76521092cc04686f278e8c60748d48",
+        "sha256": "5f679bcadc73d218ea6527304e7dfcc737a44c9f7f29cfbec5d495174e600b4d"
+      },
+      {
+        "id": "vocal_ah",
+        "name": "Vocal Ah responses",
+        "file": "stems/vocal_ah.wav",
+        "midi": "midi/vocal_ah.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/vocal_ah.aif",
+        "source_sha256": "2e227a1d616644370ebb0f62853a6163071cb4ddf518b9de45b65f37a9ea642d",
+        "sha256": "fc08bba5b3db4776518d94c4b0c32e81271e6df905dcc7eaba8f356937336595"
+      },
+      {
+        "id": "choir",
+        "name": "Wordless harmony",
+        "file": "stems/choir.wav",
+        "midi": "midi/choir.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/choir.wav",
+        "source_sha256": "fa72ca63a615327e8cbe850c5a71038b00478c763119100cdef04e71b2509847",
+        "sha256": "9e6ff74d2900b9122a705c000079f4b67f963b61d87eb36038c52d6b67102e23"
+      },
+      {
+        "id": "shaker",
+        "name": "Shaker pocket",
+        "file": "stems/shaker.wav",
+        "midi": "midi/shaker.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/shaker.wav",
+        "source_sha256": "a9e62b3a2311260ebbb42fdbd48ce8a71695bc59f934e66a155f8a15b8c81935",
+        "sha256": "f5df67f47a8b4bfaeb2e8d10871443fd5dadc10171c489348c3885a47ac2d297"
+      },
+      {
+        "id": "rim",
+        "name": "Rim syncopation",
+        "file": "stems/rim.wav",
+        "midi": "midi/rim.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/rim.wav",
+        "source_sha256": "0c05d6630571277dc2827905a07e82f4ec05b6741f84cd084c42588c29c96a26",
+        "sha256": "a647268f70f04e32e632e9d4e4b7bd8683d54087b3e9cd019c07aa418d4e2757"
+      },
+      {
+        "id": "open_hat",
+        "name": "Open hat transitions",
+        "file": "stems/open_hat.wav",
+        "midi": "midi/open_hat.mid",
+        "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/open_hat.wav",
+        "source_sha256": "a2b76251a37189e30a4746f9638f8c5cbfc33aa979418f6bbff7a32339f3f13f",
+        "sha256": "502a1dd69c17c3cfd41f2475bd95ba956c52c747266a9db035c5fded83e140c4"
+      }
+    ],
+    "mix": "full_mix.wav",
+    "master_gain": 1.9630254678092274,
+    "mix_processing": "identical common linear gain on listening mix and all stems",
+    "composition_mode": "curated explicit note score using sample instruments",
+    "license": {
+      "source": "Ableton Live Core Library instrument and drum one-shots",
+      "use": "New original composition; private local project",
+      "source_url": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+      "commercial_status": "needs_review",
+      "restriction": "Do not redistribute Core Library samples as a sample pack; verify user license before sale."
+    },
+    "sections": [
+      {
+        "name": "Intro",
+        "start_bar": 0,
+        "bars": 4
+      },
+      {
+        "name": "Verse A",
+        "start_bar": 4,
+        "bars": 12
+      },
+      {
+        "name": "Hook A",
+        "start_bar": 16,
+        "bars": 8
+      },
+      {
+        "name": "Bridge",
+        "start_bar": 24,
+        "bars": 4
+      },
+      {
+        "name": "Verse B",
+        "start_bar": 28,
+        "bars": 12
+      },
+      {
+        "name": "Hook B",
+        "start_bar": 40,
+        "bars": 8
+      },
+      {
+        "name": "Outro",
+        "start_bar": 48,
+        "bars": 4
+      }
+    ],
+    "revision": {
+      "parent_run": "windowlight-v1",
+      "parent_mix_sha256": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+      "feedback": "很好，还需要一些人声采样啥的 复杂点",
+      "changes": [
+        "wordless vocal hook and responses",
+        "piano answers vocal phrases",
+        "bridge and outro vocal harmony",
+        "shaker/rim/open-hat and transition fills"
+      ]
+    },
+    "mix_sha256": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7"
+  },
+  "manifest_sha256": "c8ac6e5b229e32b57b1412ca2195709190cb613a65d9cb64d2aef15bc2a83c1a",
+  "sample_rate": 44100,
+  "frames": 6342382,
+  "channels": 2,
+  "duration_seconds": 143.81818594104308,
+  "mix": "full_mix.wav",
+  "mix_sha256": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7",
+  "score": "score.json",
+  "score_sha256": "c15b4b3b62cf598b3e66795e2fd1605e19993a862304837424c2437ac6ec38e5",
+  "tracks": [
+    {
+      "id": "rhodes",
+      "name": "Warm Rhodes",
+      "file": "stems/rhodes.wav",
+      "midi": "midi/rhodes.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/rhodes.aif",
+      "source_sha256": "ff996ef90e8aeba293edf894947cb8ce33b257e6a6683abc1f85de8eec4f4e88",
+      "sha256": "e73440c4d60ece9f7d9ac086f19dba96032288aca18bfa70bddc5725808de4a1",
+      "midi_sha256": "9f95bf7e4e4299e6b58c23a2e6ce3092324015da6732db603b72f6763464dd6a",
+      "peak": 0.5573430061340332
+    },
+    {
+      "id": "bass",
+      "name": "Electric Bass",
+      "file": "stems/bass.wav",
+      "midi": "midi/bass.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/bass.aif",
+      "source_sha256": "7e609418b26327ca51139320fcba02501f094c20f1605f1e1c5c0e7f81cdb070",
+      "sha256": "4394f7e05d962b3f38a180f015b42f5fe5220f80b52ff1e3bc3c6fc209a2c2ee",
+      "midi_sha256": "f4548e51af0a2dca20d74bd8ca9b8bce1f5c771c4c18817d85b95d7f7f03b4bd",
+      "peak": 0.36454248428344727
+    },
+    {
+      "id": "piano",
+      "name": "Piano melody",
+      "file": "stems/piano.wav",
+      "midi": "midi/piano.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/piano.aif",
+      "source_sha256": "a59e11902b4fda0c4d1902c62d5b4bb1fb2b4dd61772b5681b538d212c1f7b72",
+      "sha256": "9012a01fb04f7fd89a059bd511707212620f7ae8c29dc525fed41ebae8338a2b",
+      "midi_sha256": "a831c6cf2af42366ebc2803cbe200efd1e16cd258bf993ef581bfe30d3e9276c",
+      "peak": 0.1472179889678955
+    },
+    {
+      "id": "kick",
+      "name": "Kick",
+      "file": "stems/kick.wav",
+      "midi": "midi/kick.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/kick.wav",
+      "source_sha256": "53c117cb27daa6cf0ce1678416f52e17ce0c2b32111cd2f2d023b9dbef792948",
+      "sha256": "4c1986244d110637d90cc972c889fedfb9a4b381dad5100c9a13afa11199c76f",
+      "midi_sha256": "4533d6616639e3eb279325ccc9a365423758c43afd393fe52ee5f449d8ff41ef",
+      "peak": 0.4770653247833252
+    },
+    {
+      "id": "snare",
+      "name": "Soft snare",
+      "file": "stems/snare.wav",
+      "midi": "midi/snare.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/snare.wav",
+      "source_sha256": "7d22c1d00103f02b7506ecdc6944214f08be024d5efa1f1ad8df79e13e52370f",
+      "sha256": "1913b323a4176736cf4cc6ab552a1dd32bf574a072b45ef080689f54b4b64774",
+      "midi_sha256": "b6f8b239a6ff4273eb417e70cb92514eeb9a397f682c81ef71299619796eb41b",
+      "peak": 0.20941078662872314
+    },
+    {
+      "id": "hat",
+      "name": "Closed hat",
+      "file": "stems/hat.wav",
+      "midi": "midi/hat.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/hat.wav",
+      "source_sha256": "ea6a890a7215f72e9c4d22367b0f95ed344b7654f6613c02f4fc8417e4b0d6fa",
+      "sha256": "5b522e6133dcdc08236c9f5fa592e625b8216ffc1bb98ca2bef0c1e0a78490ca",
+      "midi_sha256": "7e3d25607151bf71621b6c8a403b85c352f77f5f2d08509b91314366a32a4594",
+      "peak": 0.02282118797302246
+    },
+    {
+      "id": "vocal_oh",
+      "name": "Vocal Oh chops",
+      "file": "stems/vocal_oh.wav",
+      "midi": "midi/vocal_oh.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/vocal_oh.aif",
+      "source_sha256": "bb7d9889e3c3329aa2b2680f418f6ad14f76521092cc04686f278e8c60748d48",
+      "sha256": "5f679bcadc73d218ea6527304e7dfcc737a44c9f7f29cfbec5d495174e600b4d",
+      "midi_sha256": "e8b5df33e796ec3140bd8360f2d7a33b7955a31108e3fda1ef40ab95d6f0757f",
+      "peak": 0.2884364128112793
+    },
+    {
+      "id": "vocal_ah",
+      "name": "Vocal Ah responses",
+      "file": "stems/vocal_ah.wav",
+      "midi": "midi/vocal_ah.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/vocal_ah.aif",
+      "source_sha256": "2e227a1d616644370ebb0f62853a6163071cb4ddf518b9de45b65f37a9ea642d",
+      "sha256": "fc08bba5b3db4776518d94c4b0c32e81271e6df905dcc7eaba8f356937336595",
+      "midi_sha256": "ada2d7ca731e0613ea77f73366f29a57bba4447806d656f4829b5f17dce3bd96",
+      "peak": 0.10721206665039062
+    },
+    {
+      "id": "choir",
+      "name": "Wordless harmony",
+      "file": "stems/choir.wav",
+      "midi": "midi/choir.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/choir.wav",
+      "source_sha256": "fa72ca63a615327e8cbe850c5a71038b00478c763119100cdef04e71b2509847",
+      "sha256": "9e6ff74d2900b9122a705c000079f4b67f963b61d87eb36038c52d6b67102e23",
+      "midi_sha256": "53044c0edb9b9bc7f26ef066ccbef5deb48fce37288e6e69e9f9b5fa1825d6fb",
+      "peak": 0.05268967151641846
+    },
+    {
+      "id": "shaker",
+      "name": "Shaker pocket",
+      "file": "stems/shaker.wav",
+      "midi": "midi/shaker.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/shaker.wav",
+      "source_sha256": "a9e62b3a2311260ebbb42fdbd48ce8a71695bc59f934e66a155f8a15b8c81935",
+      "sha256": "f5df67f47a8b4bfaeb2e8d10871443fd5dadc10171c489348c3885a47ac2d297",
+      "midi_sha256": "29c495b31e164782caf4feeb267e54204d5c6bea9fc3d234fcf7cdf0572e7809",
+      "peak": 0.02246260643005371
+    },
+    {
+      "id": "rim",
+      "name": "Rim syncopation",
+      "file": "stems/rim.wav",
+      "midi": "midi/rim.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/rim.wav",
+      "source_sha256": "0c05d6630571277dc2827905a07e82f4ec05b6741f84cd084c42588c29c96a26",
+      "sha256": "a647268f70f04e32e632e9d4e4b7bd8683d54087b3e9cd019c07aa418d4e2757",
+      "midi_sha256": "7eac9358079168c33fbf4eea67f1dabebd02a0fc721e5686cad0be5bb60ca064",
+      "peak": 0.07623839378356934
+    },
+    {
+      "id": "open_hat",
+      "name": "Open hat transitions",
+      "file": "stems/open_hat.wav",
+      "midi": "midi/open_hat.mid",
+      "source": "/Volumes/SanDisk2TB/BeatLab/library/instruments/windowlight-v2/open_hat.wav",
+      "source_sha256": "a2b76251a37189e30a4746f9638f8c5cbfc33aa979418f6bbff7a32339f3f13f",
+      "sha256": "502a1dd69c17c3cfd41f2475bd95ba956c52c747266a9db035c5fded83e140c4",
+      "midi_sha256": "6635e481e936ff661f70305acf1c3feb7bb5a396ec42e2caecb8167e681c0af9",
+      "peak": 0.024045228958129883
+    }
+  ],
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 9.5367431640625e-07,
+    "rms_error": 1.6028560113949864e-07,
+    "relative_rms_db": -118.77214005497443,
+    "tolerance": 1.6689300537109375e-06,
+    "passed": true
+  },
+  "live_verification": {
+    "open": "unverified",
+    "reopen": "unverified",
+    "relocated_open": "unverified",
+    "rerender": "unverified"
+  }
+}

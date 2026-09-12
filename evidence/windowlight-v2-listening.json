@@ -1,0 +1,13 @@
+{
+  "windowlight-v1": {
+    "lufs": -14.4,
+    "gain_db": -0.5
+  },
+  "windowlight-v2": {
+    "lufs": -14.3,
+    "gain_db": -0.5999999999999996
+  },
+  "vocals_peak_dbfs": -10.405951161365284,
+  "matched_preview_target_lufs": -14.9,
+  "full_mix_measurement": "Summary:\n\n  Integrated loudness:\n    I:         -15.0 LUFS\n    Threshold: -25.3 LUFS\n\n  Loudness range:\n    LRA:         2.8 LU\n    Threshold: -35.3 LUFS\n    LRA low:   -16.9 LUFS\n    LRA high:  -14.1 LUFS\n\n  True peak:\n    Peak:       -1.0 dBFS\n[out#0/null @ 0x71a83c180] video:0KiB audio:24775KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:02:23.81 bitrate=N/A speed= 303x    \n"
+}

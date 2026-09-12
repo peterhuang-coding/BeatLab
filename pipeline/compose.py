@@ -280,6 +280,19 @@ def _supporting_pools(supporting: list[dict], assets_by_id: dict) -> tuple[list[
     return texture, vocal
 
 
+def _source_phrase_bars(moment: dict, asset: dict, target_bar_s: float) -> tuple[int, str]:
+    """源乐句按源 BPM / moment 小节数分块；无源节拍信息时明确退回时长估算。"""
+    duration = max(0.5, float(moment["end_sec"]) - float(moment["start_sec"]))
+    source_bpm = float(asset.get("bpm") or asset.get("bpm_est") or 0)
+    if source_bpm > 0:
+        return max(1, round(duration * source_bpm / 240.0)), "source_bpm"
+    source_bars = float(moment.get("bars") or 0)
+    if source_bars > 0:
+        return max(1, round(source_bars)), "moment_bars"
+    # 兼容旧素材：时长等分仅是摆放估算，不能视为已检测的源拍网格。
+    return max(1, round(duration / target_bar_s)), "duration_fallback"
+
+
 def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[dict],
                 assets_by_id: dict, hero_file: str,
                 hook_hero: dict | None = None) -> tuple[list[dict], list[dict]]:
@@ -291,18 +304,17 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
     hero_asset_id = str(hero.get("asset_id"))
     hero_stem = str(hero.get("stem") or "source")
     hero_entry = {"file": hero_file, "start_sec": float(hero["start_sec"]),
-                  "end_sec": float(hero["end_sec"])}
-    # 乐句触发周期：hero 窗口能覆盖几小节，就隔几小节触发一次（不再每小节重触发同一片段）
+                  "end_sec": float(hero["end_sec"]), "bars": hero.get("bars")}
+    hero_asset = assets_by_id.get(hero_asset_id) or {}
+    # 目标 BPM 只决定每个源小节拉伸后的时长，不能改变源乐句的小节数。
     bpm = float((recipe.get("transform") or {}).get("bpm") or 92)
     bar_s = 60.0 / bpm * 4
-    hero_dur = max(0.5, float(hero.get("end_sec", 0)) - float(hero.get("start_sec", 0)))
-    phrase_bars = max(1, round(hero_dur / bar_s))
     # hook 段对比：同 hero 素材的第二个 Moment（若存在）
     hook_hero_entry = None
     if hook_hero and str(hook_hero.get("asset_id")) == hero_asset_id:
         hook_hero_entry = {"file": hero_file,
                            "start_sec": float(hook_hero["start_sec"]),
-                           "end_sec": float(hook_hero["end_sec"])}
+                           "end_sec": float(hook_hero["end_sec"]), "bars": hook_hero.get("bars")}
     texture_pool, vocal_pool = _supporting_pools(supporting, assets_by_id)
     placements: list[dict] = []
     vocals: list[dict] = []
@@ -328,10 +340,10 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 if mut.get("dropout") == "odd_bars" and k % 2 == 1:
                     bar_idx += 1
                     continue
-                # 网格锁定：hero 窗口按小节切块，每块拉伸到精确 1 小节
+                # 使用源乐句的小节数分块，每块拉伸到目标 1 小节。
                 entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
                 entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
-                pb = max(1, round(entry_dur / bar_s))
+                pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
                 chunk = entry_dur / pb
                 ci = k % pb
                 cs = entry["start_sec"] + ci * chunk
@@ -345,6 +357,7 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                                hero_file, cs, ce,
                                stem=hero_stem, lp_hz=lp, fade_gain=fade,
                                stretch_to=bar_s)
+                p["timing_basis"] = timing_basis
                 placements.append(p)
                 bar_idx += 1
         elif kind == "chop":
@@ -381,7 +394,7 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                     continue
                 entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
                 entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
-                pb = max(1, round(entry_dur / bar_s))
+                pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
                 chunk = entry_dur / pb
                 ci = k % pb
                 cs = entry["start_sec"] + ci * chunk
@@ -393,6 +406,7 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                                common.MIDI_CHOP_BASE, 0.85,
                                hero_file, cs, ce,
                                stem=hero_stem, fade_gain=fade, stretch_to=bar_s)
+                p["timing_basis"] = timing_basis
                 if hero_stem == "vocal":   # 目标 stem 是人声 → 走 vocal 层（render 分轨路由）
                     vocals.append(p)
                 else:
@@ -431,11 +445,12 @@ def build_spec_for_recipe(recipe: dict, kind: str, run_id: str, hero: dict,
     """一个 Recipe → 一个 BeatSpec（鼓/bass/摆放全部来自 manifest 参数）。"""
     hero_asset = assets_by_id.get(str(hero.get("asset_id"))) or {}
     hero_file = str(hero_asset.get("library_path") or hero_asset.get("path") or "")
-    if kind == "stem":       # stem recipe 必须用分离轨文件，不是整曲 source
-        stem_name = str(hero.get("stem") or "other")
-        sp = recipes._stem_path(str(hero_asset.get("library_path") or ""), stem_name)
-        if Path(sp).exists():
-            hero_file = sp
+    if kind == "stem":       # source moment 可用原曲；指定分离轨缺失时必须报错。
+        stem_name = str(hero.get("stem") or "source")
+        sp = recipes._stem_file(hero_file, stem_name)
+        if not (common.ROOT / sp).is_file():
+            raise FileNotFoundError(f"Required stem '{stem_name}' is missing: {common.ROOT / sp}")
+        hero_file = sp
     profile = groove_override or recipe["groove_profile"]
     if profile not in recipes.GROOVE_PROFILES:
         print(f"[WARN] 未知 groove {profile}，回退 boom-bap")

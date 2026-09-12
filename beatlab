@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+BEATLAB_CODE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ ! -x "$BEATLAB_CODE/.venv/bin/python" ]; then
+    echo "请先按 README 安装 .venv 和 requirements.txt。" >&2
+    exit 1
+fi
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+exec "$BEATLAB_CODE/.venv/bin/python" "$BEATLAB_CODE/pipeline/pipeline.py" "$@"

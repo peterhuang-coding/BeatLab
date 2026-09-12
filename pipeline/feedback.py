@@ -78,7 +78,19 @@ def upsert_feedback(row: dict) -> str:
     """写入/更新一条反馈（契约: common.upsert_feedback 优先）。"""
     fn = getattr(common, "upsert_feedback", None)
     if fn is not None:
-        return fn(row)
+        conn = common.get_db()
+        try:
+            row = dict(row)
+            if row.get("ableton_outcome") is None:
+                previous = common.get_feedback(conn, run_id=row["run_id"])
+                for old in previous:
+                    if old["id"] == row["id"]:
+                        row["ableton_outcome"] = old.get("ableton_outcome")
+                        break
+            fn(conn, row)
+        finally:
+            conn.close()
+        return row["id"]
     conn = common.get_db()
     try:
         conn.execute(FEEDBACK_DDL)
@@ -103,7 +115,20 @@ def get_feedback(run_id: str | None = None, candidate_id: str | None = None) -> 
     """查询反馈行（契约: common.get_feedback 优先），返回 dict 列表。"""
     fn = getattr(common, "get_feedback", None)
     if fn is not None:
-        return [dict(r) if not isinstance(r, dict) else r for r in fn(run_id, candidate_id)]
+        conn = common.get_db()
+        try:
+            rows = fn(conn, run_id=run_id)
+        finally:
+            conn.close()
+        out = []
+        for r in rows:
+            if candidate_id and r["candidate_id"] != candidate_id:
+                continue
+            item = dict(r)
+            item["dims_json"] = json.dumps(item.pop("dims", None) or {}, ensure_ascii=False)
+            item["reasons_json"] = json.dumps(item.pop("reasons", None) or [], ensure_ascii=False)
+            out.append(item)
+        return out
     conn = common.get_db()
     try:
         conn.execute(FEEDBACK_DDL)
@@ -344,10 +369,11 @@ def list_targets() -> list[tuple[str, str]]:
     for d in sorted(beats.iterdir()):
         if not d.is_dir():
             continue
-        if (d / "spec.json").is_file():
-            out.append((d.name, "legacy"))
-        elif any(p.is_dir() and (p / "spec.json").is_file() for p in d.iterdir()):
-            out.append((d.name, "run"))
+        try:
+            mode, _ = report.detect_target(d.name)
+        except FileNotFoundError:
+            continue
+        out.append((d.name, mode))
     return out
 
 
@@ -452,7 +478,7 @@ class _Handler(BaseHTTPRequestHandler):
         page = report.build_review_page(
             target, mode, candidates,
             media_base=lambda c: f"/media/{target}/{c}/" if mode == "run" else f"/media/{target}/",
-            cfg_extra={"host": f"127.0.0.1:{port}"},
+            cfg_extra={"host": f"127.0.0.1:{port}", "indexUrl": "/"},
         )
         self._send(200, page.encode("utf-8"), "text/html; charset=utf-8")
 

@@ -22,12 +22,12 @@ from pathlib import Path
 from typing import Any
 
 # ---------- 路径 ----------
-ROOT = Path(os.environ.get("BEATLAB_ROOT") or Path.home() / "Desktop" / "BeatLab")
-PIPELINE = ROOT / "pipeline"
+PIPELINE = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("BEATLAB_ROOT") or PIPELINE.parent).expanduser().resolve()
 LIBRARY = ROOT / "library"
 DB_PATH = ROOT / "db.sqlite"
 STAGING = ROOT / "staging"          # 摄入时的临时目录
-MIRROR_ROOT = Path.home() / "Desktop" / "AI_音乐_Demos"   # 产出镜像（日期扁平目录）
+MIRROR_ROOT = Path(os.environ.get("BEATLAB_MIRROR_ROOT") or ROOT / "exports").expanduser().resolve()
 DEFAULT_BEAT_DURATION_S = 3.5 * 60  # 3-4 分钟目标取 3.5min 中值
 
 SUPPORTED_EXT = {".wav", ".mp3", ".flac", ".aif", ".aiff", ".m4a", ".ogg"}

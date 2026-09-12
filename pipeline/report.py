@@ -194,7 +194,7 @@ async function loadBadges(){
   let rows = [];
   try {
     const r = await fetch('/api/feedback?run_id=' + encodeURIComponent(CFG.runId));
-    if (r.ok) rows = await r.json();
+    if (r.ok) rows = (await r.json()).rows || [];
   } catch (e) { return; }
   rows.forEach(row => {
     const i = CFG.candidates.indexOf(row.candidate_id);
@@ -308,6 +308,15 @@ def load_manifests(cand_dir: Path) -> dict:
                     out.update(data)
             except json.JSONDecodeError:
                 pass
+    for name in ("recipe", "provenance"):
+        path = cand_dir / f"{name}.json"
+        if path.is_file():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    out[name] = data
+            except json.JSONDecodeError:
+                pass
     return out
 
 
@@ -315,7 +324,7 @@ def _copy_candidate_files(src: Path, dst: Path) -> list[str]:
     """复制候选交付物到 dst（beat.wav/.als/midi/stems/manifests/spec/手记），返回已复制清单。"""
     dst.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
-    for rel in ("beat.wav", "full_mix.wav", "spec.json", "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt"):
+    for rel in ("beat.wav", "full_mix.wav", "spec.json", "recipe.json", "provenance.json", "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt"):
         f = src / rel
         if f.is_file():
             shutil.copy2(f, dst / rel)
@@ -323,7 +332,7 @@ def _copy_candidate_files(src: Path, dst: Path) -> list[str]:
     for m in sorted(src.glob("take_*.als")):
         shutil.copy2(m, dst / m.name)
         copied.append(m.name)
-    for sub in ("midi", "stems", "manifests"):
+    for sub in ("midi", "stems", "chops", "manifests"):
         s = src / sub
         if s.is_dir():
             shutil.copytree(s, dst / sub, dirs_exist_ok=True)
@@ -608,7 +617,7 @@ def build_review_page(target: str, mode: str, candidates: list[str],
 <main>
   <div class="columns{' single' if mode == 'legacy' else ''}">{cols}</div>
 </main>
-<footer>BeatLab · Review · 反馈契约: POST /api/feedback &#123;run_id, candidate_id, dims, verdict, reasons&#125; · <a href="index.html">当日总览</a></footer>
+<footer>BeatLab · Review · 反馈契约: POST /api/feedback &#123;run_id, candidate_id, dims, verdict, reasons&#125; · <a href="{html.escape(cfg.get('indexUrl', 'index.html'), quote=True)}">当日总览</a></footer>
 <script>const CFG = {cfg_json};</script>
 <script>{JS_CORE}</script>
 </body>

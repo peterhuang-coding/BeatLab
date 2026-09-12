@@ -1,0 +1,22 @@
+{
+  "hashes": {
+    "DJ.m3u8": true,
+    "README.txt": true,
+    "cover-draft.svg": true,
+    "master.wav": true,
+    "midi/bass.mid": true,
+    "midi/hat.mid": true,
+    "midi/kick.mid": true,
+    "midi/piano.mid": true,
+    "midi/rhodes.mid": true,
+    "midi/snare.mid": true,
+    "preview.mp3": true,
+    "score.json": true,
+    "source_manifest.json": true,
+    "trackouts.zip": true
+  },
+  "master_equals_listening_mix": true,
+  "publication_status": "draft",
+  "package": "/Volumes/SanDisk2TB/BeatLab/exports/windowlight-v1/ReleaseDraft",
+  "zip_members_match_preflight_hashes": true
+}

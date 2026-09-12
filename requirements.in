@@ -1,0 +1,13 @@
+# Direct runtime dependencies; requirements.txt locks the resolved environment.
+librosa==1.0.0
+soundfile==0.14.0
+mido==1.3.3
+numpy==2.5.2
+scipy==1.18.1
+requests==2.34.2
+audio-separator==0.47.0
+# audio-separator imports audioread; librosa 1.0 no longer pulls it in.
+audioread==3.1.0
+onnxruntime==1.29.0
+torch==2.13.0
+torchvision==0.28.0

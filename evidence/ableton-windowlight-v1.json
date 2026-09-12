@@ -1,0 +1,245 @@
+{
+  "song": "/Volumes/SanDisk2TB/BeatLab/beats/windowlight-v1",
+  "manifest": {
+    "title": "窗边来信 · Windowlight",
+    "bpm": 88.0,
+    "bars": 52,
+    "duration_seconds": 143.81818594104308,
+    "sample_rate": 44100,
+    "tracks": [
+      {
+        "id": "rhodes",
+        "name": "Warm Rhodes",
+        "file": "stems/rhodes.wav",
+        "midi": "midi/rhodes.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Piano & Keys/E-Piano Roads C3.aif",
+        "source_sha256": "ff996ef90e8aeba293edf894947cb8ce33b257e6a6683abc1f85de8eec4f4e88",
+        "sha256": "02f7cc23c94ec2e1fe8270abe285964f476b65a983402e2a7dfa7cc822e4a2b4"
+      },
+      {
+        "id": "bass",
+        "name": "Electric Bass",
+        "file": "stems/bass.wav",
+        "midi": "midi/bass.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Bass/Electric Bass C1.aif",
+        "source_sha256": "7e609418b26327ca51139320fcba02501f094c20f1605f1e1c5c0e7f81cdb070",
+        "sha256": "efd2d96d69d3e952e8a95a1c996cd7d9936da670011cd2da9c2aad5c3eea1084"
+      },
+      {
+        "id": "piano",
+        "name": "Piano melody",
+        "file": "stems/piano.wav",
+        "midi": "midi/piano.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Piano & Keys/Grand Piano C3 f.aif",
+        "source_sha256": "a59e11902b4fda0c4d1902c62d5b4bb1fb2b4dd61772b5681b538d212c1f7b72",
+        "sha256": "805afbc349de0a28fa64b61050484911b8d9025ddcd29dd62765211da58681e1"
+      },
+      {
+        "id": "kick",
+        "name": "Kick",
+        "file": "stems/kick.wav",
+        "midi": "midi/kick.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Kick/Kick Tamuz 1.wav",
+        "source_sha256": "53c117cb27daa6cf0ce1678416f52e17ce0c2b32111cd2f2d023b9dbef792948",
+        "sha256": "040bddc2e27eb50f11f0059c30b6b6c568a3487a8eea61702c00f7879fa51aef"
+      },
+      {
+        "id": "snare",
+        "name": "Soft snare",
+        "file": "stems/snare.wav",
+        "midi": "midi/snare.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Snare/Snare Butta Soft.wav",
+        "source_sha256": "7d22c1d00103f02b7506ecdc6944214f08be024d5efa1f1ad8df79e13e52370f",
+        "sha256": "db5dd26f654c9eefd0f14b79ef1a4eff50b3eb6d8d31522f31b9931cfff9a6bb"
+      },
+      {
+        "id": "hat",
+        "name": "Closed hat",
+        "file": "stems/hat.wav",
+        "midi": "midi/hat.mid",
+        "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Hihat/Hihat Closed Tamuz Tight.wav",
+        "source_sha256": "ea6a890a7215f72e9c4d22367b0f95ed344b7654f6613c02f4fc8417e4b0d6fa",
+        "sha256": "98482b5d15f92c3b2e22cbad72a44fb14e9f90e6c0e28ed976238e51eef1c1a1"
+      }
+    ],
+    "mix": "full_mix.wav",
+    "master_gain": 1.884061678832306,
+    "mix_processing": "identical common linear gain on listening mix and all stems",
+    "composition_mode": "curated explicit note score using sample instruments",
+    "license": {
+      "source": "Ableton Live Core Library instrument and drum one-shots",
+      "use": "New original composition; private local project",
+      "source_url": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+      "commercial_status": "needs_review",
+      "restriction": "Do not redistribute Core Library samples as a sample pack; verify user license before sale."
+    },
+    "sections": [
+      {
+        "name": "Intro",
+        "start_bar": 0,
+        "bars": 4
+      },
+      {
+        "name": "Verse A",
+        "start_bar": 4,
+        "bars": 12
+      },
+      {
+        "name": "Hook A",
+        "start_bar": 16,
+        "bars": 8
+      },
+      {
+        "name": "Bridge",
+        "start_bar": 24,
+        "bars": 4
+      },
+      {
+        "name": "Verse B",
+        "start_bar": 28,
+        "bars": 12
+      },
+      {
+        "name": "Hook B",
+        "start_bar": 40,
+        "bars": 8
+      },
+      {
+        "name": "Outro",
+        "start_bar": 48,
+        "bars": 4
+      }
+    ]
+  },
+  "manifest_sha256": "fdabcdd92a666f1ff14e5808fe184b516b35f8ee17be2da39338e9f25c43c817",
+  "sample_rate": 44100,
+  "frames": 6342382,
+  "channels": 2,
+  "duration_seconds": 143.81818594104308,
+  "mix": "full_mix.wav",
+  "mix_sha256": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+  "score": "score.json",
+  "score_sha256": "b9bdde2eb5c4bff360cb7eb9d31b5bc660a5b0ef912beca1cf8b3ba056c338ea",
+  "tracks": [
+    {
+      "id": "rhodes",
+      "name": "Warm Rhodes",
+      "file": "stems/rhodes.wav",
+      "midi": "midi/rhodes.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Piano & Keys/E-Piano Roads C3.aif",
+      "source_sha256": "ff996ef90e8aeba293edf894947cb8ce33b257e6a6683abc1f85de8eec4f4e88",
+      "sha256": "02f7cc23c94ec2e1fe8270abe285964f476b65a983402e2a7dfa7cc822e4a2b4",
+      "midi_sha256": "2646fa84bdae9aa103d45eb5de970a37796fee8f9111d8d13af883a4b07fd3fe",
+      "peak": 0.5943595170974731
+    },
+    {
+      "id": "bass",
+      "name": "Electric Bass",
+      "file": "stems/bass.wav",
+      "midi": "midi/bass.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Bass/Electric Bass C1.aif",
+      "source_sha256": "7e609418b26327ca51139320fcba02501f094c20f1605f1e1c5c0e7f81cdb070",
+      "sha256": "efd2d96d69d3e952e8a95a1c996cd7d9936da670011cd2da9c2aad5c3eea1084",
+      "midi_sha256": "3ef160f6028a69ae1515b0570d365946383c184324c021960f7fb05e8320c1bf",
+      "peak": 0.34987854957580566
+    },
+    {
+      "id": "piano",
+      "name": "Piano melody",
+      "file": "stems/piano.wav",
+      "midi": "midi/piano.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Piano & Keys/Grand Piano C3 f.aif",
+      "source_sha256": "a59e11902b4fda0c4d1902c62d5b4bb1fb2b4dd61772b5681b538d212c1f7b72",
+      "sha256": "805afbc349de0a28fa64b61050484911b8d9025ddcd29dd62765211da58681e1",
+      "midi_sha256": "b95046db8ec0095f0dd7f95b068b1c050ad1978496a4ef4522aeee3d857f8d65",
+      "peak": 0.1630791425704956
+    },
+    {
+      "id": "kick",
+      "name": "Kick",
+      "file": "stems/kick.wav",
+      "midi": "midi/kick.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Kick/Kick Tamuz 1.wav",
+      "source_sha256": "53c117cb27daa6cf0ce1678416f52e17ce0c2b32111cd2f2d023b9dbef792948",
+      "sha256": "040bddc2e27eb50f11f0059c30b6b6c568a3487a8eea61702c00f7879fa51aef",
+      "midi_sha256": "16b9ab22d9e56bbbec150f032397301e56c5c6928a10585542f4c2d33c2db843",
+      "peak": 0.45787513256073
+    },
+    {
+      "id": "snare",
+      "name": "Soft snare",
+      "file": "stems/snare.wav",
+      "midi": "midi/snare.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Snare/Snare Butta Soft.wav",
+      "source_sha256": "7d22c1d00103f02b7506ecdc6944214f08be024d5efa1f1ad8df79e13e52370f",
+      "sha256": "db5dd26f654c9eefd0f14b79ef1a4eff50b3eb6d8d31522f31b9931cfff9a6bb",
+      "midi_sha256": "75aa06c2f2c51d8d408c509253f48e81cde4d1f59cccbbf90115540c85f76e22",
+      "peak": 0.2009871006011963
+    },
+    {
+      "id": "hat",
+      "name": "Closed hat",
+      "file": "stems/hat.wav",
+      "midi": "midi/hat.mid",
+      "source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Hihat/Hihat Closed Tamuz Tight.wav",
+      "source_sha256": "ea6a890a7215f72e9c4d22367b0f95ed344b7654f6613c02f4fc8417e4b0d6fa",
+      "sha256": "98482b5d15f92c3b2e22cbad72a44fb14e9f90e6c0e28ed976238e51eef1c1a1",
+      "midi_sha256": "7e3d25607151bf71621b6c8a403b85c352f77f5f2d08509b91314366a32a4594",
+      "peak": 0.021903276443481445
+    }
+  ],
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 5.960464477539062e-07,
+    "rms_error": 1.2580925704859284e-07,
+    "relative_rms_db": -120.57579826763106,
+    "tolerance": 9.5367431640625e-07,
+    "passed": true
+  },
+  "live_verification": {
+    "open": "unverified",
+    "reopen": "unverified",
+    "relocated_open": "unverified",
+    "rerender": "unverified"
+  },
+  "project": "/Volumes/SanDisk2TB/BeatLab/exports/windowlight-v1/AbletonProject",
+  "als": "/Volumes/SanDisk2TB/BeatLab/exports/windowlight-v1/AbletonProject/Windowlight.als",
+  "export_mode": "collected audio arrangement, warp off, no added FX, unity gains",
+  "midi_reconstruction": "MIDI and score copied as editable sources; instruments not recreated",
+  "template_creator": "Ableton Live 12.3d1",
+  "template_sha256": "3847db1d7617f6ebf96a3cdcb18ad9fe63ff3563ba0110b78be816e0c09de7bc",
+  "clip_template_sha256": "fc5a39a64f1a91ddce9d93b4fef525b01b07c05facb0dd215dd16a295f3bac3d",
+  "media": [
+    {
+      "track_id": "rhodes",
+      "relative_path": "Samples/Imported/rhodes.wav",
+      "sha256": "02f7cc23c94ec2e1fe8270abe285964f476b65a983402e2a7dfa7cc822e4a2b4"
+    },
+    {
+      "track_id": "bass",
+      "relative_path": "Samples/Imported/bass.wav",
+      "sha256": "efd2d96d69d3e952e8a95a1c996cd7d9936da670011cd2da9c2aad5c3eea1084"
+    },
+    {
+      "track_id": "piano",
+      "relative_path": "Samples/Imported/piano.wav",
+      "sha256": "805afbc349de0a28fa64b61050484911b8d9025ddcd29dd62765211da58681e1"
+    },
+    {
+      "track_id": "kick",
+      "relative_path": "Samples/Imported/kick.wav",
+      "sha256": "040bddc2e27eb50f11f0059c30b6b6c568a3487a8eea61702c00f7879fa51aef"
+    },
+    {
+      "track_id": "snare",
+      "relative_path": "Samples/Imported/snare.wav",
+      "sha256": "db5dd26f654c9eefd0f14b79ef1a4eff50b3eb6d8d31522f31b9931cfff9a6bb"
+    },
+    {
+      "track_id": "hat",
+      "relative_path": "Samples/Imported/hat.wav",
+      "sha256": "98482b5d15f92c3b2e22cbad72a44fb14e9f90e6c0e28ed976238e51eef1c1a1"
+    }
+  ],
+  "als_sha256": "e1dcd0a1957605f7156080cc99e52cbe95c203fbc68cf26c6dd9ea7faffe10bc"
+}

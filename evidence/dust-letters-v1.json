@@ -1,0 +1,63 @@
+{
+  "date": "2026-09-13",
+  "song": "/Volumes/SanDisk2TB/BeatLab/beats/dust-letters-v1",
+  "composition": "recorded Rhodes musical phrase; repitch +2, independent stretch 115 to 92, reordered chops with octave/reverse variants; reused original vocal phrase",
+  "library_phrases_verified": 5,
+  "chops_verified": 14,
+  "midi_placements_verified": 96,
+  "midi_length_beats": 144.0,
+  "non_silent_stems": 21,
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 5.960464477539062e-07,
+    "rms_error": 1.3528445888538155e-07,
+    "relative_rms_db": -116.5935852963227,
+    "tolerance": 2.7418136596679688e-06,
+    "passed": true
+  },
+  "audio": {
+    "full_mix.wav": {
+      "duration_seconds": 95.91303854875284,
+      "peak_dbfs": -1.0000008709134622,
+      "sha256": "6780d6f6e4069b4483489539b6e8f7633cbaad01cbb476bc823c4e86a0aa0adb"
+    },
+    "sample-flip-solo.wav": {
+      "duration_seconds": 95.91303854875284,
+      "peak_dbfs": -6.7824925422536575,
+      "sha256": "37bf41d261d7920babe924370ee7cbeef8ae1cff30d81325e13964a800aa775d"
+    },
+    "original-phrase.wav": {
+      "duration_seconds": 8.347845804988662,
+      "peak_dbfs": -2.9999995180030155,
+      "sha256": "2f173b1b7215039501b47af042a29461109447e45dd98726571fcb89c392dd31"
+    },
+    "before-after.wav": {
+      "duration_seconds": 31.217414965986393,
+      "peak_dbfs": -1.4116212420815057,
+      "sha256": "a237a869f14c2aa87ce55101d6c1737f7f55c5a76cbafd0de71a911017c3157e"
+    }
+  },
+  "audio_als_tracks": 21,
+  "audio_als_clips": 21,
+  "rack_samplers": 14,
+  "old_mixes_unchanged": {
+    "v1": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+    "v2": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7"
+  },
+  "live_open_and_render": "unverified; this is file validation, not Live playback",
+  "aesthetic_review": "awaiting user listening feedback",
+  "commercial_status": "needs_review",
+  "source_map": "/Volumes/SanDisk2TB/BeatLab/beats/dust-letters-v1/slice-map.json",
+  "tests": {
+    "passed": 57,
+    "seconds": 3.958,
+    "log": ".cache/dust-letters-tests.log"
+  },
+  "loudness": {
+    "integrated_lufs": -19.1,
+    "true_peak_dbfs": -1.0,
+    "lra_lu": 7.3,
+    "log": ".cache/dust-letters-loudness.log",
+    "tool": "ffmpeg ebur128=peak=true"
+  }
+}

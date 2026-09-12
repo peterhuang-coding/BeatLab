@@ -22,10 +22,11 @@ import common  # noqa: E402
 
 # PIPE 指向本文件所在目录（部署=ROOT/pipeline；BEATLAB_ROOT 测试隔离时仍可转调）
 PIPE = Path(__file__).resolve().parent
-_VENV_PY = common.ROOT / ".venv" / "bin" / "python"
+_VENV_PY = PIPE.parent / ".venv" / "bin" / "python"
 PY = _VENV_PY if _VENV_PY.exists() else Path(sys.executable)
 
-DELEGATED = ("separate", "score", "compose", "render", "report")
+DELEGATED = ("separate", "moments", "score", "compose", "render", "report", "feedback",
+             "song", "ableton_export", "package")
 
 
 def run(script: str, *args: str) -> None:
@@ -35,15 +36,21 @@ def run(script: str, *args: str) -> None:
 
 
 def main() -> int:
+    # Let the owning module parse its flags, including --help. argparse.REMAINDER
+    # alone rejects options before the first positional argument (e.g. --all).
+    if len(sys.argv) > 1 and sys.argv[1] in DELEGATED:
+        run(f"{sys.argv[1]}.py", *sys.argv[2:])
+        return 0
     parser = argparse.ArgumentParser(prog="pipeline.py",
                                      description="BeatLab P0 总编排 CLI（各节点也可单独运行）")
     sub = parser.add_subparsers(dest="cmd")
 
     p_ingest = sub.add_parser("ingest", help="Connector 统一摄入（增量 + rights + provenance）")
     p_ingest.add_argument("paths", nargs="*", help="位置路径（兼容旧用法）")
-    p_ingest.add_argument("--source", default="local_dir", help="connector 名（P0 仅 local_dir）")
+    p_ingest.add_argument("--source", default="local_dir", help="local_dir 或 citizen_dj")
     p_ingest.add_argument("--path", dest="source_path", help="来源目录")
     p_ingest.add_argument("--limit", type=int, default=None)
+    p_ingest.add_argument("--timeout", type=float, default=None)
     p_ingest.add_argument("--force", action="store_true")
 
     for name in DELEGATED:
@@ -57,11 +64,13 @@ def main() -> int:
         parser.print_help()
         return 0
     if args.cmd == "ingest":
-        argv: list[str] = []
+        argv: list[str] = ['--source',args.source]
         if args.source_path:
-            argv += ["--source", args.source, "--path", args.source_path]
+            argv += ["--path", args.source_path]
         if args.limit is not None:
             argv += ["--limit", str(args.limit)]
+        if args.timeout is not None:
+            argv += ['--timeout',str(args.timeout)]
         if args.force:
             argv += ["--force"]
         run("ingest.py", *argv, *args.paths)

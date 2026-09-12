@@ -1,0 +1,241 @@
+{
+  "date": "2026-09-13",
+  "source": "Library of Congress Citizen DJ",
+  "catalog_records": {
+    "blues": 309,
+    "jazz": 339
+  },
+  "assets": [
+    {
+      "id": "775722a4dfc85b66",
+      "title": "'Joe Turner blues' medley",
+      "genre": "blues",
+      "duration_s": 30.058,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/775722a4dfc85b66/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-19795/",
+      "md5": "775722a4dfc85b665f3124ff44a9e304",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/ad62beaf629352194a27/download.wav",
+      "excerpt_start_seconds_label": 34,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "021600030a380c9f86242fa5ccd81d2e8dd935dc9a50cfa9ee2a77d3b91a8951"
+    },
+    {
+      "id": "dfd615072f6fec57",
+      "title": "A good man is hard to find",
+      "genre": "blues",
+      "duration_s": 30.441,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/dfd615072f6fec57/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-31525/",
+      "md5": "dfd615072f6fec57fd91ab162bb8c611",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/a409f8df6f6d6f96be9f/download.wav",
+      "excerpt_start_seconds_label": 8,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "6aabe4d125690a239e758baa0b1b961b0a556558fbea3ab3a31722f1baaa6b7b"
+    },
+    {
+      "id": "0e68a23c225b7946",
+      "title": "Bell hop blues",
+      "genre": "blues",
+      "duration_s": 15.453,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/0e68a23c225b7946/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-33747/",
+      "md5": "0e68a23c225b7946e887bf64da476720",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/75f5945640365dd76c57/download.wav",
+      "excerpt_start_seconds_label": 33,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "7d4a479d5fc8b4ee069301bfe2196af84af0862b8253ef9852065733accc8ed7"
+    },
+    {
+      "id": "628ccd77bbcd10be",
+      "title": "Blame it on the blues",
+      "genre": "blues",
+      "duration_s": 30.093,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/628ccd77bbcd10be/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-12779/",
+      "md5": "628ccd77bbcd10bea277493209a93379",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/1580f081c75d29e468ae/download.wav",
+      "excerpt_start_seconds_label": 30,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "9537a2647c5219b922f2683345c094df4f075c7dedb75ff1effdd2f9a1598c7a"
+    },
+    {
+      "id": "aa4439f4333d77a8",
+      "title": "Blues (My naughty sweetie gives to me)",
+      "genre": "blues",
+      "duration_s": 12.631,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/aa4439f4333d77a8/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-33694/",
+      "md5": "aa4439f4333d77a820f87b17a39e21f0",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/9e2e53ecce458831d9cc/download.wav",
+      "excerpt_start_seconds_label": 31,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "b42c7a00dcc0c5b7adf7cf2b945332705ca74beb6c59e3b00aafb7044b89e8a2"
+    },
+    {
+      "id": "bded27c143a65d4c",
+      "title": "Bluin' the blues",
+      "genre": "blues",
+      "duration_s": 30.221,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/bded27c143a65d4c/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-185940/",
+      "md5": "bded27c143a65d4ccd980c2be61250ba",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/d20246e3257d16e1ed94/download.wav",
+      "excerpt_start_seconds_label": 30,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "01b070dc46352996827e553bb0a60dd882ad430bd39bb8f73815a069adb3baa7"
+    },
+    {
+      "id": "e5d77696593a43f4",
+      "title": "Bow wow blues",
+      "genre": "blues",
+      "duration_s": 30.024,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/e5d77696593a43f4/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-43156/",
+      "md5": "e5d77696593a43f4bb1a9204f89557f8",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/743fd047564e8e7fefc9/download.wav",
+      "excerpt_start_seconds_label": 32,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "d2dd097e924dc81eed0c697d59e041c138789924721eabfeecfb7f12ae2aeba6"
+    },
+    {
+      "id": "e6868ac882f63386",
+      "title": "Bull frog blues",
+      "genre": "blues",
+      "duration_s": 30.081,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/e6868ac882f63386/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-186705/",
+      "md5": "e6868ac882f63386105f37328bce5240",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/blues/912d7f6d2b397d7f106f/download.wav",
+      "excerpt_start_seconds_label": 30,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "abd4d853a1c9474388df77894d305b48176d6c2e67944fee70ee8044e4dbd91d"
+    },
+    {
+      "id": "a4d39d404c04ebe7",
+      "title": "12th Street rag",
+      "genre": "jazz",
+      "duration_s": 30.14,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/a4d39d404c04ebe7/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-38191/",
+      "md5": "a4d39d404c04ebe78741ca826f3755e2",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/23a1478746628b3bd86b/download.wav",
+      "excerpt_start_seconds_label": 30,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "6575008c38782dba5bb1a6c588f214b53fc09c437a29c8fc6ca970d739186941"
+    },
+    {
+      "id": "b99037ea894abe28",
+      "title": "A classical spasm",
+      "genre": "jazz",
+      "duration_s": 30.035,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/b99037ea894abe28/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-20378/",
+      "md5": "b99037ea894abe28c9f1e22eb15d9d30",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/0f6ca41c6c914c602689/download.wav",
+      "excerpt_start_seconds_label": 0,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "975eb95b20e24ef6eabe9fea7a0fb4060577d78e7878b331209407b7cc3ab3d9"
+    },
+    {
+      "id": "ca20d479c4f78d92",
+      "title": "A rag-time episode",
+      "genre": "jazz",
+      "duration_s": 30.244,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/ca20d479c4f78d92/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-129854/",
+      "md5": "ca20d479c4f78d920ecb4517cf66d3a6",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/11b2e5630c4c752fb3a0/download.wav",
+      "excerpt_start_seconds_label": 30,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "518a20cff4d6af064554426e40234da061a720d9b09326db46a0019f58d6decb"
+    },
+    {
+      "id": "9c6c32d17de4128c",
+      "title": "After you've gone",
+      "genre": "jazz",
+      "duration_s": 30.174,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/9c6c32d17de4128c/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-313413/",
+      "md5": "9c6c32d17de4128c847844d21c7c68d0",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/49a5b2da8964fd5c7032/download.wav",
+      "excerpt_start_seconds_label": 60,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "65c87d6b556672460a6beba36fdb90318e13950ed338060d6a3b51e81d92c4dd"
+    },
+    {
+      "id": "d3bde0061ccb9a71",
+      "title": "Ain't we got fun",
+      "genre": "jazz",
+      "duration_s": 30.094,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/d3bde0061ccb9a71/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-40562/",
+      "md5": "d3bde0061ccb9a716339ddac883da70a",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/f574a31c791c243c0c47/download.wav",
+      "excerpt_start_seconds_label": 0,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "3716fa28b37a1d652aac492e361f74f75cfd81fee227170092943ead4b8115f2"
+    },
+    {
+      "id": "7c7579c8d6260e56",
+      "title": "Alamo rag",
+      "genre": "jazz",
+      "duration_s": 23.476,
+      "library_path": "/Volumes/SanDisk2TB/BeatLab/library/loops/7c7579c8d6260e56/source.wav",
+      "source_url": "https://www.loc.gov/item/jukebox-130221/",
+      "md5": "7c7579c8d6260e568dbedc49bc73ab79",
+      "original_download": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/jazz/2619b781685ad5024ee2/download.wav",
+      "excerpt_start_seconds_label": 42,
+      "rights_source": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "8576cf389845485301b37ce7563860b9bec53f9318db68f85853dc128887684a"
+    }
+  ],
+  "asset_count": 14,
+  "unique_md5_count": 14,
+  "previous_downloads_unchanged": 11,
+  "database_integrity": "ok",
+  "all_audio_finite_and_non_silent": true,
+  "all_standardized_sample_rates": 44100,
+  "rights_basis": "loc_citizen_dj_collection_statement",
+  "network_runs": [
+    {
+      "collection": "blues",
+      "new": 6,
+      "skipped": 0,
+      "fail": 0
+    },
+    {
+      "collection": "jazz",
+      "new": 5,
+      "skipped": 0,
+      "fail": 1,
+      "error": "one S3 connection/read timeout"
+    },
+    {
+      "collection": "jazz",
+      "new": 1,
+      "skipped": 6,
+      "fail": 0,
+      "note": "timed-out download retried successfully and deduplicated against Blues by content"
+    },
+    {
+      "collection": "blues",
+      "new": 2,
+      "skipped": 6,
+      "fail": 0
+    }
+  ],
+  "quality_ranking": "not implemented; directory rotation is not musical assessment",
+  "catalog_path": "/Volumes/SanDisk2TB/BeatLab/library/sources/citizen_dj/老歌采样库.md",
+  "unit_tests": {
+    "passed": 64,
+    "seconds": 4.336,
+    "log": ".cache/pre-push-tests-final.log"
+  },
+  "review": {
+    "issues_fixed": [
+      "ingest --source with positional collection",
+      "ingest --timeout forwarding"
+    ],
+    "remaining_serious_findings": 0
+  }
+}

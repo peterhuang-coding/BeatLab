@@ -119,35 +119,22 @@ def upsert_run(run_id: str, **fields: Any) -> None:
 
 
 def job_status(job_id: str) -> str | None:
-    """读 jobs 状态：依次尝试 common.get_jobs()/get_job()；都不可用返回 None。"""
-    for name in ("get_jobs", "get_job"):
-        fn = getattr(common, name, None)
-        if fn is None:
-            continue
-        try:
-            if name == "get_jobs":
-                for r in _rows(fn):
-                    if str(r.get("id") or r.get("job_id") or "") == job_id:
-                        return r.get("status")
-            else:
-                row = _adapt_call(fn, job_id)
-                if row is not None:
-                    row = dict(row) if not isinstance(row, dict) else row
-                    return row.get("status")
-        except Exception:
-            continue
-    return None
+    """读实际 jobs.state；未知任务返回 None，数据库故障正常上报。"""
+    conn = common.get_db()
+    try:
+        row = common.get_job(conn, job_id)
+        return row.get("state") if row is not None else None
+    finally:
+        conn.close()
 
 
 def get_feedback_rows() -> list[dict]:
-    """读 feedback 行（Dev-4 契约未冻结时返回 []，不影响生成）。"""
-    fn = getattr(common, "get_feedback", None)
-    if fn is None:
-        return []
+    """使用实际数据层契约，保留已解码的 dims / reasons。"""
+    conn = common.get_db()
     try:
-        return _rows(fn)
-    except Exception:
-        return []
+        return _rows(common.get_feedback, conn)
+    finally:
+        conn.close()
 
 
 def _json_val(v: Any, default: Any) -> Any:
@@ -230,6 +217,9 @@ def select_supporting(moments: list[dict], hero: dict, max_n: int = 2) -> list[d
 # ---------- recipe_prior：feedback → kind 先验 ----------
 BASE_PRIOR = {"loop": 0.33, "chop": 0.34, "stem": 0.33}
 _PRIOR_ADJUST = {   # 快捷原因文本 → (kind, 乘子)
+    "chop_fragmented": ("chop", 0.85), "too_similar": ("loop", 0.85),
+    "no_space": ("stem", 0.9), "drums_off": ("stem", 1.05),
+    "too_rigid": ("chop", 0.9),
     "切得太碎": ("chop", 0.85), "切得太多": ("chop", 0.85), "切法": ("chop", 0.9),
     "太像原曲": ("loop", 0.85), "原曲": ("loop", 0.9),
     "没有空间": ("stem", 0.9), "太满": ("stem", 0.9),
@@ -249,10 +239,10 @@ def recipe_prior(feedback_rows: list[dict]) -> dict[str, float]:
             for kw, (kind, mul) in _PRIOR_ADJUST.items():
                 if kw in str(r):
                     prior[kind] = round(prior[kind] * mul, 4)
-        dims = _json_val(row.get("dim_scores"), {})
+        dims = _json_val(row.get("dims") or row.get("dim_scores"), {})
         if isinstance(dims, dict):   # 分维度低分：素材/切法/鼓/结构 低 → 微调
             chop_v = float(dims.get("切法") or dims.get("chop") or 0)
-            loop_v = float(dims.get("素材") or dims.get("material") or 0)
+            loop_v = float(dims.get("素材") or dims.get("sample") or dims.get("material") or 0)
             if chop_v and chop_v < 3:
                 prior["chop"] *= 0.9
             if loop_v and loop_v < 3:
@@ -380,6 +370,8 @@ def _stem_file(library_path: str, stem: str) -> str:
     """library/<cat>/<id>/source.wav → library/<cat>/<id>/stems/<stem>.wav。"""
     p = Path(library_path)
     base = p.parent if p.name == "source.wav" else p
+    if stem == "source":
+        return str(base / "source.wav")
     return str(base / "stems" / f"{stem}.wav")
 
 
@@ -410,13 +402,20 @@ def _base_manifest(run_id: str, kind: str, hero: dict, supporting: list[dict],
     hero_asset = assets_by_id.get(str(hero.get("asset_id"))) or {}
     asset_bpm = float(hero_asset.get("bpm") or hero_asset.get("bpm_est") or 0.0)
     stretch = round(bpm / asset_bpm, 4) if asset_bpm and abs(bpm - asset_bpm) > 0.5 else 1.0
-    key_text = hero_asset.get("key_note") or hero_asset.get("key")
-    bass_root = parse_key_note(key_text) if key_text else None
+    key_text = hero_asset.get("key_note")
+    if key_text is None or key_text == "":
+        key_text = hero_asset.get("key")
+    bass_root = parse_key_note(key_text)
     if bass_root is None:    # 无 key：从 hero 窗口实测音高，bass 跟 hero 同调
         bass_root = _estimate_root_note(hero_asset.get("library_path"),
                                         float(hero.get("start_sec", 0)),
                                         float(hero.get("end_sec", 0)))
-    bass_root = bass_root or 33          # 兜底 A1=33
+    bass_root = 33 if bass_root is None else bass_root   # 兜底 A1=33；MIDI 0 仍是有效 C。
+    # 音高估计可来自高音旋律；只沿用音级，将根音移到可用的 bass 音区。
+    while bass_root < 28:
+        bass_root += 12
+    while bass_root > 47:
+        bass_root -= 12
     return {
         "recipe_id": f"{run_id}:{kind}",
         "kind": kind,
@@ -602,7 +601,7 @@ def spec_load(text: str):
 
 # ---------- 小工具 ----------
 def parse_key_note(text: Any) -> int | None:
-    """key_note 字符串转 MIDI 音符：'A1'→33；支持 'C#2'/'Bb1' 与数字；失败返回 None。"""
+    """音名/调名转 MIDI：A1→33；无八度默认 1（C、Bb major、Gm），数字保持原值。"""
     import re
     if text is None:
         return None
@@ -612,15 +611,17 @@ def parse_key_note(text: Any) -> int | None:
     if text.isdigit():
         n = int(text)
         return n if 0 <= n <= 127 else None
-    mt = re.match(r"^([A-Ga-g])([#b]?)(-?\d)$", text)
+    mt = re.fullmatch(r"([A-Ga-g])([#b]?)(-?\d)?(?:\s*(?:major|minor|maj|min|m))?",
+                      text, re.IGNORECASE)
     if not mt:
         return None
     base = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}[mt.group(1).upper()]
     if mt.group(2) == "#":
         base += 1
-    elif mt.group(2) == "b":
+    elif mt.group(2).lower() == "b":
         base -= 1
-    return (int(mt.group(3)) + 1) * 12 + base
+    octave = int(mt.group(3)) if mt.group(3) is not None else 1
+    return (octave + 1) * 12 + base
 
 
 def set_test_root(path: str | Path) -> None:

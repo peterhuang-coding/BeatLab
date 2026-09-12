@@ -1,0 +1,11 @@
+{
+  "target_run": "windowlight-v1",
+  "mix_sha256": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+  "user_quote": "很好，还需要一些人声采样啥的 复杂点",
+  "positive_direction": true,
+  "requested_revision": ["加入人声采样", "编排更丰富"],
+  "numeric_rating": null,
+  "formal_keep_action": null,
+  "next_version": "windowlight-v2",
+  "next_version_listening_acceptance": "pending"
+}
