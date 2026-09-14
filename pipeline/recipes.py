@@ -96,26 +96,46 @@ def _rows(fn, *args) -> list[dict]:
 
 
 def get_moments() -> list[dict]:
-    return _rows(common.get_moments, common.get_db())
+    conn = common.get_db()
+    try:
+        return _rows(common.get_moments, conn)
+    finally:
+        conn.close()
 
 
 def get_assets() -> list[dict]:
-    return _rows(common.get_assets, common.get_db())
+    conn = common.get_db()
+    try:
+        return _rows(common.get_assets, conn)
+    finally:
+        conn.close()
 
 
 def upsert_job(job_id: str, status: str) -> None:
-    _adapt_call(common.upsert_job, common.get_db(),
-                {"id": job_id, "type": "run", "state": status})
+    conn = common.get_db()
+    try:
+        _adapt_call(common.upsert_job, conn,
+                    {"id": job_id, "type": "run", "state": status})
+    finally:
+        conn.close()
 
 
 def mark_job(job_id: str, status: str) -> None:
-    _adapt_call(common.mark_job, common.get_db(), job_id, status)
+    conn = common.get_db()
+    try:
+        _adapt_call(common.mark_job, conn, job_id, status)
+    finally:
+        conn.close()
 
 
 def upsert_run(run_id: str, **fields: Any) -> None:
     if "status" in fields:          # 调用方用 status，common 契约用 state
         fields["state"] = fields.pop("status")
-    _adapt_call(common.upsert_run, common.get_db(), {"id": run_id, **fields})
+    conn = common.get_db()
+    try:
+        _adapt_call(common.upsert_run, conn, {"id": run_id, **fields})
+    finally:
+        conn.close()
 
 
 def job_status(job_id: str) -> str | None:
@@ -128,12 +148,16 @@ def job_status(job_id: str) -> str | None:
             if name == "get_jobs":
                 for r in _rows(fn):
                     if str(r.get("id") or r.get("job_id") or "") == job_id:
-                        return r.get("status")
+                        return r.get("state") or r.get("status")
             else:
-                row = _adapt_call(fn, job_id)
+                conn = common.get_db()
+                try:
+                    row = _adapt_call(fn, conn, job_id)
+                finally:
+                    conn.close()
                 if row is not None:
                     row = dict(row) if not isinstance(row, dict) else row
-                    return row.get("status")
+                    return row.get("state") or row.get("status")
         except Exception:
             continue
     return None

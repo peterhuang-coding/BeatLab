@@ -206,7 +206,10 @@ async function loadBadges(){
   let rows = [];
   try {
     const r = await fetch(apiURL('/api/feedback?run_id=' + encodeURIComponent(CFG.runId)));
-    if (r.ok) rows = await r.json();
+    if (r.ok) {
+      const data = await r.json();
+      rows = Array.isArray(data) ? data : (data.rows || []);
+    }
   } catch (e) { return; }
   rows.forEach(row => {
     const i = CFG.candidates.indexOf(row.candidate_id);
@@ -300,8 +303,21 @@ def load_spec(cand_dir: Path):
 
 
 def load_manifests(cand_dir: Path) -> dict:
-    """合并候选 manifests 信息（manifests.json / manifest.json / manifests/*.json 浅合并）；缺失返回 {}。"""
+    """读取候选核心清单；旧 manifests 文件仍兼容。"""
     out: dict = {}
+    for name, key in (
+        ("recipe.json", "recipe"),
+        ("provenance.json", "provenance"),
+        ("arrangement.json", "arrangement"),
+    ):
+        p = cand_dir / name
+        if p.is_file():
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    out[key] = data
+            except json.JSONDecodeError:
+                pass
     for name in ("manifests.json", "manifest.json"):
         p = cand_dir / name
         if p.is_file():
@@ -324,10 +340,14 @@ def load_manifests(cand_dir: Path) -> dict:
 
 
 def _copy_candidate_files(src: Path, dst: Path) -> list[str]:
-    """复制候选交付物到 dst（beat.wav/.als/midi/stems/manifests/spec/手记），返回已复制清单。"""
+    """复制完整候选交付物；同时补齐 run 级 spec、manifest 与 handoff。"""
     dst.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
-    for rel in ("beat.wav", "full_mix.wav", "spec.json", "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt"):
+    for rel in (
+        "beat.wav", "full_mix.wav", "premaster_mix.wav", "spec.json",
+        "recipe.json", "provenance.json", "arrangement.json",
+        "manifests.json", "manifest.json", "ABLETON_HANDOFF.txt",
+    ):
         f = src / rel
         if f.is_file():
             shutil.copy2(f, dst / rel)
@@ -335,11 +355,21 @@ def _copy_candidate_files(src: Path, dst: Path) -> list[str]:
     for m in sorted(src.glob("take_*.als")):
         shutil.copy2(m, dst / m.name)
         copied.append(m.name)
-    for sub in ("midi", "stems", "manifests"):
+    for sub in ("midi", "stems", "chops", "processed", "manifests", "project"):
         s = src / sub
         if s.is_dir():
             shutil.copytree(s, dst / sub, dirs_exist_ok=True)
             copied.append(sub + "/")
+    run_dir = src.parent
+    candidate_id = src.name
+    for source, rel in (
+        (run_dir / "specs" / f"{candidate_id}.json", "spec.json"),
+        (run_dir / "run_manifest.json", "run_manifest.json"),
+        (run_dir / "ABLETON_HANDOFF.txt", "ABLETON_HANDOFF.txt"),
+    ):
+        if source.is_file() and rel not in copied:
+            shutil.copy2(source, dst / rel)
+            copied.append(rel)
     return copied
 
 

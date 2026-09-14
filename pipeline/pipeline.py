@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""BeatLab P0 CLI 骨架：ingest / separate / score / compose / render / report / all。
+"""BeatLab P0 CLI 骨架：ingest / separate / score / moments / compose / render / report / all。
 
 子命令：
     pipeline.py ingest [--source local_dir] --path <目录> [--limit N] [--force]   # 供给层
     pipeline.py separate <参数...>      # 理解层（转调 separate.py，旧命令保持可用）
     pipeline.py score <参数...>         # 理解层（转调 score.py）
+    pipeline.py moments <参数...>       # 理解层（转调 moments.py）
     pipeline.py compose <参数...>       # 生成层（转调 compose.py）
     pipeline.py render <参数...>        # 渲染（转调 render.py）
     pipeline.py report <参数...>        # Review（转调 report.py）
@@ -26,7 +27,7 @@ PIPE = Path(__file__).resolve().parent
 _VENV_PY = common.ROOT / ".venv" / "bin" / "python"
 PY = _VENV_PY if _VENV_PY.exists() else Path(sys.executable)
 
-DELEGATED = ("separate", "score", "compose", "render", "report")
+DELEGATED = ("separate", "score", "moments", "compose", "render", "report")
 
 
 def run(script: str, *args: str) -> None:
@@ -87,6 +88,7 @@ def main() -> int:
             run("ingest.py", *argv, *args.paths)
         run("separate.py", "--all")
         run("score.py", "--all")
+        run("moments.py", "--all")
         run("compose.py", run_id)
         run("render.py", run_id)
         run("report.py", run_id)

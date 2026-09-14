@@ -1,49 +1,75 @@
 # BeatLab
 
-端到端自动生成采样型 beats 的个人流水线：把一堆音频丢进来，自动产出 3-4 分钟的 beat（音频 + Ableton Live .als + MIDI）。
+BeatLab 是一条面向采样型 hip-hop / boom-bap / lo-fi 的本地优先制作流水线：输入真实音源，自动发现 Sample Moments，选择 Hero Sample，完成切片、变形、鼓与 Bass 编排，并输出三个 60–90 秒候选及可继续制作的工程包。
 
-Kanye / Drake / Tyler 式的"老歌采样混合 + 人声垫底"路线：采样切片 + 鼓 + bass + 编排，而非直接 AI 生成整段音频。
+它的目标不是用文本直接生成整首歌，而是把真实采样发展成一份可解释、可复现、可继续编辑的 producer draft。
 
-## 链路（每节点可单独手动跑）
+## 当前闭环
 
+```text
+音源摄入 → 去重/权利记录 → 拆轨与分析 → Sample Moments
+→ Hero Sample → Loop/Chop/Stem 三种 Recipe → 事件级编排
+→ 试听渲染 → Review/反馈 → 自包含 DAW 工程包
 ```
-pipeline.py ingest   <路径...>   # A/B 摄入+整合分类（44.1k 规整、md5 去重、粗分类、BPM/key）
-pipeline.py separate --all       # D   拆轨（htdemucs 4-stem）+ 16 片瞬态切片 + 人声 phrase
-pipeline.py score    --all       # C   选品评分（100 分 rubric，三闸门：鼓/无vocal/结构）
-pipeline.py compose  --best 3    # E   3-4 分钟编排（结构伸缩 + MPC swing 逐 tick + 切片摆放）
-pipeline.py render   <beat_id>   # F   渲染 beat.wav + 鼓 one-shot kit + .als 伴生 + MIDI
-pipeline.py report   <beat_id>   # G   暗色试听页 + 桌面日期目录镜像
-pipeline.py all [路径...]        # 全程正向循环
+
+```bash
+python pipeline/pipeline.py ingest --path <音源目录>
+python pipeline/pipeline.py separate --all
+python pipeline/pipeline.py score --all
+python pipeline/pipeline.py moments --all
+python pipeline/pipeline.py compose <run_id>
+python pipeline/pipeline.py render <run_id>
+python pipeline/pipeline.py report <run_id>
+
+# 或一次运行完整链路
+python pipeline/pipeline.py all --path <音源目录> --run-id <run_id>
 ```
+
+## 每个候选的输出
+
+```text
+beats/<run_id>/<kind>/
+├── arrangement.json          # 试听与工程导出的唯一事件时间线
+├── full_mix.wav              # 限幅后的试听混音
+├── premaster_mix.wav         # 未做 master 限幅的参考混音
+├── stems/                    # chops / drums / bass / vocal dry stems
+├── processed/                # 实际使用的处理后 Audio Clip
+├── chops/                    # 兼容旧拖入流程的 pad 切片
+├── midi/                     # drums / bass / chops MIDI
+├── recipe.json
+├── provenance.json
+└── project/                  # 可搬移的自包含工程包
+    ├── arrangement.json
+    ├── manifest.json
+    ├── Samples/
+    │   ├── Original/
+    │   ├── Processed/
+    │   └── DrumKit/
+    ├── MIDI/
+    └── reference/
+```
+
+`arrangement.json` 为每个轨道、Clip 和素材提供稳定 `track_id`、`clip_id`、`asset_id`，记录 beat 时间线、源采样帧、微时序、增益、声像与操作链。鼓事件锁定实际使用的 one-shot，试听渲染和工程包不再各自随机选音色。
+
+## Ableton 边界
+
+旧版 `.als` 只复制模板并修改 BPM，打开后看不到真实剪辑，因此已经停用。当前仓库输出完整、自包含、可校验的 DAW 中间工程包，但还没有声称完成真实 Live Set。
+
+下一步需要在 MBP 上实现并验收 Live 12 导入器：将 `project/arrangement.json` 转为独立 Audio Clip、Drum Rack、Bass Instrument、段落标记与支持的自动化。只有实际在目标 Ableton Live 12 中打开、保存并完整回放后，才能把 `daw_opened` 和 `daw_playback_verified` 标记为 `true`。
 
 ## 依赖
 
-Python 3.11+（Apple Silicon 实测）。核心库：`librosa soundfile mido essentia audio-separator onnxruntime scipy numpy`
+Python 3.11+。核心库：`librosa soundfile mido scipy numpy`。Stem separation 另需 `audio-separator` 与对应运行时。
+
+## 产品与开发文档
+
+- `docs/PRD.md`：产品定位、闭环、MVP 与双机架构。
+- `docs/ROADMAP.md`：已完成能力、剩余待办、验收门槛与研究假设。
+
+## 验收
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install librosa soundfile mido essentia audio-separator onnxruntime
+python tests/accept_d3.py
 ```
 
-拆轨模型（htdemucs ONNX）首次运行自动下载到 `.models/`（~321MB）。
-
-## 目录
-
-- `pipeline/` — 全部代码（`common.py` 是共享契约：路径/SQLite schema/评分权重/MIDI 映射）
-- `library/<分类>/<id>/` — 整合分类后的音源（source.wav + stems/ + slices/ + slice_map.json）
-- `beats/<beat_id>/` — 每次编排的产出（spec.json + MIDI + beat.wav + .als）
-- `db.sqlite` — samples/scores/beats 三表
-- `kit/` — 从鼓轨自动提取并经类别滤波隔离的 one-shot 鼓组
-
-## 关键设计决策（2026-08 grill-me 拍板）
-
-1. 用途：自用/创作/练手；发布时灰色采样单独清权（Tracklib 通道）
-2. 目标形态：3-4 分钟完整 beat（intro/verse/chorus/bridge/outro），非 loop 拖长
-3. 素材：混合全放开（老录音/对白/电影剪辑）；自动爬取只走安全池
-4. 部署：本机跑全链路，重活后台
-5. Phase 1 = 正向循环；Phase 2 = 反馈闭环（critic/best-of-N/点赞重加权）
-
-## 已知边界
-
-- 鼓 one-shot 来自 demucs 鼓轨切片 + 类别滤波隔离（kick 低通 150Hz / snare 带通 / hat·oh 高通 5.5kHz），非专业采样包品质
-- 切片不跨调对齐：多音源切片同段堆叠可能打架（Phase 2 做主音源聚焦+调性对齐）
-- .als 为 Live 12 模板 + BPM patch；MIDI 拖入对应轨道使用
+验收使用隔离目录，不触碰真实 BeatLab 素材库；覆盖三 Recipe、确定性、音频渲染、稳定事件 ID、自包含工程包、移动后媒体引用和诚实的 DAW 验证状态。

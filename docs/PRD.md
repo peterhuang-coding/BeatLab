@@ -180,8 +180,23 @@ BeatLab 应升级为一套**本地优先的 Sample Discovery & Flip System**：�
 - preview.wav、full_mix.wav、dry stems。
 - 所有使用过的 chop WAV。
 - drums、bass、chops、vocal/texture MIDI。
-- Ableton Live Set 或稳定拖入目录。
-- recipe.json、provenance.json、run_manifest.json。
+- 试听渲染与工程导出共用版本化 `arrangement.json`，不允许各自维护一套时间线。
+- 主采样以独立 Audio Clip 事件铺入 Arrangement，每个事件具有稳定 `clip_id`、`track_id`、`asset_id`。
+- 事件记录 beat 时间、源采样帧、微时序、增益、声像和操作链，并标记 `native`、`baked` 或 `reference` 可编辑能力。
+- 鼓 MIDI 记录实际使用的 one-shot 与 Drum Rack pad 映射；Bass MIDI 记录有效音源绑定要求。
+- 试听混音轨默认静音，仅用于 A/B；工程包包含段落标记与实现支持的自动化。
+- 工程包自包含原素材、处理后 Clip、鼓组、MIDI、Recipe 与 Provenance，移动目录后不得出现 Missing Media。
+- recipe.json、provenance.json、arrangement.json、manifest.json、run_manifest.json。
+
+**验证状态**
+
+- `audio_rendered`：试听与 dry stems 已生成。
+- `package_built`：自包含工程包已生成。
+- `structure_validated`：所有事件、素材和 MIDI 引用已通过结构校验。
+- `als_built`：已经生成真实 Live Set，而不是只复制模板改 BPM。
+- `daw_opened`：已在目标 Ableton Live 12 中打开并保存。
+- `daw_playback_verified`：已完整回放并确认轨道、Clip、音色和时间线正确。
+- Linux 环境只能完成前三项；没有 MBP + Live 12 实机验证时，后三项必须保持 `false`。
 
 **可靠性**
 
@@ -254,7 +269,7 @@ BeatLab 应升级为一套**本地优先的 Sample Discovery & Flip System**：�
 | render.py | 批量渲染三候选与 dry stems；输出完整 manifests；任务可恢复 |
 | report.py | 升级为 Review：Moment 与候选试听、A/B/C、分维度反馈、Keep/Reject/Export |
 
-**新增模块**：`connectors/`、`crawler.py`、`library.py`、`moments.py`、`recipes.py`、`feedback.py`；P2 再加 `api.py`、`worker.py`
+**新增模块**：`connectors/`、`crawler.py`、`library.py`、`moments.py`、`recipes.py`、`feedback.py`、`arrangement.py`、`daw_export.py`；P2 再加 `api.py`、`worker.py`
 
 ## 14. 第一开发里程碑
 
@@ -266,7 +281,9 @@ BeatLab 应升级为一套**本地优先的 Sample Discovery & Flip System**：�
 4. 生成 Loop、Chop、Stem 三个 Recipe。
 5. 生成三个 60–90 秒候选。
 6. Review 页面完成试听、分维度反馈和 Keep/Reject。
-7. 被保留候选导出 WAV、stems、MIDI、recipe、provenance 和 Ableton handoff。
+7. 被保留候选导出 WAV、stems、MIDI、recipe、provenance、arrangement 和自包含 Ableton handoff 包。
 8. 下一次任务使用历史反馈调整 Moment 与 Recipe 排序。
+
+工程可编辑性采用双重验收：Linux 验收清单结构与媒体完整性；MBP 验收 Live 12 的实际打开、保存、回放与编辑。前者不能替代后者。
 
 这个里程碑完成前，不增加外部爬虫数量，不建设复杂服务器集群，也不扩展完整歌曲自动化。

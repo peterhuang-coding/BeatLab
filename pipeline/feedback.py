@@ -222,12 +222,15 @@ def action_regenerate(run_id: str, candidate_id: str) -> dict:
 
 def action_export(run_id: str, candidate_id: str) -> dict:
     """Export: 写 Ableton 交付目录 ROOT/exports/<run>/<cand>/
-    （preview.wav/stems/midi/.als/recipe.json/provenance.json/run_manifest.json）。"""
+    （preview/full/premaster、stems、MIDI、arrangement、完整 project 与追溯文件）。"""
     cand_dir, manifests, spec = resolve_candidate(run_id, candidate_id)
     dst = common.ROOT / "exports" / run_id / candidate_id
     copied = report._copy_candidate_files(cand_dir, dst)
-    if (dst / "beat.wav").is_file() and not (dst / "preview.wav").exists():
-        shutil.copy2(dst / "beat.wav", dst / "preview.wav")
+    preview_source = dst / "full_mix.wav"
+    if not preview_source.is_file():
+        preview_source = dst / "beat.wav"
+    if preview_source.is_file() and not (dst / "preview.wav").exists():
+        shutil.copy2(preview_source, dst / "preview.wav")
         copied.append("preview.wav")
     # recipe.json：manifests.recipe 优先，legacy spec 兜底合成
     recipe = manifests.get("recipe") if isinstance(manifests.get("recipe"), dict) else None
@@ -239,7 +242,7 @@ def action_export(run_id: str, candidate_id: str) -> dict:
             "total_bars": spec.total_bars or sum(s.bars for s in spec.sections),
             "sample_ids": list(spec.sample_ids),
         }
-    if recipe is not None:
+    if recipe is not None and not (dst / "recipe.json").is_file():
         (dst / "recipe.json").write_text(
             json.dumps(recipe, ensure_ascii=False, indent=2), encoding="utf-8")
         copied.append("recipe.json")
@@ -247,18 +250,19 @@ def action_export(run_id: str, candidate_id: str) -> dict:
     prov = manifests.get("provenance") if isinstance(manifests.get("provenance"), dict) else None
     if prov is None:
         prov = {"note": "legacy 兼容导出，无上游 provenance 记录", "source_dir": str(cand_dir)}
-    prov = dict(prov)
-    prov.setdefault("exported_at", _now())
-    prov.setdefault("exported_from", str(cand_dir))
-    (dst / "provenance.json").write_text(
-        json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
-    copied.append("provenance.json")
-    # run_manifest.json：本次交付文件清单
-    (dst / "run_manifest.json").write_text(json.dumps({
+    if not (dst / "provenance.json").is_file():
+        prov = dict(prov)
+        prov.setdefault("exported_at", _now())
+        prov.setdefault("exported_from", str(cand_dir))
+        (dst / "provenance.json").write_text(
+            json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
+        copied.append("provenance.json")
+    # export_manifest.json：本次交付文件清单；run_manifest.json 保留上游运行记录。
+    (dst / "export_manifest.json").write_text(json.dumps({
         "run_id": run_id, "candidate_id": candidate_id, "exported_at": _now(),
         "files": copied, "export_dir": str(dst),
     }, ensure_ascii=False, indent=2), encoding="utf-8")
-    copied.append("run_manifest.json")
+    copied.append("export_manifest.json")
     _save_feedback(run_id, candidate_id, {}, "export", [], outcome="exported")
     return {"ok": True, "message": f"已导出 Ableton 交付目录（{len(copied)} 项）", "export_dir": str(dst)}
 
@@ -366,7 +370,12 @@ def list_targets() -> list[tuple[str, str]]:
             continue
         if (d / "spec.json").is_file():
             out.append((d.name, "legacy"))
-        elif any(p.is_dir() and (p / "spec.json").is_file() for p in d.iterdir()):
+        elif any(
+            p.is_dir() and any((p / name).is_file() for name in (
+                "spec.json", "recipe.json", "arrangement.json", "full_mix.wav",
+            ))
+            for p in d.iterdir()
+        ):
             out.append((d.name, "run"))
     return out
 

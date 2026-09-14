@@ -7,15 +7,17 @@
 1. one-shot kit 自动构建（build_kit）：沿用旧逻辑 —— 扫 library stems/drums.wav，
    onset 切片 → 特征 → 启发式分类 kick/snare/hat/oh/perc，每类响度 top2 存 ROOT/kit/kit.json；
    某类为空时 numpy 合成兜底（ROOT/kit/synth/），保证渲染永不失败。
-2. 候选渲染（render_candidate）：按 BeatSpec + Recipe manifest 分层渲染 ——
+2. 统一编排清单：先由 BeatSpec + Recipe + 确切 kit 生成 arrangement.json，
+   试听渲染与 DAW 工程包都只消费这份清单，避免两套时间线漂移。
+3. 候选渲染（render_candidate）：按 arrangement.json 分层渲染 ——
    drums（one-shot + velocity→增益 + offset_ms→平移）、chops（切片窗 + HP100 + 段落 LP + reverse）、
    bass（正弦 sub，根音来自 manifest）、vocal（人声 phrase + stem 人声 hero）。
    输出 <kind>/full_mix.wav（tanh 软限幅 + 峰值归一 -1dB，44.1k 16bit 立体声）
    + <kind>/stems/{chops,drums,bass,vocal}.wav（dry 分轨：各层直出、峰值归一，不做专业分轨质量）。
-3. DAW 交付（PRD §8）：<kind>/chops/ 切片段 WAV（manifest 全部切片物化）、
+4. DAW 交付（PRD §8）：<kind>/chops/ 切片段 WAV（manifest 全部切片物化）、
    <kind>/recipe.json、<kind>/provenance.json（hero source/rights/moment 区间、切片来源、pipeline 版本）、
-   根目录 run_manifest.json（三候选清单）；.als patch 沿用旧逻辑（take_<run_id>.als）。
-4. 任务可恢复：jobs 状态 generated 后重跑跳过（job_id == run_id）；
+   <kind>/project/ 自包含工程包、根目录 run_manifest.json（三候选清单）。
+5. 任务可恢复：jobs 状态 generated 后重跑跳过（job_id == run_id）；
    render 只写 beats/<run_id>/（kit 构建沿用旧逻辑写 ROOT/kit/）。
 
 只 import common + recipes（+ numpy/soundfile）；接口经 SQLite 与文件系统交换。
@@ -23,11 +25,7 @@
 from __future__ import annotations
 
 import argparse
-import gzip
 import json
-import random
-import re
-import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -35,16 +33,16 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
+import arrangement as arrangement_model
 import common
+import daw_export
 import recipes
 
 SR = 44100                 # 渲染统一采样率
-STEPS_PER_BAR = 16
 PEAK_DBFS = -1.0           # 峰值归一目标（dBFS）
 KIT_CLASSES = ("kick", "snare", "hat", "oh", "perc")
 KIT_PAN = {"hat": 0.25, "oh": 0.15, "perc": -0.25}   # 非中心鼓件轻微声像展开
 STEM_LAYERS = ("chops", "drums", "bass", "vocal")
-LIVE12_TEMPLATE = "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Templates/Quick Start Beat.als"
 
 
 # ---------- 1. one-shot 库自动构建（沿用旧逻辑） ----------
@@ -336,25 +334,6 @@ def _load_cached(cache: dict, rel_path: str) -> np.ndarray | None:
     return y
 
 
-def _slice_window(cache: dict, rel: str, start: float, end: float, reverse: bool,
-                  lp_hz: float | None) -> np.ndarray | None:
-    """读整曲并按窗口切片（+HP100 去低频、+可选段落 LP、+可选 reverse）。"""
-    y = _load_cached(cache, rel)
-    if y is None:
-        return None
-    s = int(float(start) * SR)
-    e = max(s + 64, int(float(end) * SR))
-    seg = y[s: min(e, len(y))]
-    if len(seg) < 64:
-        return None
-    seg = _hp_chop(seg)
-    if lp_hz:
-        seg = _lp_at(seg, lp_hz)
-    if reverse:
-        seg = seg[::-1].copy()
-    return seg
-
-
 def _new_layers(n: int) -> dict[str, tuple[np.ndarray, np.ndarray]]:
     return {k: (np.zeros(n, dtype=np.float32), np.zeros(n, dtype=np.float32)) for k in STEM_LAYERS}
 
@@ -382,78 +361,102 @@ def _kit_for_recipe(recipe: dict, kit_fallback: dict) -> dict[str, list[str]]:
     return out
 
 
-def _render_layers(spec, recipe: dict, kit: dict, n: int) -> dict:
-    """按 BeatSpec 渲染 4 层（chops/drums/bass/vocal），返回 {layer: (L, R)}。"""
-    step_s = 60.0 / spec.bpm / 4
-    bar_s = step_s * STEPS_PER_BAR
+def _event_audio(cache: dict, arrangement: dict, event: dict,
+                 cand_dir: Path) -> np.ndarray | None:
+    """按 arrangement 事件生成唯一 processed clip，并回传渲染用音频。"""
+    asset_map = arrangement_model.assets_by_id(arrangement)
+    source_asset = asset_map.get(str(event.get("asset_id"))) or {}
+    rel = str(source_asset.get("source_path") or "")
+    y = _load_cached(cache, rel)
+    if y is None:
+        return None
+    source_sr = max(1, int(event.get("source_sample_rate") or SR))
+    start = float(event.get("source_start_frame", 0)) / source_sr
+    end = float(event.get("source_end_frame", 0)) / source_sr
+    s = max(0, round(start * SR))
+    e = min(len(y), max(s + 64, round(end * SR)))
+    seg = y[s:e]
+    if len(seg) < 64:
+        return None
+    for operation in event.get("operations", []):
+        name = operation.get("op")
+        if name == "highpass":
+            seg = _hp_chop(seg)
+        elif name == "lowpass":
+            seg = _lp_at(seg, float(operation.get("hz") or 0))
+        elif name == "reverse":
+            seg = seg[::-1].copy()
+        elif name == "time_stretch":
+            seg = _stretch_to(seg, float(operation.get("target_seconds") or 0))
+    media_asset_id = str(event.get("media_asset_id") or "")
+    if media_asset_id:
+        processed = cand_dir / "processed" / f"{media_asset_id}.wav"
+        processed.parent.mkdir(parents=True, exist_ok=True)
+        sf.write(processed, seg.astype(np.float32), SR, subtype="PCM_16")
+    return seg
+
+
+def _render_layers(arrangement: dict, cand_dir: Path, n: int) -> dict:
+    """严格按 arrangement 渲染 4 层，返回 {layer: (L, R)}。"""
+    bpm = float(arrangement["bpm"])
+    beat_s = 60.0 / bpm
     layers = _new_layers(n)
     cache: dict[str, np.ndarray] = {}
-    rng = random.Random(spec.beat_id)              # 确定性随机选 one-shot
-    kit = _kit_for_recipe(recipe, kit)
+    asset_map = arrangement_model.assets_by_id(arrangement)
 
     # 鼓层
-    for bar in range(spec.total_bars):
-        pat = spec.drum_pattern.get(str(bar)) or spec.drum_pattern.get(bar) or {}
-        for track, steps in pat.items():
-            choices = kit.get(track)
-            if not choices:
-                continue
-            for step_k, params in (steps or {}).items():
-                params = params or {}
-                vel = float(params.get("velocity", 1.0))
-                gain = (vel / 127.0 if vel > 1 else vel) * 0.45
-                off = float(params.get("offset_ms", 0)) / 1000.0
-                t = bar * bar_s + int(step_k) * step_s + off
-                y = _load_cached(cache, rng.choice(choices))
-                if y is not None:
-                    _add(layers, "drums", y, t, common.clamp(gain, 0, 1), KIT_PAN.get(track, 0.0), n)
+    for event in arrangement_model.track(arrangement, "track-drums").get("events", []):
+        asset = asset_map.get(str(event.get("asset_id"))) or {}
+        y = _load_cached(cache, str(asset.get("source_path") or ""))
+        if y is None:
+            continue
+        gain = float(event.get("velocity", 96)) / 127.0 * 0.45
+        t = float(event.get("start_beat", 0)) * beat_s
+        drum_class = str(event.get("drum_class") or "")
+        _add(layers, "drums", y, t, common.clamp(gain, 0, 1),
+             KIT_PAN.get(drum_class, 0.0), n)
 
-    # 切片层（hero/supporting 全部走窗切；lp_hz/reverse 为段落 mutation）
+    # 切片/人声层：所有处理由 arrangement.operations 描述并物化。
     n_chop_played = n_chop_miss = 0
-    for pl in spec.chop_placements:
-        seg = _slice_window(cache, str(pl.get("file", "")), float(pl.get("start_sec", 0)),
-                            float(pl.get("end_sec", 0)), bool(pl.get("reverse", False)),
-                            pl.get("lp_hz"))
+    sample_events = arrangement_model.track(arrangement, "track-samples").get("events", [])
+    for event in sample_events:
+        seg = _event_audio(cache, arrangement, event, cand_dir)
         if seg is None:
             n_chop_miss += 1
             continue
-        if pl.get("stretch_to"):          # 网格锁定：compose 指定目标时长则拉伸对齐
-            seg = _stretch_to(seg, float(pl["stretch_to"]))
-        t = int(pl.get("bar", 0)) * bar_s + int(pl.get("step", 0)) * step_s
-        _add(layers, "chops", seg, t, common.clamp(float(pl.get("gain", 0.7)), 0, 1),
-             float(pl.get("pan", 0)), n)
+        t = float(event.get("start_beat", 0)) * beat_s
+        _add(layers, "chops", seg, t, common.clamp(float(event.get("gain", 0.7)), 0, 1),
+             float(event.get("pan", 0)), n)
         n_chop_played += 1
 
-    # 人声层（vocal accent + stem 人声 hero）
     n_vocal_played = 0
-    for vp in spec.vocal_placements:
-        seg = _slice_window(cache, str(vp.get("file", "")), float(vp.get("start_sec", 0)),
-                            float(vp.get("end_sec", 0)), bool(vp.get("reverse", False)),
-                            vp.get("lp_hz"))
+    vocal_events = arrangement_model.track(arrangement, "track-vocals").get("events", [])
+    for event in vocal_events:
+        seg = _event_audio(cache, arrangement, event, cand_dir)
         if seg is None:
             continue
         cap = int(8 * SR)                          # phrase 最长 8s
-        t = int(vp.get("bar", 0)) * bar_s + int(vp.get("step", 0)) * step_s
-        _add(layers, "vocal", seg[:cap], t, common.clamp(float(vp.get("gain", 0.6)) * 1.5, 0, 1),
-             0.0, n)
+        t = float(event.get("start_beat", 0)) * beat_s
+        _add(layers, "vocal", seg[:cap], t,
+             common.clamp(float(event.get("gain", 0.6)) * 1.5, 0, 1),
+             float(event.get("pan", 0.0)), n)
         n_vocal_played += 1
 
-    # bass：正弦 sub（根音频率）+ velocity 包络 + 轻度软削波（沿旧逻辑）
-    for bar in range(spec.total_bars):
-        pat = spec.bass_pattern.get(str(bar)) or spec.bass_pattern.get(bar) or {}
-        for step_k, note in (pat or {}).items():
-            f = 440.0 * 2 ** ((int(note) - 69) / 12)
-            t0 = bar * bar_s + int(step_k) * step_s
-            dur = step_s * 0.9
-            m = int(dur * SR)
-            tt = np.arange(m) / SR
-            env = np.minimum(tt / 0.005, 1.0) * np.exp(-tt / (dur * 0.6))
-            sig = np.sin(2 * np.pi * f * tt) * env * 0.5
-            sig = np.tanh(1.5 * sig) * 0.7
-            _add(layers, "bass", sig, t0, 1.0, 0.0, n)
+    # bass：清单中的 MIDI 事件驱动参考合成器。
+    for event in arrangement_model.track(arrangement, "track-bass").get("events", []):
+        frequency = 440.0 * 2 ** ((int(event["midi_note"]) - 69) / 12)
+        t0 = float(event.get("start_beat", 0)) * beat_s
+        dur = max(0.05, float(event.get("duration_beats", 0.5)) * beat_s * 0.9)
+        m = int(dur * SR)
+        tt = np.arange(m) / SR
+        env = np.minimum(tt / 0.005, 1.0) * np.exp(-tt / (dur * 0.6))
+        sig = np.sin(2 * np.pi * frequency * tt) * env * 0.5
+        sig = np.tanh(1.5 * sig) * 0.7
+        gain = float(event.get("velocity", 96)) / 96.0
+        _add(layers, "bass", sig, t0, gain, 0.0, n)
 
-    print(f"[render] chops={n_chop_played}/{len(spec.chop_placements)} "
-          f"vocals={n_vocal_played}/{len(spec.vocal_placements)}", flush=True)
+    print(f"[render] chops={n_chop_played}/{len(sample_events)} "
+          f"vocals={n_vocal_played}/{len(vocal_events)}", flush=True)
     return layers
 
 
@@ -496,13 +499,11 @@ def _materialize_chops(recipe: dict, cand_dir: Path) -> list[Path]:
     return out
 
 
-def render_candidate(spec, recipe: dict, kit: dict, cand_dir: Path) -> dict[str, Path]:
-    """渲染一个候选：full_mix.wav + 4 dry stems + chops/ 物化，返回产物路径表。"""
-    step_s = 60.0 / spec.bpm / 4
-    bar_s = step_s * STEPS_PER_BAR
-    total_bars = spec.total_bars or sum(s.bars for s in spec.sections) or 1
-    n = int(total_bars * bar_s * SR) + int(0.5 * SR)   # 0.5s 尾巴余量
-    layers = _render_layers(spec, recipe, kit, n)
+def render_candidate(arrangement: dict, cand_dir: Path) -> dict[str, Path]:
+    """渲染一个候选：full/premaster mix + 4 dry stems + processed clips。"""
+    duration_s = float(arrangement["duration_beats"]) * 60.0 / float(arrangement["bpm"])
+    n = int(duration_s * SR) + int(0.5 * SR)   # 0.5s 尾巴余量
+    layers = _render_layers(arrangement, cand_dir, n)
 
     out: dict[str, Path] = {}
     mix_path = cand_dir / "full_mix.wav"
@@ -516,10 +517,12 @@ def render_candidate(spec, recipe: dict, kit: dict, cand_dir: Path) -> dict[str,
         else:
             mix_l += L
             mix_r += R
+    premaster_path = cand_dir / "premaster_mix.wav"
+    _write_stereo(premaster_path, mix_l, mix_r, dry=True)
     _write_stereo(mix_path, mix_l, mix_r, dry=False)
     out["full_mix"] = mix_path
-    out["chops_dir"] = cand_dir / "chops"
-    out["chop_files"] = _materialize_chops(recipe, cand_dir)
+    out["premaster_mix"] = premaster_path
+    out["processed_dir"] = cand_dir / "processed"
     return out
 
 
@@ -544,11 +547,22 @@ def _run_manifest(run_id: str, specs: dict, recipes_manifest: dict, bpm: float) 
                 "groove_profile": recipes_manifest[k].get("groove_profile"),
                 "duration_s": round(specs[k].total_bars * 240.0 / specs[k].bpm, 2),
                 "full_mix": f"{k}/full_mix.wav",
+                "premaster_mix": f"{k}/premaster_mix.wav",
                 "stems": {n: f"{k}/stems/{n}.wav" for n in STEM_LAYERS},
                 "recipe": f"{k}/recipe.json",
                 "provenance": f"{k}/provenance.json",
+                "arrangement": f"{k}/arrangement.json",
+                "project": f"{k}/project",
                 "chops_dir": f"{k}/chops",
                 "midi_dir": f"{k}/midi",
+                "verification": {
+                    "audio_rendered": True,
+                    "package_built": True,
+                    "structure_validated": True,
+                    "als_built": False,
+                    "daw_opened": False,
+                    "daw_playback_verified": False,
+                },
             }
             for k in recipes.RECIPE_KINDS
         ],
@@ -556,42 +570,33 @@ def _run_manifest(run_id: str, specs: dict, recipes_manifest: dict, bpm: float) 
 
 
 def _already_generated(run_id: str) -> bool:
-    """任务可恢复：run_manifest generated 且三候选产物齐全，或 jobs 状态 == generated。"""
+    """任务可恢复：只有新版本的三候选音频与工程包齐全才跳过。"""
     run_dir = common.ROOT / "beats" / run_id
     rm = run_dir / "run_manifest.json"
+    complete = all(
+        (run_dir / kind / "full_mix.wav").is_file()
+        and (run_dir / kind / "arrangement.json").is_file()
+        and (run_dir / kind / "project" / "manifest.json").is_file()
+        for kind in recipes.RECIPE_KINDS
+    )
     if rm.exists():
         try:
             data = json.loads(rm.read_text(encoding="utf-8"))
-            if data.get("status") == "generated" and all(
-                    (run_dir / k / "full_mix.wav").exists() for k in recipes.RECIPE_KINDS):
+            if data.get("status") == "generated" and complete:
                 return True
         except (json.JSONDecodeError, OSError):
             pass
-    return recipes.job_status(run_id) == "generated"
+    return recipes.job_status(run_id) == "generated" and complete
 
 
-# ---------- 4. .als 伴生 + handoff（沿用旧逻辑） ----------
+# ---------- 4. Ableton handoff ----------
 def patch_als(run_id: str, bpm: float, run_dir: Path) -> Path | None:
-    src = Path(LIVE12_TEMPLATE)
-    if not src.exists():
-        print(f"[als] 模板不存在，跳过 .als: {LIVE12_TEMPLATE}", file=sys.stderr)
-        return None
-    target = run_dir / f"take_{run_id}.als"
-    shutil.copy(src, target)
-    bpm_s = str(int(bpm)) if float(bpm).is_integer() else f"{float(bpm):.1f}"
-    xml = gzip.decompress(target.read_bytes()).decode("utf-8")
-    xml, nsub = re.subn(
-        r'(<Tempo>.*?<Manual Value=")\d+(")',
-        rf"\g<1>{bpm_s}\g<2>",
-        xml, count=1, flags=re.DOTALL,
+    """保留旧调用入口，但不再生成只有 BPM、没有真实 Clip 的伪工程。"""
+    print(
+        "[als] 已跳过：需要在 MBP 上用经过 Live 12 验证的导入器消费各候选 project/arrangement.json",
+        file=sys.stderr,
     )
-    if nsub == 0:
-        print("[als] 警告: 模板中未找到 Tempo/Manual，BPM 未写入", file=sys.stderr)
-    xml = xml.replace(
-        "<LiveSet>", f"<LiveSet><!-- run_id={run_id}; bpm={bpm_s} -->", 1
-    )
-    target.write_bytes(gzip.compress(xml.encode("utf-8")))
-    return target
+    return None
 
 
 def write_handoff(run_id: str, bpm: float, run_dir: Path, als: Path | None) -> Path:
@@ -605,7 +610,10 @@ def write_handoff(run_id: str, bpm: float, run_dir: Path, als: Path | None) -> P
             "若 macOS 拦截，按住 Control 键右键 -> 打开。",
         ]
     else:
-        lines += ["未生成 .als（Live 12 模板缺失），可手动新建 Live Set 并设 BPM。"]
+        lines += [
+            "未生成 .als：旧版仅复制模板并修改 BPM，无法呈现真实剪辑，现已停用。",
+            "请在 MBP 上使用各候选 project/arrangement.json 导入，并完成 Live 12 打开/保存/回放验收。",
+        ]
     lines += [
         "",
         "== 三个候选（每候选目录结构相同）==",
@@ -618,6 +626,8 @@ def write_handoff(run_id: str, bpm: float, run_dir: Path, als: Path | None) -> P
         "  <kind>/midi/chops.mid       拖入切片 Track（C3 起 pad）",
         "  <kind>/recipe.json          Recipe manifest（Ableton 逐轨重建依据）",
         "  <kind>/provenance.json      来源/权利/切片/版本 追溯",
+        "  <kind>/arrangement.json     试听与工程导出的统一事件时间线",
+        "  <kind>/project/             自包含、可搬移的 DAW 工程包",
         "",
         "== 关联产物 ==",
         f"- 工程目录: {run_dir}",
@@ -661,15 +671,33 @@ def render_run(run_id: str, *, force_kit: bool = False, no_als: bool = False,
         cand_dir.mkdir(parents=True, exist_ok=True)
         spec = specs[kind]
         manifest = manifests[kind]
-        files = render_candidate(spec, manifest, kit, cand_dir)
+        exact_kit = _kit_for_recipe(manifest, kit)
+        arrangement = arrangement_model.build_arrangement(spec, manifest, exact_kit)
+        structure_errors = arrangement_model.validate(arrangement)
+        if structure_errors:
+            raise ValueError(f"{kind} arrangement 无效: {'；'.join(structure_errors)}")
+        arrangement_path = cand_dir / "arrangement.json"
+        arrangement_path.write_text(arrangement_model.dumps(arrangement), encoding="utf-8")
+
+        files = render_candidate(arrangement, cand_dir)
+        chop_files = _materialize_chops(manifest, cand_dir)  # 兼容旧拖入工作流
         (cand_dir / "recipe.json").write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
         prov = recipes.build_provenance(manifest, assets_by_id, run_id)
         prov["generated_at"] = datetime.now().isoformat(timespec="seconds")
         (cand_dir / "provenance.json").write_text(
             json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        arrangement, project_dir = daw_export.build_project_package(
+            cand_dir,
+            arrangement,
+            recipe_path=cand_dir / "recipe.json",
+            provenance_path=cand_dir / "provenance.json",
+            spec_path=run_dir / "specs" / f"{kind}.json",
+        )
+        arrangement_path.write_text(arrangement_model.dumps(arrangement), encoding="utf-8")
         print(f"[render] {kind}: {files['full_mix']} "
-              f"(+4 dry stems, {len(files['chop_files'])} chop wavs)")
+              f"(+ premaster, 4 dry stems, {len(chop_files)} legacy chop wavs, project={project_dir})")
 
     rm = _run_manifest(run_id, specs, manifests, bpm)
     (run_dir / "run_manifest.json").write_text(
