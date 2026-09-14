@@ -1,11 +1,12 @@
 # BeatLab 项目约定
 
+- 用户 2026-09-15 要求建立产品方向调研待办、接入 Notion、随 Git 推送，并采用白天定方向/夜间执行。夜班启动先读 `.claude/autopilot/mainline.md` 与 `docs/product/day-night-workflow.md`，再获取 Notion 最新选择；只执行一项已确认任务，结果、验证与最终 commit 回填。入口与任务编号见 `docs/product/research-backlog.md`、`docs/product/notion-links.json`。
 - 完整改进计划：`docs/superpowers/plans/2026-09-12-beatlab-mvp.md`。开始工作先读其中最新状态，进度与验收据实更新。
 - 用户 2026-09-12 确认优先顺序：音乐质量 → 能还原作品的 Ableton 工程 → 素材发现与商品包（对话表格 2 → 4 → 5）。先交付一首可试听的完整作品；不能把技术测试通过等同用户喜欢。
 - 2026-09-13 用户评价 Windowlight v1“很好”，并要求加入人声采样、编排复杂一些。保留这版认可的和声/律动，增加乐句呼应与段落变化；不要继续把“越少声部越好”当作固定目标。v2 的听感需单独记录。
 - 2026-09-13 用户对 v2 继续回复“很好”，询问来源后要求加强 MIDI，让采样成为鼓机演奏练习。后续交付应包含可触发的采样器/Drum Rack、可编辑的 MIDI 乐句和鼓垫映射；仅附带 MIDI 文件不等于可演奏工程。本轮独立练习包见 `docs/superpowers/plans/2026-09-13-midi-drum-practice.md`，Live 实际加载/发声仍待验。
 - 2026-09-13 随后用户明确纠正：重点是学习 Kanye 等制作人的乐句翻采，从音乐片段取句、变调、前后切、重复、重排，形成更有趣的主题；采样库应有可改编的音乐乐句。上条“鼓机练习”只是辅助交付，不能再用单音堆叠或练习包替代此目标。Dust Letters 得到用户“很好很好”的反馈；见 `docs/superpowers/plans/2026-09-13-phrase-sample-flip.md`，不自动填写星级或 Keep。
-- 最新要求：多探索老歌采样、运行爬虫、git push 并沉淀方法。首个真实网络来源为 Citizen DJ 的 Blues/Jazz 官方 WAV 乐句目录；命令与验证见 `docs/superpowers/plans/2026-09-13-old-record-crate.md`。制作方法见 `docs/sampling-playbook.md`。没有自动扩大为定时后台任务或音乐平台上架授权。
+- 2026-09-13 要求：多探索老歌采样、运行爬虫、git push 并沉淀方法。首个真实网络来源为 Citizen DJ 的 Blues/Jazz 官方 WAV 乐句目录；命令与验证见 `docs/superpowers/plans/2026-09-13-old-record-crate.md`。制作方法见 `docs/sampling-playbook.md`。当时未包含定时任务或音乐上架；定时夜班现按上方 2026-09-15 的新增协作约定执行，仍不自动授权音乐平台发布。
 - 后续 commit / git push 必须带上完整计划及本轮进度文档。推送前核对 `git status` 与提交文件，避免计划仍留作未跟踪文件。
 - `library/`、`beats/`、`kit/`、`exports/`、模型、数据库与第三方采样不进 Git。可以提交原创配方、工具代码和来源说明；任何商业素材授权范围必须按实际凭证核验。
 - 项目记忆沿用 `/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md` 与 wrapup skill；只恢复本项目相关信息，记忆不产生新授权。

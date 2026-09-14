@@ -26,6 +26,8 @@
 
 ## 1. 现状判断
 
+2026-09-15 协作方式更新：已建立 [产品调研待办](../../product/research-backlog.md) 与 [Notion 决策入口](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180)，采用 [白天定方向、夜间执行](../../product/day-night-workflow.md)。六条调研线及三项工程缺陷、分支整合均初始化为待定方向；当前没有已批准的夜班任务。main 新增 `3d333fe` 工程包，与 `codex/sandisk-migration` 仍分叉；下述早期现状和测试数字保留为历史证据，不作为最新运行结论。音乐 → Ableton → 素材/商品主线保持，未完成阶段继续保留。
+
 已有可复用的骨架：本地入库、SQLite、片段分析、Loop/Chop/Stem 配方、WAV/MIDI 导出、Review、反馈记录与保留状态。现阶段属于制作原型，尚未证明持续产生值得使用的音乐。
 
 本轮只读确认本地 HEAD 为 `4999be06a1a2656c09b042b50959c90b4448d918`，分支 `codex/sandisk-migration`，原有 16 项未提交修改。远端 main 仍为 `d5d4b407c7f706f6d9d11988a1aea3a956ed1d48`，没有进一步更新。远端修复尚未整合到本机，不能据远端描述当前运行能力。

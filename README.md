@@ -1,5 +1,7 @@
 # BeatLab
 
+[产品方向与 Notion 看板](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) · [六条产品调研与工程待办](docs/product/research-backlog.md) · [白天定方向、夜间执行](docs/product/day-night-workflow.md)
+
 本地采样型 beat 制作流水线：导入音频 → 拆轨 → 找采样片段 → 围绕一个 Hero Sample 生成 Loop / Chop / Stem 三个候选 → 试听、反馈与 Ableton 交付。
 
 当前版本生成 **三个 60–90 秒的制作草稿**。3–4 分钟完整编排、双机任务队列和进一步质量改进见 [产品规划](docs/PRD.md)，不代表已经实现。
