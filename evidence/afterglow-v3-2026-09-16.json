@@ -1,0 +1,88 @@
+{
+  "run": "afterglow-2026-09-16-v3",
+  "mix_sha256": "c6e882879e1453b753327598eff0973956eebb6a34a276404b56c3f8a38396ab",
+  "bpm": 94,
+  "bars": 64,
+  "duration": 165.40426303854875,
+  "frames": 7294328,
+  "tracks": 36,
+  "slices": 29,
+  "midi_triggers": 150,
+  "new_independent_recording_windows": 12,
+  "additional_vocal_recordings": 2,
+  "historical_recordings_with_female_vocals_total": 3,
+  "credited_historical_singers_total": 2,
+  "original_recording_events_v2": 108,
+  "original_recording_events_v3": 7,
+  "original_recording_event_beats_v3": 15.1,
+  "original_recording_event_coverage_v3": 0.058984375,
+  "event_coverage_scope": "arrangement event durations, not vocal VAD or transcribed lyric count",
+  "stems": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 7.152557373046875e-07,
+    "rms_error": 1.5885645856320134e-07,
+    "relative_rms_db": -116.4760634946088,
+    "tolerance": 4.5299530029296875e-06,
+    "passed": true
+  },
+  "group_sum_peak_error": 7.152557373046875e-07,
+  "clipped_samples": 0,
+  "integrated_lufs": -16.7,
+  "true_peak_dbfs": -1.0,
+  "groups": {
+    "bass": {
+      "whole_rms_db": -31.76251776601871,
+      "active_rms_db": -28.287522159612063,
+      "sha256": "837543ef1b4c4baf70ff2c9061bc5e9821497e88af01c70143e99af088312fb1"
+    },
+    "drums": {
+      "whole_rms_db": -25.877635165507673,
+      "active_rms_db": -20.405456855210712,
+      "sha256": "c20219b2df2b5655c97ae064c398da4eda3498212371b6013cf4ac820d8e4b00"
+    },
+    "esther": {
+      "whole_rms_db": -24.82281239935461,
+      "active_rms_db": -20.102115468266245,
+      "sha256": "3ffb51d2b639a0e68e7f1f0bf469dd381291e90b1a8d5a2164e9e4a39cdeda19"
+    },
+    "goodman": {
+      "whole_rms_db": -25.208747111866035,
+      "active_rms_db": -20.377070459748417,
+      "sha256": "9ff47683aef46948d4395564209966b11a2bdde8bc47d0bbcbafa11a322e1cf7"
+    },
+    "guitar": {
+      "whole_rms_db": -39.50445529223687,
+      "active_rms_db": -29.619220730897116,
+      "sha256": "0d28dfe25cb79608c6c89e12bac41d7986eeabf76a1f5ad802de82da2189dcbc"
+    },
+    "keys": {
+      "whole_rms_db": -33.07715249929102,
+      "active_rms_db": -30.033839837351604,
+      "sha256": "143e0c9d05bf0305f355ce9d0b4615c3adc3719c6f89f0feaa15b0b993bfb93e"
+    },
+    "original_hook": {
+      "whole_rms_db": -31.024541400315186,
+      "active_rms_db": -18.599549429957808,
+      "sha256": "72537265aefdbce6ddb58b0198e5cb758dc579a4846f80bb0f8f3a2a1d926750"
+    },
+    "rag": {
+      "whole_rms_db": -41.91092462873927,
+      "active_rms_db": -29.75708979040187,
+      "sha256": "770065df7e78b90ce4be6032e05a8bf3b7f99677ca70ed62b92b46531566ac8e"
+    },
+    "wordless": {
+      "whole_rms_db": -37.25250507857341,
+      "active_rms_db": -25.064440510545396,
+      "sha256": "98302371e9179b7b5267fe8fb0ba82cadb34d32115b8f24d7cc6f97ca7830d40"
+    }
+  },
+  "parents_unchanged": true,
+  "all_slice_source_hashes_and_target_frames_checked": true,
+  "midi_256_beats_and_all_triggers_checked": true,
+  "als_media_hashes_and_rack_references_checked": true,
+  "live_gui": "unverified",
+  "listening_approval": "awaiting user",
+  "preview_sha256": "d64587d23bba9436de4f8c38ee893ba69997d187feb1b59b086c280aada342dd",
+  "preview_seconds": 30.638299319727892,
+  "recipe_source_montage_executed_and_byte_matched": true
+}

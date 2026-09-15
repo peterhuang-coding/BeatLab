@@ -9,5 +9,6 @@
 - 2026-09-13 要求：多探索老歌采样、运行爬虫、git push 并沉淀方法。首个真实网络来源为 Citizen DJ 的 Blues/Jazz 官方 WAV 乐句目录；命令与验证见 `docs/superpowers/plans/2026-09-13-old-record-crate.md`。制作方法见 `docs/sampling-playbook.md`。当时未包含定时任务或音乐上架；定时夜班现按上方 2026-09-15 的新增协作约定执行，仍不自动授权音乐平台发布。
 - 后续 commit / git push 必须带上完整计划及本轮进度文档。推送前核对 `git status` 与提交文件，避免计划仍留作未跟踪文件。
 - 2026-09-16 用户要求 Afterglow「再复杂一点，多几个音乐一起采样」，并询问可售差距。四来源 v2 已保存完整/主歌人声轻版，来源区分两条历史录音与两条 Core Library 音乐 loop，不能统称四首老歌。多源需有主题、回应与和声作用；出售给歌手的验收重点是实际试唱、混音与可授予买家的使用范围，不能以采样数、轨数或 LUFS 代替。见 `docs/superpowers/plans/2026-09-16-afterglow-collage.md`。
+- 2026-09-16 用户反馈 v2「大妈一直是这两句」，要求更多人声/采样。此为选句重复的纠正，不能只加器乐或给原句换调/倒放。v3 改为三条含女声录音接力，新增两条录音的 12 个不同窗口，缩减旧主句，增加无歌词回应；听感仍需新版本反馈。见 `docs/superpowers/plans/2026-09-16-afterglow-vocal-relay.md`。
 - `library/`、`beats/`、`kit/`、`exports/`、模型、数据库与第三方采样不进 Git。可以提交原创配方、工具代码和来源说明；任何商业素材授权范围必须按实际凭证核验。
 - 项目记忆沿用 `/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md` 与 wrapup skill；只恢复本项目相关信息，记忆不产生新授权。
