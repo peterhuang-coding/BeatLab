@@ -10,7 +10,7 @@
 - D3 2026-09-15：建立产品调研待办，接入 Notion 并随 Git 推送；白天用户定方向，夜班执行已选的一项。
 
 ## 当前任务
-暂无已批准夜班任务。读取 [Notion](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) 最新选择后，只锁定一个 work item；不能把下面建议当决定。
+MUSIC-20260916：用户直接要求「今天的音乐做一下」。已交付《余温 · Afterglow》v1，94 BPM / 124.553 秒，16 切片、110 MIDI 触发、23 分轨与 ALS / ChopRack。起点 5851939；状态待你试听。详见 [本轮记录](../../docs/superpowers/plans/2026-09-16-afterglow.md)。这是一次直接创作任务，不代表选择 R01–R06 或 E01–E04；没有新的反馈/选择时不重复生成。
 
 ## 已试路径
 94 项结构测试未覆盖人声有效增益、PCM16 premaster 削波、损坏包哈希；这些反例已复现，修复尚待执行。
@@ -25,4 +25,4 @@
 - 已有认可整曲、14 条老歌片段；Live 实际还原和反馈 worker 待验。
 - R01–R06、E01–E04 已建卡，初始待定方向；见 [待办](../../docs/product/research-backlog.md)。
 - main 3d333fe 与采样分支尚未整合。
-最近一轮：2026-09-15 建立昼夜协作；尚无夜班执行结果。规则见 [协作流程](../../docs/product/day-night-workflow.md)。
+最近一轮：2026-09-16 制作今日新曲；听感由用户验收。规则见 [协作流程](../../docs/product/day-night-workflow.md)。

@@ -1,0 +1,36 @@
+{
+  "run": "afterglow-2026-09-16-v1",
+  "mix_sha256": "9e030c07f632b2bcb50971adc83f2aa5d9634f9c3de71cae55068483b66ca3a2",
+  "sample_rate": 44100,
+  "frames": 5492796,
+  "duration_seconds": 124.55319727891157,
+  "peak_dbfs": -0.9999997019767761,
+  "clipped_samples": 0,
+  "stems": 23,
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 4.76837158203125e-07,
+    "rms_error": 1.2258857515663366e-07,
+    "relative_rms_db": -120.66387654575628,
+    "tolerance": 2.9802322387695312e-06,
+    "passed": true
+  },
+  "slices": 16,
+  "midi_triggers": 110,
+  "phrase_midi_beats": 192,
+  "rack_samples": 16,
+  "old_versions_unchanged": true,
+  "live_verification": {
+    "open": "unverified",
+    "reopen": "unverified",
+    "relocated_open": "unverified",
+    "rerender": "unverified"
+  },
+  "musical_audition": "awaiting user; metrics do not establish musical quality",
+  "loudness": {
+    "integrated_lufs": -14.7,
+    "lra_lu": 4.6,
+    "true_peak_dbfs": -1.0,
+    "method": "ffmpeg ebur128=peak=true"
+  }
+}

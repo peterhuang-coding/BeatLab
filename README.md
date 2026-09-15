@@ -10,6 +10,8 @@
 
 乐句翻采基准《Dust Letters》从完整演奏取句，经变调、重排、短重复、倒放与八度变化形成新主题，提供原片段→采样 solo→成品对照。两条制作路线均已有用户正向反馈；创作方法见 [采样制作手册](docs/sampling-playbook.md)。
 
+2026-09-16 今日作品 [《余温 · Afterglow》](docs/superpowers/plans/2026-09-16-afterglow.md)：从已入库的真实历史女声录音取句，94 BPM / 48 小节，16 个切片、原句对照、23 条音频分轨、Ableton 音频工程与可演奏 ChopRack。文件验收已完成，听感待用户试听；[Notion 交付记录](https://app.notion.com/p/3dc3285284df81559e03d0b09179ff54)。
+
 当前执行顺序、未完成项和验收门槛在 [MVP 总计划](docs/superpowers/plans/2026-09-12-beatlab-mvp.md)。用户已选择 **音乐质量 → Ableton 还原 → 素材来源与商品包**；后续提交推送必须带上计划与执行进度。
 
 ## 安装
