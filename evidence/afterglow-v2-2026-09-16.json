@@ -1,0 +1,69 @@
+{
+  "run": "afterglow-2026-09-16-v2",
+  "mix_sha256": "942c607d79457a0bf7f824c3f74388c8ff96d3c639eb034ec271ccace5166321",
+  "bpm": 94,
+  "bars": 64,
+  "duration": 165.40426303854875,
+  "frames": 7294328,
+  "sources": 4,
+  "slices": 24,
+  "midi_triggers": 171,
+  "tracks": 31,
+  "stems": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 7.152557373046875e-07,
+    "rms_error": 1.521024445597365e-07,
+    "relative_rms_db": -117.6540792974028,
+    "tolerance": 3.933906555175781e-06,
+    "passed": true
+  },
+  "group_sum_peak_error": 7.152557373046875e-07,
+  "clipped_samples": 0,
+  "loudness": [
+    {
+      "file": "full_mix.wav",
+      "integrated_lufs": -15.8,
+      "true_peak_dbfs": -1.0
+    },
+    {
+      "file": "verse-vocal-light.wav",
+      "integrated_lufs": -17.1,
+      "true_peak_dbfs": -1.0
+    }
+  ],
+  "vocal_record_event_coverage": 0.683984375,
+  "group_rms_db": {
+    "rag": -41.54094787242836,
+    "drums": -25.50765844317681,
+    "keys": -32.70717575294279,
+    "guitar": -39.13447855295337,
+    "vocal_record": -20.371687479899027,
+    "bass": -31.392541020479293
+  },
+  "parent_unchanged": true,
+  "live_verification": "unverified",
+  "listening_judgment": "user audition pending",
+  "alternate_mix_gain_verified": true,
+  "comparison": {
+    "parts": [
+      "v1 first eight verse bars",
+      "2 second gap",
+      "v2 first eight verse bars"
+    ],
+    "source_lufs": [
+      -14.7,
+      -16.3
+    ],
+    "target_lufs": -16.8,
+    "method": "ffmpeg EBU R128 measured excerpts, fixed linear attenuation only",
+    "v2_starts_seconds": 22.425532879818594
+  },
+  "release_draft": {
+    "master_unchanged": true,
+    "individual_trackouts": 31,
+    "musical_group_trackouts": 6,
+    "mp3_bitrate": 320000,
+    "ready_to_publish": false,
+    "all_package_file_hashes_verified": true
+  }
+}

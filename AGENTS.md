@@ -8,5 +8,6 @@
 - 2026-09-13 随后用户明确纠正：重点是学习 Kanye 等制作人的乐句翻采，从音乐片段取句、变调、前后切、重复、重排，形成更有趣的主题；采样库应有可改编的音乐乐句。上条“鼓机练习”只是辅助交付，不能再用单音堆叠或练习包替代此目标。Dust Letters 得到用户“很好很好”的反馈；见 `docs/superpowers/plans/2026-09-13-phrase-sample-flip.md`，不自动填写星级或 Keep。
 - 2026-09-13 要求：多探索老歌采样、运行爬虫、git push 并沉淀方法。首个真实网络来源为 Citizen DJ 的 Blues/Jazz 官方 WAV 乐句目录；命令与验证见 `docs/superpowers/plans/2026-09-13-old-record-crate.md`。制作方法见 `docs/sampling-playbook.md`。当时未包含定时任务或音乐上架；定时夜班现按上方 2026-09-15 的新增协作约定执行，仍不自动授权音乐平台发布。
 - 后续 commit / git push 必须带上完整计划及本轮进度文档。推送前核对 `git status` 与提交文件，避免计划仍留作未跟踪文件。
+- 2026-09-16 用户要求 Afterglow「再复杂一点，多几个音乐一起采样」，并询问可售差距。四来源 v2 已保存完整/主歌人声轻版，来源区分两条历史录音与两条 Core Library 音乐 loop，不能统称四首老歌。多源需有主题、回应与和声作用；出售给歌手的验收重点是实际试唱、混音与可授予买家的使用范围，不能以采样数、轨数或 LUFS 代替。见 `docs/superpowers/plans/2026-09-16-afterglow-collage.md`。
 - `library/`、`beats/`、`kit/`、`exports/`、模型、数据库与第三方采样不进 Git。可以提交原创配方、工具代码和来源说明；任何商业素材授权范围必须按实际凭证核验。
 - 项目记忆沿用 `/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md` 与 wrapup skill；只恢复本项目相关信息，记忆不产生新授权。

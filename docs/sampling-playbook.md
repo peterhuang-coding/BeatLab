@@ -16,6 +16,8 @@
 6. **比较与反馈。** 固定输出原片段→采样 solo→成品。反馈分清“素材没感觉”“切法不对”“鼓/混音不对”，并注明时间点。响度比较说明实际采用 RMS 还是 LUFS，不用峰值和测试数量替代听感。
 7. **交付。** 保留音频、MIDI、切片映射和来源。成品音频工程与可编辑采样器分别说明；XML 或文件引用验证不能替代 Live 实际发声、保存和回渲染。
 
+多来源实例：[Afterglow v2](superpowers/plans/2026-09-16-afterglow-collage.md) 将四个音乐来源分配为女声主题、器乐短句、Rhodes 和声、吉他回应，输出六组 stems 与主歌人声轻版。比较拼接时统一声道，原始 mono 文件仍保留；同响度版本对照与原来源 RMS 蒙太奇分别标注。含人声音乐的事件覆盖不等于真正唱声的活动比例；音乐 loop 的全局调名也不等于每段的局部和弦。这些是文件/分析边界，音乐是否成立仍需试听与试唱。
+
 ## 老歌素材路线
 
 当前已接入 Citizen DJ 的 National Jukebox Blues / Jazz 公开目录，适合探索早期演唱、钢琴、管乐与合奏的乐句。官方提供可下载的片段及合集 Rights & access 说明；入库状态以具体页面为依据。它提供的是早期录音，不能因为“年代久”就承诺等同 60–70 年代 Soul 的质感。[Blues 合集](https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/)、[Jazz 合集](https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/)。

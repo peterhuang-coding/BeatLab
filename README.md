@@ -12,6 +12,8 @@
 
 2026-09-16 今日作品 [《余温 · Afterglow》](docs/superpowers/plans/2026-09-16-afterglow.md)：从已入库的真实历史女声录音取句，94 BPM / 48 小节，16 个切片、原句对照、23 条音频分轨、Ableton 音频工程与可演奏 ChopRack。文件验收已完成，听感待用户试听；[Notion 交付记录](https://app.notion.com/p/3dc3285284df81559e03d0b09179ff54)。
 
+用户随后要求多音乐共同采样：[v2 四来源拼采与售卖差距](docs/superpowers/plans/2026-09-16-afterglow-collage.md) 已扩为 2:45 / 64 小节，含完整版、主歌人声轻版、24 个鼓垫、六组 stems 与本地商品草稿。原版保留，未上架；格式与文件检查不代表音乐或销量已验收。
+
 当前执行顺序、未完成项和验收门槛在 [MVP 总计划](docs/superpowers/plans/2026-09-12-beatlab-mvp.md)。用户已选择 **音乐质量 → Ableton 还原 → 素材来源与商品包**；后续提交推送必须带上计划与执行进度。
 
 ## 安装
