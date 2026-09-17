@@ -1,5 +1,7 @@
 # R06｜把 BeatLab 做成能成交的 beat 工作流
 
+**2026-09-18 后续决定：用户改为专辑创作优先，商业化后置。** 本文保留为研究档案；文末的市场选择与商品试验暂不执行，当前下一步见 [专辑叙事提案](../superpowers/specs/2026-09-18-borrowed-light-album-proposal.md)。
+
 调研日期：2026-09-18，北京时间。状态：研究交付，待用户验收。用户本轮直接要求查昨日产出与卖 beats 的闭环；本报告没有开店、发布、收费、联系买家或修改夜班调度。
 
 [Notion 决策卡](https://app.notion.com/p/3db3285284df81a2a6d4f02374077cf4) · [完整 MVP](../superpowers/plans/2026-09-12-beatlab-mvp.md) · [昼夜协作](../product/day-night-workflow.md)

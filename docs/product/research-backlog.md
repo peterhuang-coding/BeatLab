@@ -1,5 +1,7 @@
 # BeatLab 产品调研与执行待办
 
+2026-09-18 最新优先级：用户选择先做专辑叙事规划，商业化后置。当前看 [专辑提案](../superpowers/specs/2026-09-18-borrowed-light-album-proposal.md)；R06 研究保留待验收，报告中的销售实施不启动。其余研究卡不因本次专辑规划自动获得执行授权。
+
 各项状态分别记录，不把待办当成已完成研究。2026-09-18 用户直接选择 R06，报告已交付待验收；其他项仍待定方向。用户白天决定方向，夜班只执行被选中的一个任务。优先延续音乐质量 → Ableton 还原 → 素材/商品。
 
 [Notion 项目入口](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) · [Notion 待办看板](https://app.notion.com/p/0af73a05815446578863e4914c1cf7ac)。执行规则见 [昼夜协作](day-night-workflow.md)，已决策主线见 [mainline](../../.claude/autopilot/mainline.md)，完整范围仍以 [MVP 总计划](../superpowers/plans/2026-09-12-beatlab-mvp.md) 为准。

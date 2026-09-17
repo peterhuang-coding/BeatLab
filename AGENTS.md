@@ -1,5 +1,7 @@
 # BeatLab 项目约定
 
+- 2026-09-18 最新方向：用户明确先做专辑，商业化晚点讨论；当前请求为复杂、有趣、newschool 的 beats 专辑叙事规划，参考 Kanye West / Tyler, The Creator 的制作方向。当前提案 `docs/superpowers/specs/2026-09-18-borrowed-light-album-proposal.md` 的标题、故事、九曲和时长均待用户讨论，不能记成已批准。创作验收以整张听感、主题发展与段落关系为先，不继续要求先选市场/买家或制作销售两版；R06 保留研究，销售实施后置。
+
 - 用户 2026-09-15 要求建立产品方向调研待办、接入 Notion、随 Git 推送，并采用白天定方向/夜间执行。夜班启动先读 `.claude/autopilot/mainline.md` 与 `docs/product/day-night-workflow.md`，再获取 Notion 最新选择；只执行一项已确认任务，结果、验证与最终 commit 回填。入口与任务编号见 `docs/product/research-backlog.md`、`docs/product/notion-links.json`。
 - 完整改进计划：`docs/superpowers/plans/2026-09-12-beatlab-mvp.md`。开始工作先读其中最新状态，进度与验收据实更新。
 - 用户 2026-09-12 确认优先顺序：音乐质量 → 能还原作品的 Ableton 工程 → 素材发现与商品包（对话表格 2 → 4 → 5）。先交付一首可试听的完整作品；不能把技术测试通过等同用户喜欢。
