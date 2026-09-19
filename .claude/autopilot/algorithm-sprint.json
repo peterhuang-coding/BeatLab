@@ -1,0 +1,52 @@
+{
+  "task_id": "ALGO-4H-20260919",
+  "status": "running",
+  "started_at": "2026-09-19T15:56:20.531178+00:00",
+  "deadline": "2026-09-19T19:56:20.531178+00:00",
+  "max_concurrency": 4,
+  "provider": "volcengine-plan",
+  "default_model": "doubao-seed-evolving",
+  "alternative_model": "ark-code-latest",
+  "paid_fallback_allowed": false,
+  "execution_branch": "codex/album-execution-20260919",
+  "workspace": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919",
+  "data_root": "/Volumes/SanDisk2TB/BeatLab",
+  "baseline_commit": "3100fc2990f29fc84f98a3915600759a21629a19",
+  "baseline_tests": 99,
+  "current_wave": "wave-02-pure-algorithms",
+  "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-02-pure-algorithms",
+  "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-02-manifest.json",
+  "next_step": "Check wave02 original summary/results. Parse only expected module/test paths, apply tests then implementations sequentially, run each isolated unittest. Inspect flaws. At most one quality correction per implementation task. Do not start integration or another batch until known results checked. Need real-audio baseline/comparison later; 4h deadline unchanged.",
+  "stop_conditions": [
+    "deadline reached",
+    "provider failure/rate limit/unknown: stop later waves and inspect original attempt",
+    "three consecutive rounds no verified progress",
+    "user pause/cancel"
+  ],
+  "rounds_without_progress": 0,
+  "previous_automation": {
+    "version": 1,
+    "id": "beatlab",
+    "kind": "heartbeat",
+    "name": "BeatLab 夜班执行",
+    "prompt": "继续 BeatLab 的夜班执行。项目在 /Volumes/SanDisk2TB/BeatLab。先读 AGENTS.md、.claude/autopilot/mainline.md、最近两份 .claude/autopilot/rounds 摘要和 git status；按 wrapup 技能恢复本项目 Hub 摘要。遵循 docs/product/day-night-workflow.md。读取 Notion 项目 https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180 和待办数据源 a8654337-61da-4ad5-8587-413880656b6c；工具查询不可用时，按 docs/product/notion-links.json 的已知页面逐项 fetch，不用旧快照猜状态。只执行用户白天明确选择的一项：优先恢复主线对应且 Notion 仍为执行中的任务，否则从今晚执行选择一项（按用户顺序，其次优先级和编号）；读完整范围、验收和你的决定，写入主线并标执行中。R01–R06 只批准调研，不批准自动实施研究建议。暂停/取消优先；状态冲突或依赖不满足时保存具体待决策问题。没有已确认任务、或状态未变且无可行动事项时保持安静；只在实质进展、完成、失败或需要用户行动时通知。执行中核验真实结果，使用隔离数据与必要的隔离工作区；保留认可作品，主观听感必须等用户。不要付费、向他人发消息、发布音乐、强推或擅自合入 main。完成后把报告/改动、证据和计划更新 commit 并正常 push 到执行分支，核验远端 SHA；回填 Notion 结果链接、结论、验证与待你验收状态。写轮次摘要、更新主线和项目 Hub。若环境阻塞、需要新方向或连续三次同样失败无进展，保留恢复点和原因，不原样无限重试。分支现状应重新检查：main 的工程包与 codex/sandisk-migration 的音乐/老歌功能尚待整合，不能在没有相关代码的分支宣称修复。",
+    "status": "ACTIVE",
+    "rrule": "FREQ=DAILY;BYHOUR=22;BYMINUTE=0;BYSECOND=0",
+    "target_thread_id": "01a08c24-19e7-73b3-a193-78ba96b5f010",
+    "created_at": 1789402034377,
+    "updated_at": 1789402034377
+  },
+  "automation_restore_required": true,
+  "automation_override": "verified",
+  "tracks": [
+    "phrase boundaries and loopability",
+    "beat timing alignment",
+    "vocal/moment diversity",
+    "arrangement variation and density"
+  ],
+  "heartbeat_interval_minutes": 10,
+  "baseline_attempts_per_track": 2,
+  "observed_peak_in_flight": 4,
+  "baseline_review": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-01-review.json",
+  "implementation_attempts_per_track": 1
+}

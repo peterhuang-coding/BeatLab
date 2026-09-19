@@ -14,11 +14,9 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
-CRATE-20260919 技术完成：用户直接要求用 Coding Plan 完成音乐下载/爬虫链路，范围与验收见 [固定批次采样入库计划](../../docs/superpowers/plans/2026-09-19-crate-harvest.md)。起点 ed60482，沿用下述隔离执行分支。
+ALGO-4H-20260919 执行中：用户直接授权4小时算法迭代、高并发Coding Plan。北京时间9月19日23:56:20至9月20日03:56:20，四线为选句/循环、节拍、人声多样性、编排层次。见 [计划](../../docs/superpowers/plans/2026-09-19-algorithm-sprint.md) 与 [精确状态/调度恢复备份](algorithm-sprint.json)。每批4路，先检查原波次是否已运行，不并行启动多批；失败/未知先核查，到期不派发并恢复原每日22点夜班。
 
-ALBUM-EXECUTION-20260919 已完成技术交付，待试听：[报告](../../docs/research/2026-09-19-creative-delivery.md)、[计划](../../docs/superpowers/plans/2026-09-19-album-execution.md)。用户直接授权 Coding Plan 优先推进工程并生成音乐，覆盖本轮 E01–E04 的原未选状态；未来夜班仍按最新 Notion 选择。
-
-执行分支 `codex/album-execution-20260919`，工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`，整合起点 `72fc1f5` 与 main `3d333fe`。主工作区仍为旧采样分支，恢复时不能在旧代码上宣称具备本轮修复。
+执行分支 `codex/album-execution-20260919`，工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`；算法基线为下载链路提交 `3100fc2990f29fc84f98a3915600759a21629a19`，已普通push并核验SHA。主工作区仍旧采样分支。原专辑小样与听感待验事项保留。
 
 ## 本轮结果
 - E01–E04 技术验收通过：清单含有效人声处理、浮点 premaster、包完整性与恢复校验、两线整合。
@@ -31,7 +29,7 @@ ALBUM-EXECUTION-20260919 已完成技术交付，待试听：[报告](../../docs
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-用户新授权4小时算法迭代，先保存下载链路提交，再建立固定截止时间与并行任务包。三段小样仍待试听。
+恢复 state 指向的 wave-02 四个纯算法模块/测试结果，逐个应用验收；全部状态核清后再整合与真实音频对照。三段小样仍待试听。
 
 最近一轮：[2026-09-19 工程与三段小样](rounds/2026-09-19-album-execution.md)。
 

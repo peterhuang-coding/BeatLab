@@ -95,4 +95,3 @@ library/loops/<asset-id>/source.wav
 正式批次 `old-records-20260919` 已完成：8 段、8 条不同录音，Blues/Jazz 各4段；资产从14增至22。目录共发现309/339个WAV链接，没有全量下载。正式与隔离批次恢复均无网络请求，音频SHA和mtime保持；此前24份音频保持。参见 [来源与文件证据](../../evidence/crate-harvest-2026-09-19.json) 和 [执行计划](../superpowers/plans/2026-09-19-crate-harvest.md)。下载成功不代表已筛出好听的乐句，后续制作需试听。
 
 来源页面：[Blues](https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/) · [Jazz](https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/)。原片均为48kHz，库内为44.1kHz，分别保留哈希。
-

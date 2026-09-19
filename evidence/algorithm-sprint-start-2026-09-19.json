@@ -1,0 +1,181 @@
+{
+  "task": "ALGO-4H-20260919",
+  "start": "2026-09-19T15:56:20.531178+00:00",
+  "deadline": "2026-09-19T19:56:20.531178+00:00",
+  "baseline_commit": "3100fc2990f29fc84f98a3915600759a21629a19",
+  "initial_waves": [
+    {
+      "wave": "wave-01-baselines",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "jobs": [
+        {
+          "id": "phrases",
+          "status": "incomplete",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 2300,
+            "prompt_tokens": 4028,
+            "total_tokens": 6328,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 56521
+        },
+        {
+          "id": "timing",
+          "status": "incomplete",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 2300,
+            "prompt_tokens": 2547,
+            "total_tokens": 4847,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 57181
+        },
+        {
+          "id": "diversity",
+          "status": "incomplete",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 2300,
+            "prompt_tokens": 3207,
+            "total_tokens": 5507,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 57834
+        },
+        {
+          "id": "arrangement",
+          "status": "incomplete",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 2300,
+            "prompt_tokens": 4970,
+            "total_tokens": 7270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 56850
+        }
+      ]
+    },
+    {
+      "wave": "wave-01-correction",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "jobs": [
+        {
+          "id": "phrases",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 1412,
+            "prompt_tokens": 6441,
+            "total_tokens": 7853,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 37883
+        },
+        {
+          "id": "timing",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 1325,
+            "prompt_tokens": 4919,
+            "total_tokens": 6244,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 34800
+        },
+        {
+          "id": "diversity",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 1566,
+            "prompt_tokens": 5580,
+            "total_tokens": 7146,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 35261
+        },
+        {
+          "id": "arrangement",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 1635,
+            "prompt_tokens": 7371,
+            "total_tokens": 9006,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 42267
+        }
+      ]
+    }
+  ],
+  "baseline_review": {
+    "wave": "wave-01-baselines",
+    "initial_result": "four length-truncated briefs, known complete calls",
+    "correction": "four complete briefs; verified measured peak4",
+    "adopted": [
+      "boundary-anchored candidates",
+      "pure source beat-grid fit with explicit fallback",
+      "temporal overlap suppression by asset+stem",
+      "deterministic motif scheduling with rests"
+    ],
+    "rejected_or_adjusted": [
+      "phrase no-boundary long sources must retain labeled duration fallback, not zero candidates",
+      "timing brief lacked source_kind parameter and demanded incompatible prior/grid confidence; include explicit kind, candidate evidence, no forced prior over mismatch",
+      "diversity melodic_phrase is nonexistent currenttype; integration use actual melody/melody_no_drums/vocal_phrase/bass_phrase",
+      "arrangement density expectations impossible with <=4onsets/16, transform quotas arbitrary and recombine unsupported; implement nonoverlapping duration-aware onsets/anchor/rest first"
+    ],
+    "next": "four disjoint pure module+unittest drafts; integration only after tests"
+  },
+  "implementation_wave": "wave-02-pure-algorithms",
+  "implementation_status": "dispatched; verification pending",
+  "algorithm_quality_claim": false
+}
