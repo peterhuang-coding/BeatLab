@@ -16,7 +16,7 @@
   "current_wave": "wave-05-correction",
   "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction",
   "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction-manifest.json",
-  "next_step": "Await user review of verified A/B and a new scoped decision. Do not resume expired ALGO-4H from daily night job. Keep original unknown requests for reconciliation; no resubmission. Notion closure sync pending.",
+  "next_step": "Await user review of verified A/B and a new scoped decision. Do not resume expired ALGO-4H from daily night job. Keep original unknown requests for reconciliation; no resubmission.",
   "stop_conditions": [
     "deadline reached",
     "provider failure/rate limit/unknown: stop later waves and inspect original attempt",
@@ -81,5 +81,7 @@
     "tests/test_stretch_policy.py",
     "pipeline/clip_envelope.py",
     "tests/test_clip_envelope.py"
-  ]
+  ],
+  "notion_close_synced": true,
+  "notion_result_commit": "739df36a63a0ee179094bd8083d07202dbbffb5e"
 }

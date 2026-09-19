@@ -64,7 +64,7 @@
   ],
   "known_verified_test_count": 194,
   "known_verified_code_commit": "9852f5c806968a375379d1816a086ae1bc7378c5",
-  "notion_read_error": "Initial fetch HTTP transport error; closing fetch succeeded. Final update pending commit link.",
+  "notion_read_error": "Initial fetch HTTP transport error; closing fetch and final page update succeeded.",
   "notes": [
     "Wall clock advanced across delayed tool/model activity; continuous four-hour execution cannot be asserted.",
     "Final batch dispatch19:04UTC precededdeadline19:56UTC; first subsequent clock observation21:12UTC exceededdeadline; no later batch dispatched.",
@@ -204,5 +204,7 @@
   "protected_old_audio": {
     "count": 24,
     "sha_and_mtime_unchanged": true
-  }
+  },
+  "notion_close_synced": true,
+  "notion_result_commit": "739df36a63a0ee179094bd8083d07202dbbffb5e"
 }
