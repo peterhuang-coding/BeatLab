@@ -13,10 +13,10 @@
   "data_root": "/Volumes/SanDisk2TB/BeatLab",
   "baseline_commit": "3100fc2990f29fc84f98a3915600759a21629a19",
   "baseline_tests": 99,
-  "current_wave": "wave-04-audio-export",
-  "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-04-audio-export",
-  "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-04-audio-export-manifest.json",
-  "next_step": "Check wave-04 original summary/process first; review runner, actual render tests, MIDI gate and timing review; apply sequentially, isolated audio A/B and export validation. No retries unknown. Deadline fixed.",
+  "current_wave": "wave-04-correction",
+  "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-04-correction",
+  "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-04-correction-manifest.json",
+  "next_step": "Completed wave04: isolated Crazy Blues68.326s A/B. Check clip discontinuities, stretch ratios and source beat robustness next. No running requests; fixed deadline unchanged.",
   "stop_conditions": [
     "deadline reached",
     "provider failure/rate limit/unknown: stop later waves and inspect original attempt",
@@ -51,12 +51,14 @@
   "implementation_attempts_per_track": 2,
   "pure_modules_verified": true,
   "pure_test_count": 57,
-  "total_test_count": 184,
+  "total_test_count": 194,
   "baseline_audio_results": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/baseline/results.json",
   "integration_attempts_per_task": 2,
-  "current_batch_transport_status": "running",
+  "current_batch_transport_status": "completed_reviewed",
   "current_batch_blocker": null,
-  "last_verified_commit": "9cdf183d81004e81b00b3394b7f272b5198953b9",
+  "last_verified_commit": "5278cf0247e5b205ffad0ad45e9cbef1bcac30f5",
   "integration_verified": true,
-  "integration_evidence": "evidence/algorithm-integration-2026-09-20.json"
+  "integration_evidence": "evidence/algorithm-integration-2026-09-20.json",
+  "audio_export_attempts_per_task": 2,
+  "audio_midi_verified": true
 }

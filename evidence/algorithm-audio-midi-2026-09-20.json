@@ -1,0 +1,277 @@
+{
+  "task_id": "ALGO-4H-20260919",
+  "stage": "real_audio_midi_verified",
+  "review": {
+    "delegatable_tasks": 4,
+    "business_tasks": 3,
+    "review_tasks": 1,
+    "business_attempts_per_task": 2,
+    "review_attempts": 1,
+    "initial_peak": 4,
+    "correction_peak": 3,
+    "adoption": {
+      "render_test": "adopted corrected draft",
+      "midi": "adopted corrected functions and initial broader tests; fixture/import/typo repairs; negative-offset regression from correction",
+      "runner": "partial adoption, substantial primary local orchestration repair. First length, correction extra brace and wrong gain-only experiment. Shared-gain helpers/API calls reused; repaired intended legacy/v1 comparison. No third request",
+      "review": "three triggers reproduced, zero findings adopted"
+    },
+    "primary_role": "Apply artifacts, DSP/MIDI/source verification, narrow code/test fixes and necessary local A/B orchestration repair. No paid fallback. Correction dispatch omitted original runner contract; future corrections must preserve acceptance.",
+    "verification": {
+      "test_count": 194,
+      "seconds": 6.452,
+      "result": "PASS",
+      "log": ".cache/algorithm-sprint-20260919/audio-export-full-tests.log"
+    },
+    "protected_old_audio": {
+      "count": 24,
+      "sha_and_mtime_unchanged": true
+    },
+    "limitations": [
+      "Subjective listening pending",
+      "Single-source A/B, not album track or new lyrics",
+      "Shared gain is not LUFS matched"
+    ]
+  },
+  "audio": [
+    {
+      "asset_id": "9a7e495a5224d187",
+      "source_unchanged": true,
+      "shared_gain": 0.996216032651301,
+      "bpm": 92.0,
+      "bars": 26,
+      "variants": [
+        {
+          "variant": "legacy",
+          "events": 88,
+          "duration_s": 68.32607709750567,
+          "frames": 3013180,
+          "sr": 44100,
+          "mix_sha256": "0545b4220d9fc870f38d56c81bdcad138d5d4e85deed03a20203ac7de0a643dd",
+          "peak": 0.8912508487701416,
+          "stem_sum_max_abs_error": 4.470348358154297e-08,
+          "chops_nonzero_fraction": 0.2905402266044511,
+          "hero_last_beat_max_abs": 0.3413219153881073,
+          "chop_midi_durations_ticks": [
+            192
+          ],
+          "midi_end_tick": 9888,
+          "phrase_schedule_metrics": null
+        },
+        {
+          "variant": "v1",
+          "events": 56,
+          "duration_s": 68.32607709750567,
+          "frames": 3013180,
+          "sr": 44100,
+          "mix_sha256": "a9ebb426c61e0c3f52b067a91533c2728eb0bc5f2710c074ceaa7a0d41ac8c6b",
+          "peak": 0.8912509679794312,
+          "stem_sum_max_abs_error": 5.960464477539063e-08,
+          "chops_nonzero_fraction": 0.5345216681379805,
+          "hero_last_beat_max_abs": 0.0,
+          "chop_midi_durations_ticks": [
+            96
+          ],
+          "midi_end_tick": 9984,
+          "phrase_schedule_metrics": [
+            {
+              "section_index": 0,
+              "section": "intro",
+              "bars": 2,
+              "global_start_bar": 0,
+              "event_count": 2,
+              "active_steps": 8,
+              "density": 0.25,
+              "nominal_events_per_bar": 1,
+              "scope": "hero_only",
+              "density_note": "hero-only active density; supporting samples may still sound during rests"
+            },
+            {
+              "section_index": 1,
+              "section": "verse",
+              "bars": 8,
+              "global_start_bar": 2,
+              "event_count": 16,
+              "active_steps": 64,
+              "density": 0.5,
+              "nominal_events_per_bar": 2,
+              "scope": "hero_only",
+              "density_note": "hero-only active density; supporting samples may still sound during rests"
+            },
+            {
+              "section_index": 2,
+              "section": "hook",
+              "bars": 8,
+              "global_start_bar": 10,
+              "event_count": 24,
+              "active_steps": 96,
+              "density": 0.75,
+              "nominal_events_per_bar": 3,
+              "scope": "hero_only",
+              "density_note": "hero-only active density; supporting samples may still sound during rests"
+            },
+            {
+              "section_index": 3,
+              "section": "verse_variation",
+              "bars": 6,
+              "global_start_bar": 18,
+              "event_count": 12,
+              "active_steps": 48,
+              "density": 0.5,
+              "nominal_events_per_bar": 2,
+              "scope": "hero_only",
+              "density_note": "hero-only active density; supporting samples may still sound during rests"
+            },
+            {
+              "section_index": 4,
+              "section": "outro",
+              "bars": 2,
+              "global_start_bar": 24,
+              "event_count": 2,
+              "active_steps": 8,
+              "density": 0.25,
+              "nominal_events_per_bar": 1,
+              "scope": "hero_only",
+              "density_note": "hero-only active density; supporting samples may still sound during rests"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "local_audio_root": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/audio-ab-crazy-blues",
+  "batches": [
+    {
+      "name": "wave-04-audio-export",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "jobs": [
+        {
+          "id": "isolated_audio_ab_runner",
+          "status": "incomplete",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 8100,
+            "prompt_tokens": 6373,
+            "total_tokens": 14473,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 114758
+        },
+        {
+          "id": "actual_phrase_render_test",
+          "status": "verifying",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 4042,
+            "prompt_tokens": 11786,
+            "total_tokens": 15828,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 60079
+        },
+        {
+          "id": "phrase_midi_gate",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4608,
+            "prompt_tokens": 5062,
+            "total_tokens": 9670,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 66443
+        },
+        {
+          "id": "integration_source_timing_review",
+          "status": "verifying",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 809,
+            "prompt_tokens": 11645,
+            "total_tokens": 12454,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 19458
+        }
+      ]
+    },
+    {
+      "name": "wave-04-correction",
+      "status": "stopped",
+      "peak_in_flight": 3,
+      "jobs": [
+        {
+          "id": "isolated_audio_ab_runner",
+          "status": "invalid_output",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 2879,
+            "prompt_tokens": 6225,
+            "total_tokens": 9104,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 43477
+        },
+        {
+          "id": "actual_phrase_render_test",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 2902,
+            "prompt_tokens": 11871,
+            "total_tokens": 14773,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 46914
+        },
+        {
+          "id": "phrase_midi_gate",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 2503,
+            "prompt_tokens": 6388,
+            "total_tokens": 8891,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 35554
+        }
+      ]
+    }
+  ]
+}

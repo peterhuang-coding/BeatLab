@@ -582,14 +582,23 @@ def _ms_per_tick(bpm: float) -> float:
 
 
 # ---------- MIDI 导出（沿用旧实现） ----------
-def _write_midi(path: Path, notes: list[tuple], bpm: float, track_name: str) -> None:
+def _write_midi(
+    path: Path,
+    notes: list[tuple],
+    bpm: float,
+    track_name: str,
+    end_tick: int | None = None,
+    use_float_tempo: bool = False,
+) -> None:
     midi = MidiFile(ticks_per_beat=TICKS_PER_BEAT)
     track = MidiTrack()
     midi.tracks.append(track)
     track.append(MetaMessage("track_name", name=track_name, time=0))
-    track.append(MetaMessage("set_tempo", tempo=bpm2tempo(int(round(bpm))), time=0))
+    tempo_bpm = float(bpm) if use_float_tempo else int(round(bpm))
+    track.append(MetaMessage("set_tempo", tempo=bpm2tempo(tempo_bpm), time=0))
     events: list[tuple[int, Message]] = []
     for start, duration, note, velocity, channel in notes:
+        # Preserve legacy behavior: negative drum offsets clamp to tick 0.
         start = max(0, start)
         events.append((start, Message("note_on", note=note,
                                       velocity=max(1, min(127, velocity)), channel=channel, time=0)))
@@ -601,17 +610,29 @@ def _write_midi(path: Path, notes: list[tuple], bpm: float, track_name: str) -> 
         message.time = max(0, tick - last_tick)
         track.append(message)
         last_tick = tick
-    track.append(MetaMessage("end_of_track", time=TICKS_PER_BEAT))
+    if end_tick is None:
+        track.append(MetaMessage("end_of_track", time=TICKS_PER_BEAT))
+    else:
+        track.append(MetaMessage("end_of_track", time=max(0, int(end_tick) - last_tick)))
     midi.save(str(path))
+
 
 
 def export_midi(spec: common.BeatSpec, midi_dir: Path) -> dict[str, Path]:
     """产出 drums.mid / bass.mid / chops.mid（velocity/offset_ms → 96 PPQ tick）。"""
+    import math
+
+    bpm = float(spec.bpm)
+    if not math.isfinite(bpm) or bpm <= 0:
+        raise ValueError("spec.bpm must be a finite positive number")
+
     drums: list[tuple] = []
     bass: list[tuple] = []
     chops: list[tuple] = []
-    ms2tick = lambda ms: round(ms * spec.bpm * TICKS_PER_BEAT / 60000)
+    ms2tick = lambda ms: round(ms * bpm * TICKS_PER_BEAT / 60000)
     bar_ticks = STEPS_PER_BAR * TICKS_PER_STEP
+    v1_chops: list[dict] = []
+
     for bar_index, tracks in spec.drum_pattern.items():
         base = int(bar_index) * bar_ticks
         for track_name, steps in tracks.items():
@@ -619,20 +640,50 @@ def export_midi(spec: common.BeatSpec, midi_dir: Path) -> dict[str, Path]:
                 tick = base + round(float(step) * TICKS_PER_STEP) + ms2tick(hit["offset_ms"])
                 dur = TICKS_PER_STEP if track_name in ("oh", "perc") else TICKS_PER_STEP // 2
                 drums.append((tick, dur, DRUM_NOTES[track_name], int(hit["velocity"]), 9))
+
     for bar_index, steps in spec.bass_pattern.items():
         base = int(bar_index) * bar_ticks
         for step, note in steps.items():
             bass.append((base + int(step) * TICKS_PER_STEP, TICKS_PER_STEP * 2, int(note), 96, 0))
+
     for p in spec.chop_placements:
         tick = int(p["bar"]) * bar_ticks + int(p["step"]) * TICKS_PER_STEP
-        chops.append((tick, TICKS_PER_STEP * 8, int(p["midi_note"]), round(p["gain"] * 127), 1))
+        if p.get("timing_basis") == "phrase_schedule_v1":
+            stretch_to = float(p["stretch_to"])
+            if not math.isfinite(stretch_to) or stretch_to <= 0:
+                raise ValueError("phrase_schedule_v1 stretch_to must be finite and positive")
+            # Positive sub-tick durations still need at least one tick;
+            # non-v1 legacy chops keep their fixed 192-tick gate.
+            dur = max(1, round(stretch_to * bpm / 60.0 * TICKS_PER_BEAT))
+            v1_chops.append(p)
+        else:
+            dur = TICKS_PER_STEP * 8
+        chops.append((tick, dur, int(p["midi_note"]), round(p["gain"] * 127), 1))
+
     files = {"drums": drums, "bass": bass, "chops": chops}
     names = {"drums": "BeatLab Drums", "bass": "BeatLab Bass", "chops": "BeatLab Chops"}
+
+    end_tick = None
+    if v1_chops:
+        total_bars = int(getattr(spec, "total_bars", 0) or 0)
+        if total_bars < 0:
+            raise ValueError("spec.total_bars must be non-negative")
+        last_noteoff = max((start + duration for start, duration, *_ in chops), default=0)
+        end_tick = max(total_bars * bar_ticks, last_noteoff)
+
+    # Validate v1-derived duration/end behavior before creating the directory or files.
+    if end_tick is not None and end_tick < 0:
+        raise ValueError("MIDI end tick must be non-negative")
+
     midi_dir.mkdir(parents=True, exist_ok=True)
     out: dict[str, Path] = {}
     for key, notes in files.items():
         path = midi_dir / f"{key}.mid"
-        _write_midi(path, notes, spec.bpm, names[key])
+        if end_tick is None:
+            _write_midi(path, notes, bpm, names[key])
+        else:
+            _write_midi(path, notes, bpm, names[key], end_tick=end_tick,
+                        use_float_tempo=True)
         out[key] = path
     return out
 
