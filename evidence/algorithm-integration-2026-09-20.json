@@ -1,0 +1,197 @@
+{
+  "task_id": "ALGO-4H-20260919",
+  "stage": "opt_in_integrations_verified_audio_pending",
+  "review": {
+    "delegatable_tasks": 3,
+    "attempts_per_task": 2,
+    "quality_corrections_per_task": 1,
+    "adopted_tasks": 3,
+    "initial_batch_peak": 4,
+    "correction_batch_peak": 3,
+    "paid_fallback": false,
+    "primary_role": "Contracts, artifact extraction, sequential application, real verification, narrow local repairs. All three downstream function/test drafts reused.",
+    "local_repairs": [
+      "Correct contextlib ExitStack and per-type quota fixture; preserve explicit adapter-to-original mapping",
+      "Validate loaded source bounds before detection fallback; convert cropped onset frames once to absolute seconds; correct realistic path and callback fixtures",
+      "Use section_index for mutation lookup; preserve precise one-beat stretch duration; correct scheduler metrics and single-motif expectations",
+      "Fixed primary artifact extraction path duplication, not a downstream code defect"
+    ],
+    "verification": {
+      "test_count": 184,
+      "seconds": 6.457,
+      "result": "PASS",
+      "log": ".cache/algorithm-sprint-20260919/integration-full-tests.log"
+    }
+  },
+  "selection_comparison": {
+    "baseline": {
+      "assets": 22,
+      "nonempty_assets": 22,
+      "errors": 0,
+      "moments": 125,
+      "overlap_conflict_pairs": 56,
+      "mean_duration": 2.864,
+      "mean_existing_loopability": 0.8121008,
+      "mean_existing_score": 0.6700944
+    },
+    "phrase_v1": {
+      "assets": 22,
+      "nonempty_assets": 22,
+      "errors": 0,
+      "moments": 67,
+      "overlap_conflict_pairs": 0,
+      "mean_duration": 6.442096727238806,
+      "mean_existing_loopability": 0.7883850746268657,
+      "mean_existing_score": 0.6346940298507463
+    },
+    "same_22_source_hashes_and_mtimes": true,
+    "scope": "Temporal overlap in asset+stem coordinate only. No lyrics/transcription/subjective listening. Legacy default preserved."
+  },
+  "batches": [
+    {
+      "name": "wave-03-integration",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "jobs": [
+        {
+          "id": "moments_phrase_integration",
+          "status": "invalid_output",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 3461,
+            "prompt_tokens": 8225,
+            "total_tokens": 11686,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 63675
+        },
+        {
+          "id": "recipes_timing_integration",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4950,
+            "prompt_tokens": 4703,
+            "total_tokens": 9653,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 85356
+        },
+        {
+          "id": "compose_phrase_schedule_integration",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 7286,
+            "prompt_tokens": 7752,
+            "total_tokens": 15038,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 110449
+        },
+        {
+          "id": "pure_algorithms_review",
+          "status": "verifying",
+          "model": "doubao-seed-evolving",
+          "usage": {
+            "completion_tokens": 758,
+            "prompt_tokens": 9355,
+            "total_tokens": 10113,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 21032
+        }
+      ]
+    },
+    {
+      "name": "wave-03-correction",
+      "status": "verifying",
+      "peak_in_flight": 3,
+      "dispatched_count": 3,
+      "jobs": [
+        {
+          "id": "moments_phrase_integration",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4020,
+            "prompt_tokens": 8753,
+            "total_tokens": 12773,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 64699
+        },
+        {
+          "id": "recipes_timing_integration",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 6184,
+            "prompt_tokens": 8826,
+            "total_tokens": 15010,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 83423
+        },
+        {
+          "id": "compose_phrase_schedule_integration",
+          "status": "verifying",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 8013,
+            "prompt_tokens": 11116,
+            "total_tokens": 19129,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 107163
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No semantic lyric/vocal identity detection; no separated vocal stems in these 22 assets",
+    "Lower existing loopability and weighted score; temporal diversity improvement does not establish music quality",
+    "No actual new rendered comparison yet; wave-04 delegated to verify audio and MIDI consumers",
+    "Legacy selection/scheduler default retained; source_grid_for_region helper not yet wired into all recipe manifests"
+  ],
+  "raw_results": {
+    "baseline": ".cache/algorithm-sprint-20260919/baseline/results.json",
+    "phrase_v1": ".cache/algorithm-sprint-20260919/phrase-v1/results.json"
+  }
+}

@@ -504,11 +504,16 @@ def _missing_type_reason(types_found: set[str], bounds: list[float],
     return "；".join(reasons) if reasons else "素材内容均匀，类型判定集中"
 
 
-def analyze_asset(asset: Any, write_db: bool = True) -> tuple[list[dict], str]:
+def analyze_asset(asset: Any, write_db: bool = True, *, candidate_mode: str = "legacy") -> tuple[list[dict], str]:
     """分析单个 asset：生成 Moment 候选 → diversity filter → upsert。
 
     返回 (保留的 moment 列表, 类型数不足 3 时的原因说明)。
+    candidate_mode="legacy" 保持旧的固定滑动窗口；"phrase_v1" 使用结构边界
+    phrase 候选窗口。该参数为 opt-in，不改变既有调用和 CLI。
     """
+    if candidate_mode not in ("legacy", "phrase_v1"):
+        raise ValueError("candidate_mode must be 'legacy' or 'phrase_v1'")
+
     asset_id = str(asset["id"])
     src = _asset_src(asset)
     if not src.exists():
@@ -530,7 +535,26 @@ def analyze_asset(asset: Any, write_db: bool = True) -> tuple[list[dict], str]:
         dur = min_len / sr
 
     bounds = structure_bounds(y, sr)
-    windows = moment_windows(dur, bpm)
+    if candidate_mode == "phrase_v1":
+        from phrase_candidates import phrase_windows
+        from phrase_diversity import select_diverse_moments
+
+        raw_windows = phrase_windows(dur, bounds, bpm)
+        windows = []
+        window_basis: dict[tuple[float, float], str] = {}
+        for pw in raw_windows:
+            w = {
+                "start_sec": pw["start_sec"],
+                "end_sec": pw["end_sec"],
+                "bars": round(pw["bars"], 2) if pw.get("bars") is not None else None,
+            }
+            key = (w["start_sec"], w["end_sec"])
+            windows.append(w)
+            window_basis[key] = str(pw.get("basis", "phrase"))
+    else:
+        windows = moment_windows(dur, bpm)
+        window_basis = {}
+
     candidates: list[dict] = []
     skipped = 0
     for w in windows:
@@ -543,6 +567,10 @@ def analyze_asset(asset: Any, write_db: bool = True) -> tuple[list[dict], str]:
         stems_seg = {k: v[s0:s1] for k, v in stems.items()} if stems else None
         mtype, basis = classify_window(seg, stems_seg, sr, w, bounds)
         scores = score_window(seg, stems_seg, sr, w, bounds, mtype)
+        explain = _build_explain(mtype, w, scores, basis, stems_available, bpm)
+        if candidate_mode == "phrase_v1":
+            basis_name = window_basis.get((w["start_sec"], w["end_sec"]), "phrase")
+            explain = explain + [f"候选依据：phrase_v1/{basis_name}"]
         candidates.append({
             "asset_id": asset_id,
             "type": mtype,
@@ -553,9 +581,37 @@ def analyze_asset(asset: Any, write_db: bool = True) -> tuple[list[dict], str]:
                     .get(mtype, "other" if stems else "source"),
             "scores": scores,
             "total": moment_total(scores),
-            "explain": _build_explain(mtype, w, scores, basis, stems_available, bpm),
+            "explain": explain,
             "risks": _build_risks(mtype, w, scores, stems_available, bpm, dur, rms_db),
         })
+
+    if candidate_mode == "phrase_v1":
+        # 先做跨类型、同源/同 stem 的全局去重，再套用每类型最多 2 个配额。
+        # interval 只是 diversity 适配器字段，不写回返回的候选。select_diverse_moments
+        # 返回的是适配器副本，不能用 id() 回查原始候选；这里显式保留索引映射。
+        adapted = []
+        original_by_adapter: dict[int, int] = {}
+        for idx, c in enumerate(candidates):
+            adapter = {**c, "interval": [c["start_sec"], c["end_sec"]]}
+            adapted.append(adapter)
+            original_by_adapter[id(adapter)] = idx
+
+        global_cap = max(MAX_PER_TYPE_PER_ASSET * len(MOMENT_TYPES), len(candidates))
+        globally_kept = select_diverse_moments(
+            adapted,
+            global_cap,
+            max_same_source=None,
+            max_overlap_seconds=0.5,
+            max_iou=0.25,
+        )
+        kept_indices = []
+        seen_indices = set()
+        for adapter in globally_kept:
+            idx = original_by_adapter.get(id(adapter))
+            if idx is not None and idx not in seen_indices:
+                seen_indices.add(idx)
+                kept_indices.append(idx)
+        candidates = [candidates[idx] for idx in kept_indices]
 
     # diversity filter：同 asset 同类型最多 MAX_PER_TYPE_PER_ASSET 个（按总分取高）
     by_type: dict[str, list[dict]] = {}

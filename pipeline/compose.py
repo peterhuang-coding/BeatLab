@@ -297,7 +297,9 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
                 assets_by_id: dict, hero_file: str,
                 hook_hero: dict | None = None) -> tuple[list[dict], list[dict]]:
     """按 Recipe 摆放 chop/vocal。返回 (chop_placements, vocal_placements)。
-    bar 为全局小节号（0 起）；段落差异来自 manifest 的 mutation（滤波/mute/密度/辅助素材）。"""
+
+    bar 为全局小节号（0 起）；段落差异来自 manifest 的 mutation（滤波/mute/密度/辅助素材）。
+    """
     kind = recipe["kind"]
     mutations = _section_mutations(recipe)
     chops: list[dict] = [c for c in recipe["chops"] if not c.get("role")]   # hero 切片
@@ -328,90 +330,160 @@ def place_chops(rng: random.Random, recipe: dict, hero: dict, supporting: list[d
 
     bar_idx = 0
     n_pads = max(1, len(chops))
-    # 每段 pad 使用顺序：verse 按 1..n 循环（phrase 序）；hook 重排（rng 确定性）
-    verse_order = list(range(n_pads))
-    hook_order = rng.sample(range(n_pads), k=min(n_pads, 12))
-    verse_i = hook_i = 0
-    for sec in recipe["arrangement"]["sections"]:
-        sec_name = sec["name"]
-        mut = mutations.get(sec_name, {})
-        if kind == "loop":
-            for k in range(sec["bars"]):
-                if mut.get("dropout") == "odd_bars" and k % 2 == 1:
-                    bar_idx += 1
-                    continue
-                # 使用源乐句的小节数分块，每块拉伸到目标 1 小节。
-                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
-                entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
-                pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
-                chunk = entry_dur / pb
-                ci = k % pb
-                cs = entry["start_sec"] + ci * chunk
-                ce = min(cs + chunk, entry["end_sec"])
-                lp = mut.get("lp_hz")
-                fade = 1.0
-                if mut.get("fade_out") and sec["bars"] > 0:
-                    fade = 1.0 - 0.35 * k / sec["bars"]
-                p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
-                               common.MIDI_CHOP_BASE, mut.get("hero_gain", 0.9),
-                               hero_file, cs, ce,
-                               stem=hero_stem, lp_hz=lp, fade_gain=fade,
-                               stretch_to=bar_s)
-                p["timing_basis"] = timing_basis
-                placements.append(p)
-                bar_idx += 1
-        elif kind == "chop":
-            style = mut.get("chop_style", "long_tail")
-            for k in range(sec["bars"]):
-                fade = 1.0
-                if mut.get("fade_out") and sec["bars"] > 0:
-                    fade = 1.0 - 0.35 * k / sec["bars"]
-                if style == "phrase_2bar":
-                    steps = CHOP_PATTERNS["phrase_2bar_even" if k % 2 == 0 else "phrase_2bar_odd"]
-                else:
-                    steps = CHOP_PATTERNS.get(style, [0])
-                for step in steps:
-                    if style in ("syncopated", "breath", "long_tail"):
-                        idx = hook_order[hook_i % len(hook_order)]
-                        hook_i += 1
-                    else:
-                        idx = verse_order[verse_i % len(verse_order)]
-                        verse_i += 1
-                    c = chops[idx] if chops else hero_entry
-                    reverse = bool(c.get("reverse", False)) and mut.get("reverse_hits", False)
-                    gain = 0.9 if sec_name == "hook" else 0.75
-                    placements.append(_placement(
-                        sec_name, bar_idx, step, hero_asset_id, idx,
-                        int(c.get("pad", 1)), int(c.get("midi_note", common.MIDI_CHOP_BASE)),
-                        gain, c.get("file", hero_file), float(c.get("start_sec", hero["start_sec"])),
-                        float(c.get("end_sec", hero["end_sec"])), stem=hero_stem,
-                        reverse=reverse, fade_gain=fade))
-                bar_idx += 1
-        else:  # stem：hero 目标 stem 全段 loop；variation 静音（drums carry）
-            for k in range(sec["bars"]):
-                if mut.get("dropout") == "hero_off":
-                    bar_idx += 1
-                    continue
-                entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
-                entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
-                pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
-                chunk = entry_dur / pb
-                ci = k % pb
-                cs = entry["start_sec"] + ci * chunk
-                ce = min(cs + chunk, entry["end_sec"])
-                fade = 1.0
-                if mut.get("fade_out") and sec["bars"] > 0:
-                    fade = 1.0 - 0.35 * k / sec["bars"]
-                p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
-                               common.MIDI_CHOP_BASE, 0.85,
-                               hero_file, cs, ce,
-                               stem=hero_stem, fade_gain=fade, stretch_to=bar_s)
-                p["timing_basis"] = timing_basis
-                if hero_stem == "vocal":   # 目标 stem 是人声 → 走 vocal 层（render 分轨路由）
-                    vocals.append(p)
-                else:
+
+    use_phrase_scheduler = (
+        kind == "chop"
+        and str(((recipe.get("arrangement") or {}).get("phrase_scheduler") or "")).lower() == "v1"
+    )
+
+    if use_phrase_scheduler:
+        import phrase_schedule
+
+        arrangement = recipe.setdefault("arrangement", {})
+        planner_sections = list(arrangement.get("sections", []))
+        sections_for_planner = [
+            {"name": s["name"], "bars": int(s["bars"])}
+            for s in planner_sections
+        ]
+        seed = recipe.get("seed")
+        if seed is None:
+            seed = rng.random()
+        plan = phrase_schedule.plan_phrase_events(
+            sections_for_planner,
+            n_motifs=max(1, len(chops)),
+            seed=seed,
+            phrase_steps=4,
+        )
+        plan_metrics = [dict(m) for m in plan.get("metrics", [])]
+        for metric in plan_metrics:
+            metric["scope"] = "hero_only"
+            metric["density_note"] = (
+                "hero-only active density; supporting samples may still sound during rests"
+            )
+        arrangement["phrase_schedule_metrics"] = plan_metrics
+
+        for ev in plan.get("events", []):
+            section_index = int(ev.get("section_index", -1))
+            sec = planner_sections[section_index] if 0 <= section_index < len(planner_sections) else None
+            sec_name = str(ev["section"])
+            if sec is not None:
+                # Always trust the planner's section index.  Section names may
+                # legally repeat and must not resolve to the first same-name bar.
+                sec_name = str(sec.get("name") or sec_name)
+            mut = (sec.get("mutation") or {}) if sec is not None else {}
+            bar_number = int(ev["bar"])
+            step = int(ev["step"])
+            motif_id = int(ev["motif_id"])
+            duration_steps = int(ev.get("duration_steps", 4))
+            idx = motif_id % n_pads
+            c = chops[idx] if chops else hero_entry
+
+            sec_bars = int(sec.get("bars") or 0) if sec is not None else 0
+            section_bar = int(ev.get("section_bar", 0))
+            fade = 1.0
+            if mut.get("fade_out") and sec_bars > 0:
+                fade = 1.0 - 0.35 * section_bar / sec_bars
+
+            reverse = bool(c.get("reverse", False)) and mut.get("reverse_hits", False)
+            gain = 0.9 if sec_name == "hook" else 0.75
+            stretch_seconds = duration_steps * (60.0 / bpm / 4.0)
+            p = _placement(
+                sec_name, bar_number, step, hero_asset_id, idx,
+                int(c.get("pad", 1)), int(c.get("midi_note", common.MIDI_CHOP_BASE)),
+                gain, c.get("file", hero_file), float(c.get("start_sec", hero["start_sec"])),
+                float(c.get("end_sec", hero["end_sec"])), stem=hero_stem,
+                lp_hz=mut.get("lp_hz"), reverse=reverse, fade_gain=fade,
+                stretch_to=stretch_seconds)
+            p["stretch_to"] = stretch_seconds
+            p["timing_basis"] = "phrase_schedule_v1"
+            placements.append(p)
+
+        bar_idx = sum(int(s["bars"]) for s in planner_sections)
+    else:
+        # 每段 pad 使用顺序：verse 按 1..n 循环（phrase 序）；hook 重排（rng 确定性）
+        verse_order = list(range(n_pads))
+        hook_order = rng.sample(range(n_pads), k=min(n_pads, 12))
+        verse_i = hook_i = 0
+        for sec in recipe["arrangement"]["sections"]:
+            sec_name = sec["name"]
+            mut = mutations.get(sec_name, {})
+            if kind == "loop":
+                for k in range(sec["bars"]):
+                    if mut.get("dropout") == "odd_bars" and k % 2 == 1:
+                        bar_idx += 1
+                        continue
+                    # 使用源乐句的小节数分块，每块拉伸到目标 1 小节。
+                    entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                    entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
+                    pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
+                    chunk = entry_dur / pb
+                    ci = k % pb
+                    cs = entry["start_sec"] + ci * chunk
+                    ce = min(cs + chunk, entry["end_sec"])
+                    lp = mut.get("lp_hz")
+                    fade = 1.0
+                    if mut.get("fade_out") and sec["bars"] > 0:
+                        fade = 1.0 - 0.35 * k / sec["bars"]
+                    p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
+                                   common.MIDI_CHOP_BASE, mut.get("hero_gain", 0.9),
+                                   hero_file, cs, ce,
+                                   stem=hero_stem, lp_hz=lp, fade_gain=fade,
+                                   stretch_to=bar_s)
+                    p["timing_basis"] = timing_basis
                     placements.append(p)
-                bar_idx += 1
+                    bar_idx += 1
+            elif kind == "chop":
+                style = mut.get("chop_style", "long_tail")
+                for k in range(sec["bars"]):
+                    fade = 1.0
+                    if mut.get("fade_out") and sec["bars"] > 0:
+                        fade = 1.0 - 0.35 * k / sec["bars"]
+                    if style == "phrase_2bar":
+                        steps = CHOP_PATTERNS["phrase_2bar_even" if k % 2 == 0 else "phrase_2bar_odd"]
+                    else:
+                        steps = CHOP_PATTERNS.get(style, [0])
+                    for step in steps:
+                        if style in ("syncopated", "breath", "long_tail"):
+                            idx = hook_order[hook_i % len(hook_order)]
+                            hook_i += 1
+                        else:
+                            idx = verse_order[verse_i % len(verse_order)]
+                            verse_i += 1
+                        c = chops[idx] if chops else hero_entry
+                        reverse = bool(c.get("reverse", False)) and mut.get("reverse_hits", False)
+                        gain = 0.9 if sec_name == "hook" else 0.75
+                        placements.append(_placement(
+                            sec_name, bar_idx, step, hero_asset_id, idx,
+                            int(c.get("pad", 1)), int(c.get("midi_note", common.MIDI_CHOP_BASE)),
+                            gain, c.get("file", hero_file), float(c.get("start_sec", hero["start_sec"])),
+                            float(c.get("end_sec", hero["end_sec"])), stem=hero_stem,
+                            reverse=reverse, fade_gain=fade))
+                    bar_idx += 1
+            else:  # stem：hero 目标 stem 全段 loop；variation 静音（drums carry）
+                for k in range(sec["bars"]):
+                    if mut.get("dropout") == "hero_off":
+                        bar_idx += 1
+                        continue
+                    entry = hook_hero_entry if sec_name == "hook" and hook_hero_entry else hero_entry
+                    entry_dur = max(0.5, entry["end_sec"] - entry["start_sec"])
+                    pb, timing_basis = _source_phrase_bars(entry, hero_asset, bar_s)
+                    chunk = entry_dur / pb
+                    ci = k % pb
+                    cs = entry["start_sec"] + ci * chunk
+                    ce = min(cs + chunk, entry["end_sec"])
+                    fade = 1.0
+                    if mut.get("fade_out") and sec["bars"] > 0:
+                        fade = 1.0 - 0.35 * k / sec["bars"]
+                    p = _placement(sec_name, bar_idx, 0, hero_asset_id, 0, 1,
+                                   common.MIDI_CHOP_BASE, 0.85,
+                                   hero_file, cs, ce,
+                                   stem=hero_stem, fade_gain=fade, stretch_to=bar_s)
+                    p["timing_basis"] = timing_basis
+                    if hero_stem == "vocal":   # 目标 stem 是人声 → 走 vocal 层（render 分轨路由）
+                        vocals.append(p)
+                    else:
+                        placements.append(p)
+                    bar_idx += 1
 
     # 辅助素材：每 verse/intro 一个 texture 垫、每 hook 一个人声 phrase
     # （此前整首只有 2-3 个事件 → 听感"只有一个采样"）
@@ -478,10 +550,13 @@ def build_spec_for_recipe(recipe: dict, kind: str, run_id: str, hero: dict,
                 avoid_by_bar.setdefault(int(p["bar"]), set()).add(int(p["step"]))
     else:
         hero_path = common.ROOT / hero_file if hero_file else None
+        # BPM 92 不改变源 120 BPM 的乐句小节数；source_bars 必须由源 interval 推导。
+        source_bars, _ = _source_phrase_bars(hero, hero_asset, 240.0 / bpm)
         onset_steps = recipes.hero_onset_steps(hero_path, float(hero["start_sec"]),
-                                               float(hero["end_sec"]), bpm)
+                                               float(hero["end_sec"]), bpm,
+                                               source_bars=source_bars)
         for bar in range(total_bars):
-            avoid_by_bar[bar] = onset_steps
+            avoid_by_bar[bar] = set(onset_steps)
     drum_pattern = generate_drum_pattern(rng, sections, profile, swing_ms, ms_tick, avoid_by_bar)
 
     root = recipe["bass_root"]

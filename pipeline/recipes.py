@@ -297,55 +297,174 @@ def choose_kit() -> dict[str, list[str]]:
 
 
 # ---------- Chop 切分（瞬态 + phrase） ----------
-def slice_hero_chops(asset_path: Path, start: float, end: float, n: int = 16,
+def slice_hero_chops(asset_path, start: float, end: float, n: int = 16,
                      sr: int = 22050) -> list[float]:
-    """把 hero 区间切成 n 片：onset 检测选最接近等分点的瞬态做切点，失败退回等分。
-    返回 n+1 个边界（源文件绝对秒）。"""
-    import librosa
-    import numpy as np
-    try:
-        y, sr_out = common.load_audio_mono(asset_path, sr=sr)
-    except Exception:
-        y, sr_out = None, sr
-    if y is not None:
-        try:
-            seg = y[int(start * sr_out): int(end * sr_out)]
-            if len(seg) >= int(0.05 * sr_out):
-                onsets = librosa.onset.onset_detect(y=seg, sr=sr_out, units="samples", backtrack=True)
-                targets = np.linspace(0, len(seg), n + 1)[1:-1]
-                picks: set[int] = set()
-                if len(onsets):
-                    for t in targets:
-                        picks.add(int(min(onsets, key=lambda o: abs(o - t))))
-                    picks = {p for p in picks if 0 < p < len(seg)}
-                bounds = sorted({0, len(seg)} | picks)
-                if len(bounds) - 1 >= max(2, n // 2):   # 瞬态够密才采用，否则等分兜底
-                    seg_start = int(start * sr_out)
-                    return [start + b / sr_out for b in bounds]
-        except Exception:
-            pass
-    dur = max(0.0, end - start)
-    return [round(start + dur * i / n, 6) for i in range(n + 1)]
+    """Split the hero region into exactly n slices.
 
+    Interior boundaries prefer a detected transient close to the corresponding
+    equal-width target. Detection failures fall back to an equal grid. The
+    returned values are absolute seconds in the source asset and contain
+    exactly n+1 strictly increasing boundaries, including exact start/end.
+    """
+    import math
+    from pathlib import Path
 
-def hero_onset_steps(asset_path: Path | None, start: float, end: float, bpm: float,
-                     sr: int = 22050) -> set[int]:
-    """hero 窗内 onset 映射为 16 分步（0-15，模 16）：sample-aware drums 避让用。
-    无音频/失败返回空集（鼓照常生成）。"""
-    if not asset_path or not Path(asset_path).exists():
-        return set()
-    import librosa
+    start = float(start)
+    end = float(end)
+    if not math.isfinite(start) or not math.isfinite(end):
+        raise ValueError("start and end must be finite")
+    if start < 0.0:
+        raise ValueError("start must be non-negative")
+    if end <= start:
+        raise ValueError("end must be greater than start")
+    if not isinstance(n, int) or isinstance(n, bool) or n <= 0:
+        raise ValueError("n must be a positive integer")
+    if n > 128:
+        raise ValueError("n must not exceed 128")
+    if not isinstance(sr, int) or isinstance(sr, bool) or sr <= 0:
+        raise ValueError("sr must be a positive integer")
+
+    duration = end - start
+    equal = [start + duration * i / n for i in range(n + 1)]
+
     try:
+        import librosa
+        import numpy as np
         y, sr_out = common.load_audio_mono(Path(asset_path), sr=sr)
     except Exception:
-        return set()
+        return equal
+    sr_out = int(sr_out)
+    total_samples = len(y)
+    if start * sr_out >= total_samples or end * sr_out > total_samples + 1.0:
+        raise ValueError("requested region is outside available audio")
+    start_frame = int(math.floor(start * sr_out))
+    end_frame = min(int(math.floor(end * sr_out)), total_samples)
+    seg = y[start_frame:end_frame]
+    available_samples = len(seg)
+    if available_samples < max(1, int(0.05 * sr_out)):
+        return equal
     try:
-        seg = y[int(start * sr_out): int(end * sr_out)]
-        if len(seg) < int(0.05 * sr_out):
+        onset_samples = librosa.onset.onset_detect(
+            y=seg, sr=sr_out, units="samples", backtrack=True
+        )
+        onset_samples = np.asarray(onset_samples, dtype=float)
+        if onset_samples.size == 0:
+            return equal
+
+        valid = (onset_samples > 0) & (onset_samples < available_samples)
+        onset_samples = onset_samples[valid]
+        if onset_samples.size == 0:
+            return equal
+
+        radius_samples = 0.45 * duration * sr_out / n
+        boundaries = [start]
+        previous = start
+
+        for i in range(1, n):
+            target_abs = start + duration * i / n
+            target_local = target_abs * sr_out - start_frame
+            nearby = onset_samples[
+                np.abs(onset_samples - target_local) <= radius_samples
+            ]
+            candidate = target_abs
+            if nearby.size:
+                nearest_local = float(
+                    nearby[np.argmin(np.abs(nearby - target_local))]
+                )
+                snapped = (start_frame + nearest_local) / sr_out
+                if previous < snapped < end:
+                    candidate = snapped
+
+            if candidate <= previous:
+                candidate = previous + (end - previous) / (n - i + 1)
+            if candidate >= end:
+                candidate = previous + (end - previous) / (n - i + 1)
+
+            boundaries.append(candidate)
+            previous = candidate
+
+        boundaries.append(end)
+        if len(boundaries) != n + 1 or any(
+            boundaries[i] >= boundaries[i + 1] for i in range(n)
+        ):
+            return equal
+        return boundaries
+    except Exception:
+        return equal
+
+
+def hero_onset_steps(asset_path, start: float, end: float, bpm: float,
+                     sr: int = 22050, *, source_bars: int | None = None) -> set[int]:
+    """Map onsets in the hero window to 16th-note steps (0-15, modulo 16).
+
+    With source_bars, the mapping is based on the timing of the original
+    source region: each source bar contributes sixteen source steps. This is
+    the coordinate system used before compose stretches source chunks. The
+    legacy target-BPM calculation is retained when source_bars is omitted.
+
+    An invalid source_bars value returns an empty set for backward
+    compatibility. Negative, non-finite, and out-of-segment detections are
+    discarded.
+    """
+    import math
+    from pathlib import Path
+
+    if not asset_path or not Path(asset_path).exists():
+        return set()
+
+    try:
+        start = float(start)
+        end = float(end)
+        duration = end - start
+        if not math.isfinite(start) or not math.isfinite(end) or duration <= 0:
             return set()
+        if start < 0.0:
+            return set()
+
+        use_source_grid = source_bars is not None
+        source_step_s = None
+        target_step_s = None
+
+        if use_source_grid:
+            if (
+                not isinstance(source_bars, int)
+                or isinstance(source_bars, bool)
+                or source_bars <= 0
+            ):
+                return set()
+            source_step_s = duration / source_bars / 16.0
+            if not math.isfinite(source_step_s) or source_step_s <= 0:
+                return set()
+        else:
+            bpm = float(bpm)
+            if not math.isfinite(bpm) or bpm <= 0:
+                return set()
+            target_step_s = 60.0 / bpm / 4.0
+
+        if not isinstance(sr, int) or isinstance(sr, bool) or sr <= 0:
+            return set()
+
+        import librosa
+        import numpy as np
+
+        y, sr_out = common.load_audio_mono(Path(asset_path), sr=sr)
+        sr_out = int(sr_out)
+        start_frame = int(math.floor(start * sr_out))
+        end_frame = int(math.floor(end * sr_out))
+        seg = y[start_frame:min(end_frame, len(y))]
+        if len(seg) < max(1, int(0.05 * sr_out)):
+            return set()
+
         onsets = librosa.onset.onset_detect(y=seg, sr=sr_out, units="time")
-        step_s = 60.0 / bpm / 4.0
-        return {int(o / step_s) % 16 for o in onsets}
+        onsets = np.asarray(onsets, dtype=float)
+        local_duration = len(seg) / sr_out
+        valid = np.isfinite(onsets) & (onsets >= 0.0) & (onsets <= local_duration)
+        onsets = onsets[valid]
+        if onsets.size == 0:
+            return set()
+
+        step_s = source_step_s if use_source_grid else target_step_s
+        return {int(float(o) / step_s) % 16 for o in onsets}
     except Exception:
         return set()
 
@@ -652,3 +771,85 @@ def set_test_root(path: str | Path) -> None:
     common.LIBRARY = p / "library"
     common.MIRROR_ROOT = p / "mirror"
     common.STAGING = p / "staging"
+
+
+def source_grid_for_region(
+    asset_path,
+    start: float,
+    end: float,
+    expected_bpm: float | None = None,
+    sr: int = 22050,
+):
+    """Load a source region, detect source beat times, and fit a BeatGrid.
+
+    Detected librosa beat times are local crop seconds and are converted to
+    absolute source seconds using the actual crop start. ``expected_bpm``
+    describes the source only. Argument errors are raised; loading or
+    detection failures return ``fit_beat_grid([], ...)`` with zero confidence.
+    """
+    import math
+    from pathlib import Path
+
+    from beatgrid import fit_beat_grid
+
+    start = float(start)
+    end = float(end)
+    if not math.isfinite(start) or not math.isfinite(end) or start < 0.0:
+        raise ValueError("invalid region")
+    if end <= start:
+        raise ValueError("end must be greater than start")
+    if expected_bpm is not None:
+        expected_bpm = float(expected_bpm)
+        if not math.isfinite(expected_bpm) or expected_bpm <= 0.0:
+            raise ValueError("expected_bpm must be positive")
+    if not isinstance(sr, int) or isinstance(sr, bool) or sr <= 0:
+        raise ValueError("sr must be a positive integer")
+
+    region = (start, end)
+    try:
+        import librosa
+        import numpy as np
+
+        y, sr_out = common.load_audio_mono(Path(asset_path), sr=sr)
+        sr_out = int(sr_out)
+        start_frame = int(math.floor(start * sr_out))
+        end_frame = int(math.floor(end * sr_out))
+        actual_start_frame = min(start_frame, len(y))
+        actual_end_frame = min(end_frame, len(y))
+        seg = y[actual_start_frame:actual_end_frame]
+        if len(seg) < max(1, int(0.05 * sr_out)):
+            raise ValueError("region is too short for beat detection")
+        if end_frame > len(y) and end * sr_out > len(y) + 1.0:
+            raise ValueError("requested region ends after available audio")
+
+        kwargs = {}
+        if expected_bpm is not None:
+            kwargs["start_bpm"] = float(expected_bpm)
+
+        _, beat_times = librosa.beat.beat_track(
+            y=seg, sr=sr_out, units="time", **kwargs
+        )
+        crop_start_sec = actual_start_frame / sr_out
+        local_duration = len(seg) / sr_out
+        absolute_beats = [
+            crop_start_sec + float(t)
+            for t in np.asarray(beat_times, dtype=float).reshape(-1)
+            if math.isfinite(float(t))
+            and -1.0 / sr_out <= float(t) <= local_duration + 1.0 / sr_out
+        ]
+
+        return fit_beat_grid(
+            absolute_beats,
+            start_sec=start,
+            end_sec=end,
+            expected_bpm=expected_bpm,
+            source_kind="provided_beats",
+        )
+    except Exception:
+        return fit_beat_grid(
+            [],
+            start_sec=region[0],
+            end_sec=region[1],
+            expected_bpm=expected_bpm,
+            source_kind="provided_beats",
+        )
