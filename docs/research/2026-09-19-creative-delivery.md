@@ -1,5 +1,7 @@
 # BeatLab 创意交付报告
 
+代码交付提交 `6715427c8104b5e95898d954b2c13581743e2e72` 已普通 push 到 `codex/album-execution-20260919` 并核验远端一致。main 仍为 `3d333fe`。恢复本轮代码请进入 `.cache/album-execution-20260919`，主工作区旧采样分支没有被覆盖。
+
 ## 变更
 - 分支 `codex/album-execution-20260919` 在隔离 worktree 中整合采样分支 `72fc1f5` 与 main `3d333fe`，未合入 main。
 - E01：将实际人声 gain×1.5、有效增益上限和非拉伸唱句的 8 秒截断写入清单；拉伸乐句保持声明时长，处理片段保存浮点 WAV。
