@@ -1,0 +1,228 @@
+{
+  "task_id": "ALGO-4H-20260919",
+  "stage": "pure_modules_verified_integration_pending",
+  "delegated_implementation_tasks": 4,
+  "attempts_per_task": 2,
+  "quality_corrections_per_task": 1,
+  "primary_role": "Contracts, extraction/normalization, real tests, narrow repairs, incorrect-test rejection; four downstream implementations reused. No further retry of these tasks.",
+  "adopted_modules": [
+    "phrase_candidates",
+    "beatgrid",
+    "phrase_diversity",
+    "phrase_schedule"
+  ],
+  "local_repairs": [
+    "Candidate endpoint preservation, validate short-region boundaries, remove redundant gap loops and global dedup",
+    "Diversity missing/non-numeric score handling, numeric identity normalization, stable mixed-ID tie sorting; corrected IoU arithmetic and chronological-return assertions",
+    "Scheduler retains run history across bars for multiple motifs, single-motif rests reset per bar; ensured hook return; corrected 3-slot contract assertions",
+    "Beat grid float-tolerance tie prior regression reproduced (1.0 s expected, incorrectly 0.5 s), fixed only equivalent fits",
+    "Tests import existing flat pipeline layout rather than treating pipeline.py as package"
+  ],
+  "validation": {
+    "full_unittest": {
+      "count": 156,
+      "seconds": 6.967,
+      "result": "PASS",
+      "command": "python -m unittest discover -s tests -v",
+      "log": ".cache/algorithm-sprint-20260919/full-tests.log"
+    },
+    "baseline": {
+      "asset_count": 22,
+      "errors": 0,
+      "kept_moments": 125,
+      "same_source_overlap_conflict_pairs": 56,
+      "source_hash_and_mtime_preserved": true,
+      "checked_source_files": 22,
+      "write_db": false,
+      "raw_results": ".cache/algorithm-sprint-20260919/baseline/results.json",
+      "note": "125 moments are legacy baseline, not improved selection. No vocal stems present; no lyric identity claims."
+    }
+  },
+  "batches": [
+    {
+      "name": "wave-02-pure-algorithms",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "jobs": [
+        {
+          "id": "phrase_candidates",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 2959,
+            "prompt_tokens": 648,
+            "total_tokens": 3607,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 56188,
+          "started_at": "2026-09-19T16:02:52.607037+00:00",
+          "finished_at": "2026-09-19T16:03:48.798459+00:00"
+        },
+        {
+          "id": "beatgrid",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 3641,
+            "prompt_tokens": 709,
+            "total_tokens": 4350,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 66003,
+          "started_at": "2026-09-19T16:02:52.607262+00:00",
+          "finished_at": "2026-09-19T16:03:58.614380+00:00"
+        },
+        {
+          "id": "phrase_diversity",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 3580,
+            "prompt_tokens": 578,
+            "total_tokens": 4158,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 62520,
+          "started_at": "2026-09-19T16:02:52.607674+00:00",
+          "finished_at": "2026-09-19T16:03:55.132041+00:00"
+        },
+        {
+          "id": "phrase_schedule",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 3632,
+            "prompt_tokens": 698,
+            "total_tokens": 4330,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 68214,
+          "started_at": "2026-09-19T16:02:52.607830+00:00",
+          "finished_at": "2026-09-19T16:04:00.828261+00:00"
+        }
+      ]
+    },
+    {
+      "name": "wave-02-correction",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "jobs": [
+        {
+          "id": "phrase_candidates",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4648,
+            "prompt_tokens": 3839,
+            "total_tokens": 8487,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 73674,
+          "started_at": "2026-09-19T16:21:55.439518+00:00",
+          "finished_at": "2026-09-19T16:23:09.119013+00:00"
+        },
+        {
+          "id": "beatgrid",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 5114,
+            "prompt_tokens": 4417,
+            "total_tokens": 9531,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 79947,
+          "started_at": "2026-09-19T16:21:55.440140+00:00",
+          "finished_at": "2026-09-19T16:23:15.390128+00:00"
+        },
+        {
+          "id": "phrase_diversity",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4696,
+            "prompt_tokens": 4254,
+            "total_tokens": 8950,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 71660,
+          "started_at": "2026-09-19T16:21:55.440572+00:00",
+          "finished_at": "2026-09-19T16:23:07.104305+00:00"
+        },
+        {
+          "id": "phrase_schedule",
+          "model": "auto",
+          "usage": {
+            "completion_tokens": 4619,
+            "prompt_tokens": 4673,
+            "total_tokens": 9292,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "elapsed_ms": 70057,
+          "started_at": "2026-09-19T16:21:55.440660+00:00",
+          "finished_at": "2026-09-19T16:23:05.503983+00:00"
+        }
+      ]
+    }
+  ],
+  "unverified": [
+    "No production integration yet",
+    "No rendered A/B comparison yet",
+    "Subjective listening pending user"
+  ],
+  "independent_review": {
+    "delegated_tasks": 1,
+    "attempts": 1,
+    "requested_model": "doubao-seed-evolving",
+    "returned_model": "doubao-seed-evolving",
+    "adoption": "review read; zero findings adopted",
+    "reason": "All four triggers contradict actual observed behavior or claim unwarranted true beat/last-note requirement. Concrete reproduction saved. No speculative fixes.",
+    "evidence": ".cache/algorithm-sprint-20260919/wave-03-integration/pure-review-reproduction.json",
+    "usage": {
+      "completion_tokens": 758,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens": 9355,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 10113
+    }
+  }
+}

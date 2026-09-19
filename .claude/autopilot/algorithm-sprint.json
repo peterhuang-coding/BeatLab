@@ -13,10 +13,10 @@
   "data_root": "/Volumes/SanDisk2TB/BeatLab",
   "baseline_commit": "3100fc2990f29fc84f98a3915600759a21629a19",
   "baseline_tests": 99,
-  "current_wave": "wave-02-pure-algorithms",
-  "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-02-pure-algorithms",
-  "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-02-manifest.json",
-  "next_step": "Check wave02 original summary/results. Parse only expected module/test paths, apply tests then implementations sequentially, run each isolated unittest. Inspect flaws. At most one quality correction per implementation task. Do not start integration or another batch until known results checked. Need real-audio baseline/comparison later; 4h deadline unchanged.",
+  "current_wave": "wave-03-integration",
+  "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-03-integration",
+  "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-03-manifest.json",
+  "next_step": "Inspect original wave03 summary/results, never duplicate. Pure modules156tests pass; baseline22assets125moments56overlap pairs. Three disjoint integration drafts plus pure-code review; apply serially, tests then real audio comparisons. deadline unchanged.",
   "stop_conditions": [
     "deadline reached",
     "provider failure/rate limit/unknown: stop later waves and inspect original attempt",
@@ -48,5 +48,10 @@
   "baseline_attempts_per_track": 2,
   "observed_peak_in_flight": 4,
   "baseline_review": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-01-review.json",
-  "implementation_attempts_per_track": 1
+  "implementation_attempts_per_track": 2,
+  "pure_modules_verified": true,
+  "pure_test_count": 57,
+  "total_test_count": 156,
+  "baseline_audio_results": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/baseline/results.json",
+  "integration_attempts_per_task": 1
 }
