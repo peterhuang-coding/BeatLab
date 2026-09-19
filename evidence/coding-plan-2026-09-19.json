@@ -1,0 +1,182 @@
+{
+  "calls": [
+    {
+      "task": "music-1",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "invalid_output",
+      "usage": {
+        "completion_tokens": 4322,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 420,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 4742
+      },
+      "review": {
+        "status": "reviewed",
+        "applied": false,
+        "note": "Rejected: invalid JSON, inaccurate harmonic names and ambiguous beat offsets."
+      }
+    },
+    {
+      "task": "integrity-2",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "verifying",
+      "usage": {
+        "completion_tokens": 1787,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 7882,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 9669
+      },
+      "review": {
+        "status": "reviewed",
+        "applied": false,
+        "note": "Rejected direct application: missing stat import, duplicate-read false positives, omitted hashes for referenced entries, flawed builder order. Adopted checklist only; local real-audio tests drove simpler implementation."
+      }
+    },
+    {
+      "task": "music-2",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "verifying",
+      "usage": {
+        "completion_tokens": 1602,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 524,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2126
+      },
+      "review": {
+        "status": "reviewed",
+        "applied": false,
+        "note": "Partially adopted: emotional contrast, BPM/bar targets, motif gestures and half-time turn. Reworked harmony progression cadence, drum grids and orchestration locally."
+      }
+    },
+    {
+      "task": "feedback-1",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "verifying",
+      "usage": {
+        "completion_tokens": 679,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 301,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 980
+      },
+      "review": {
+        "status": "reviewed",
+        "applied": true,
+        "note": "Applied revise_score helper with duplicate track and existing finite-gain checks added. Tested via audio ratios, idempotence and HTTP."
+      }
+    },
+    {
+      "task": "integrity-1",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "incomplete",
+      "usage": {
+        "completion_tokens": 6500,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 7868,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 14368
+      },
+      "review": {
+        "status": "reviewed",
+        "applied": false,
+        "note": "Rejected: truncated response, unnecessary buggy custom MIDI parser."
+      }
+    },
+    {
+      "task": "delivery-1",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "verifying",
+      "usage": {
+        "completion_tokens": 599,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 603,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1202
+      },
+      "review": {
+        "status": "accepted_with_corrections",
+        "corrections": [
+          "cap is duration, not just level",
+          "tracks rather than songs for dB changes",
+          "79 final tests",
+          "7 actual calls including report",
+          "replace awkward prose and append paths/limits"
+        ]
+      }
+    },
+    {
+      "task": "review-1",
+      "provider": "volcengine-plan",
+      "model": "doubao-seed-evolving",
+      "status": "verifying",
+      "usage": {
+        "completion_tokens": 507,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 5993,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 6500
+      },
+      "review": {
+        "status": "reviewed",
+        "adopted": [
+          "score/manifest track-set check"
+        ],
+        "rejected": [
+          "reference mix is copied by asset loop; real package tests pass",
+          "HTTP adapter exists and real HTTP test passes",
+          "source SHA checks original bytes; align default CORE root for consistency"
+        ],
+        "primary_agent_reason": "Actual local source and tests needed to adjudicate incomplete-context review"
+      }
+    }
+  ],
+  "paid_fallback": false,
+  "main_agent_usage": "unknown",
+  "savings_percentage": "not measured",
+  "delegation_summary": {
+    "bounded_subtasks": 5,
+    "actual_attempts": 7,
+    "partially_adopted_checklist": 1,
+    "rejected_code_drafts": 2,
+    "direct_local_work": "Conflict resolution, audio application/render, code corrections, actual tests, UI, Git and Notion; no external tool execution was claimed.",
+    "accepted_or_partially_used_tasks": 5,
+    "direct_code_adoption_tasks": 1
+  }
+}

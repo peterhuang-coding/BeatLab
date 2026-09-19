@@ -14,20 +14,21 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
-ALBUM-CONCEPT-20260918：[《借来的光》专辑提案 v0.1](../../docs/superpowers/specs/2026-09-18-borrowed-light-album-proposal.md)。推荐野心→失真→找到自己，九曲约27:40；另含梦境/关系两条备选。已交付叙事、曲序、声音角色与三首声景小样的创作顺序。只有“专辑优先/商业后置”已获用户确认；名字、故事、曲目、BPM与制作顺序仍是提案，本轮没有生成音频。
-R06 研究保留，销售实施后置，不继续把国内/海外买家选择当成当前下一步。Afterglow v3 仍待试听，既有作品保留。
+ALBUM-EXECUTION-20260919 已完成技术交付，待试听：[报告](../../docs/research/2026-09-19-creative-delivery.md)、[计划](../../docs/superpowers/plans/2026-09-19-album-execution.md)。用户直接授权 Coding Plan 优先推进工程并生成音乐，覆盖本轮 E01–E04 的原未选状态；未来夜班仍按最新 Notion 选择。
 
-## 已试路径
-94 项结构测试未覆盖人声有效增益、PCM16 premaster 削波、损坏包哈希；这些反例已复现，修复尚待执行。
+执行分支 `codex/album-execution-20260919`，工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`，整合起点 `72fc1f5` 与 main `3d333fe`。主工作区仍为旧采样分支，恢复时不能在旧代码上宣称具备本轮修复。
 
-## 待决策
-讨论专辑情绪中心：推荐《借来的光》的野心与自我发明，也可转向梦境或关系。提案待反馈；确认后从03《口袋里的太阳》的60–90秒声景小样起步。无选择不自动启动九首制作，auto-default：否。
+## 本轮结果
+- E01–E04 技术验收通过：清单含有效人声处理、浮点 premaster、包完整性与恢复校验、两线整合。
+- score 声部增益反馈实际生成不可变子版本，固定父版 master gain，保持其他声部；重复请求复用。并非自然语言重切 worker。
+- 三段《借来的光》小样：Pocket Sun 80.37s / Applause Machine 82s / No Curtain Call 72.24s，带来源、原句、solo、MIDI、分轨、ALS、ChopRack。整张故事与九曲仍是提案，听感待用户。
+- 79 项 unittest、94 条工程断言、真实 SQLite 合成烟测通过；旧音频哈希保持。
+- Coding Plan 实际 7 次请求/5 子任务，代码、编曲、审查、报告有采用及拒收记录；没有按量兜底。
 
-## 禁区
-保留原音频；素材/数据库不入 Git；无用户选择不扩方向；无对应授权不付费、发消息或发布音乐；不 force push 或擅自合 main。
+## 未完成与边界
+Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
-## 进度
-- 已有认可整曲、14 条老歌片段；Live 实际还原和反馈 worker 待验。
-- R06 已研究待验收；R01–R05、E01–E04 仍待定方向，见 [待办](../../docs/product/research-backlog.md)。
-- main 3d333fe 与采样分支尚未整合。
-最近一轮：2026-09-18 专辑叙事提案；本轮没有新音频。商业后置，夜班选择规则未改。规则见 [协作流程](../../docs/product/day-night-workflow.md)。
+## 下一步（唯一）
+用户试听三段并选一段扩为完整曲。没有选择时不自动展开九首；auto-default：否。
+
+最近一轮：[2026-09-19 工程与三段小样](rounds/2026-09-19-album-execution.md)。

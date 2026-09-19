@@ -49,7 +49,7 @@ python3.12 -m venv .venv
 ./beatlab feedback serve --port 8793
 ```
 
-所有模块也可通过 `.venv/bin/python pipeline/<模块名>.py` 单独运行。`./beatlab all` 仍是旧版占位入口，**没有执行全流程**，请使用上面的逐步命令。当前 Regenerate 只记录待办请求，尚无后台 worker 自动执行。
+所有模块也可通过 `.venv/bin/python pipeline/<模块名>.py` 单独运行。`./beatlab all --path <目录> --run-id <新ID>` 已串联摄入、拆轨、分析、编排、渲染和报告；本轮隔离烟测不含 Demucs 推理。旧候选 Regenerate 仍只写请求。`song` 作品另有可实际渲染的按声部音量反馈，见下方。
 
 在线 Review 支持三个候选对比试听、打分、Keep / Reject / Export。直接打开静态 HTML 可以试听，提交反馈需从本地服务访问。端口被其他项目占用时，用 `--port` 换空闲端口。
 
@@ -76,7 +76,13 @@ python3.12 -m venv .venv
 ./beatlab package --song beats/windowlight-v1 --out exports/windowlight-v1/ReleaseDraft
 ```
 
-输出目录已有内容时使用新的版本名。`song`、`ableton_export`、`package` 不写用户反馈数据库；这条路线尚未接自动 Regenerate。
+输出目录已有内容时使用新的版本名。`song`、`ableton_export`、`package` 不写用户反馈数据库。Review 中打开 `song` 作品，选择声部减弱即可生成独立子版本；父版、来源和总线增益保留。同样请求复用已验证结果，未完成状态保留在隐藏 `.pending` 目录供检查。暂不支持自然语言重切或自动改编。
+
+```bash
+./beatlab revision --song beats/<作品> --gains '{"vocal_oh":-6}'
+```
+
+2026-09-19 已交付三段《借来的光》声景小样及工程整合，[说明与验收](docs/research/2026-09-19-creative-delivery.md)。
 
 Ableton 输出实际音频轨、段落标记、收集后的 WAV，以及另存的 MIDI/score。音色与混音处理已烧录在音频分轨中；单独 MIDI 不会还原音色。导出器校验文件哈希、音频长度、非静音和分轨相加误差，Live 实际打开及回渲染须另做验收。
 
@@ -110,7 +116,7 @@ GitHub 只包含代码，**不包含素材、旧作品、数据库、模型或�
 
 ## Ableton 与已知边界
 
-- 传统 `render` 路线仍只复制内置 Quick Start Beat 模板并修改 BPM，需按 `ABLETON_HANDOFF.txt` 拖入媒体。上面的 `song → ableton_export` 路线才会生成实际装入分轨的音频工程。
+- 传统 `render` 路线已停用空模板 ALS，输出事件级 `arrangement.json` 和可搬移 `project/`，必需文件、哈希及解码均校验。`song → ableton_export` 生成装入真实分轨的音频 ALS；两条路线的实际 Live 回放均须另验。
 - 缺少模板可用 `render <run_id> --no-als`；WAV、MIDI、切片和分轨不依赖 Ableton。
 - 本轮 `compose` 对指定 Hero stem 缺失会报错；需检查四条 stem 是否真实生成，源 BPM 未知时仍会标记并使用时长 fallback，尚无全局下拍校准。
 - 自动鼓组和混音是制作草稿，最终质量需要试听判断。

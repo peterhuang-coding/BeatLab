@@ -96,26 +96,46 @@ def _rows(fn, *args) -> list[dict]:
 
 
 def get_moments() -> list[dict]:
-    return _rows(common.get_moments, common.get_db())
+    conn = common.get_db()
+    try:
+        return _rows(common.get_moments, conn)
+    finally:
+        conn.close()
 
 
 def get_assets() -> list[dict]:
-    return _rows(common.get_assets, common.get_db())
+    conn = common.get_db()
+    try:
+        return _rows(common.get_assets, conn)
+    finally:
+        conn.close()
 
 
 def upsert_job(job_id: str, status: str) -> None:
-    _adapt_call(common.upsert_job, common.get_db(),
-                {"id": job_id, "type": "run", "state": status})
+    conn = common.get_db()
+    try:
+        _adapt_call(common.upsert_job, conn,
+                    {"id": job_id, "type": "run", "state": status})
+    finally:
+        conn.close()
 
 
 def mark_job(job_id: str, status: str) -> None:
-    _adapt_call(common.mark_job, common.get_db(), job_id, status)
+    conn = common.get_db()
+    try:
+        _adapt_call(common.mark_job, conn, job_id, status)
+    finally:
+        conn.close()
 
 
 def upsert_run(run_id: str, **fields: Any) -> None:
     if "status" in fields:          # 调用方用 status，common 契约用 state
         fields["state"] = fields.pop("status")
-    _adapt_call(common.upsert_run, common.get_db(), {"id": run_id, **fields})
+    conn = common.get_db()
+    try:
+        _adapt_call(common.upsert_run, conn, {"id": run_id, **fields})
+    finally:
+        conn.close()
 
 
 def job_status(job_id: str) -> str | None:

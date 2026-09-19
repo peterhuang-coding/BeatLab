@@ -280,15 +280,31 @@ _ASSET_COLUMNS = (
 
 
 def upsert_asset(conn: sqlite3.Connection, asset: dict) -> None:
-    """INSERT OR REPLACE。tags 传 list（内部序列化为 tags_json）；未给列置 NULL/默认。"""
-    a = {c: None for c in _ASSET_COLUMNS}
-    a.update(asset)
-    a["tags_json"] = _dumps(asset.get("tags") or [])
-    a.setdefault("status", "ingested")
-    a.setdefault("stems_ready", 0)
+    """字段级 upsert；重新摄入只更新来源字段，保留下游分析与生命周期状态。"""
+    a = {c: asset[c] for c in _ASSET_COLUMNS if c in asset}
+    if "tags" in asset:
+        a["tags_json"] = _dumps(asset.get("tags") or [])
+    elif "tags_json" in asset:
+        a["tags_json"] = _dumps(asset.get("tags_json"))
+    if not a.get("id"):
+        raise ValueError("asset.id 不能为空")
+
+    columns = [c for c in _ASSET_COLUMNS if c in a]
+    update_columns = [c for c in columns if c != "id"]
+    if asset.get("status") == "ingested":
+        downstream_columns = {
+            "fingerprint", "bpm", "bpm_conf", "key_note", "key_conf",
+            "status", "stems_ready", "analyzed_at",
+        }
+        update_columns = [c for c in update_columns if c not in downstream_columns]
+    conflict = (
+        "DO UPDATE SET " + ", ".join(f"{c}=excluded.{c}" for c in update_columns)
+        if update_columns else "DO NOTHING"
+    )
     conn.execute(
-        f"INSERT OR REPLACE INTO assets ({', '.join(_ASSET_COLUMNS)}) "
-        f"VALUES ({', '.join(':' + c for c in _ASSET_COLUMNS)})",
+        f"INSERT INTO assets ({', '.join(columns)}) "
+        f"VALUES ({', '.join(':' + c for c in columns)}) "
+        f"ON CONFLICT(id) {conflict}",
         a,
     )
     conn.commit()
@@ -344,8 +360,14 @@ def upsert_rights(conn: sqlite3.Connection, asset_id: str, state: str = "needs_r
         """INSERT INTO rights (asset_id, state, basis, snapshot_json, checked_at)
            VALUES (?, ?, ?, ?, ?)
            ON CONFLICT(asset_id) DO UPDATE SET
-             state=excluded.state, basis=excluded.basis,
-             snapshot_json=excluded.snapshot_json, checked_at=excluded.checked_at""",
+             state=CASE WHEN excluded.state='needs_review' AND excluded.basis='unknown_license'
+                        THEN rights.state ELSE excluded.state END,
+             basis=CASE WHEN excluded.state='needs_review' AND excluded.basis='unknown_license'
+                        THEN rights.basis ELSE excluded.basis END,
+             snapshot_json=CASE WHEN excluded.state='needs_review' AND excluded.basis='unknown_license'
+                                THEN rights.snapshot_json ELSE excluded.snapshot_json END,
+             checked_at=CASE WHEN excluded.state='needs_review' AND excluded.basis='unknown_license'
+                             THEN rights.checked_at ELSE excluded.checked_at END""",
         (asset_id, state, basis, _dumps(snapshot), now_iso()),
     )
     conn.commit()
@@ -399,9 +421,9 @@ def get_moments(conn: sqlite3.Connection, asset_id: str | None = None,
     out = []
     for r in conn.execute(sql, params).fetchall():
         d = dict(r)
-        d["scores"] = _loads(d.pop("scores_json", None))
-        d["explain"] = _loads(d.pop("explain_json", None))
-        d["risks"] = _loads(d.pop("risks_json", None))
+        d["scores"] = _loads(d.get("scores_json"))
+        d["explain"] = _loads(d.get("explain_json"))
+        d["risks"] = _loads(d.get("risks_json"))
         out.append(d)
     return out
 
@@ -424,7 +446,10 @@ def upsert_job(conn: sqlite3.Connection, job: dict) -> None:
         """INSERT INTO jobs (id, type, state, payload_json, error, attempts, updated_at)
            VALUES (:id, :type, :state, :payload_json, :error, :attempts, :updated_at)
            ON CONFLICT(id) DO UPDATE SET
-             type=excluded.type, state=excluded.state, payload_json=excluded.payload_json,
+             type=excluded.type,
+             state=CASE WHEN excluded.type='asset' AND excluded.state='ingested'
+                        THEN jobs.state ELSE excluded.state END,
+             payload_json=excluded.payload_json,
              error=excluded.error, updated_at=excluded.updated_at""",
         j,
     )
@@ -458,19 +483,96 @@ _RUN_COLUMNS = ("id", "hero_moment_id", "recipe_ids_json", "candidate_ids_json",
 
 
 def upsert_run(conn: sqlite3.Connection, run: dict) -> None:
-    """INSERT OR REPLACE。recipe_ids/candidate_ids 传 list（内部序列化）。"""
-    r = {c: None for c in _RUN_COLUMNS}
-    r.update(run)
-    r["recipe_ids_json"] = _dumps(run.get("recipe_ids", run.get("recipe_ids_json")))
-    r["candidate_ids_json"] = _dumps(run.get("candidate_ids", run.get("candidate_ids_json")))
-    if r["state"] is None:
-        r["state"] = "selected"
+    """字段级 upsert；候选映射到 runs/recipes，并保留跨阶段复现元数据。"""
+    if not run.get("id"):
+        raise ValueError("run.id 不能为空")
+
+    r = {c: run[c] for c in _RUN_COLUMNS if c in run}
+    r["id"] = run["id"]
+    if "status" in run and "state" not in run:
+        r["state"] = run["status"]
+    if "created_at" in run and "started_at" not in run:
+        r["started_at"] = run["created_at"]
+    if "generated_at" in run and "finished_at" not in run:
+        r["finished_at"] = run["generated_at"]
+
+    candidates = run.get("candidates")
+    if candidates is not None:
+        candidate_ids, recipe_ids = [], []
+        for candidate in candidates:
+            if isinstance(candidate, dict):
+                recipe_id = candidate.get("recipe_id")
+                candidate_id = (candidate.get("candidate_id") or candidate.get("beat_id")
+                                or candidate.get("id") or recipe_id)
+                if recipe_id is not None:
+                    recipe_ids.append(str(recipe_id))
+                if candidate_id is not None:
+                    candidate_ids.append(str(candidate_id))
+            elif candidate is not None:
+                candidate_ids.append(str(candidate))
+        r["recipe_ids_json"] = _dumps(recipe_ids)
+        r["candidate_ids_json"] = _dumps(candidate_ids)
+    else:
+        if "recipe_ids" in run:
+            r["recipe_ids_json"] = _dumps(run["recipe_ids"])
+        elif "recipe_ids_json" in run:
+            r["recipe_ids_json"] = _dumps(run["recipe_ids_json"])
+        if "candidate_ids" in run:
+            r["candidate_ids_json"] = _dumps(run["candidate_ids"])
+        elif "candidate_ids_json" in run:
+            r["candidate_ids_json"] = _dumps(run["candidate_ids_json"])
+
+    columns = [c for c in _RUN_COLUMNS if c in r]
+    update_columns = [c for c in columns if c != "id"]
+    conflict = (
+        "DO UPDATE SET " + ", ".join(f"{c}=excluded.{c}" for c in update_columns)
+        if update_columns else "DO NOTHING"
+    )
     conn.execute(
-        """INSERT OR REPLACE INTO runs
-           (id, hero_moment_id, recipe_ids_json, candidate_ids_json, state, started_at, finished_at)
-           VALUES (:id, :hero_moment_id, :recipe_ids_json, :candidate_ids_json, :state, :started_at, :finished_at)""",
+        f"INSERT INTO runs ({', '.join(columns)}) "
+        f"VALUES ({', '.join(':' + c for c in columns)}) "
+        f"ON CONFLICT(id) {conflict}",
         r,
     )
+
+    if candidates is not None:
+        run_meta = {k: run[k] for k in (
+            "hero_asset_id", "bpm", "recipe_prior", "created_at", "generated_at"
+        ) if k in run}
+        for candidate in candidates:
+            if not isinstance(candidate, dict) or not candidate.get("recipe_id"):
+                continue
+            recipe_id = str(candidate["recipe_id"])
+            existing = conn.execute(
+                "SELECT kind, manifest_json, seed, pipeline_ver FROM recipes WHERE id = ?",
+                (recipe_id,),
+            ).fetchone()
+            kind = candidate.get("kind") or (existing["kind"] if existing else None)
+            if kind not in RECIPE_KINDS:
+                continue
+            manifest = _loads(existing["manifest_json"]) if existing else None
+            manifest = manifest if isinstance(manifest, dict) else {}
+            manifest.update(candidate)
+            manifest.update(run_meta)
+            seed = candidate.get("seed", run.get("seed"))
+            if seed is None and existing:
+                seed = existing["seed"]
+            pipeline_ver = candidate.get("pipeline_ver", run.get("pipeline_ver"))
+            if pipeline_ver is None and existing:
+                pipeline_ver = existing["pipeline_ver"]
+            conn.execute(
+                """INSERT INTO recipes
+                   (id, run_id, kind, hero_moment_id, manifest_json, seed, pipeline_ver)
+                   VALUES (?, ?, ?, ?, ?, ?, ?)
+                   ON CONFLICT(id) DO UPDATE SET
+                     run_id=excluded.run_id, kind=excluded.kind,
+                     hero_moment_id=COALESCE(excluded.hero_moment_id, recipes.hero_moment_id),
+                     manifest_json=excluded.manifest_json,
+                     seed=COALESCE(excluded.seed, recipes.seed),
+                     pipeline_ver=COALESCE(excluded.pipeline_ver, recipes.pipeline_ver)""",
+                (recipe_id, run["id"], kind, run.get("hero_moment_id"), _dumps(manifest),
+                 seed, pipeline_ver),
+            )
     conn.commit()
 
 

@@ -227,12 +227,15 @@ def action_regenerate(run_id: str, candidate_id: str) -> dict:
 
 def action_export(run_id: str, candidate_id: str) -> dict:
     """Export: 写 Ableton 交付目录 ROOT/exports/<run>/<cand>/
-    （preview.wav/stems/midi/.als/recipe.json/provenance.json/run_manifest.json）。"""
+    （preview/full/premaster、stems、MIDI、arrangement、完整 project 与追溯文件）。"""
     cand_dir, manifests, spec = resolve_candidate(run_id, candidate_id)
     dst = common.ROOT / "exports" / run_id / candidate_id
     copied = report._copy_candidate_files(cand_dir, dst)
-    if (dst / "beat.wav").is_file() and not (dst / "preview.wav").exists():
-        shutil.copy2(dst / "beat.wav", dst / "preview.wav")
+    preview_source = dst / "full_mix.wav"
+    if not preview_source.is_file():
+        preview_source = dst / "beat.wav"
+    if preview_source.is_file() and not (dst / "preview.wav").exists():
+        shutil.copy2(preview_source, dst / "preview.wav")
         copied.append("preview.wav")
     # recipe.json：manifests.recipe 优先，legacy spec 兜底合成
     recipe = manifests.get("recipe") if isinstance(manifests.get("recipe"), dict) else None
@@ -244,7 +247,7 @@ def action_export(run_id: str, candidate_id: str) -> dict:
             "total_bars": spec.total_bars or sum(s.bars for s in spec.sections),
             "sample_ids": list(spec.sample_ids),
         }
-    if recipe is not None:
+    if recipe is not None and not (dst / "recipe.json").is_file():
         (dst / "recipe.json").write_text(
             json.dumps(recipe, ensure_ascii=False, indent=2), encoding="utf-8")
         copied.append("recipe.json")
@@ -252,18 +255,19 @@ def action_export(run_id: str, candidate_id: str) -> dict:
     prov = manifests.get("provenance") if isinstance(manifests.get("provenance"), dict) else None
     if prov is None:
         prov = {"note": "legacy 兼容导出，无上游 provenance 记录", "source_dir": str(cand_dir)}
-    prov = dict(prov)
-    prov.setdefault("exported_at", _now())
-    prov.setdefault("exported_from", str(cand_dir))
-    (dst / "provenance.json").write_text(
-        json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
-    copied.append("provenance.json")
-    # run_manifest.json：本次交付文件清单
-    (dst / "run_manifest.json").write_text(json.dumps({
+    if not (dst / "provenance.json").is_file():
+        prov = dict(prov)
+        prov.setdefault("exported_at", _now())
+        prov.setdefault("exported_from", str(cand_dir))
+        (dst / "provenance.json").write_text(
+            json.dumps(prov, ensure_ascii=False, indent=2), encoding="utf-8")
+        copied.append("provenance.json")
+    # export_manifest.json：本次交付文件清单；run_manifest.json 保留上游运行记录。
+    (dst / "export_manifest.json").write_text(json.dumps({
         "run_id": run_id, "candidate_id": candidate_id, "exported_at": _now(),
         "files": copied, "export_dir": str(dst),
     }, ensure_ascii=False, indent=2), encoding="utf-8")
-    copied.append("run_manifest.json")
+    copied.append("export_manifest.json")
     _save_feedback(run_id, candidate_id, {}, "export", [], outcome="exported")
     return {"ok": True, "message": f"已导出 Ableton 交付目录（{len(copied)} 项）", "export_dir": str(dst)}
 
@@ -474,6 +478,11 @@ class _Handler(BaseHTTPRequestHandler):
             self._send_json(400, {"ok": False, "error": "缺少 target"})
             return
         mode, candidates = report.detect_target(target)
+        if mode == "song":
+            from song_review import build_page
+            self._send(200, build_page(common.ROOT / 'beats' / target).encode('utf-8'),
+                       'text/html; charset=utf-8')
+            return
         port = self.server_ref.port if self.server_ref else self.server.server_port
         page = report.build_review_page(
             target, mode, candidates,
@@ -515,6 +524,17 @@ class _Handler(BaseHTTPRequestHandler):
             elif path == "/api/export":
                 run_id, cand_id, _, _, _ = _norm_feedback(body)
                 self._send_json(200, action_export(run_id, cand_id))
+            elif path == "/api/revise":
+                from revision import revise_song
+                run_id = str(body.get('run_id', ''))
+                if not run_id or Path(run_id).name != run_id or run_id in ('.', '..'):
+                    raise ValueError('Invalid song id')
+                parent = (common.ROOT / 'beats' / run_id).resolve()
+                if not parent.is_relative_to((common.ROOT / 'beats').resolve()):
+                    raise ValueError('Song path escapes library')
+                result = revise_song(parent, body.get('gains_db'))
+                result.update(ok=True, review_url='/review/' + Path(result['song']).name)
+                self._send_json(200, result)
             elif path == "/api/outcome":
                 run_id = str(body.get("run_id") or "").strip()
                 cand_id = str(body.get("candidate_id") or "").strip()

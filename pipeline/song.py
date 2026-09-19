@@ -154,6 +154,10 @@ def render_score(score: dict, out: Path, sr: int = 44100) -> dict:
     # Also constrain each stem to avoid integer-WAV clipping when tracks cancel.
     stem_peak = max(float(np.max(abs(x))) for x in layers.values())
     gain = min(gain, .98/stem_peak)
+    if 'fixed_master_gain' in score:
+        gain = float(score['fixed_master_gain'])
+        if not np.isfinite(gain) or gain <= 0 or max(peak, stem_peak)*gain >= 1:
+            raise ValueError('Fixed parent gain would clip; reduce the requested layer gain')
     out.mkdir(parents=True, exist_ok=True)
     (out/'stems').mkdir()
     (out/'midi').mkdir()
@@ -172,6 +176,7 @@ def render_score(score: dict, out: Path, sr: int = 44100) -> dict:
     manifest = {'title':score['title'], 'bpm':bpm, 'bars':bars, 'duration_seconds':n/sr,
                 'sample_rate':sr, 'tracks':records, 'mix':'full_mix.wav', 'master_gain':gain,
                 'mix_processing':'identical common linear gain on listening mix and all stems',
+                'master_gain_policy':'fixed parent gain' if 'fixed_master_gain' in score else 'peak target',
                 'composition_mode':'curated explicit note score using sample instruments',
                 'license':score.get('license', {}), 'sections':score.get('sections', [])}
     (out/'score.json').write_text(json.dumps(score, ensure_ascii=False, indent=2)+'\n')

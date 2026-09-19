@@ -46,6 +46,22 @@ class FeedbackIntegrationTests(unittest.TestCase):
         with response:
             return response.status, json.loads(response.read())
 
+    def test_score_feedback_creates_real_child_through_http(self):
+        import numpy as np
+        import soundfile as sf
+        from song import render_score
+        source=self.root/'source.wav'
+        sf.write(source,.2*np.sin(2*np.pi*330*np.arange(22050)/22050),22050)
+        score=dict(title='HTTP song',bpm=120,bars=1,tracks=[dict(id='voice',sample=str(source),root_midi=64,events=[dict(beat=0,duration_beats=1,note=64)])])
+        parent=self.root/'beats'/'http-song'
+        render_score(score,parent,sr=22050)
+        status,body=self.request('/api/revise',dict(run_id='http-song',gains_db={'voice':-6}))
+        self.assertEqual(status,200,body)
+        self.assertTrue(Path(body['song'],'full_mix.wav').is_file())
+        self.assertIn(('http-song','song'),feedback.list_targets())
+        with urlopen(f'http://127.0.0.1:{self.server.port}/review/http-song') as response:
+            self.assertIn(b'/api/revise',response.read())
+
     def test_index_discovers_current_render_layout(self):
         self.assertEqual(feedback.list_targets(), [("test-run", "run")])
 

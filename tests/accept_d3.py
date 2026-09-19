@@ -29,9 +29,12 @@ shutil.rmtree(TEST_ROOT, ignore_errors=True)
 TEST_ROOT.mkdir(parents=True, exist_ok=True)
 
 import common                 # noqa: E402
+import arrangement            # noqa: E402
+import daw_export              # noqa: E402
 import recipes                # noqa: E402
 import compose                # noqa: E402
 import render                 # noqa: E402
+import feedback               # noqa: E402
 import soundfile as sf        # noqa: E402
 
 recipes.set_test_root(TEST_ROOT)
@@ -175,13 +178,16 @@ def _get_jobs():
         c.close()
 
 
-common.get_moments = _get_moments
-common.get_assets = _get_assets
-common.upsert_job = _upsert_job
-common.mark_job = _mark_job
-common.upsert_run = _upsert_run
-common.get_jobs = _get_jobs
-common.get_feedback = lambda: []
+# compose/render 只通过 recipes 契约层访问这些能力；测试在该边界注入
+# Dev-3 的旧版轻量表，避免 common.get_db() 尝试把夹具升级为生产 Schema。
+recipes.get_moments = _get_moments
+recipes.get_assets = _get_assets
+recipes.upsert_job = _upsert_job
+recipes.mark_job = _mark_job
+recipes.upsert_run = _upsert_run
+recipes.job_status = lambda job_id: ((job_row(job_id) or {}).get("status"))
+recipes.get_feedback_rows = lambda: []
+feedback.upsert_feedback = lambda row: row["id"]
 
 
 def job_row(run_id):
@@ -286,6 +292,79 @@ check("③ provenance 含 source/rights/moment 区间", (lambda p: p["hero"]["so
       and p["hero"]["end_sec"] == 2.5)(json.loads((run_dir / "loop/provenance.json").read_text(encoding="utf-8"))))
 check("③ provenance 含切片来源 + pipeline 版本", (lambda p: len(p["chops"]) >= 1
       and p["pipeline"].get("ver"))(json.loads((run_dir / "chop/provenance.json").read_text(encoding="utf-8"))))
+
+# ---------- ⑥ 可编辑工程数据底座 + 自包含包 ----------
+print("\n-- editable project package --")
+for k in ("loop", "chop", "stem"):
+    cand = run_dir / k
+    arrangement_path = cand / "arrangement.json"
+    project = cand / "project"
+    check(f"⑥ {k} arrangement.json 存在", arrangement_path.is_file())
+    data = json.loads(arrangement_path.read_text(encoding="utf-8"))
+    tracks = {t["track_id"]: t for t in data["tracks"]}
+    events = [e for t in data["tracks"] for e in t.get("events", [])]
+    check(f"⑥ {k} sample events 与 BeatSpec 一致",
+          len(tracks["track-samples"]["events"]) == len(specs_d[k].chop_placements))
+    check(f"⑥ {k} clip_id 全局唯一",
+          len({e["clip_id"] for e in events}) == len(events))
+    check(f"⑥ {k} 每个事件带 track_id/asset_id",
+          all(e.get("track_id") and e.get("asset_id") for e in events))
+    check(f"⑥ {k} 鼓事件锁定实际 one-shot",
+          all(e.get("asset_id") for e in tracks["track-drums"]["events"]))
+    check(f"⑥ {k} reference 默认静音",
+          tracks["track-reference"]["muted"] is True)
+    check(f"⑥ {k} 验证状态诚实",
+          data["verification"] == {
+              "als_built": False,
+              "audio_rendered": True,
+              "daw_opened": False,
+              "daw_playback_verified": False,
+              "package_built": True,
+              "structure_validated": True,
+          })
+    check(f"⑥ {k} 当前不生成伪 .als", not list(cand.glob("*.als")))
+    check(f"⑥ {k} 自包含工程包结构有效", not daw_export.verify_project_package(project))
+    package_data = json.loads((project / "arrangement.json").read_text(encoding="utf-8"))
+    packaged_assets = [a for a in package_data["assets"] if a.get("package_path")]
+    check(f"⑥ {k} 包内清单只引用相对素材",
+          all(not Path(a["source_path"]).is_absolute()
+              and (project / a["source_path"]).is_file()
+              for a in packaged_assets))
+    moved = TEST_ROOT / "moved-projects" / k
+    shutil.copytree(project, moved)
+    check(f"⑥ {k} 工程包移动后引用仍完整", not daw_export.verify_project_package(moved))
+    check(f"⑥ {k} 关键工程文件齐全",
+          all((project / p).is_file() for p in (
+              "arrangement.json", "manifest.json", "recipe.json", "provenance.json",
+              "spec.json", "MIDI/drums.mid", "MIDI/bass.mid", "MIDI/chops.mid",
+              "reference/full_mix.wav", "reference/premaster_mix.wav",
+          )))
+
+# stable ID：从同一 spec/recipe/kit 重建，轨道事件 ID 必须一致。
+chop_arrangement = json.loads((run_dir / "chop/arrangement.json").read_text(encoding="utf-8"))
+chop_rebuilt = arrangement.build_arrangement(
+    specs_d["chop"], manifests["chop"], render._kit_for_recipe(manifests["chop"], render.build_kit())
+)
+ids_a = [e["clip_id"] for t in chop_arrangement["tracks"] for e in t.get("events", [])]
+ids_b = [e["clip_id"] for t in chop_rebuilt["tracks"] for e in t.get("events", [])]
+check("⑥ arrangement 重建 clip_id 稳定", ids_a == ids_b)
+check("⑥ pipeline all 已接入 moments",
+      'run("moments.py", "--all")' in (PIPE / "pipeline.py").read_text(encoding="utf-8"))
+
+# Keep / Export 必须带走完整 project，而不是只有试听 WAV。
+kept = feedback.action_keep(RUN_ID, "chop")
+kept_dir = Path(kept["kept_dir"])
+check("⑥ Keep 复制完整工程包",
+      (kept_dir / "project/manifest.json").is_file()
+      and (kept_dir / "arrangement.json").is_file()
+      and (kept_dir / "run_manifest.json").is_file())
+exported = feedback.action_export(RUN_ID, "chop")
+export_dir = Path(exported["export_dir"])
+check("⑥ Export 复制完整工程包",
+      (export_dir / "project/manifest.json").is_file()
+      and (export_dir / "arrangement.json").is_file()
+      and (export_dir / "preview.wav").is_file()
+      and (export_dir / "export_manifest.json").is_file())
 
 # ---------- ④ 重跑 render 跳过（jobs generated） ----------
 print("\n-- render 重跑（任务可恢复）--")

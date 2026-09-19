@@ -1,0 +1,117 @@
+{
+  "demos": [
+    {
+      "run_id": "borrowed-light-applause-machine-20260919-v1",
+      "title": "Applause Machine / 掌声机器",
+      "bpm": 144.0,
+      "bars": 48,
+      "duration": 82.0,
+      "stems": 26,
+      "slices": 16,
+      "mix_sha256": "8f131da5f4118b78eb6574c8388cb809121239622b105f31999773f90c8690f0",
+      "stem_sum": {
+        "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+        "peak_error": 7.152557373046875e-07,
+        "rms_error": 1.612329411238723e-07,
+        "relative_rms_db": -118.19572929659151,
+        "tolerance": 3.337860107421875e-06,
+        "passed": true
+      },
+      "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -16.6 LUFS\n    Threshold: -26.7 LUFS\n\n  Loudness range:\n    LRA:         5.0 LU\n    Threshold: -36.7 LUFS\n    LRA low:   -20.5 LUFS\n    LRA high:  -15.5 LUFS\n\n  True peak:\n    Peak:       -1.0 dBFS\n[out#0/null @ 0xcb2c38240] video:0KiB audio:14126KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:01:22.00 bitrate=N/A speed= 287x    \n",
+      "live_verification": {
+        "open": "unverified",
+        "reopen": "unverified",
+        "relocated_open": "unverified",
+        "rerender": "unverified"
+      },
+      "subjective_listening": "pending"
+    },
+    {
+      "run_id": "borrowed-light-no-curtain-call-20260919-v1",
+      "title": "No Curtain Call / 不用谢幕",
+      "bpm": 82.0,
+      "bars": 24,
+      "duration": 72.24390022675738,
+      "stems": 22,
+      "slices": 15,
+      "mix_sha256": "9fc369640f5a67be51fd783d9ad626db494901891156d4253a46b27499de1a30",
+      "stem_sum": {
+        "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+        "peak_error": 4.76837158203125e-07,
+        "rms_error": 1.2479882860135347e-07,
+        "relative_rms_db": -119.0023876325618,
+        "tolerance": 2.86102294921875e-06,
+        "passed": true
+      },
+      "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -17.1 LUFS\n    Threshold: -27.2 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -37.2 LUFS\n    LRA low:   -20.0 LUFS\n    LRA high:  -15.6 LUFS\n\n  True peak:\n    Peak:       -1.0 dBFS\n[out#0/null @ 0x782830240] video:0KiB audio:12445KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:01:12.24 bitrate=N/A speed= 292x    \n",
+      "live_verification": {
+        "open": "unverified",
+        "reopen": "unverified",
+        "relocated_open": "unverified",
+        "rerender": "unverified"
+      },
+      "subjective_listening": "pending"
+    },
+    {
+      "run_id": "borrowed-light-pocket-sun-20260919-v1",
+      "title": "Pocket Sun / 口袋里的太阳",
+      "bpm": 98.0,
+      "bars": 32,
+      "duration": 80.36734693877551,
+      "stems": 25,
+      "slices": 14,
+      "mix_sha256": "68773087cf972513f795acf4743239edb76b1ef7987fd3b9de3ee1f39f77baf6",
+      "stem_sum": {
+        "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+        "peak_error": 7.152557373046875e-07,
+        "rms_error": 1.5299822788679403e-07,
+        "relative_rms_db": -117.53003737754617,
+        "tolerance": 3.2186508178710938e-06,
+        "passed": true
+      },
+      "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -17.5 LUFS\n    Threshold: -27.6 LUFS\n\n  Loudness range:\n    LRA:         7.3 LU\n    Threshold: -37.6 LUFS\n    LRA low:   -23.5 LUFS\n    LRA high:  -16.2 LUFS\n\n  True peak:\n    Peak:       -1.0 dBFS\n[out#0/null @ 0xb92818240] video:0KiB audio:13845KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:01:20.36 bitrate=N/A speed= 267x    \n",
+      "live_verification": {
+        "open": "unverified",
+        "reopen": "unverified",
+        "relocated_open": "unverified",
+        "rerender": "unverified"
+      },
+      "subjective_listening": "pending"
+    }
+  ],
+  "preserved_previous_audio": {
+    "windowlight-v1": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+    "windowlight-v2": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7",
+    "dust-letters-v1": "6780d6f6e4069b4483489539b6e8f7633cbaad01cbb476bc823c4e86a0aa0adb",
+    "afterglow-2026-09-16-v1": "9e030c07f632b2bcb50971adc83f2aa5d9634f9c3de71cae55068483b66ca3a2",
+    "afterglow-2026-09-16-v2": "942c607d79457a0bf7f824c3f74388c8ff96d3c639eb034ec271ccace5166321",
+    "afterglow-2026-09-16-v3": "c6e882879e1453b753327598eff0973956eebb6a34a276404b56c3f8a38396ab"
+  },
+  "no_third_party_audio_uploaded": true,
+  "final_midi_and_rack_checks": [
+    {
+      "run_id": "borrowed-light-applause-machine-20260919-v1",
+      "pad_count": 16,
+      "midi_end_beats": 192,
+      "als_audio_tracks": 26,
+      "pad_references_exist": true,
+      "live_playback": "unverified"
+    },
+    {
+      "run_id": "borrowed-light-no-curtain-call-20260919-v1",
+      "pad_count": 15,
+      "midi_end_beats": 96,
+      "als_audio_tracks": 22,
+      "pad_references_exist": true,
+      "live_playback": "unverified"
+    },
+    {
+      "run_id": "borrowed-light-pocket-sun-20260919-v1",
+      "pad_count": 14,
+      "midi_end_beats": 128,
+      "als_audio_tracks": 25,
+      "pad_references_exist": true,
+      "live_playback": "unverified"
+    }
+  ]
+}
