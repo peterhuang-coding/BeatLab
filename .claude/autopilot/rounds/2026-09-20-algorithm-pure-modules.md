@@ -11,3 +11,5 @@
 第三波并发4已派发：3个互斥接入包与纯模块审查；execsession21476。先查state.current_batch_dir，不重发。review返回的4个怀疑均按原trigger实跑反证，无采纳；证据本地pure-review-reproduction.json。接入结果待应用/测试，不能把返回文本当完成。
 
 待完成：真实接入、选择/音频对照、新作品、Live真实发声与用户听感验收。保留旧专辑提案和所有认可作品。下一步唯一：核验wave03原结果并顺序接入，测试后进行隔离音频对照。
+
+恢复补充：第三波已全部结束。原summary因moments输出notes前多一个右括号标stopped/invalid_output；检查原result已用JSON raw_decode解析主体并仅接收notes尾字段，未重发，三份接入草稿/测试均通过AST语法检查，仍未应用或语义验收。candidate/<task>/保存解析文件，extraction-review.json记录处理。纯模块提交9cdf183d81004e81b00b3394b7f272b5198953b9已普通push并核对远端SHA。下一步不再等任务，直接审阅已恢复草稿。
