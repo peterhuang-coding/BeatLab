@@ -1,0 +1,208 @@
+{
+  "task_id": "ALGO-4H-20260919",
+  "deadline": "2026-09-19T19:56:20.531178+00:00",
+  "observed_after_deadline_utc": "2026-09-19T21:12:52Z",
+  "closed_at": "2026-09-19T22:04:21.674338+00:00",
+  "automation_restored": {
+    "id": true,
+    "kind": true,
+    "name": true,
+    "prompt": true,
+    "status": true,
+    "rrule": true,
+    "target_thread_id": true
+  },
+  "wave05_correction": {
+    "status": "stopped",
+    "jobs": [
+      {
+        "id": "edge_fade_pure",
+        "status": "unknown",
+        "elapsed_ms": 180102,
+        "output_path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction/jobs/edge_fade_pure/result.json",
+        "started_at": "2026-09-19T19:04:09.323925+00:00",
+        "finished_at": "2026-09-19T19:51:32.412471+00:00"
+      },
+      {
+        "id": "bounded_phrase_gate",
+        "status": "unknown",
+        "elapsed_ms": 180104,
+        "output_path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction/jobs/bounded_phrase_gate/result.json",
+        "started_at": "2026-09-19T19:04:09.324253+00:00",
+        "finished_at": "2026-09-19T19:51:32.412411+00:00"
+      },
+      {
+        "id": "source_grid_benchmark",
+        "status": "unknown",
+        "elapsed_ms": 180102,
+        "output_path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction/jobs/source_grid_benchmark/result.json",
+        "started_at": "2026-09-19T19:04:09.324622+00:00",
+        "finished_at": "2026-09-19T19:51:32.412335+00:00"
+      },
+      {
+        "id": "audio_metrics_report",
+        "status": "unknown",
+        "elapsed_ms": 180103,
+        "output_path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-correction/jobs/audio_metrics_report/result.json",
+        "started_at": "2026-09-19T19:04:09.324834+00:00",
+        "finished_at": "2026-09-19T19:51:32.412096+00:00"
+      }
+    ],
+    "concurrency": 4,
+    "elapsed_ms": 180109,
+    "peak_in_flight": 4,
+    "dispatched_count": 4,
+    "final": true
+  },
+  "unadopted_files_parked": [
+    "examples/beat_grid_benchmark.py",
+    "examples/algorithm_audio_metrics.py",
+    "pipeline/stretch_policy.py",
+    "tests/test_stretch_policy.py",
+    "pipeline/clip_envelope.py",
+    "tests/test_clip_envelope.py"
+  ],
+  "known_verified_test_count": 194,
+  "known_verified_code_commit": "9852f5c806968a375379d1816a086ae1bc7378c5",
+  "notion_read_error": "Initial fetch HTTP transport error; closing fetch succeeded. Final update pending commit link.",
+  "notes": [
+    "Wall clock advanced across delayed tool/model activity; continuous four-hour execution cannot be asserted.",
+    "Final batch dispatch19:04UTC precededdeadline19:56UTC; first subsequent clock observation21:12UTC exceededdeadline; no later batch dispatched.",
+    "Timeout elapsed_ms180102 vs wall timestamps19:04→19:51; service execution unknown, no retry.",
+    "Initial wave05 code not adopted: fadecount1bug, pytestunavailable, benchmarkimporterror, metricsroundingreview. Six working files moved to ignored cache after byte-for-byte match to our candidates.",
+    "Primary correction suggestion about absolute offset was wrong: BeatGrid.offset_sec is relative to grid.start_sec; preserve this for any future review."
+  ],
+  "batch_summary": [
+    {
+      "batch": "wave-01-baselines",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "phrases": "incomplete",
+        "timing": "incomplete",
+        "diversity": "incomplete",
+        "arrangement": "incomplete"
+      }
+    },
+    {
+      "batch": "wave-01-correction",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "phrases": "verifying",
+        "timing": "verifying",
+        "diversity": "verifying",
+        "arrangement": "verifying"
+      }
+    },
+    {
+      "batch": "wave-02-correction",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "phrase_candidates": "verifying",
+        "beatgrid": "verifying",
+        "phrase_diversity": "verifying",
+        "phrase_schedule": "verifying"
+      }
+    },
+    {
+      "batch": "wave-02-pure-algorithms",
+      "status": "verifying",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "phrase_candidates": "verifying",
+        "beatgrid": "verifying",
+        "phrase_diversity": "verifying",
+        "phrase_schedule": "verifying"
+      }
+    },
+    {
+      "batch": "wave-03-correction",
+      "status": "verifying",
+      "peak_in_flight": 3,
+      "dispatched_count": 3,
+      "job_statuses": {
+        "moments_phrase_integration": "verifying",
+        "recipes_timing_integration": "verifying",
+        "compose_phrase_schedule_integration": "verifying"
+      }
+    },
+    {
+      "batch": "wave-03-integration",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "moments_phrase_integration": "invalid_output",
+        "recipes_timing_integration": "verifying",
+        "compose_phrase_schedule_integration": "verifying",
+        "pure_algorithms_review": "verifying"
+      }
+    },
+    {
+      "batch": "wave-04-audio-export",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "isolated_audio_ab_runner": "incomplete",
+        "actual_phrase_render_test": "verifying",
+        "phrase_midi_gate": "verifying",
+        "integration_source_timing_review": "verifying"
+      }
+    },
+    {
+      "batch": "wave-04-correction",
+      "status": "stopped",
+      "peak_in_flight": 3,
+      "dispatched_count": 3,
+      "job_statuses": {
+        "isolated_audio_ab_runner": "invalid_output",
+        "actual_phrase_render_test": "verifying",
+        "phrase_midi_gate": "verifying"
+      }
+    },
+    {
+      "batch": "wave-05-correction",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "edge_fade_pure": "unknown",
+        "bounded_phrase_gate": "unknown",
+        "source_grid_benchmark": "unknown",
+        "audio_metrics_report": "unknown"
+      }
+    },
+    {
+      "batch": "wave-05-quality",
+      "status": "stopped",
+      "peak_in_flight": 4,
+      "dispatched_count": 4,
+      "job_statuses": {
+        "edge_fade_pure": "invalid_output",
+        "bounded_phrase_gate": "invalid_output",
+        "source_grid_benchmark": "verifying",
+        "audio_metrics_report": "verifying"
+      }
+    }
+  ],
+  "dispatched_requests": 38,
+  "unknown_final_requests": 4,
+  "paid_fallback": false,
+  "final_unittest": {
+    "count": 194,
+    "seconds": 6.65,
+    "result": "PASS",
+    "log": ".cache/algorithm-sprint-20260919/final-full-tests.log"
+  },
+  "protected_old_audio": {
+    "count": 24,
+    "sha_and_mtime_unchanged": true
+  }
+}

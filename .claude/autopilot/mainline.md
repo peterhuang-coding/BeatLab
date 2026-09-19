@@ -14,9 +14,8 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
-ALGO-4H-20260919 执行中：用户直接授权4小时算法迭代、高并发Coding Plan。北京时间9月19日23:56:20至9月20日03:56:20，四线为选句/循环、节拍、人声多样性、编排层次。见 [计划](../../docs/superpowers/plans/2026-09-19-algorithm-sprint.md) 与 [精确状态/调度恢复备份](algorithm-sprint.json)。每批4路，先检查原波次是否已运行，不并行启动多批；失败/未知先核查，到期不派发并恢复原每日22点夜班。
-
-执行分支 `codex/album-execution-20260919`，工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`；算法基线为下载链路提交 `3100fc2990f29fc84f98a3915600759a21629a19`，已普通push并核验SHA。主工作区仍旧采样分支。原专辑小样与听感待验事项保留。
+ALGO-4H-20260919授权窗口已结束，已验证成果待用户试听；没有待自动恢复的算法执行项。固定截止北京时间9月20日03:56:20，最后4个修正请求unknown，未重发。恢复时已超过截止，原beatlab每日22点ACTIVE调度现已逐项恢复核验，state.automation_restore_required=false。不能将窗口结束等同全部算法完成，也不延长窗口。
+执行分支codex/album-execution-20260919，工作区/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919；主根仍旧音乐分支。见[收尾报告](../../docs/research/2026-09-20-algorithm-sprint-result.md)和[精确状态](algorithm-sprint.json)。
 
 ## 当前算法进度
 三个opt-in接入已验证，完整184项测试通过。22条素材125→67片段，同源超阈值重叠56→0，全部素材仍有候选、0异常、源SHA/mtime保持；原循环性/综合评分略降，不宣布好听。未改默认选句/编排。证据 `evidence/algorithm-integration-2026-09-20.json`。wave-04已完成：194测试通过；Crazy Blues两版68.326秒实际A/B，v1门长/尾休止/MIDI一致，旧24音频保持。证据 `evidence/algorithm-audio-midi-2026-09-20.json`。
@@ -32,7 +31,7 @@ ALGO-4H-20260919 执行中：用户直接授权4小时算法迭代、高并发Co
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-恢复state指向的wave-05原批次，先查summary/进程：4路为边缘淡入淡出、拉伸门长约束、源节拍基准、音频指标。已知52/56事件目标/源时长比>2，最大5.62；需实测改进后才接入试验。03:56:20截止与调度恢复保持；主观试听待用户。
+等待用户试听并选择新的明确范围。原每日夜班不得自动继续已到期ALGO-4H；第五波草稿和4个unknown请求保留，不重新提交。
 
 最近一轮：[2026-09-19 工程与三段小样](rounds/2026-09-19-album-execution.md)。
 
@@ -41,3 +40,5 @@ Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05
 算法最近一轮：[2026-09-20 纯算法与只读基线](rounds/2026-09-20-algorithm-pure-modules.md)。
 
 接入最近一轮：[2026-09-20 接入与真实素材对照](rounds/2026-09-20-algorithm-integration.md)。
+
+最新收尾：[算法窗口结束与恢复点](rounds/2026-09-20-algorithm-sprint-close.md)。
