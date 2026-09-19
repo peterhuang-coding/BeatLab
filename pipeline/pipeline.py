@@ -28,7 +28,7 @@ _VENV_PY = PIPE.parent / ".venv" / "bin" / "python"
 PY = _VENV_PY if _VENV_PY.exists() else Path(sys.executable)
 
 DELEGATED = ("separate", "moments", "score", "compose", "render", "report", "feedback",
-             "song", "ableton_export", "package", "revision")
+             "song", "ableton_export", "package", "revision", "crate")
 
 
 def run(script: str, *args: str) -> None:

@@ -14,6 +14,8 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
+CRATE-20260919 技术完成：用户直接要求用 Coding Plan 完成音乐下载/爬虫链路，范围与验收见 [固定批次采样入库计划](../../docs/superpowers/plans/2026-09-19-crate-harvest.md)。起点 ed60482，沿用下述隔离执行分支。
+
 ALBUM-EXECUTION-20260919 已完成技术交付，待试听：[报告](../../docs/research/2026-09-19-creative-delivery.md)、[计划](../../docs/superpowers/plans/2026-09-19-album-execution.md)。用户直接授权 Coding Plan 优先推进工程并生成音乐，覆盖本轮 E01–E04 的原未选状态；未来夜班仍按最新 Notion 选择。
 
 执行分支 `codex/album-execution-20260919`，工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`，整合起点 `72fc1f5` 与 main `3d333fe`。主工作区仍为旧采样分支，恢复时不能在旧代码上宣称具备本轮修复。
@@ -29,6 +31,8 @@ ALBUM-EXECUTION-20260919 已完成技术交付，待试听：[报告](../../docs
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-用户试听三段并选一段扩为完整曲。没有选择时不自动展开九首；auto-default：否。
+用户新授权4小时算法迭代，先保存下载链路提交，再建立固定截止时间与并行任务包。三段小样仍待试听。
 
 最近一轮：[2026-09-19 工程与三段小样](rounds/2026-09-19-album-execution.md)。
+
+下载链路最近一轮：[2026-09-19 固定批次采样入库](rounds/2026-09-19-crate-harvest.md)。

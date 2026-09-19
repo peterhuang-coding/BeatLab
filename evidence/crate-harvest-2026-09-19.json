@@ -1,0 +1,175 @@
+{
+  "batch": "old-records-20260919",
+  "state": "complete",
+  "counts": {
+    "ok": 8,
+    "error": 0,
+    "pending": 0,
+    "downloaded": 0
+  },
+  "catalog_counts": {
+    "blues": 309,
+    "jazz": 339
+  },
+  "assets_before": 14,
+  "assets_after": 22,
+  "rights_after": 22,
+  "resume_no_network": true,
+  "resume_audio_sha_mtime_unchanged": true,
+  "protected_prior_audio_count": 24,
+  "protected_prior_audio_unchanged": true,
+  "items": [
+    {
+      "title": "Chinese blues",
+      "source_url": "https://www.loc.gov/item/jukebox-15538/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-blues/Chinese-blues_jukebox-15538_002_00-00-30.wav",
+      "collection": "blues",
+      "asset_id": "e155b89555b0ad16",
+      "duration_s": 30.07,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "a0280b7090c6eb8fd0c5d64cb7b1f630ee3e3237e080e7bbe3c690bc025616b8",
+      "library_sha256": "2a89a38f5988873f609d328381802053e6810605debd6780e377f63960eef6bd",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "All the Quakers are shoulder shakers",
+      "source_url": "https://www.loc.gov/item/jukebox-34115/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-jazz/All-the-Quakers-are-shoulder-shakers_jukebox-34115_002_00-00-30.wav",
+      "collection": "jazz",
+      "asset_id": "3849c9beedd6e62a",
+      "duration_s": 30.10501133786848,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "75653fd6e99794004938e53d1be9956ed57d6f9d44efb387965d73cbf26c26a4",
+      "library_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Clarinet marmalade blues",
+      "source_url": "https://www.loc.gov/item/jukebox-29613/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-blues/Clarinet-marmalade-blues_jukebox-29613_002_00-00-31.wav",
+      "collection": "blues",
+      "asset_id": "a53f5e44f8e3a005",
+      "duration_s": 8.963015873015873,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "7347828f5c7e6dfddc7e6e238d2e847738667a1167a7332ae4a3179513291a91",
+      "library_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Another rag",
+      "source_url": "https://www.loc.gov/item/jukebox-131021/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-jazz/Another-rag_jukebox-131021_001_00-00-30.wav",
+      "collection": "jazz",
+      "asset_id": "222e558101758b3a",
+      "duration_s": 11.471020408163266,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "dfb629b204b458afe519d2ac6f56674ac7548959e5d1d0599618055cd251be84",
+      "library_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Crazy blues",
+      "source_url": "https://www.loc.gov/item/jukebox-188857/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-blues/Crazy-blues_jukebox-188857_002_00-00-30.wav",
+      "collection": "blues",
+      "asset_id": "9a7e495a5224d187",
+      "duration_s": 30.139002267573694,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "b6a4724415ce8190fc5466f6ddd63c6d144a98be1c73c96db0cd7362cfb0ebbf",
+      "library_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Answer",
+      "source_url": "https://www.loc.gov/item/jukebox-39532/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-jazz/Answer_jukebox-39532_001_00-00-30.wav",
+      "collection": "jazz",
+      "asset_id": "2ab51a3bee3af4f1",
+      "duration_s": 30.093015873015872,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "540555ff9406473064bafa71453edcfe0078df9d02ccb83fa67c73c5e37e1fb6",
+      "library_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Dangerous blues",
+      "source_url": "https://www.loc.gov/item/jukebox-41616/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-blues/Dangerous-blues_jukebox-41616_002_00-00-30.wav",
+      "collection": "blues",
+      "asset_id": "37baf98ef2b9d8a4",
+      "duration_s": 30.22,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "8405b97f6e770cbd4b83c08bb3965545fcdf4d64e09b4f09d87f1d24197c0b9e",
+      "library_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    },
+    {
+      "title": "Any rags?",
+      "source_url": "https://www.loc.gov/item/jukebox-119704/",
+      "media_url": "https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov/audio/samplepacks/loc-jukebox-jazz/Any-rags_jukebox-119704_001_00-00-49.wav",
+      "collection": "jazz",
+      "asset_id": "f5b03032a3898708",
+      "duration_s": 12.70201814058957,
+      "original_sample_rate": 48000,
+      "library_sample_rate": 44100,
+      "download_sha256": "dd031edd9bed4902f5981bd3bdcd2c2a03c57cdc705cf1c77bc44821617c95d7",
+      "library_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9",
+      "rights": {
+        "basis": "loc_citizen_dj_collection_statement",
+        "state": "allowed"
+      }
+    }
+  ],
+  "total_new_duration_s": 183.763,
+  "tests": {
+    "unittest_count": 99,
+    "passed": true,
+    "duration_s": 6.806,
+    "baseline_before_changes": 79,
+    "coverage_files": [
+      "tests/test_citizen_dj.py",
+      "tests/test_citizen_dj_transport.py",
+      "tests/test_crate.py",
+      "tests/test_portability.py"
+    ]
+  },
+  "isolated_network_smoke": {
+    "state": "complete",
+    "no_network": true,
+    "audio_unchanged": true,
+    "catalog_counts": {
+      "blues": 309,
+      "jazz": 339
+    },
+    "completed_items": 2
+  },
+  "implementation": "pipeline/crate.py; pipeline/connectors/citizen_dj.py"
+}

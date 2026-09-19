@@ -60,6 +60,8 @@ python3.12 -m venv .venv
 ./beatlab ingest --source citizen_dj --path jazz --limit 6 --timeout 120
 ```
 
+> 2026-09-19：新增可恢复的 `crate` 批次命令，接通发现、限量下载、去重入库、来源表与播放清单。固定候选后 `--resume` 不换曲，完成项核验后直接复用。[命令、当前执行目录与结果](docs/product/crate-harvest.md)。
+
 来源为 [Library of Congress Citizen DJ](https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/) 的官方公开 WAV 乐句目录。先从不同作品各取一段，再取同一作品的其它片段；这是目录发现策略，尚不代表音乐质量排名。每次默认最多尝试 10 个新下载，`--limit` 上限 100；重复运行会跳过已入库内容并继续发现，下载失败保留原因。跨合集同内容按哈希去重，改坏的缓存重新获取。
 
 下载原件、目录快照和来源记录在 `library/sources/citizen_dj/<blues|jazz>/`；标准化乐句在 `library/loops/<id>/source.wav`，SQLite 保留作品链接和具体合集的许可依据。原曲时间标签与 remix 毫秒偏移分别保留，未宣称它们是逐采样点精确对齐。该来源的年代和音色与 60–70 年代 Soul 不同；后者的挖歌/清样接入见 [老歌采样计划](docs/superpowers/plans/2026-09-13-old-record-crate.md)。

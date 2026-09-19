@@ -1,0 +1,261 @@
+{
+  "task": "CRATE-20260919",
+  "routing": "volcengine-plan",
+  "requested_model": "ark-code-latest",
+  "returned_model": "auto; underlying model not claimed",
+  "subtasks": 6,
+  "attempts": [
+    {
+      "attempt": "connector-1",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 6684,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 4636,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 11320
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 107784
+    },
+    {
+      "attempt": "connector-2",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 8098,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 7474,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 15572
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 109510
+    },
+    {
+      "attempt": "crate-1",
+      "status": "incomplete",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 8192,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 4557,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 12749
+      },
+      "finish_reason": "length",
+      "elapsed_ms": 151711
+    },
+    {
+      "attempt": "crate-2",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 4867,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 4679,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 9546
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 83084
+    },
+    {
+      "attempt": "docs-1",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 965,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 670,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1635
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 23041
+    },
+    {
+      "attempt": "tests-1",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 546,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 6412,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 6958
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 18817
+    },
+    {
+      "attempt": "tests-2",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 3144,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 10558,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 13702
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 52898
+    },
+    {
+      "attempt": "code-review",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 616,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 10451,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 11067
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 20863
+    },
+    {
+      "attempt": "docs-review",
+      "status": "verifying",
+      "model": "auto",
+      "provider": "volcengine-plan",
+      "usage": {
+        "completion_tokens": 602,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 4772,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 5374
+      },
+      "finish_reason": "stop",
+      "elapsed_ms": 17647
+    }
+  ],
+  "adoption": [
+    {
+      "id": "connector-1",
+      "status": "rejected_pending_correction",
+      "why": [
+        "all normal URL paths rejected",
+        "catalog metadata key error",
+        "cache self-hash invalid",
+        "no full finite audio decode"
+      ],
+      "adopted": false
+    },
+    {
+      "id": "crate-1",
+      "status": "incomplete",
+      "why": [
+        "length cutoff",
+        "invalid JSON escaping",
+        "wrong connector import"
+      ],
+      "adopted": false
+    },
+    {
+      "id": "connector-2",
+      "status": "adopted_with_local_corrections",
+      "evidence": "17 connector+transport tests and real network"
+    },
+    {
+      "id": "crate-2",
+      "status": "adopted_with_local_corrections",
+      "evidence": "8 integration tests; production8 assets and repeatzeroGET"
+    },
+    {
+      "id": "tests-1",
+      "status": "rejected",
+      "why": "Refusal text instead of runnable tests; supplied full current modules once"
+    },
+    {
+      "id": "tests-2",
+      "status": "adopted_with_fixture_corrections",
+      "evidence": "8 tests pass with actual SQLite and transcoding; primary added 3 of 8 cases"
+    },
+    {
+      "id": "docs-1",
+      "status": "adopted_with_fact_corrections",
+      "evidence": "docs/product/crate-harvest.md"
+    },
+    {
+      "id": "code-review",
+      "status": "reviewed_findings_rejected",
+      "why": [
+        "Claim fixed batch is refrozen ignores _freeze first guard returning for any state outside discovered/ready; failure+changedcatalog resume test passes",
+        "Claim aliases accept wrong source ignores source_url in _identity_fields; parser deduplicates exact media URL; fresh verified catalog annotation updates intentionally preserve unchanged audio"
+      ]
+    },
+    {
+      "id": "docs-review",
+      "status": "reviewed_evidence_improved",
+      "why": [
+        "Added isolated2/2 network smoke to committed evidence; other requests for proof resolved via actual implementation/tests links",
+        "No deletion of verified CLI limits/hash/rights behavior based on reviewer lacking implementation context",
+        "Music listening caveat already exists; no Live verification or push claimed in command guide"
+      ]
+    }
+  ],
+  "parallel": {
+    "initial_independent_implementation_processes": 2,
+    "review_batch": {
+      "concurrency": 2,
+      "peak_in_flight": 2,
+      "dispatched_count": 2,
+      "summary_local": ".cache/coding-plan-crawler/review-batch/summary.json"
+    }
+  },
+  "fallback": null,
+  "verification": {
+    "unittest": 99,
+    "real_downloads_isolated": 2,
+    "real_downloads_production": 8
+  },
+  "note": "Coding Plan drafted code/tests/docs; Codex applied, corrected and verified. No token-saving percentage claimed."
+}

@@ -1,5 +1,7 @@
 # BeatLab 项目约定
 
+- 2026-09-19 随后用户直接授权 Coding Plan 完成音乐下载/爬虫链路：新增 `crate` 固定批次发现、限量下载、来源校验、去重入库与恢复。命令见 `docs/product/crate-harvest.md`，实测证据 `evidence/crate-harvest-2026-09-19.json`。同一任务独立下游工作默认 `coding_plan_batch.py` 两路套餐并行，重叠文件顺序应用；本轮最后审阅已采用该批次入口。音乐好句选择与整张专辑仍待推进。
+
 - 2026-09-19 用户直接授权 Coding Plan 优先推进创作工程并生成音乐。本轮在 `codex/album-execution-20260919` 整合两线、修复 E01–E03，补 score 声部增益反馈，生成三段《借来的光》试验小样。结果见 `docs/research/2026-09-19-creative-delivery.md`；小样待试听，九曲概念未定稿，不合 main，商业后置。后续恢复先检查该执行分支；主工作区仍停在旧采样分支。
 - 成块代码、测试草稿和文档先按 task-tiering 技能交 Coding Plan，主代理负责工具执行与验收。不急的已授权任务以套餐承担主要可委派工作为默认，不因暂时限流或赶交付擅自换高额度执行。模型结果的 verifying 状态不是通过；保留请求、结果、review 和真实测试证据。
 

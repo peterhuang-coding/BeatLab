@@ -67,6 +67,17 @@ class PortabilityTests(unittest.TestCase):
             self.assertEqual(cli.main(),0)
         self.assertEqual(run.call_args.args,('ingest.py','--source','citizen_dj','--timeout','15.0','blues'))
 
+    def test_crate_command_preserves_batch_and_resume_options(self):
+        sys.path.insert(0, str(PIPE))
+        self.addCleanup(sys.path.remove, str(PIPE))
+        spec = importlib.util.spec_from_file_location('beatlab_crate_cli', PIPE / 'pipeline.py')
+        cli = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cli)
+        with patch.object(cli, 'run') as run, patch.object(sys, 'argv',
+                ['beatlab', 'crate', '--batch-id', 'fixed-batch', '--resume']):
+            self.assertEqual(cli.main(), 0)
+        self.assertEqual(run.call_args.args, ('crate.py', '--batch-id', 'fixed-batch', '--resume'))
+
 
 if __name__ == "__main__":
     unittest.main()
