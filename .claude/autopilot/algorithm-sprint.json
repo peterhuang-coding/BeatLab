@@ -16,7 +16,7 @@
   "current_wave": "wave-05-quality",
   "current_batch_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-quality",
   "current_manifest": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/wave-05-quality-manifest.json",
-  "next_step": "Check original wave05summary/process first. Four independent tasks: edgefades, bounded gate, real beat benchmark, rendered metrics. Before integration verifytests/truebaseline; oldaudio preserved. Fixeddeadline03:56:20.",
+  "next_step": "Wave05 all completed; two invalid_output missing second-file object brace normalized locally (seeextraction-review), no resubmission. Review parsed candidates and tests against actual flatmodule/unittest contracts, then test; one qualitycorrection still available perjob. No running requests. Fixeddeadlineunchanged.",
   "stop_conditions": [
     "deadline reached",
     "provider failure/rate limit/unknown: stop later waves and inspect original attempt",
@@ -54,7 +54,7 @@
   "total_test_count": 194,
   "baseline_audio_results": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/algorithm-sprint-20260919/baseline/results.json",
   "integration_attempts_per_task": 2,
-  "current_batch_transport_status": "stopped",
+  "current_batch_transport_status": "stopped_format_recovered_review_pending",
   "current_batch_blocker": null,
   "last_verified_commit": "9852f5c806968a375379d1816a086ae1bc7378c5",
   "integration_verified": true,
