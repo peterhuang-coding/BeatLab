@@ -1,6 +1,6 @@
 {
   "task_id": "FEATURE-20260920",
-  "status": "technically_verified_pending_push",
+  "status": "awaiting_user_acceptance",
   "authorization": "User: 用 plan 持续细化这里的各种 feature",
   "scope": [
     "F01 timestamped listening notes",
@@ -22,7 +22,9 @@
     {
       "id": "beatlab-feature-provenance-20260920-a1",
       "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-feature-provenance-20260920-a1",
-      "status": "verifying_quality_correction_required"
+      "status": "verifying_quality_correction_required",
+      "resolution": "superseded by the single a2 quality correction; no pending correction",
+      "local_worker_ended": true
     },
     {
       "id": "beatlab-feature-provenance-20260920-a2",
@@ -45,14 +47,14 @@
   "paid_fallback": false,
   "algorithm_sprint_reopened": false,
   "original_music_baseline_count": 16,
-  "next_step": "Commit/push verified deliverable, verify remote SHA, then update Notion/Hub and await user acceptance; F03 remains queued for daily night run.",
+  "next_step": "At the existing daily 22:00 run, fetch FEATURE-F03 latest Notion state, honor pause/reorder, and execute parent/feedback comparison within its card scope.",
   "current_wave": "wave-02",
-  "pending_media_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-refinement-20260920/wave-02/media-range.json",
   "prepared_notes_a2": "not_submitted; do not replay the unknown original notes job",
   "next_queued_task": {
     "id": "FEATURE-F03",
     "notion_page_id": "3e132852-84df-814a-888b-cf97283d00b5",
-    "dependency": "FEATURE-20260920 technically verified and pushed"
+    "dependency": "FEATURE-20260920 technically verified and pushed",
+    "dependency_verified_commit": "5668e9c289e649724dec0bf6913b174cc2ab2890"
   },
   "automation": {
     "id": "beatlab",
@@ -63,5 +65,10 @@
   "final_tests": 272,
   "browser_verified": true,
   "music_preserved_count": 16,
-  "active_requests": 0
+  "active_requests": 0,
+  "code_commit": "5668e9c289e649724dec0bf6913b174cc2ab2890",
+  "remote_code_sha_verified": "5668e9c289e649724dec0bf6913b174cc2ab2890",
+  "notion_synced": true,
+  "hub_summary_path": "/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md",
+  "consumed_media_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-refinement-20260920/wave-02/media-range.json"
 }

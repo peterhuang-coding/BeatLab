@@ -25,7 +25,8 @@
 - [x] 来源匹配/歧义/缺失/恶意 HTML 与链接/不读取外部来源文件的测试。
 - [x] 合并接入后完整 unittest、浏览器实际填写保存刷新和跳转。
 - [x] 已有正式音乐 SHA 与 mtime 保持；新功能不改变旧歌。
-- [ ] 更新完整 MVP、路线图、主线与轮次，commit 普通 push 并核验远端 SHA；同步 Notion 与 Hub。
+- [x] 更新完整 MVP、路线图、主线与轮次，代码5668e9c普通push并核验远端SHA；Notion结果和状态回填已读回。
+- Hub收尾入口：`/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md`，由wrapup保存最终提交与方法，恢复时用Git现状校准。
 
 工作区 `/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919`，分支 `codex/album-execution-20260919`，起点3993403。原每日22点调度保持；本次不新增定时器、不延长旧4小时窗口。
 

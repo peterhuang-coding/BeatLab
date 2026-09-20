@@ -14,10 +14,12 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
-FEATURE-20260920 技术验收通过，待提交推送与用户验收：F01时间点笔记、F02实际声部来源展示、必要的媒体Range与路径边界修复。完整272项测试通过；浏览器保存/刷新/跳回1.25秒与2.5秒、真实增益子版均验；16份旧主混音SHA/mtime保持。报告 [feature结果](../../docs/research/2026-09-20-feature-refinement-result.md)，精确恢复状态 [feature-refinement.json](feature-refinement.json)。
-Notion本轮 https://app.notion.com/p/3e13285284df81b3acdede2802cddd4f；下一项 FEATURE-F03 https://app.notion.com/p/3e13285284df814a888bcf97283d00b5 已按用户持续细化授权默认排队，依赖本轮技术验证与推送。
+FEATURE-20260920 已完成技术验证并推送，待用户验收：F01时间点笔记、F02实际声部来源展示、必要的媒体Range与路径边界修复。完整272项测试通过；浏览器保存/刷新/跳回1.25秒与2.5秒、真实增益子版均验；16份旧主混音SHA/mtime保持。报告 [feature结果](../../docs/research/2026-09-20-feature-refinement-result.md)，精确恢复状态 [feature-refinement.json](feature-refinement.json)。
+Notion本轮 https://app.notion.com/p/3e13285284df81b3acdede2802cddd4f；下一项 FEATURE-F03 https://app.notion.com/p/3e13285284df814a888bcf97283d00b5 已按用户持续细化授权默认排队，前置技术验证和代码推送已满足，执行时仍读取最新状态。
 正确工作区 /Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919；分支 codex/album-execution-20260919，主根仍旧分支。已把原每日22点beatlab调度改为此恢复入口，没有新增定时器或延长旧4小时窗口。
 cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时本地进程已结束，从稳定产物独立验收后采用、未重发；另两报告自列handoff-result导致invalid_output但实际范围干净、独立验证后采用。无活动请求。原ALGO-4H已结束，旧四个unknown不重发。
+
+代码提交5668e9c289e649724dec0bf6913b174cc2ab2890已普通push并核验远端相同；Notion本轮卡已回填报告/验证并读回「待你验收」，F03保持「今晚执行」。Hub恢复入口为 /Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md。
 
 ## 当前算法进度
 三个opt-in接入已验证，完整184项测试通过。22条素材125→67片段，同源超阈值重叠56→0，全部素材仍有候选、0异常、源SHA/mtime保持；原循环性/综合评分略降，不宣布好听。未改默认选句/编排。证据 `evidence/algorithm-integration-2026-09-20.json`。wave-04已完成：194测试通过；Crazy Blues两版68.326秒实际A/B，v1门长/尾休止/MIDI一致，旧24音频保持。证据 `evidence/algorithm-audio-midi-2026-09-20.json`。
@@ -33,7 +35,7 @@ cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时�
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-正常提交推送本轮并回填Notion/Hub；之后原每日22点夜班读取 FEATURE-F03 最新状态与依赖，推进父版/反馈版对照试听。暂停或用户调整优先。
+原每日22点夜班读取 FEATURE-F03 最新状态与依赖，推进父版/反馈版对照试听。暂停或用户调整优先。
 
 最新 feature 轮次：[2026-09-20 试听反馈与来源](rounds/2026-09-20-feature-refinement.md)。
 
