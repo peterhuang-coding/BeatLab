@@ -47,7 +47,7 @@
   "paid_fallback": false,
   "algorithm_sprint_reopened": false,
   "original_music_baseline_count": 16,
-  "next_step": "Restore configured credential helper access, verify successful credential retrieval without logging secret, then assess a second same-logical-task attempt within limits. Do not replay any old unknown requests.",
+  "next_step": "Restore local Coding Plan credential retrieval and GitHub credentials; push preserved commits normally and verify remote SHA before continuing bounded F03 attempts. Do not repeat unchanged failed requests.",
   "current_wave": "wave-02",
   "prepared_notes_a2": "not_submitted; do not replay the unknown original notes job",
   "next_queued_task": {
@@ -162,11 +162,18 @@
         "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-f03-view-20260920-a1"
       }
     ],
-    "next_step": "Restore configured credential helper access, verify successful credential retrieval without logging secret, then assess a second same-logical-task attempt within limits. Do not replay any old unknown requests.",
+    "next_step": "Restore local Coding Plan credential retrieval and GitHub credentials; push preserved commits normally and verify remote SHA before continuing bounded F03 attempts. Do not repeat unchanged failed requests.",
     "active_requests": 0,
     "attempts_per_logical_task": 1,
     "quality_corrections_used": 0,
     "blocked_rounds": 1,
-    "blocker": "Configured macOS Keychain helper cannot retrieve volcengine-plan credential; root cause beyond exit51 not established. Local client generated 401, not evidence of provider rejection."
+    "blocker": "Configured macOS Keychain helper cannot retrieve volcengine-plan credential; root cause beyond exit51 not established. Local client generated 401, not evidence of provider rejection.",
+    "git_delivery": {
+      "status": "push_blocked",
+      "local_plan_commit": "1946dd96e3d173aa9c1b8e7a52770b618b87838e",
+      "remote_sha": "760ad831fdaf28dc7d9e7ca17f5d70f2829ebede",
+      "error": "fatal: could not read Username for https://github.com: Device not configured",
+      "push_attempts": 1
+    }
   }
 }

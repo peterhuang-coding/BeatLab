@@ -105,5 +105,12 @@
   "active_requests": 0,
   "old_algorithm_unknown_replayed": false,
   "blocker": "Configured macOS Keychain helper cannot retrieve volcengine-plan credential; root cause beyond exit51 not established. Local client generated 401, not evidence of provider rejection.",
-  "next_step": "Restore configured credential helper access, verify successful credential retrieval without logging secret, then assess a second same-logical-task attempt within limits. Do not replay any old unknown requests."
+  "next_step": "Restore local Coding Plan credential retrieval and GitHub credentials; push preserved commits normally and verify remote SHA before continuing bounded F03 attempts. Do not repeat unchanged failed requests.",
+  "git_delivery": {
+    "status": "push_blocked",
+    "local_plan_commit": "1946dd96e3d173aa9c1b8e7a52770b618b87838e",
+    "remote_sha": "760ad831fdaf28dc7d9e7ca17f5d70f2829ebede",
+    "error": "fatal: could not read Username for https://github.com: Device not configured",
+    "push_attempts": 1
+  }
 }

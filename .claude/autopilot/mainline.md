@@ -24,6 +24,8 @@ cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时�
 
 代码提交5668e9c289e649724dec0bf6913b174cc2ab2890已普通push并核验远端相同；Notion本轮卡已回填报告/验证并读回「待你验收」，F03保持「今晚执行」。Hub恢复入口为 /Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md。
 
+F03本地计划提交1946dd96e3d173aa9c1b8e7a52770b618b87838e普通push失败（GitHub凭据不可读取），远端仍760ad831fdaf28dc7d9e7ca17f5d70f2829ebede；前面的已推送结论仅指F01/F02历史成果，不指本轮。
+
 ## 当前算法进度
 三个opt-in接入已验证，完整184项测试通过。22条素材125→67片段，同源超阈值重叠56→0，全部素材仍有候选、0异常、源SHA/mtime保持；原循环性/综合评分略降，不宣布好听。未改默认选句/编排。证据 `evidence/algorithm-integration-2026-09-20.json`。wave-04已完成：194测试通过；Crazy Blues两版68.326秒实际A/B，v1门长/尾休止/MIDI一致，旧24音频保持。证据 `evidence/algorithm-audio-midi-2026-09-20.json`。
 
@@ -38,7 +40,7 @@ cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时�
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-先恢复Coding Plan已配置凭据helper的读取能力；只读确认成功后，才对已确定结束的F03逻辑任务在限次内继续。阻塞未变不重派；旧unknown仍不重发。
+先恢复本机Coding Plan和GitHub凭据读取，正常push保存的本地提交并核验远端，再在原F03逻辑任务限次内继续；阻塞未变不重派，旧unknown仍不重发。
 
 最新 feature 轮次：[2026-09-20 试听反馈与来源](rounds/2026-09-20-feature-refinement.md)。
 
