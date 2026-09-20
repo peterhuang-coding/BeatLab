@@ -1,0 +1,67 @@
+{
+  "task_id": "FEATURE-20260920",
+  "status": "technically_verified_pending_push",
+  "authorization": "User: 用 plan 持续细化这里的各种 feature",
+  "scope": [
+    "F01 timestamped listening notes",
+    "F02 used-track provenance",
+    "F03-F06 bounded refinement roadmap"
+  ],
+  "notion_page_id": "3e132852-84df-81b3-acde-de2802cddd4f",
+  "base_commit": "3993403b1da70e174a71817d54aecdebc8c1c6b3",
+  "worktree": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919",
+  "wave_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-refinement-20260920/wave-01",
+  "jobs": [
+    {
+      "id": "beatlab-feature-notes-20260920-a1",
+      "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-feature-notes-20260920-a1",
+      "status": "unknown",
+      "local_worker_ended": true,
+      "artifact_verification": "19 independent tests passed; adopted with local overflow/layout correction; no replay"
+    },
+    {
+      "id": "beatlab-feature-provenance-20260920-a1",
+      "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-feature-provenance-20260920-a1",
+      "status": "verifying_quality_correction_required"
+    },
+    {
+      "id": "beatlab-feature-provenance-20260920-a2",
+      "status": "invalid_output",
+      "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-feature-provenance-20260920-a2",
+      "local_worker_ended": true,
+      "artifact_verification": "30 independent tests pass; report incorrectly listed reserved handoff-result.json; actual file scope clean; adopted"
+    },
+    {
+      "id": "beatlab-media-range-20260920-a1",
+      "status": "invalid_output",
+      "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-media-range-20260920-a1",
+      "local_worker_ended": true,
+      "artifact_verification": "29 independent tests passed; report reserved self-filename mistake; actual file scope clean; adopted with full-suite fixture isolation fix"
+    }
+  ],
+  "concurrency": 2,
+  "provider": "volcengine-plan",
+  "model": "doubao-seed-evolving",
+  "paid_fallback": false,
+  "algorithm_sprint_reopened": false,
+  "original_music_baseline_count": 16,
+  "next_step": "Commit/push verified deliverable, verify remote SHA, then update Notion/Hub and await user acceptance; F03 remains queued for daily night run.",
+  "current_wave": "wave-02",
+  "pending_media_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-refinement-20260920/wave-02/media-range.json",
+  "prepared_notes_a2": "not_submitted; do not replay the unknown original notes job",
+  "next_queued_task": {
+    "id": "FEATURE-F03",
+    "notion_page_id": "3e132852-84df-814a-888b-cf97283d00b5",
+    "dependency": "FEATURE-20260920 technically verified and pushed"
+  },
+  "automation": {
+    "id": "beatlab",
+    "time": "daily 22:00 Asia/Shanghai",
+    "updated_for_new_authorization": true,
+    "new_automation_created": false
+  },
+  "final_tests": 272,
+  "browser_verified": true,
+  "music_preserved_count": 16,
+  "active_requests": 0
+}

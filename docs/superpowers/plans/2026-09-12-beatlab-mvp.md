@@ -8,6 +8,9 @@
 
 **Tech Stack:** 现有 Python 3.12、NumPy/librosa/soundfile、audio-separator、ffmpeg、SQLite、HTML/JS、Ableton Live 12；Apple M4 Pro / 24 GiB。新模型只在基准评估胜出后引入，不把调研名单全部作为依赖。
 
+
+2026-09-20 新授权：用户要求「用 plan 持续细化这里的各种 feature」。当前 [feature 执行计划](2026-09-20-feature-refinement.md) 与 [F01–F06 路线图](../../product/feature-refinement-roadmap.md) 承接已有创作需求：时间点反馈、实际使用声部的来源展示，随后父子版本对照、选句、编排和 Live 验证。本轮不恢复过期4小时算法冲刺，也不把记录意见等同自动重编。技术验收与用户听感分别记录；未实现阶段继续保留原验收标准。
+
 ---
 
 状态：2026-09-12 原计划已完成评审；用户随后明确选择表格 **2 → 4 → 5** 执行，即本文阶段 **1（音乐质量）→ 3（Ableton）→ 4（素材与商品）**。当前首要交付是一首可试听的完整器乐曲；必要基础修复随对应阶段完成。反馈自动化、全套流水线和平台上架保留在总计划中，暂不抢在所选顺序之前。

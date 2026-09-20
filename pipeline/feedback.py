@@ -7,6 +7,8 @@ serve（只绑 127.0.0.1）:
     GET  /media/<target>/...    试听文件（realpath 防目录穿越，仅 beats/ 内）
     GET  /api/ping              探活（页面 JS 判断「本地服务未启动」提示）
     GET  /api/feedback          查询反馈（?run_id=&candidate_id=）
+    GET  /api/listening-notes   score song 当前音频版本（mix SHA256/真实时长）+ 该版本时间戳笔记
+    POST /api/listening-notes   追加时间戳试听笔记（request_id 幂等，旧版本行保留，不碰歌曲文件）
     POST /api/feedback          收 JSON {run_id, candidate_id, dims, verdict, reasons} 落 feedback 表
     POST /api/keep|reject|regenerate|export  对应动作（keep 复制交付包 / export 写 Ableton 交付目录）
     POST /api/outcome           手动更新 ableton_outcome（'kept'/'exported' 占位后续人工更新）
@@ -35,6 +37,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import common
+import listening_notes
 import report
 
 # ---------- 契约 DDL（与 Dev-1 冻结契约一致，仅 fallback 用） ----------
@@ -381,15 +384,84 @@ def list_targets() -> list[tuple[str, str]]:
     return out
 
 
+# 媒体流式传输分块大小（区间 GET 同样按此粒度 seek+read，绝不整体读入内存）
+MEDIA_CHUNK_SIZE = 64 * 1024
+# Range 合法但无可发送字节（如 start >= 文件大小）→ 416 哨兵
+_RANGE_UNSATISFIABLE = object()
+
+
+def _valid_target_component(target: str) -> bool:
+    """target 必须是单个安全目录名：不含分隔符/空字节，不是 . 或 ..。"""
+    return (
+        bool(target)
+        and target not in (".", "..")
+        and "/" not in target
+        and "\\" not in target
+        and "\x00" not in target
+        and target == Path(target).name
+    )
+
+
 def _resolve_media_path(target: str, rel: str) -> Path | None:
-    """/media 文件解析：仅允许 ROOT/beats/<target>/ 内的真实文件（防目录穿越）。"""
-    base = (common.ROOT / "beats" / target).resolve()
-    if not base.is_dir():
+    """/media 文件解析：仅允许 ROOT/beats/<target>/ 内的真实文件。
+
+    - target 必须是单个安全目录组件（拒绝编码后的 ../目标、含分隔符目标）；
+    - base 经 resolve() 后必须仍在 ROOT/beats 之内（拒绝指向外部的符号链接）；
+    - rel 经 resolve() 后必须落在 base 之内（拒绝 ../ 穿越与符号链接逃逸）。
+    """
+    if not _valid_target_component(target) or "\x00" in rel:
+        return None
+    beats_root = (common.ROOT / "beats").resolve()
+    base = (beats_root / target).resolve()
+    if not base.is_relative_to(beats_root) or not base.is_dir():
+        return None
+    if rel.startswith("/") or rel.startswith("\\"):
         return None
     cand = (base / rel).resolve()
     if cand == base or base not in cand.parents:
         return None
     return cand if cand.is_file() else None
+
+
+def _parse_byte_range(header: str | None, size: int):
+    """解析单个 ``bytes=`` 区间（RFC 7233 子集，浏览器 audio seek 所需）。
+
+    返回:
+        (start, end_inclusive)  合法区间（end 已 clamp 到 size-1）
+        None                    无/畸形/不支持（含多区间）→ 调用方回退完整 200
+        _RANGE_UNSATISFIABLE    合法但无可满足 → 416
+    """
+    if not header:
+        return None
+    value = header.strip()
+    if not value.lower().startswith("bytes="):
+        return None
+    spec = value[len("bytes="):].strip()
+    if not spec or "," in spec or spec.count("-") != 1:
+        return None  # 多区间与畸形一律忽略（不回错切片）
+    start_s, _, end_s = spec.partition("-")
+    start_s, end_s = start_s.strip(), end_s.strip()
+    if size <= 0:
+        return _RANGE_UNSATISFIABLE  # 空文件上的任何 Range 均不可满足
+    if start_s == "":
+        # bytes=-suffix：suffix 必须为正整数（bytes=-0 视为畸形 → 忽略）
+        if not end_s.isdigit():
+            return None
+        suffix = int(end_s)
+        if suffix <= 0:
+            return None
+        start = max(0, size - suffix)
+        end = size - 1
+    else:
+        if not start_s.isdigit() or (end_s != "" and not end_s.isdigit()):
+            return None
+        start = int(start_s)
+        if start >= size:
+            return _RANGE_UNSATISFIABLE
+        end = size - 1 if end_s == "" else min(int(end_s), size - 1)
+        if end < start:
+            return None
+    return start, end
 
 
 class _Handler(BaseHTTPRequestHandler):
@@ -439,12 +511,22 @@ class _Handler(BaseHTTPRequestHandler):
                         item["reasons"] = []
                     out.append(item)
                 self._send_json(200, {"ok": True, "rows": out})
+            elif path == "/api/listening-notes":
+                qs = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+                payload = listening_notes.list_notes(
+                    common.ROOT, qs.get("run_id", [""])[0])
+                payload["ok"] = True
+                self._send_json(200, payload)
             elif path.startswith("/review/"):
                 self._serve_review(path[len("/review/"):])
             elif path.startswith("/media/"):
                 self._serve_media(path[len("/media/"):])
             else:
                 self._send_json(404, {"ok": False, "error": "not found"})
+        except listening_notes.ConflictError as exc:
+            self._send_json(409, {"ok": False, "error": str(exc)})
+        except ValueError as exc:
+            self._send_json(400, {"ok": False, "error": str(exc)})
         except FileNotFoundError as exc:
             self._send_json(404, {"ok": False, "error": str(exc)})
         except Exception as exc:  # 兜底：服务不因单请求崩溃
@@ -491,6 +573,39 @@ class _Handler(BaseHTTPRequestHandler):
         )
         self._send(200, page.encode("utf-8"), "text/html; charset=utf-8")
 
+    def _stream_range(self, f: Path, ctype: str, size: int, start: int,
+                      end: int, code: int) -> None:
+        """发送 200 全量或 206 区间：seek 后按固定块流式写出。
+
+        客户端中途断连时仅关闭本连接，绝不在媒体响应头之后再追加 JSON。
+        """
+        length = end - start + 1 if code == 206 else size
+        self.send_response(code)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Accept-Ranges", "bytes")
+        if code == 206:
+            self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        self.send_header("Content-Length", str(length))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        if length <= 0:
+            return
+        with f.open("rb") as fh:
+            fh.seek(start)
+            remaining = length
+            while remaining > 0:
+                chunk = fh.read(min(MEDIA_CHUNK_SIZE, remaining))
+                if not chunk:
+                    break
+                try:
+                    self.wfile.write(chunk)
+                except (BrokenPipeError, ConnectionResetError,
+                        ConnectionAbortedError, TimeoutError):
+                    # 客户端已断开：静默结束，不能尝试第二份 JSON 响应
+                    self.close_connection = True
+                    return
+                remaining -= len(chunk)
+
     def _serve_media(self, rest: str):
         target, _, rel = rest.strip("/").partition("/")
         f = _resolve_media_path(target, rel)
@@ -500,7 +615,22 @@ class _Handler(BaseHTTPRequestHandler):
         ctype = mimetypes.guess_type(f.name)[0] or "application/octet-stream"
         if f.suffix == ".als":
             ctype = "application/x-ableton-live-set"
-        self._send(200, f.read_bytes(), ctype)
+        size = f.stat().st_size
+        rng = _parse_byte_range(self.headers.get("Range"), size)
+        if rng is _RANGE_UNSATISFIABLE:
+            self.send_response(416)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Accept-Ranges", "bytes")
+            self.send_header("Content-Range", f"bytes */{size}")
+            self.send_header("Content-Length", "0")
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            return
+        if rng is None:
+            self._stream_range(f, ctype, size, 0, size - 1, 200)
+        else:
+            start, end = rng
+            self._stream_range(f, ctype, size, start, end, 206)
 
     # ---- POST ----
     def do_POST(self):
@@ -541,8 +671,13 @@ class _Handler(BaseHTTPRequestHandler):
                 if not run_id or not cand_id:
                     raise ValueError("run_id/candidate_id 必填")
                 self._send_json(200, action_outcome(run_id, cand_id, body.get("outcome", "")))
+            elif path == "/api/listening-notes":
+                self._send_json(
+                    200, {"ok": True, "note": listening_notes.add_note(common.ROOT, body)})
             else:
                 self._send_json(404, {"ok": False, "error": "not found"})
+        except listening_notes.ConflictError as exc:
+            self._send_json(409, {"ok": False, "error": str(exc)})
         except ValueError as exc:
             self._send_json(400, {"ok": False, "error": str(exc)})
         except FileNotFoundError as exc:

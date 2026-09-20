@@ -1,0 +1,279 @@
+{
+  "task_id": "FEATURE-20260920",
+  "recorded_at": "2026-09-20T03:06:46.487257+00:00",
+  "base_commit": "3993403b1da70e174a71817d54aecdebc8c1c6b3",
+  "branch": "codex/album-execution-20260919",
+  "coding_plan": {
+    "logical_tasks": 3,
+    "actual_requests": 4,
+    "business_requests": 3,
+    "quality_corrections": 1,
+    "initial_parallel_processes": 2,
+    "paid_fallback": false,
+    "unknown_replayed": false,
+    "jobs": [
+      {
+        "task_id": "beatlab-feature-notes-20260920-a1",
+        "returned_status": "unknown",
+        "outcome": "timeout",
+        "elapsed_seconds": 1200.135,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "actual_files": [
+          "pipeline/listening_notes.py",
+          "pipeline/feedback.py",
+          "pipeline/song_review.py",
+          "tests/test_listening_notes.py",
+          "docs/product/listening-notes.md"
+        ],
+        "disallowed_changes": [],
+        "blockers": [
+          "worker timeout"
+        ]
+      },
+      {
+        "task_id": "beatlab-feature-provenance-20260920-a1",
+        "returned_status": "verifying",
+        "outcome": "completed",
+        "elapsed_seconds": 921.853,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "actual_files": [
+          "pipeline/song_provenance.py",
+          "tests/test_song_provenance.py",
+          "docs/product/feature-refinement-roadmap.md"
+        ],
+        "disallowed_changes": [],
+        "blockers": []
+      },
+      {
+        "task_id": "beatlab-feature-provenance-20260920-a2",
+        "returned_status": "invalid_output",
+        "outcome": "completed",
+        "elapsed_seconds": 728.177,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "actual_files": [
+          "pipeline/song_provenance.py",
+          "tests/test_song_provenance.py",
+          "docs/product/feature-refinement-roadmap.md"
+        ],
+        "disallowed_changes": [],
+        "blockers": [
+          "report.changed_files out of scope"
+        ]
+      },
+      {
+        "task_id": "beatlab-media-range-20260920-a1",
+        "returned_status": "invalid_output",
+        "outcome": "completed",
+        "elapsed_seconds": 549.47,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "actual_files": [
+          "pipeline/feedback.py",
+          "tests/test_media_range.py"
+        ],
+        "disallowed_changes": [],
+        "blockers": [
+          "report.changed_files out of scope"
+        ]
+      }
+    ],
+    "artifact_review": "Notes timeout: local process ended, original inputs/output hashes verified, independently tested artifacts adopted without replay. Source correction and media reports incorrectly listed reserved handoff-result.json; actual file boundaries clean, exact tests rerun, original invalid_output statuses retained."
+  },
+  "validation": {
+    "baseline_tests": 194,
+    "targeted_notes": 19,
+    "targeted_provenance": 30,
+    "targeted_media": 29,
+    "final_tests": 272,
+    "final_seconds": 13.887,
+    "final_status": "OK",
+    "first_full_suite": "243 tests,31 failures,1 error: module import name collision and media test root isolation; fixed tests, no production change",
+    "full_test_log_sha256": "bd442d7fc1ed8b4c20d280f820675106204cabd15f8335b57437cc0ee301933a"
+  },
+  "browser": {
+    "tool": "cua IAB",
+    "test_root": "isolated synthetic ui-root",
+    "saved_notes": [
+      {
+        "time_seconds": 1.25,
+        "category": "noisy"
+      },
+      {
+        "time_seconds": 2.5,
+        "category": "transition"
+      }
+    ],
+    "reload_persistence": true,
+    "literal_markup_preserved": true,
+    "seek_before": {
+      "buffered": [
+        [
+          0,
+          4
+        ]
+      ],
+      "seekable": [
+        [
+          0,
+          0
+        ]
+      ],
+      "actual_after_click": 0
+    },
+    "seek_after": {
+      "seekable": [
+        [
+          0,
+          4
+        ]
+      ],
+      "actual_positions": [
+        1.25,
+        2.5
+      ]
+    },
+    "gain_revision": "Actual UI generated feature-test-rf937d5cf12b9 with keys -6dB",
+    "source_expansion": true,
+    "real_review": "http://127.0.0.1:8796/review/borrowed-light-pocket-sun-20260919-v1",
+    "formal_test_feedback_inserted": false
+  },
+  "http": {
+    "range": "bytes=44-99",
+    "status": 206,
+    "content_range": "bytes 44-99/529244",
+    "body_bytes": 56,
+    "synthetic_outside_beats_before": 200,
+    "synthetic_outside_beats_after": 404
+  },
+  "music_preservation": [
+    {
+      "run_path": "beats/afterglow-2026-09-16-v1/full_mix.wav",
+      "sha256": "9e030c07f632b2bcb50971adc83f2aa5d9634f9c3de71cae55068483b66ca3a2",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/afterglow-2026-09-16-v2/full_mix.wav",
+      "sha256": "942c607d79457a0bf7f824c3f74388c8ff96d3c639eb034ec271ccace5166321",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/afterglow-2026-09-16-v3/full_mix.wav",
+      "sha256": "c6e882879e1453b753327598eff0973956eebb6a34a276404b56c3f8a38396ab",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/beat_20260828_011503_boom-bap_92bpm/beat.wav",
+      "sha256": "9a8eff483c52718716184c3cbbbc419c17c2da48c4ccbb1b36529e551ec5312f",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/borrowed-light-applause-machine-20260919-v1/full_mix.wav",
+      "sha256": "8f131da5f4118b78eb6574c8388cb809121239622b105f31999773f90c8690f0",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/borrowed-light-no-curtain-call-20260919-v1/full_mix.wav",
+      "sha256": "9fc369640f5a67be51fd783d9ad626db494901891156d4253a46b27499de1a30",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/borrowed-light-pocket-sun-20260919-v1/full_mix.wav",
+      "sha256": "68773087cf972513f795acf4743239edb76b1ef7987fd3b9de3ee1f39f77baf6",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/dust-letters-v1/full_mix.wav",
+      "sha256": "6780d6f6e4069b4483489539b6e8f7633cbaad01cbb476bc823c4e86a0aa0adb",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-pilot-02/chop/full_mix.wav",
+      "sha256": "3002fa783d2dfcad3a77e1e98816781bedff3e00762d0b6e5b2afb58d6507ed8",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-pilot-02/loop/full_mix.wav",
+      "sha256": "15f475d9fd6ab99608a66ca23ac42944640e58dfc1f788b5bc59763fc4e4f5f2",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-pilot-02/stem/full_mix.wav",
+      "sha256": "ca80d0ebbae7665c8fed20e6766fb8778de361dc567373866e49f6134f74a6bc",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-smoke-01/chop/full_mix.wav",
+      "sha256": "67929fa856b8b6da8012ad1e32f7612c38cdc5488426efbb8c680e1018b5963b",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-smoke-01/loop/full_mix.wav",
+      "sha256": "c89022a84b17b79a6f088aaee6e8a94f4f0f52e65aa1c4420fee5820de40e3a2",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/run-smoke-01/stem/full_mix.wav",
+      "sha256": "c94e9cc67dfcef1feff795e95554dd00754768ba0510cfed1f6a3d1b7d6b2fc1",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/windowlight-v1/full_mix.wav",
+      "sha256": "43f56d6f28fdf6c97ddecafa71e2ebad78055e44bcc150f1a6f980fe59e230fe",
+      "mtime_preserved": true
+    },
+    {
+      "run_path": "beats/windowlight-v2/full_mix.wav",
+      "sha256": "f339d0743e5f8f0f5d76920fdc0339babd546e9cbc1b0146e096a1562a1e80b7",
+      "mtime_preserved": true
+    }
+  ],
+  "real_demo_metadata": [
+    {
+      "run_id": "borrowed-light-applause-machine-20260919-v1",
+      "source_summary": "（已用 26 轨 · 已匹配 10 · 存疑 0 · 缺失 16）",
+      "source_and_notes_html": true,
+      "no_absolute_source_path": true
+    },
+    {
+      "run_id": "borrowed-light-no-curtain-call-20260919-v1",
+      "source_summary": "（已用 22 轨 · 已匹配 7 · 存疑 0 · 缺失 15）",
+      "source_and_notes_html": true,
+      "no_absolute_source_path": true
+    },
+    {
+      "run_id": "borrowed-light-pocket-sun-20260919-v1",
+      "source_summary": "（已用 25 轨 · 已匹配 11 · 存疑 0 · 缺失 14）",
+      "source_and_notes_html": true,
+      "no_absolute_source_path": true
+    }
+  ],
+  "file_hashes": {
+    "pipeline/feedback.py": "25dda29c94d0160c6985e6d0087cf678b985330fb23a2f472020b2713f30e39a",
+    "pipeline/song_review.py": "011e3726197ae7eb6966b25caa68a929074a29860d8688c551615254862fb46c",
+    "pipeline/listening_notes.py": "62b4ca217adc7349ed1ef2e2d34f5073cc8c2d7a14b98cd0565ff67370aff970",
+    "pipeline/song_provenance.py": "2f72c4fbf6174c4a8cbd93300b6b65a3a13057b79285ce513ef1de1f7cdec9b4",
+    "tests/test_listening_notes.py": "6b7d822b769657128381508294e2e993bda74d39d7736af8227719819117a022",
+    "tests/test_song_provenance.py": "c8cf6cad44f629a778e4b3bc8e7d51ebaf89a897384f1263a06b677265cdc225",
+    "tests/test_media_range.py": "61a478976f9cfe094ef85916430d736a5449405a6b088477331dfb5c2981a622"
+  },
+  "limitations": [
+    "Source presentation uses recorded metadata hashes, not independent source-file or licensing verification. Derived phrase->original link records remain incomplete.",
+    "Notes do not automatically select new samples or recompose. Human musical acceptance and Live playback remain pending.",
+    "Full GET and single valid byte ranges supported; malformed/multiple/zero-suffix ranges use full200 fallback."
+  ],
+  "next_task": "FEATURE-F03",
+  "automation": {
+    "id": "beatlab",
+    "daily_local_time": "22:00 Asia/Shanghai",
+    "status": "ACTIVE",
+    "new_automation_created": false,
+    "expired_sprint_reopened": false
+  }
+}
