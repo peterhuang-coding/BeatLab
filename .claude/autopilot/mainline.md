@@ -14,6 +14,9 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
+FEATURE-F03环境阻塞，Notion仍执行中但未交付：2026-09-20夜班完成最新卡片/依赖核验与两路cc-plan派发。两个本地客户端均在凭据helper退出51时结束，未进入模型执行、未改文件、未跑新测试。直接只读凭据检查同样退出51且不可用；具体原因未确认，不推断套餐过期或服务端401。状态与固定请求ID见feature-refinement.json的comparison；恢复计划docs/superpowers/plans/2026-09-20-version-comparison.md。
+
+上一批：
 FEATURE-20260920 已完成技术验证并推送，待用户验收：F01时间点笔记、F02实际声部来源展示、必要的媒体Range与路径边界修复。完整272项测试通过；浏览器保存/刷新/跳回1.25秒与2.5秒、真实增益子版均验；16份旧主混音SHA/mtime保持。报告 [feature结果](../../docs/research/2026-09-20-feature-refinement-result.md)，精确恢复状态 [feature-refinement.json](feature-refinement.json)。
 Notion本轮 https://app.notion.com/p/3e13285284df81b3acdede2802cddd4f；下一项 FEATURE-F03 https://app.notion.com/p/3e13285284df814a888bcf97283d00b5 已按用户持续细化授权默认排队，前置技术验证和代码推送已满足，执行时仍读取最新状态。
 正确工作区 /Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919；分支 codex/album-execution-20260919，主根仍旧分支。已把原每日22点beatlab调度改为此恢复入口，没有新增定时器或延长旧4小时窗口。
@@ -35,7 +38,7 @@ cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时�
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-原每日22点夜班读取 FEATURE-F03 最新状态与依赖，推进父版/反馈版对照试听。暂停或用户调整优先。
+先恢复Coding Plan已配置凭据helper的读取能力；只读确认成功后，才对已确定结束的F03逻辑任务在限次内继续。阻塞未变不重派；旧unknown仍不重发。
 
 最新 feature 轮次：[2026-09-20 试听反馈与来源](rounds/2026-09-20-feature-refinement.md)。
 
