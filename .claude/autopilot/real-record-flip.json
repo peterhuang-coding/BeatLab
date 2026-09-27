@@ -41,6 +41,10 @@
     "delivery": "/Volumes/SanDisk2TB/BeatLab/exports/gold-from-dust-20260927-v2",
     "report": "docs/research/2026-09-27-prism-cut-v2-result.md",
     "tests_new": 6,
-    "tests_reused": 46
+    "tests_reused": 46,
+    "code_commit": "e7cc39468c7a2fe9909d34257f05edc7c83272cc",
+    "remote_sync": "code_commit_verified",
+    "notion_sync": "verified_pending_review",
+    "automation": "original_daily_22_active_preserved_v2_recovery_updated"
   }
 }
