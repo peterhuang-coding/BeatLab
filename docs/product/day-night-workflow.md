@@ -56,3 +56,5 @@ R01–R06 的批准只覆盖调研及其卡片里的验证范围。研究报告�
 ## 2026-09-27 更新
 
 用户直接要求按新版 PRD 修改成自动工作流，可调用 Claude Code。当前唯一主线为 [WORKFLOW-P0 锁定换句与盲听](https://app.notion.com/p/3e83285284df81778473f751527bf88d)，恢复文件为 `.claude/autopilot/locked-workflow.json`。原 F03 改为待定方向；凭据阻塞已解除，但旧 unknown 请求仍不重发。技术交付后等待用户试听与 Keep，不由夜班自动填偏好、扩写歌曲或发布。每日 22 点原调度保留，提示词已更新并读回。
+
+随后用户要求真实录音自行裁切的 Kanye 风格 beats。当前创作 MUSIC-20260927 已生成《尘里有金》v1，恢复 `.claude/autopilot/real-record-flip.json` 与主线；待用户时间点反馈。此前闭环技术成果保持，夜班不得因为“待验收”而代填Keep、重发已结束请求或自动扩曲。

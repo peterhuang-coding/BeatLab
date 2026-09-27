@@ -233,3 +233,7 @@ cd /Volumes/SanDisk2TB/BeatLab
 ## 2026-09-20夜班：FEATURE-F03恢复点
 
 父版/反馈版对照任务范围与两路cc-plan包已准备并实际启动，均因本机凭据helper退出51阻塞；0代码产物、0新测试，不标完成。原F01/F02可用成果和正式音频保持。先恢复已配置凭据读取，再在原逻辑任务限次内继续；[详细恢复点](../../research/2026-09-20-version-comparison-blocked.md)。
+
+## 2026-09-27 真实录音草稿交付
+
+按用户“自行裁切、Kanye风格”的新要求完成《尘里有金》54.174秒草稿及来源、ALS、ChopRack/MIDI和制作过程对照。46项相关测试、真实音频/浏览器通过；Live与主观听感仍待验。两路Coding Plan采用，商业化与九曲提案范围不变。详见[结果](../../research/2026-09-27-real-record-flip-result.md)与[本轮完整计划](2026-09-27-real-record-flip.md)。下一步等此版本时间点反馈，不将示范曲交付标为全部MVP完成。

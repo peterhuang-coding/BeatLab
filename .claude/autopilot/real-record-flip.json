@@ -1,0 +1,25 @@
+{
+  "task_id": "MUSIC-20260927",
+  "status": "awaiting_user_audition",
+  "run_id": "gold-from-dust-20260927-v1",
+  "user_direction": "Real recorded phrase flips, Kanye-inspired beat, Coding Plan allowed",
+  "notion_page": "3e832852-84df-8140-8241-ff0d6b11bf13",
+  "prepared": "/Volumes/SanDisk2TB/BeatLab/library/instruments/gold-from-dust-20260927-v1/prepared.json",
+  "current_wave": ".cache/real-record-flip-20260927/wave-01",
+  "requests": [
+    "beatlab-record-flip-compose-20260927-a1",
+    "beatlab-record-flip-delivery-20260927-a1"
+  ],
+  "paid_fallback": false,
+  "keep": null,
+  "live_verified": false,
+  "song": "/Volumes/SanDisk2TB/BeatLab/beats/gold-from-dust-20260927-v1",
+  "delivery": "/Volumes/SanDisk2TB/BeatLab/exports/gold-from-dust-20260927-v1",
+  "report": "docs/research/2026-09-27-real-record-flip-result.md",
+  "evidence": "evidence/real-record-flip-2026-09-27.json",
+  "requests_completed": 2,
+  "requests_adopted": 2,
+  "tests_passed": 46,
+  "remote_sync": "pending",
+  "next_step": "Wait for feedback on this exact mix; do not auto-extend or mark Keep."
+}

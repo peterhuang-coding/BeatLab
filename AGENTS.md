@@ -1,5 +1,7 @@
 # BeatLab 项目约定
 
+- 2026-09-27 用户在闭环演示后反馈“有点那个味儿”，但明确下一首要由真实录音自行裁切，想要 Kanye 风格 beats，可将水下工作交 Coding Plan。当前创作任务 MUSIC-20260927 / 尘里有金，计划 `docs/superpowers/plans/2026-09-27-real-record-flip.md`，状态 `real-record-flip.json`。主旋律和人声用可追溯录音翻采；合成声音仍可用于技术测试，但不能把技术演示作为新音乐交付。风格参考不等于使用 Kanye 歌曲或人声；新作品仍待用户试听。
+
 - 2026-09-27 用户直接授权按新版PRD修改为自动化闭环，可调用Claude Code。当前 WORKFLOW-P0-20260927 优先于旧F03独立排队，范围见 `docs/superpowers/plans/2026-09-27-locked-workflow.md` 与 `.claude/autopilot/locked-workflow.json`。首条闭环是指定区间换不同内容家族的回答句，冻结鼓/Bass及非目标区域，有限候选、保护检查、RMS匹配盲听、明确Keep后导出。身份/用途记录不足待确认；不把分数当好听或代填Keep。已有音频分轨ALS不等于可发声MIDI采样器，Live另验。凭据已恢复，旧文档cfa4437已推送；旧unknown不重发。
 
 - 2026-09-20 用户新授权「用 plan 持续细化这里的各种 feature」。恢复执行工作区 `.cache/album-execution-20260919` 的 FEATURE-20260920，状态见 `.claude/autopilot/feature-refinement.json`。当前 cc-plan（claude_plan.py）替代旧的纯文本草稿入口作为默认代码委派；同波独立包最多两路，真实验收后采用。F01时间点反馈/F02来源展示后，默认夜班排队FEATURE-F03版本比较，依赖见Notion卡；F04–F06仍在路线图。旧ALGO-4H窗口保持结束，4个unknown修正不重发，新授权不延长旧期限。

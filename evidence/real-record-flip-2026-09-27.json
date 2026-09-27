@@ -1,0 +1,263 @@
+{
+  "task_id": "MUSIC-20260927",
+  "run_id": "gold-from-dust-20260927-v1",
+  "title": "尘里有金 · Gold From Dust",
+  "bpm": 92,
+  "bars": 20,
+  "duration_seconds": 54.17392290249433,
+  "mix_sha256": "69aa6f8a8919f6f42bbafe584a86476f2d603f61da2020b6fa73755c98810c65",
+  "track_count": 17,
+  "unique_cuts": 10,
+  "placements": 25,
+  "sources": [
+    {
+      "id": "9c6c32d17de4128c",
+      "title": "After you've gone",
+      "source_url": "https://www.loc.gov/item/jukebox-313413/",
+      "collection_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+    },
+    {
+      "id": "aa4439f4333d77a8",
+      "title": "Blues (My naughty sweetie gives to me)",
+      "source_url": "https://www.loc.gov/item/jukebox-33694/",
+      "collection_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "cee6e0910320a205402a9895e1ea89907f11d8c19cca75df8f5ef0e1ab9273c5"
+    },
+    {
+      "id": "9a7e495a5224d187",
+      "title": "Crazy blues",
+      "source_url": "https://www.loc.gov/item/jukebox-188857/",
+      "collection_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+    }
+  ],
+  "cut_checks": [
+    {
+      "id": "lead_a",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": 3.0,
+      "reverse": false,
+      "stretch_ratio": 1.2766721277026185,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "a827bc211f27bee003331c0e0188743e441c0e68033fe24f167db59c16e46e13"
+    },
+    {
+      "id": "lead_b",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": 3.0,
+      "reverse": false,
+      "stretch_ratio": 1.3700873576833177,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "faa3dbb9ea424e6190d4d9c6e607f7bba7ade8f5a72b06f0dfaa7b5792505f06"
+    },
+    {
+      "id": "lead_c",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": 3.0,
+      "reverse": false,
+      "stretch_ratio": 1.3374661632206255,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "b867bfef195fc4293f1138741290c196fa4117ce041b2133e110340f5dfa7a5e"
+    },
+    {
+      "id": "lead_d",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": 3.0,
+      "reverse": false,
+      "stretch_ratio": 1.3374661632206255,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "a52a6cc1f759a7f1bd679a39981693e52a622ab9f62ec0ebad9374442842266f"
+    },
+    {
+      "id": "answer_a",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": -2.0,
+      "reverse": false,
+      "stretch_ratio": 0.7295255020229743,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "623e1ad7a91d244fec0f0e6a1c72d00eadd3d5a9306feac00579c1d502d3eb1a"
+    },
+    {
+      "id": "answer_b",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": -2.0,
+      "reverse": false,
+      "stretch_ratio": 0.7110603782699,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "5e6ffd5a6466ee2bcd3f0f4540548f846a0dd82c36d53176dd32536e26196cab"
+    },
+    {
+      "id": "answer_c",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": -2.0,
+      "reverse": false,
+      "stretch_ratio": 0.5975900388911598,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "bbb361e29e361b41b2117b6e02bdf9e152b7c630ac0004180712a2dfcd5b5155"
+    },
+    {
+      "id": "answer_d",
+      "seconds": 1.3043537414965987,
+      "target_error_frames": 0,
+      "pitch_semitones": -2.0,
+      "reverse": false,
+      "stretch_ratio": 0.6687351387547393,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "a710ceae5ce04bdb1b26aeaaf19f0ebce47a440748685a14e3cb5ebae0d39279"
+    },
+    {
+      "id": "long_memory",
+      "seconds": 2.608684807256236,
+      "target_error_frames": 0,
+      "pitch_semitones": 3.0,
+      "reverse": false,
+      "stretch_ratio": 1.2483015816730023,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "52f76c461fff76e752f826d82a10438644d3e4c790ce0445cd4131f42931c831"
+    },
+    {
+      "id": "reverse_brass",
+      "seconds": 2.608684807256236,
+      "target_error_frames": 0,
+      "pitch_semitones": -2.0,
+      "reverse": true,
+      "stretch_ratio": 1.091047951557471,
+      "finite": true,
+      "edge_jump_peak": 0.0,
+      "sha256": "60490772cc12a0ab593b7708034b5eac8699ef4192d205d5a279f1d64063025f"
+    }
+  ],
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 4.76837158203125e-07,
+    "rms_error": 1.0318288833096621e-07,
+    "relative_rms_db": -118.50897193081046,
+    "tolerance": 2.2649765014648438e-06,
+    "passed": true
+  },
+  "loudness": {
+    "integrated_lufs": -18.26,
+    "true_peak_dbtp": -1.0,
+    "lra_lu": 6.1,
+    "method": "ffmpeg loudnorm input analysis; mix not normalized by this analysis"
+  },
+  "preservation": {
+    "old_mixes_checked": 15,
+    "old_mixes_unchanged": true,
+    "cut_count": 10,
+    "source_hashes_unchanged": true
+  },
+  "http_range": {
+    "status": 206,
+    "content_range": "bytes 0-63/14334464",
+    "bytes": 64
+  },
+  "browser": {
+    "title": "尘里有金 · Gold From Dust · BeatLab",
+    "audio_duration": 54.173923,
+    "audio_ready_state": 4,
+    "playing_time_observed": 16.45499,
+    "source_rows_matched": 17,
+    "source_rows_missing": 0,
+    "source_rows_suspect": 0,
+    "user_notes_saved": 0,
+    "paused_after_test": true
+  },
+  "package": {
+    "directory": "/Volumes/SanDisk2TB/BeatLab/exports/gold-from-dust-20260927-v1",
+    "file_count": 63,
+    "hashed_files": 62,
+    "manifest_sha256": "8fab73fef969cffd0b363bac3af581276c6952a1afb5a81fcdb33d4b64e07a3b",
+    "chop_pads": 10,
+    "midi_total_ticks": 76800
+  },
+  "coding_plan": {
+    "requests": [
+      {
+        "request_id": "beatlab-record-flip-compose-20260927-a1",
+        "model": [
+          "doubao-seed-evolving"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 881.07,
+        "adopted": true,
+        "input_hashes_verified": true,
+        "disallowed_changes": [],
+        "changed_files": [
+          {
+            "path": "examples/real_record_flip.py",
+            "sha256": "8b43e06a97fbad7dbe9e039b29a65a89525fbfc52327390d1cf782a30f250c8a"
+          },
+          {
+            "path": "tests/test_real_record_flip.py",
+            "sha256": "43cb5e8de33b0e4adf6f09961b0bbab8c76bdc7610e6c61cb031d5ceee22a33a"
+          }
+        ]
+      },
+      {
+        "request_id": "beatlab-record-flip-delivery-20260927-a1",
+        "model": [
+          "doubao-seed-evolving"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 1113.849,
+        "adopted": true,
+        "input_hashes_verified": true,
+        "disallowed_changes": [],
+        "changed_files": [
+          {
+            "path": "examples/real_record_delivery.py",
+            "sha256": "2ff01c86538c34c64e97d4663174c6505545fb63735d667b1069cc8efca56c01"
+          },
+          {
+            "path": "tests/test_real_record_delivery.py",
+            "sha256": "ef956fb2d0a201ba8f17cc0d673019f92a51c7b08e24a2774697325d25ace466"
+          }
+        ]
+      }
+    ],
+    "max_parallel": 2,
+    "paid_fallback": false,
+    "primary_corrections": [
+      "Halftime snare moves to beat three",
+      "Digit-leading source IDs accepted safely",
+      "Rendered cut SHA binding",
+      "Source ID/path/SHA identity binding",
+      "Placement/event multiset including velocity and multiplicity",
+      "Final export metadata path rebasing",
+      "Reuse existing native rack builder"
+    ],
+    "reviewer": "review_real_record_delivery: initial five findings fixed; bounded read-only recheck found no remaining blocker",
+    "tests": {
+      "command": "python -B -m unittest discover -s tests -p test_real_record_*.py -v",
+      "passed": 46,
+      "seconds": 24.958,
+      "log_sha256": "1d82aa04ed99afb27635443566c4fc09ef58424bf8e809af40fda6d52ecba4a7"
+    },
+    "scope": "public code and synthetic fixtures only; primary local real-media rendering and validation"
+  },
+  "live": {
+    "verified": false,
+    "attempt": "Selected and opened isolated Gold From Dust.als through native Open dialog; post-open AX calls timed out twice. No save/reopen/render verification claimed.",
+    "isolated_set": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/real-record-flip-20260927/live-check/AbletonProject/Gold From Dust.als"
+  },
+  "keep": null,
+  "perceptual_quality": "awaiting user listening; technical metrics are not taste scores"
+}
