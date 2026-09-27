@@ -17,7 +17,8 @@
   "automation_modified": false,
   "requires_before_activation": [
     "user selection of scope and cadence",
-    "queue/shared concurrency/review backlog/expiry recovery verified offline"
+    "queue/shared concurrency/review backlog/expiry recovery verified offline",
+    "Verify current cc-plan entry explicitly requests supported thinking/high before new dispatch; existing ended jobs are not replayed."
   ],
   "proposal": "docs/superpowers/specs/2026-09-27-continuous-lab-design.md",
   "requests": [
@@ -26,5 +27,8 @@
   ],
   "requests_completed": 2,
   "requests_adopted": 2,
-  "next_step": "Wait for selected scope and trial cadence; do not automatically start proposed pool or retry old unknown jobs."
+  "next_step": "Wait for selected scope and trial cadence; do not automatically start proposed pool or retry old unknown jobs.",
+  "proposal_commit": "ce3f2bc3513b21be6e8f426c2cc503cbcad921a1",
+  "remote_sha_verified": true,
+  "notion_sync": "project_proposal_readback_verified"
 }

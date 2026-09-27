@@ -30,7 +30,7 @@
       ],
       "source_sha256": "0c9d20b0416cbf0ed4f1c756022178f2999cba14987e55f355a45330a724d6ff",
       "adopted_document": "docs/product/continuous-operations.md",
-      "adopted_sha256": "0bd321dce17edf85d914d599096114ac9e6305830d21214ad5d01917254db7ed",
+      "adopted_sha256": "d08b55cd26035347a18b454b6150bf811aa6da0b1badf90299589f1c9d489ae5",
       "worker_tests": 0,
       "accepted_after_primary_content_review": true
     }
@@ -56,5 +56,7 @@
     "trial expiry restores original automation; does not expire user artworks",
     "no promise independent scheduling after primary quota exhaustion"
   ],
-  "official_schedule_reference": "https://learn.chatgpt.com/docs/automations?surface=app"
+  "official_schedule_reference": "https://learn.chatgpt.com/docs/automations?surface=app",
+  "latest_user_quality_preference": "Next unsubmitted CC job: verified suitable plan model at highest supported native effort; Seed Evolving high; verify actual request parameters, do not resend ended jobs.",
+  "current_legacy_entry_explicit_high_verified": false
 }
