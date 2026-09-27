@@ -14,6 +14,12 @@
 - D6 2026-09-18：用户明确先做专辑叙事规划，参考 Kanye West / Tyler；商业化晚点讨论。
 
 ## 当前任务
+
+WORKFLOW-P0-20260927：用户2026-09-27提供新版PRD并要求按闭环改成自动化工作流。目标为指定段落替换不同内容家族回答句，鼓/Bass/非目标区域锁定；有限候选、真实保护检查、RMS匹配盲听、人选Keep后导出。现有设计已在对话明确，按用户直接实施授权推进；详见docs/superpowers/specs/2026-09-27-locked-workflow-design.md和实施计划。
+
+状态.claude/autopilot/locked-workflow.json；Notion https://app.notion.com/p/3e83285284df81778473f751527bf88d 。独立F03转回待定方向，不再自动恢复旧两请求；旧算法unknown也不重发。本机凭据本轮读取成功，历史1946dd9/cfa4437已补push并核验远端cfa4437。新两路cc-plan已同波派发，真实结果待验收。
+
+## 历史：F03独立对比与F01/F02交付
 FEATURE-F03环境阻塞，Notion仍执行中但未交付：2026-09-20夜班完成最新卡片/依赖核验与两路cc-plan派发。两个本地客户端均在凭据helper退出51时结束，未进入模型执行、未改文件、未跑新测试。直接只读凭据检查同样退出51且不可用；具体原因未确认，不推断套餐过期或服务端401。状态与固定请求ID见feature-refinement.json的comparison；恢复计划docs/superpowers/plans/2026-09-20-version-comparison.md。
 
 上一批：
@@ -40,7 +46,7 @@ F03本地计划提交1946dd96e3d173aa9c1b8e7a52770b618b87838e普通push失败（
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-先恢复本机Coding Plan和GitHub凭据读取，正常push保存的本地提交并核验远端，再在原F03逻辑任务限次内继续；阻塞未变不重派，旧unknown仍不重发。
+核验本轮原始两路cc-plan结果，再接入有界任务worker与闭环验收；以locked-workflow.json恢复，不执行旧F03排队逻辑。
 
 最新 feature 轮次：[2026-09-20 试听反馈与来源](rounds/2026-09-20-feature-refinement.md)。
 

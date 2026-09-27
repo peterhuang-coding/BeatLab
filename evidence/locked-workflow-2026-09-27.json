@@ -1,0 +1,236 @@
+{
+  "task_id": "WORKFLOW-P0-20260927",
+  "phase": "wave1_verified_wave2_running",
+  "baseline_tests": 272,
+  "wave1_tests": 347,
+  "wave1_seconds": 28.243,
+  "locked_edit_tests": 29,
+  "blind_review_tests": 43,
+  "live_verification": "unverified",
+  "subjective_listening": "pending_user",
+  "real_user_keep_recorded": false,
+  "demo": "authored macOS speech and synthetic instruments, local_workflow_test only",
+  "demo_duration_seconds": 20.4,
+  "changed_interval_seconds": [
+    5,
+    10
+  ],
+  "candidates": {
+    "answer-one": {
+      "engine": "stem_splice",
+      "parent": {
+        "path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/parent",
+        "mix_sha256": "7b61e4d8ca9bb5360b92aa969a6beb5727506f172858dd0c25689e213c7c5398",
+        "score_sha256": "d319292ea9ba8b7457c0ea6da1b228496d45b240d1af56b893a74de2f38ff6f7",
+        "manifest_sha256": "e14a4c7d7d008fc1312910d7fb390ac4bcc514f8e63ec21f59b5f73a06973d5e"
+      },
+      "region": {
+        "track_id": "vocal_answer",
+        "start_beat": 8.0,
+        "end_beat": 16.0,
+        "start_frame": 110250,
+        "end_frame": 220500,
+        "crossfade_frames": 110
+      },
+      "phrase": {
+        "id": "answer-one",
+        "family_id": "authored-text-answer-one",
+        "sha256": "dac53fbaf51e041c63226fc5675c27cc62d60a93b3a20fe47ddd404f437fdf27",
+        "root_midi": 60,
+        "role": "answer"
+      },
+      "child": {
+        "mix_sha256": "d2a4a3aef719be787da1da9856c9a290fe0e61c6068b813c906aeff7e33232d1",
+        "target_stem_sha256": "fab035d68831940fe81347f4a3bdca84649920d7e1344cd4ba7ff9e93ebf835e"
+      },
+      "checks": {
+        "non_target_stems_byte_identical": true,
+        "non_target_stems": [
+          "kick",
+          "snare",
+          "hat",
+          "bass",
+          "keys"
+        ],
+        "non_target_midi_byte_identical": true,
+        "non_target_midi": [
+          "kick",
+          "snare",
+          "hat",
+          "bass",
+          "keys"
+        ],
+        "target_outside_window_sample_identical": true,
+        "target_outside_window_max_abs_diff": 0.0,
+        "frames_outside_window": 339570,
+        "mix_finite": true,
+        "mix_peak": 0.9013469219207764,
+        "mix_below_full_scale": true,
+        "audible_change": true,
+        "mix_change_relative_rms": 0.19482514355374236,
+        "master_gain_frozen": 4.3203667801380865,
+        "parent_files_byte_and_mtime_unchanged": true,
+        "parent_file_count": 15
+      },
+      "identity_trust_boundary": "Identity rests solely on explicit reviewed catalog metadata: the identity_verified flags, family_id records and allowed_uses supplied by the caller. Hashes only certify that bytes are unchanged, never that a performance says particular words; alternate edit windows are not offered as evidence of different words. This module performs no lyric inference.",
+      "replay_note": "the exact immutable parent recorded above; the stem splice is not replayable by vanilla render_score"
+    },
+    "answer-two": {
+      "engine": "stem_splice",
+      "parent": {
+        "path": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/parent",
+        "mix_sha256": "7b61e4d8ca9bb5360b92aa969a6beb5727506f172858dd0c25689e213c7c5398",
+        "score_sha256": "d319292ea9ba8b7457c0ea6da1b228496d45b240d1af56b893a74de2f38ff6f7",
+        "manifest_sha256": "e14a4c7d7d008fc1312910d7fb390ac4bcc514f8e63ec21f59b5f73a06973d5e"
+      },
+      "region": {
+        "track_id": "vocal_answer",
+        "start_beat": 8.0,
+        "end_beat": 16.0,
+        "start_frame": 110250,
+        "end_frame": 220500,
+        "crossfade_frames": 110
+      },
+      "phrase": {
+        "id": "answer-two",
+        "family_id": "authored-text-answer-two",
+        "sha256": "9eb7c08df0bd8f1b75e91fcd25f74c2bbe0c8c5628e103a29f9ff6715a5b39f8",
+        "root_midi": 60,
+        "role": "answer"
+      },
+      "child": {
+        "mix_sha256": "cc6a7892c55d3511e41e881fef1b431d8881f03c246f6c9bf95ce3eb49b23107",
+        "target_stem_sha256": "26e93ffac626d37a3e79f41210e075cc52a6904dc16ee9527938a378824b7e19"
+      },
+      "checks": {
+        "non_target_stems_byte_identical": true,
+        "non_target_stems": [
+          "kick",
+          "snare",
+          "hat",
+          "bass",
+          "keys"
+        ],
+        "non_target_midi_byte_identical": true,
+        "non_target_midi": [
+          "kick",
+          "snare",
+          "hat",
+          "bass",
+          "keys"
+        ],
+        "target_outside_window_sample_identical": true,
+        "target_outside_window_max_abs_diff": 0.0,
+        "frames_outside_window": 339570,
+        "mix_finite": true,
+        "mix_peak": 0.8916164636611938,
+        "mix_below_full_scale": true,
+        "audible_change": true,
+        "mix_change_relative_rms": 0.19653912846779042,
+        "master_gain_frozen": 4.3203667801380865,
+        "parent_files_byte_and_mtime_unchanged": true,
+        "parent_file_count": 15
+      },
+      "identity_trust_boundary": "Identity rests solely on explicit reviewed catalog metadata: the identity_verified flags, family_id records and allowed_uses supplied by the caller. Hashes only certify that bytes are unchanged, never that a performance says particular words; alternate edit windows are not offered as evidence of different words. This module performs no lyric inference.",
+      "replay_note": "the exact immutable parent recorded above; the stem splice is not replayable by vanilla render_score"
+    }
+  },
+  "browser": {
+    "scope": "isolated local browser fixture, no genuine user preference",
+    "url": "http://127.0.0.1:8808",
+    "rapid_switch_before_fix": {
+      "before_seconds": 5,
+      "before_paused": false,
+      "after_seconds": 0,
+      "after_paused": true
+    },
+    "rapid_switch_after_fix": {
+      "before_seconds": 5,
+      "before_paused": false,
+      "after_seconds": 5.000081,
+      "after_paused": false
+    },
+    "paused_switch_after_fix": {
+      "before_seconds": 5,
+      "before_paused": true,
+      "after_seconds": 5,
+      "after_paused": true
+    },
+    "source": "Real Chromium/IAB Runtime evaluation of current player and switchTo plus actual UI actions through cua; autoplay required actual Play click. No synthetic DOM result substitution.",
+    "decision_ui_reload_verified": true,
+    "decision": {
+      "request_id": "7ae04199-53ba-4906-8c9e-c843af0143aa",
+      "choice": "neither",
+      "keep": false,
+      "selected_id": null,
+      "notes": [
+        {
+          "time_seconds": 5.0,
+          "text": "自动化验收笔记：5 秒切换正常，不代表用户音乐评价。"
+        }
+      ],
+      "created_at": "2026-09-27T09:29:33.805672Z"
+    }
+  },
+  "delegation": {
+    "entrypoint": "scripts/claude_plan.py",
+    "provider": "volcengine-plan",
+    "observed_model": "doubao-seed-evolving",
+    "wave1_concurrency": 2,
+    "wave2_concurrency": 2,
+    "paid_fallback": false,
+    "unknown_replayed": false,
+    "jobs": [
+      {
+        "id": "beatlab-locked-edit-20260927-a1",
+        "runner_status": "verifying",
+        "process_ended": true,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "result_sha256": "ffa4cd018e92b30a2536abb5447be072acba6a5f64ac7360c5c5ca007c971e74",
+        "adoption": "independent tests passed, adopted with one local quality correction pass",
+        "read_input_drift": "primary-owned export/revision guard changes only; staged inputs matched original hashes",
+        "note": ""
+      },
+      {
+        "id": "beatlab-blind-review-20260927-a1",
+        "runner_status": "blocked",
+        "process_ended": true,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "result_sha256": "309cb5a07c48575b8237183886d872b2a873da9d1d74f15b1e09ced6a7977cab",
+        "adoption": "independent tests passed, adopted with one local quality correction pass",
+        "read_input_drift": "primary-owned export/revision guard changes only; staged inputs matched original hashes",
+        "note": "blind runner blocked solely by deliberate red exit1 included alongside final green exit0; no provider failure/replay"
+      }
+    ]
+  },
+  "rms_matching": {
+    "technique": "equal RMS in dB measured over the identical full interval; attenuation only; common -1 dBFS peak ceiling; 32-bit float audition WAVs; RMS level comparison, not LUFS; original files left untouched",
+    "target_rms_db": -18.90092665186035,
+    "common_gain_db": -0.09783959931362253,
+    "labels": {
+      "A": {
+        "original_rms_db": -18.879206929715153,
+        "gain_db": -0.11955932145882153,
+        "rms_db_after": -18.998766252173592,
+        "peak_after": 0.8790671229362488
+      },
+      "B": {
+        "original_rms_db": -18.897397579300325,
+        "gain_db": -0.10136867187364615,
+        "rms_db_after": -18.998766251462918,
+        "peak_after": 0.8812713623046875
+      },
+      "C": {
+        "original_rms_db": -18.90092665186035,
+        "gain_db": -0.09783959931362253,
+        "rms_db_after": -18.998766249611915,
+        "peak_after": 0.8912509083747864
+      }
+    }
+  },
+  "formal_music_baseline_count": 15
+}

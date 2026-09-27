@@ -58,6 +58,10 @@ def revise_song(parent, gains_db):
     parent = Path(parent).resolve()
     checked = validate_song(parent)
     score = json.loads((parent/'score.json').read_text())
+    if 'locked_edit_recipe' in score or (parent/'locked-edit.json').exists():
+        raise ValueError('This song contains a locked edit / stem-splice recipe; '
+                         'gain rerendering would discard its replacement. '
+                         'Edit the collected stems in your DAW instead.')
     updated = revise_score(score, gains_db)
     records = {t['id']:t for t in checked['manifest']['tracks']}
     if {t['id'] for t in updated['tracks']} != set(records):

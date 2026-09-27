@@ -90,6 +90,9 @@ def _space(audio: np.ndarray, sr: int, amount: float) -> np.ndarray:
 
 
 def render_score(score: dict, out: Path, sr: int = 44100) -> dict:
+    if 'locked_edit_recipe' in score:
+        raise ValueError('A locked edit / stem-splice score requires replay_locked_edit; '
+                         'vanilla rendering would discard its replacements')
     out = Path(out)
     if out.exists() and any(out.iterdir()):
         raise FileExistsError(f'Choose a new version directory: {out}')

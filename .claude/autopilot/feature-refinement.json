@@ -47,15 +47,10 @@
   "paid_fallback": false,
   "algorithm_sprint_reopened": false,
   "original_music_baseline_count": 16,
-  "next_step": "Restore local Coding Plan credential retrieval and GitHub credentials; push preserved commits normally and verify remote SHA before continuing bounded F03 attempts. Do not repeat unchanged failed requests.",
+  "next_step": "Follow locked-workflow.json and the new direct authorization; F03 no longer auto-queued.",
   "current_wave": "wave-02",
   "prepared_notes_a2": "not_submitted; do not replay the unknown original notes job",
-  "next_queued_task": {
-    "id": "FEATURE-F03",
-    "notion_page_id": "3e132852-84df-814a-888b-cf97283d00b5",
-    "dependency": "FEATURE-20260920 technically verified and pushed",
-    "dependency_verified_commit": "5668e9c289e649724dec0bf6913b174cc2ab2890"
-  },
+  "next_queued_task": null,
   "automation": {
     "id": "beatlab",
     "time": "daily 22:00 Asia/Shanghai",
@@ -71,10 +66,10 @@
   "notion_synced": true,
   "hub_summary_path": "/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md",
   "consumed_media_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-refinement-20260920/wave-02/media-range.json",
-  "active_task": "FEATURE-F03",
+  "active_task": "WORKFLOW-P0-20260927",
   "comparison": {
     "task_id": "FEATURE-F03",
-    "status": "blocked_environment",
+    "status": "superseded_by_direct_authorization",
     "base_commit": "760ad831fdaf28dc7d9e7ca17f5d70f2829ebede",
     "notion_page_id": "3e132852-84df-814a-888b-cf97283d00b5",
     "wave_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/feature-f03-20260920/wave-01",
@@ -162,7 +157,7 @@
         "state_dir": "/Users/peter_mini/.local/state/taskrouter/claude-plan/beatlab-f03-view-20260920-a1"
       }
     ],
-    "next_step": "Restore local Coding Plan credential retrieval and GitHub credentials; push preserved commits normally and verify remote SHA before continuing bounded F03 attempts. Do not repeat unchanged failed requests.",
+    "next_step": "Historical blocker retained below; credentials recovered 2026-09-27, old documents pushed at cfa4437. Do not replay old requests; new WORKFLOW-P0 governs.",
     "active_requests": 0,
     "attempts_per_logical_task": 1,
     "quality_corrections_used": 0,
@@ -173,7 +168,9 @@
       "local_plan_commit": "1946dd96e3d173aa9c1b8e7a52770b618b87838e",
       "remote_sha": "760ad831fdaf28dc7d9e7ca17f5d70f2829ebede",
       "error": "fatal: could not read Username for https://github.com: Device not configured",
-      "push_attempts": 1
-    }
+      "push_attempts": 1,
+      "resolved_by": "cfa4437b5bbfe7c15c34c141abee01da1e8b5ddf"
+    },
+    "blocker_resolved_at": "2026-09-27"
   }
 }

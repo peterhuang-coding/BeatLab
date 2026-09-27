@@ -40,3 +40,11 @@ class RevisionTests(unittest.TestCase):
  def test_score_track_omission_cannot_silently_remove_layer(self):
   path=self.parent/'score.json';data=json.loads(path.read_text());data['tracks'].pop();path.write_text(json.dumps(data))
   with self.assertRaises(ValueError):self.revise({'voice':-6})
+ def test_stem_splice_recipe_cannot_be_lost_in_gain_rerender(self):
+  path=self.parent/'score.json';data=json.loads(path.read_text())
+  data['locked_edit_recipe']={'mode':'stem-splice'};path.write_text(json.dumps(data))
+  before=(self.parent/'full_mix.wav').read_bytes()
+  with self.assertRaisesRegex(ValueError,'locked.*edit|stem.splic'):
+   self.revise({'voice':-6})
+  self.assertEqual((self.parent/'full_mix.wav').read_bytes(),before)
+  self.assertFalse(list(self.root.glob('parent-r*')))

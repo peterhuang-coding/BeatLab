@@ -320,13 +320,34 @@ def export_song(song: Path, out: Path, *, template: Path = DEFAULT_TEMPLATE,
     if not set_name or set_name in ('.', '..') or '/' in set_name or '\\' in set_name:
         raise ValueError('Set name must be a single filename without a directory')
     data = validate_song(song)
+    song_root = Path(data['song'])
+    recipe_files = {}
+    score = json.loads((song_root / 'score.json').read_text())
+    if 'locked_edit_recipe' in score:
+        for name in ('locked-edit.json', 'protection.json'):
+            _media(song_root, name)  # An edit export must not silently lose its recipe.
+    for name in ('locked-edit.json', 'locked_edit_recipe.json', 'protection.json', 'provenance.json',
+                 'source_catalog.json', 'slice_map.json'):
+        if (song_root / name).exists():
+            recipe_files[name] = _sha256(_media(song_root, name))
+    sources = song_root / 'sources'
+    if sources.is_symlink():
+        raise ValueError('Collected sources must not be a symlink')
+    if sources.exists():
+        for source in sorted(sources.rglob('*')):
+            if source.is_symlink():
+                raise ValueError('Collected source must not be a symlink')
+            if source.is_file():
+                relative = str(source.relative_to(song_root))
+                recipe_files[relative] = _sha256(_media(song_root, relative))
     root = _set_xml(data, Path(template), Path(clip_template))
     result = {**data, 'project': str(out), 'als': str(out / f'{set_name}.als'),
               'export_mode': 'collected audio arrangement, warp off, no added FX, unity gains',
               'midi_reconstruction': 'MIDI and score copied as editable sources; instruments not recreated',
               'template_creator': root.get('Creator'),
               'template_sha256': _sha256(Path(template)),
-              'clip_template_sha256': _sha256(Path(clip_template)), 'media': []}
+              'clip_template_sha256': _sha256(Path(clip_template)), 'media': [],
+              'recipe_files': recipe_files}
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=f'.{out.name}-', dir=out.parent) as temporary:
         stage = Path(temporary) / 'project'
@@ -335,6 +356,8 @@ def export_song(song: Path, out: Path, *, template: Path = DEFAULT_TEMPLATE,
         copies = [(data['mix'], 'Reference/full_mix.wav', data['mix_sha256']),
                   ('score.json', 'Source/score.json', data['score_sha256']),
                   ('run_manifest.json', 'Source/run_manifest.json', data['manifest_sha256'])]
+        copies += [(relative, f'Source/{relative}', digest)
+                   for relative, digest in recipe_files.items()]
         for track in data['tracks']:
             relative = f'Samples/Imported/{track["id"]}.wav'
             copies += [(track['file'], relative, track['sha256']),
@@ -343,6 +366,7 @@ def export_song(song: Path, out: Path, *, template: Path = DEFAULT_TEMPLATE,
                                     'sha256': track['sha256']})
         for source, destination, expected in copies:
             copied = stage / destination
+            copied.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(Path(data['song']) / source, copied)
             _check_hash(copied, expected, required=True)
         xml = ET.tostring(root, encoding='utf-8', xml_declaration=True)
@@ -356,6 +380,9 @@ def export_song(song: Path, out: Path, *, template: Path = DEFAULT_TEMPLATE,
             'Reference/full_mix.wav is the listening reference, excluded from the arrangement.\n'
             'Source/midi and Source/score.json allow further composition editing. MIDI instruments\n'
             'and source sample processing are not reconstructed in this audio Set.\n\n'
+            'When present, Source/locked-edit.json, protection.json and sources/ preserve the\n'
+            'replacement record and phrase. Replaying a stem-splice recipe may also require\n'
+            'its immutable parent song; the collected audio Set itself plays from its stems.\n\n'
             'Verified: source hashes, equal audio lengths/rates, non-silent stems, source stem-sum residual,\n'
             'collected media hashes and XML structure. Live open/reopen/relocation and Live render remain\n'
             'UNVERIFIED. The numerical comparison is not a Live rerender.\n')

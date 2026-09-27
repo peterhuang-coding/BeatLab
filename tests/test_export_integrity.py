@@ -159,6 +159,32 @@ class ExportIntegrityTests(unittest.TestCase):
             self.exporter.export_song(self.song, out)
         self.assertEqual((out / 'keep.txt').read_text(), 'user content')
 
+    @unittest.skipUnless(TEMPLATE.exists() and CLIP_TEMPLATE.exists(), 'Live 12 templates required')
+    def test_locked_edit_export_collects_recipe_and_replacement_source(self):
+        score = self.song / 'score.json'
+        data = json.loads(score.read_text())
+        data['locked_edit_recipe'] = {'engine': 'stem_splice'}
+        score.write_text(json.dumps(data))
+        for name in ('locked-edit.json', 'protection.json', 'provenance.json'):
+            (self.song / name).write_text(json.dumps({'fixture': name}))
+        (self.song / 'sources').mkdir()
+        shutil.copy2(self.song / 'stems/track0.wav', self.song / 'sources/answer.wav')
+        out = self.root / 'output'
+        result = self.exporter.export_song(self.song, out)
+        for relative in ('locked-edit.json', 'protection.json', 'provenance.json', 'sources/answer.wav'):
+            self.assertEqual((out / 'Source' / relative).read_bytes(), (self.song / relative).read_bytes())
+            self.assertEqual(result['recipe_files'][relative], self.sha(self.song / relative))
+
+    @unittest.skipUnless(TEMPLATE.exists() and CLIP_TEMPLATE.exists(), 'Live 12 templates required')
+    def test_locked_edit_export_rejects_external_source_symlink(self):
+        (self.song / 'sources').mkdir()
+        secret = self.root / 'outside.wav'
+        shutil.copy2(self.song / 'stems/track0.wav', secret)
+        (self.song / 'sources/answer.wav').symlink_to(secret)
+        with self.assertRaisesRegex(ValueError, 'outside|symlink'):
+            self.exporter.export_song(self.song, self.root / 'output')
+        self.assertFalse((self.root / 'output').exists())
+
     def test_reassigns_global_targets_and_references_without_touching_local_ids(self):
         tree = ET.fromstring('<Track><Pointee Id="9"/><AutomationTarget Id="12"/>'
                              '<VolumeModulationTarget Id="14"/><PointeeId Value="9"/>'
