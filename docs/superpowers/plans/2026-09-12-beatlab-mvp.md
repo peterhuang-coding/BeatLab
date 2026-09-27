@@ -1,5 +1,7 @@
 # BeatLab MVP Implementation Plan
 
+> 2026-09-27 当前范围：[新版 PRD](../../PRD.md) 与 [锁定换句工作流实施计划](2026-09-27-locked-workflow.md) 优先。用户授权先打通指定人声区间换句、鼓/Bass 保护、有限生成、音量匹配盲听、明确 Keep 后工程交付。下列固定模板/候选数/曲长和商业阶段是历史计划，不再作为默认验收；专辑概念仍待用户确认。首条闭环 400 项回归及真实串联已通过，详见[交付结果](../../research/2026-09-27-locked-workflow-result.md)；音乐和 Live 待验，不能标记所有 P0 完成。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal（2026-09-18 更新）:** 当前先围绕一张叙事型 beats 专辑建立声音世界、曲目关系和好听的小样；反馈真正改变下一版，作品能在 Ableton 继续编辑。商业化后置，下方素材/销售里程碑保留为长期计划。

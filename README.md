@@ -1,10 +1,12 @@
 # BeatLab
 
-[产品方向与 Notion 看板](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) · [六条产品调研与工程待办](docs/product/research-backlog.md) · [白天定方向、夜间执行](docs/product/day-night-workflow.md)
+[产品需求文档（当前方向）](docs/PRD.md) · [历史 PRD 存档（2026-09-27 前）](docs/product/legacy-prd-20260927.md) · [产品方向与 Notion 看板](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) · [六条产品调研与工程待办](docs/product/research-backlog.md) · [白天定方向、夜间执行](docs/product/day-night-workflow.md)
 
-本地采样型 beat 制作流水线：导入音频 → 拆轨 → 找采样片段 → 围绕一个 Hero Sample 生成 Loop / Chop / Stem 三个候选 → 试听、反馈与 Ableton 交付。
+本地优先的个人采样制作工具：从**已允许当前用途的音频或已有项目**出发，做乐句发现与内容身份、多来源编排与有界生成，再对指定段落做**锁定式定向修改**，经技术/保护检查与电平匹配的人工盲听，由用户明确 Keep 后交付可继续编辑的 Ableton 工程。当前聚焦复杂、有趣的 newschool beat 与概念专辑创作，商业化是后期事项。完整需求见 [产品需求文档](docs/PRD.md)。
 
-当前版本生成 **三个 60–90 秒的制作草稿**。3–4 分钟完整编排、双机任务队列和进一步质量改进见 [产品规划](docs/PRD.md)，不代表已经实现。
+首条已接通的纵向流程是**锁定换句**：指定区间里重复的人声，被一个真正不同内容家族的回答乐句替换，鼓、Bass 与所有非目标段落保持不变，交付真实新音频。范围与边界见 [锁定换句工作流](docs/product/locked-workflow.md)——工作流已通过 **400 项测试与真实合成音频/HTTP/浏览器串联验收**，见[结果与边界](docs/research/2026-09-27-locked-workflow-result.md)；音乐听感与 Live 实开仍待验证；设计依据见 [2026-09-27 工作流设计稿](docs/superpowers/specs/2026-09-27-locked-workflow-design.md)。
+
+既有 `compose` 路线仍生成 **三个 60–90 秒的制作草稿**——这是保留下来的**现有路线行为**，不是产品要求；整曲扩写、双机任务队列和进一步质量改进见 [产品规划](docs/PRD.md)，均不代表已经实现。
 
 新增一条明确写好音符与段落的整曲制作路线：`song` 用采样乐器渲染原创乐谱，输出统一增益的 WAV 分轨和 MIDI。第一首《窗边来信》是 88 BPM、52 小节的 Soul / Hip-hop 器乐曲。它是人工编排的质量基准，自动 Hero Sample 选择器还没有达到同样的音乐验收。
 

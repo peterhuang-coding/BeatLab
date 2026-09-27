@@ -561,6 +561,11 @@ function renderCommitted(data){
     line='已提交：都不要，不保留任何版本。';
   }
   const p=document.createElement('p');p.textContent=line;box.appendChild(p);
+  if(data.callback&&data.callback.delivery_path){
+    const d=document.createElement('p');
+    d.textContent='工程已导出：'+data.callback.delivery_path;
+    box.appendChild(d);
+  }
   if(data.callback&&data.callback.status==='failed'){
     const w=document.createElement('p');w.className='err';
     w.textContent='决定已保存；提交后的回调失败（'+String(data.callback.error)+
@@ -667,15 +672,23 @@ def _run_callback(out: Path, record: dict, on_decision) -> dict:
     key = record["request_id"]
     previous = state.get(key)
     if isinstance(previous, dict) and previous.get("status") == "ok":
-        return {"status": "ok"}
+        return previous
     decision = {k: v for k, v in record.items() if k != "reused"}
     try:
-        on_decision(decision)
+        outcome = on_decision(decision)
     except Exception as exc:  # surface failure distinctly, never raise
         result = {"status": "failed",
                   "error": str(exc)[:MAX_ERROR] or exc.__class__.__name__}
     else:
         result = {"status": "ok"}
+        if isinstance(outcome, dict):
+            result["workflow_status"] = outcome.get("status")
+            delivery = outcome.get("delivery")
+            if isinstance(delivery, dict) and delivery.get("path"):
+                path = Path(delivery["path"])
+                if not path.is_absolute() and outcome.get("job"):
+                    path = Path(outcome["job"]) / path
+                result["delivery_path"] = str(path)
     state[key] = result
     try:
         _write_json_atomic(_paths(out)["callback"], state)
@@ -685,7 +698,7 @@ def _run_callback(out: Path, record: dict, on_decision) -> dict:
     return result
 
 
-def make_handler(out, on_decision=None):
+def make_handler(out, on_decision=None, on_status=None):
     """Return a configured BaseHTTPRequestHandler subclass for review dir."""
     root = Path(out)
     if on_decision is not None and not callable(on_decision):
@@ -759,6 +772,16 @@ def make_handler(out, on_decision=None):
             if record is None:
                 self._send_json(200, {"voted": False})
                 return
+            callback = _read_callback_state(root).get(record['request_id'])
+            if on_status is not None:
+                current = on_status()  # Read-only workflow status; never re-export on GET.
+                if current.get('status') == 'completed':
+                    callback = {'status': 'ok', 'workflow_status': 'completed'}
+                    delivery = current.get('delivery')
+                    if isinstance(delivery, dict) and delivery.get('path'):
+                        callback['delivery_path'] = str(Path(current['job']) / delivery['path'])
+                elif current.get('status') == 'cancelled':
+                    callback = {'status': 'failed', 'error': '任务已取消，未交付工程'}
             self._send_json(200, {
                 "voted": True,
                 "request_id": record["request_id"],
@@ -767,6 +790,7 @@ def make_handler(out, on_decision=None):
                 "selected_id": record["selected_id"],
                 "notes": record["notes"],
                 "created_at": record["created_at"],
+                "callback": callback,
             })
 
         def _serve_wav(self, name: str):

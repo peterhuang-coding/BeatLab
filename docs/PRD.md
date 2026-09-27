@@ -1,289 +1,131 @@
-# BeatLab：从素材发现到闭环生成的产品改进文档
+# BeatLab 产品需求文档（当前方向）
 
-BeatLab 应升级为一套**本地优先的 Sample Discovery & Flip System**：持续从合规来源发现和更新素材，把整首音频理解为可采样片段，为一个 Hero Sample 生成 Loop、Chop、Stem 三类可解释 Recipe，产出三个可编辑 beat 候选，再利用保留、淘汰和 Ableton 修改结果优化下一轮选材与编排。**产品北极星不是生成数量，而是候选被保留并继续制作的比例。**
+> 2026-09-27 重写。本文描述用户批准的产品方向与**需求**，不是实现完成声明。
+> 标注约定：**【需求】** 产品目标与规则；**【现状】** 已有、可复用的实现（不代表新方向已完成）；**【待验证】** 必须由真人或实机确认、当前尚未确认的事项。
+> 旧版需求原文逐字存档于 [docs/product/legacy-prd-20260927.md](product/legacy-prd-20260927.md)。
 
-## 1. 产品定位调整
+## 1. 产品定位
 
-- 当前定位：一条能够从本地音频生成完整 beat 的技术流水线。
-- 目标定位：从素材发现、权利记录、片段理解、Sample Flip、Beat 生成、试听反馈到 DAW 交付的个人制作闭环。
-- 核心用户：使用 Ableton、偏好采样型 hip-hop、boom-bap、lo-fi、soul sampling 等制作方式的个人制作人。
-- 核心任务：用户不需要手工浏览大量素材、逐首拆轨和反复搭建第一版编排；BeatLab 应持续提供少量、来源清晰、制作逻辑明确、值得继续完成的候选。
+**【需求】** BeatLab 是本地优先的个人采样制作工具，服务使用 Ableton 的制作人；当前聚焦**复杂、有趣的 newschool beat 与概念专辑创作**，商业化与自动发行是后期事项，不驱动当前设计。
 
-| 不是 | 而是 |
+输入是**已允许当前用途的音频或已有项目**。系统沿一条可追溯链路工作：
+
+**乐句发现与内容身份 → 多来源编排与有界生成 → 锁定式定向修改 → 技术/保护检查 → 可选辅助评价→ 电平匹配的人工盲听 → 明确 Keep → 可编辑 Ableton 交付**
+
+| 不做 | 要做 |
 |---|---|
-| 全网音频下载器 | 合规素材 Connector 与可追溯资料库 |
-| 随机切片拼接器 | 围绕 Hero Sample 的显式 Sample Flip |
-| 文本生成整首歌曲 | 把真实素材发展为可编辑 producer draft |
-| 生成一次即结束 | 通过用户反馈持续提高命中率 |
-| 替代 Ableton | 把高质量制作决策交给 Ableton 继续完成 |
+| 全网音频爬虫 | 只接已许可、可追溯的来源与既有项目 |
+| 一次性随机生成整首 | 以乐句为单位的有界创作与锁定修改 |
+| 系统代替人工审美 | 技术检查自动化，音乐取舍由真人盲听决定 |
+| 替代 Ableton | 交付可继续编辑的工程，由用户在 Live 完成 |
+| 自动发行 / 收款 / 投喂第三方模型 | 本地、私有、用户显式操作 |
 
-## 2. 产品闭环
+## 2. 价值与指标
 
-完整链路：**发现素材 → 权利检查 → 下载与去重 → 音频理解 → Sample Moment → Hero Sample → Flip Recipe → Beat 候选 → 试听反馈 → Taste 更新 → 下一轮选材与生成 → Ableton 交付**
+**【需求】** 价值是**用户愿意把结果留下并继续制作**，不是生成数量。以下三者分开测量、互不替代；当前**不设任何固定百分比目标**：
 
-**北极星指标：Kept Beat Rate** —— 有至少一个候选被保留并进入 Ableton 的生成任务占比。
+1. **保留（retain）**：结果在盲听中被用户 Keep。
+2. **有效编辑（effective-edit）**：锁定编辑确实交付了不同且可用的新音频。
+3. **DAW 延续（daw-continue）**：交付物在 Ableton 中被继续编辑，而非导出即终止。
 
-首轮建议实验门槛：连续 20 次生成任务中，至少 40% 的任务产生一个被保留候选。该数值是产品实验目标，不是行业基准。
+旧 PRD 的「连续 20 次任务 ≥40% 保留」是当时的实验门槛，**已取消**，不作为当前要求、基准或验收条件。
 
-产品闭环必须满足的三个条件：
+## 3. 第一条纵向流程：锁定换句
 
-1. **可解释**：用户知道为什么推荐这段、怎样切、怎样变调和编排。
-2. **可复现**：同一 Recipe 可以重建，代码或模型升级后仍能追溯。
-3. **可学习**：系统能区分用户不喜欢素材、切法、鼓、Bass 还是结构。
+**【需求】**
 
-## 3. Goal 1：建立安全、持续更新的素材供给层
+1. 用户在已有作品中指定一个声部与小节区间：该区间人声重复。
+2. 用一个**真正不同的回答乐句**（不同内容家族）替换目标区间；不是同一句的移调、倒放或重切。
+3. **鼓、Bass、所有非目标声部，以及目标声部区间之外的内容保持不变**。
+4. 产出**真实新音频**的不可变子版本，经技术/保护检查与电平匹配盲听，用户显式 Keep 后导出可编辑工程。
 
-目标：mini 持续发现和更新素材，但只把来源、许可和使用边界清楚的资产送入生成链路。
+**【现状】**（首条 score 工程闭环已完成技术串联验收，400 项测试；不代表完整 P0 或音乐/Live 验收。见[结果](research/2026-09-27-locked-workflow-result.md)。）
 
-**P0 Feature**
+- 既有 **one-shot 逐声部乐谱渲染器**（`song` 路线）：输出统一增益的 WAV 分轨与 MIDI。
+- 既有经验证的**音频分轨导出**（文件哈希、音频长度、非静音、分轨相加误差校验）与 **provenance / 来源记录**。
+- 首版锁定编辑采用 **stem-splice 配方**：只在半开拍区间把目标 stem 的该段替换为候选 WAV，非目标 stem 与 MIDI 原样复制；保留下来的源 MIDI **在缺少原音色时无法重新发声**。
 
-- **Connector Framework**：每个来源使用独立适配器，统一输出 source manifest。首批来源：用户本地目录、明确授权素材目录、Public Domain、CC 或允许下载/API 使用的来源。
-- **Incremental Crawl**：基于游标、更新时间或内容哈希只获取新增与变化内容。
-- **Crawl Queue**：支持调度、限速、超时、重试、熔断和失败原因。
-- **Raw Asset Store**：原始文件只保存一份，以内容哈希寻址。
-- **Metadata Normalization**：统一 title、artist、year、genre、source URL、license、duration 等字段。
-- **Rights State**：allowed、private_only、needs_review、blocked。
-- **Duplicate Detection**：MD5/SHA + Chromaprint 或音频指纹去重。
+**目标与现状的差距**
 
-**关键约束**
-
-- 不绕过 DRM、登录限制或平台下载保护。
-- needs_review 素材只能进入私人实验区，不能进入可发布候选。
-- crawler 只负责供给，不直接决定素材质量。
-- 所有素材必须保留原始来源、采集时间、许可快照和文件哈希。
-
-**验收条件**
-
-- Connector 失败不会阻断其他来源。
-- 同一素材来自多个来源时不会重复下载和分析。
-- 100% 进入生成池的素材具有明确 rights state。
-
-## 4. Goal 2：把整首素材变成可搜索的 Sample Moments
-
-目标：从"整首歌曲有多少分"升级为"哪 2–16 秒值得采，以及为什么"。
-
-**P0 Feature**
-
-- **Preflight**：格式、响度、静音、损坏文件和时长检查。
-- **Global Analysis**：BPM、Key、拍点、downbeat、结构段和动态变化。
-- **Stem Cache**：按需生成 vocal、drums、bass、other，避免重复拆轨。
-- **Moment Windows**：生成 1/2/4/8 小节以及 phrase-based 候选。
-- **Moment Types**：旋律、无鼓旋律、vocal phrase、drum break、bass phrase、texture、transition。
-- **Moment Score**：可循环性、记忆点代理、鼓/人声状态、调性稳定、结构位置、音色独特和空间。
-- **Diversity Filter**：避免 Top-N 都来自同一首歌或同一种音色。
-- **Explainable Recommendation**：为每个 Moment 输出推荐原因和风险。
-
-**P1 Feature**
-
-- 自动识别更完整的起音、尾音和呼吸边界。
-- 用历史反馈训练个性化 moment reranker。
-- 对相似片段聚类，建立"用户已经听腻"的惩罚机制。
-- 建立采样候选 Inbox，支持试听、收藏、屏蔽来源和批量进入生成。
-
-**验收条件**
-
-- 每首合格歌曲至少输出 3 个不同类型的候选 Moment，无法输出时给出原因。
-- 用户能够在生成 beat 前先试听并否决片段。
-- 能区分"素材本身不好"与"后续生成不好"。
-
-## 5. Goal 3：建立 Hero Sample 与显式 Flip Recipe
-
-目标：每个 beat 围绕一个主采样展开，不再让多个高分素材随机争夺主旋律。
-
-**Hero Sample 规则**
-
-- 一个 beat 只有一个 Hero Sample。
-- Supporting Samples 最多 0–2 个，仅用于 texture、vocal accent、transition 或鼓层。
-- Hero Sample 的来源、时间区间、stem 和所有变换必须完整记录。
-
-**三个基础 Recipe**
-
-| Recipe | 核心逻辑 | 输出差异 |
+| 维度 | PRD 目标【需求】 | 当前实现【现状】 |
 |---|---|---|
-| Loop | 保持原句，做 BPM/Key 对齐、滤波、dropout 和段落变化 | 最保留原素材情绪 |
-| Chop | 按瞬态和 phrase 切分，重新设计重音、呼吸与 syncopation | 变化最大、最体现制作决策 |
-| Stem | 只保留目标 stem，再围绕它重新配鼓、Bass 和 texture | 更干净、更容易混音 |
+| 换句可编辑性 | 可编辑切分（cuts） | 每轨全长音频 Clip，未生成逐切片原生 Clip；可在 DAW 手动再剪 |
+| 鼓 / Bass | 可演奏（MIDI 绑定有效音源） | 源 MIDI 保留，但不能据此重建发声乐器 |
+| Live 工程 | 打开 / 保存 / 重开 / 渲染均正确 | **【待验证】** 未做 Live 12 实机验收 |
+| 音乐好坏 | 真人判断 | **【待验证】** 主观音乐判断不得由系统代答 |
 
-**Recipe Manifest**
+## 4. 乐句地图与内容身份
 
-- source asset 与精确时间区间。
-- stem、切点、pad、MIDI note 和排列。
-- BPM、pitch、stretch、reverse、filter、gain、pan。
-- 使用的鼓组、Bass 根音和 groove profile。
-- pipeline、模型、代码和参数版本。
-- deterministic seed。
+**【需求】** P0 的基础是把素材表示为**带身份的乐句**，而非匿名切片。每个目标乐句记录：
 
-**验收条件**
+- 来源区间（source interval）与乐句边界（phrase boundaries）；
+- 拍点位置（beat）与局部音高（local pitch）；
+- 串音 / 渗漏（bleed）；
+- 可辨识歌词文本与置信度；**无法辨识的文本必须显式标注为未辨识**，不得猜填。
 
-- 同一 Hero Sample 的三个 Recipe 具有明显不同的制作逻辑。
-- 同一 Recipe 重跑可复现核心排列。
-- Recipe 可在 Ableton 中逐轨重建。
+窗口以 **2–16 秒为典型范围，按乐句边界取窗；不为塞进槽位而强制截断**。
 
-## 6. Goal 4：生成围绕采样工作的 Beat，而不是套模板
+**内容家族规则**
 
-目标：鼓、Bass 与结构响应 Hero Sample 的重音、空隙、和声与情绪。
+- 同一乐句的移调、倒放、重切属于**同一内容家族**；取了不同窗口不等于得到不同歌词。
+- 对乐句边界与内容身份的**人工修正必须持久保留**。
+- **有意重复的 hook 必须显式标记**，不能仅因重复率高就被删除；是否换句由本次明确目标决定。
+- 来源授权与用户用途**必须允许当前任务**；私人创作同样需要核验，缺少允许用途时等待确认。
+- 没有可用素材时，**请用户提供经审核的扩充素材或人工指定乐句**，不得用同家族素材伪造替换。
+- 【现状】首版身份信任来自已审核的元数据；自动歌词识别尚未接入。后续分析需保留置信度、未辨识状态和人工纠正。
+- 只有实际进行声部分离后，才可把混合录音描述为已分离的人声；合成或渲染分轨按实际来源标明，不把 EQ 处理后的混合录音称为纯净人声。
 
-**P0 Feature**
+## 5. 编排与有界生成
 
-- 一次生成三个 60–90 秒候选。
-- 基础结构：Intro、Verse、Hook、Verse Variation、Outro。
-- Groove Profiles：boom-bap、loose/Dilla、straight、halftime。
-- Harmonic Alignment：统一 Key、根音和必要的 pitch shift。
-- Sample-aware Drums：根据采样 onset、空隙和 phrase ending 安排 kick/snare。
-- Bass from Sample：优先使用 bass stem 或调性结果建立 Bass，不跨调随机生成。
-- Section Mutation：通过滤波、mute、chop 密度和辅助素材形成段落变化。
+**【需求】**
 
-**P1 Feature**
+- 多来源编排：**不设全局单一 Hero，不限制 0–2 个辅助素材，不固定 Loop/Chop/Stem 三件套，不固定整曲时长**。
+- 声部角色**可以按段落切换**；但每一个时刻都必须有清晰的**前景与背景**，不允许多条素材无序争夺注意力。
+- 新草稿长度 **30–60 秒**；本地锁定编辑**与目标区间等长**。
+- 默认交付 **2 个明确不同的候选**；探索性第三候选只作为未来版本的可选项。内部最多 **6 次尝试**，用户可随时停止；**不用重复或近似内容凑数**。
+- 以上数值（30–60 秒、2 候选、6 次）是**待验证的工作假设，不是已证明的最优值**。
 
-- Best-of-N：后台生成更多内部候选，只展示差异最大的三个。
-- Call-and-Response：采样与 snare、vocal、texture 的问答式编排。
-- Groove Extraction：从原素材或高评价历史 beat 提取微时序模板。
-- Reference Profile：允许用户选择"更松""更碎""更留白"等制作倾向。
-- Full Arrangement：用户保留短候选后，再扩写为 3–4 分钟完整结构。
+**【现状】** 旧 `compose` 路线仍生成三个 60–90 秒草稿——这是**保留的既有路线行为**，不是当前产品要求。
 
-**验收条件**
+## 6. 评估、偏好与盲听
 
-- 三个候选的差异不是换随机种子，而是 Recipe 与结构逻辑不同。
-- 主采样在整段音乐中保持明确主题。
-- 鼓重音和 Bass 不与采样发生明显节奏或调性冲突。
+**【需求】**
 
-## 7. Goal 5：建立试听、反馈和 Taste Loop
+- 最终选择由真人在**电平匹配**的匿名版本（原版加 1–2 个候选）间做出：**Keep / Reject / 平局 / 都不要**，并记录时间戳与原因；系统不得自动记录 Keep 或口味评分。
+- 辅助性评分（顾问性评估）**缺失时允许降级**；但**技术或保护检查不通过的版本不能进入评审**。
+- 预算触顶或低置信度时暂停并保存结果；取消后不自动恢复。请求幂等、版本不可变；恢复复用已验证产物，输入变化则拒绝复用，不静默重新生成。
+- 技术检查（非目标内容字节一致、无削波、数值有限、校验通过等）是进入盲听的前置条件，不替代审美判断。
 
-目标：用户反馈直接改变下一轮素材排序、Recipe 选择与编排参数。
+**【现状】** 第一版使用 RMS 匹配的试听副本和共同峰值余量防削波，原文件不变；尚非 LUFS 匹配，也不输出审美分数。
 
-**Review Feature**
+## 7. 工程交付
 
-- A/B/C 同屏或连续对比试听。
-- Waveform、使用片段、切点和 Recipe 参数展示。
-- Keep、Reject、Regenerate、Extend、Export。
-- 分维度评分：素材、切法、鼓、Bass、结构、整体。
-- 快捷原因：素材没感觉、切得太碎、太像原曲、鼓不对、太规整、没有空间、值得继续。
+**【需求】** Keep 之后交付：真实新音频与不可变子版本、可编辑分轨与配方（recipe / provenance）、可在 Live 继续的鼓 / Bass 与切分、收集后无 Missing Media 的自包含工程包。父版本、来源与源素材保持不可变。
 
-**Learning Feature**
+**【现状】** 现有导出器生成音频轨、段落标记、收集后的 WAV 与另存的 MIDI / score，并做文件与解码校验；单独的 MIDI 不会还原音色。
 
-- Rule Reweighting：第一阶段根据反馈调整现有 rubric 权重。
-- Personalized Reranker：对 Sample Moment 和 Recipe 分别排序。
-- Negative Memory：记录被屏蔽的来源、音色和重复模式。
-- Exploration Budget：保留少量与历史偏好不同的候选，避免口味固化。
-- Ableton Outcome：记录候选是否打开、哪些轨道被删除或保留、是否最终归档。
+**【待验证】** Live 实际打开、保存、重开与回渲染，以及盲听的音乐结论。两者完成前，不得宣称 DAW P0 或音乐质量验收通过。
 
-**验收条件**
+## 8. 禁止事项与非目标
 
-- 反馈能明确归因到 Moment、Recipe 或 Beat Composer。
-- 个性化排序在固定回放集上优于默认排序。
-- Kept Beat Rate 随累计反馈提升，而不是只增加生成量。
+- 不自动发布、不处理付款、不把素材或反馈用于第三方模型训练。
+- 不要求全网爬虫、自动母带、自研基础模型、实时生成或多租户 SaaS。
+- 不绕过 DRM / 登录 / 平台保护；不把未知许可标成可商用。
+- Claude Code 只准备与实现明确任务，不伪造口味判断，不持有无限循环修改音乐的权限。
 
-## 8. Goal 6：完成专业交付、可追溯与可恢复
+## 9. 优先级与主题纪律
 
-**DAW 交付**
+**【需求】**
 
-- preview.wav、full_mix.wav、dry stems。
-- 所有使用过的 chop WAV。
-- drums、bass、chops、vocal/texture MIDI。
-- 试听渲染与工程导出共用版本化 `arrangement.json`，不允许各自维护一套时间线。
-- 主采样以独立 Audio Clip 事件铺入 Arrangement，每个事件具有稳定 `clip_id`、`track_id`、`asset_id`。
-- 事件记录 beat 时间、源采样帧、微时序、增益、声像和操作链，并标记 `native`、`baked` 或 `reference` 可编辑能力。
-- 鼓 MIDI 记录实际使用的 one-shot 与 Drum Rack pad 映射；Bass MIDI 记录有效音源绑定要求。
-- 试听混音轨默认静音，仅用于 A/B；工程包包含段落标记与实现支持的自动化。
-- 工程包自包含原素材、处理后 Clip、鼓组、MIDI、Recipe 与 Provenance，移动目录后不得出现 Missing Media。
-- recipe.json、provenance.json、arrangement.json、manifest.json、run_manifest.json。
+- **P0**：乐句地图 / 内容身份；编排与有界生成；锁定编辑；评估与偏好；可编辑采样工程。
+- **P1**：按角色检索、缺口驱动的素材供给。
+- **P2**：专辑语境；双机（资料 / 控制面 + 算力 / 创作面）连续性。
 
-**验证状态**
+仅使用用户已批准的主题。《借来的光》的标题、三幕结构、九首曲目、四音动机目前只是**提案，不是定稿**；确认前不据此锁定专辑结构。
 
-- `audio_rendered`：试听与 dry stems 已生成。
-- `package_built`：自包含工程包已生成。
-- `structure_validated`：所有事件、素材和 MIDI 引用已通过结构校验。
-- `als_built`：已经生成真实 Live Set，而不是只复制模板改 BPM。
-- `daw_opened`：已在目标 Ableton Live 12 中打开并保存。
-- `daw_playback_verified`：已完整回放并确认轨道、Clip、音色和时间线正确。
-- Linux 环境只能完成前三项；没有 MBP + Live 12 实机验证时，后三项必须保持 `false`。
+## 10. 相关文档
 
-**可靠性**
-
-- 每个节点可恢复、可重试、可跳过已完成结果。
-- 任务状态持久化，进程退出或 MBP 休眠不丢失任务。
-- 模型、代码和参数升级不会覆盖旧产物。
-- 失败分类：来源失败、权利失败、文件失败、分析失败、生成失败、渲染失败。
-
-**任务状态机**
-
-`discovered → rights_checked → fetched → ingested → analyzed → moments_ready → selected → recipes_ready → generated → reviewed → kept/rejected → exported`
-
-## 9. 双机产品架构
-
-- **mini：常驻控制面和资料面** — Connector 与定时爬取；原始素材、元数据、rights/provenance 与分析缓存；任务队列、状态机、重试和版本；Sample Inbox、候选试听和反馈历史；后续提供 Web UI 与 API。
-- **MBP M3 Max：高算力执行面和创作面** — 主动领取 capability 匹配的任务；Stem separation、音频特征和 Moment 分析；Recipe、best-of-N、Beat Composer 与渲染；Ableton 打包、试听和人工精修；完成后把产物和摘要上传到 mini。
-
-**初期技术复杂度控制**
-
-- mini 初期使用单进程 API + SQLite + 内容寻址文件目录。
-- 只有 mini 服务写 SQLite，MBP 通过 API 操作。
-- 大文件通过对象目录或 HTTP 上传下载，不放进数据库。
-- worker 超过一个后再升级 Postgres；不提前引入 Redis、Kubernetes 或微服务。
-
-## 10. 产品页面与操作入口
-
-1. **Sources** — 管理 Connector、抓取状态、rights state、失败原因和来源屏蔽。
-2. **Library** — 浏览素材、stem、BPM/Key、标签、相似资产和 provenance。
-3. **Sample Inbox** — 试听 Sample Moments，收藏、屏蔽、批量生成或加入未来任务。
-4. **Generate** — 选择 Hero Sample、风格与约束；查看 Loop/Chop/Stem Recipe；发起生成。
-5. **Review** — 对比三个候选，查看 waveform、来源、Recipe 与分维度反馈。
-6. **Projects** — 管理已保留 beat、Ableton 包、版本、修改记录与发布状态。
-
-## 11. 路线图与优先级
-
-| 阶段 | 范围 | 退出条件 |
-|---|---|---|
-| P0：闭环 MVP | 一个本地目录 Connector、rights/去重、Moment、Hero Sample、三 Recipe、三候选、Review、Ableton 包 | 20 次任务中 ≥40% 至少保留一个候选 |
-| P1：质量提升 | 片段个性化排序、sample-aware drums、Bass 对齐、best-of-N、Full Arrangement | 个性化排序和保留率明显优于 P0 |
-| P2：双机异步 | mini API/queue/store、MBP worker、任务恢复、远程 Review | MBP 离线不丢任务，上线后自动完成计算 |
-| P3：扩大供给 | 多个安全 Connector、定时增量更新、crate 推荐、来源质量模型 | 新增素材提高候选命中率，而非只扩大库存 |
-
-**MoSCoW**
-
-- **Must**：配置化、一个 Connector、权利状态、去重、片段评分、Hero Sample、三 Recipe、三候选、反馈、Recipe/Provenance、Ableton 交付、任务恢复。
-- **Should**：stem cache、best-of-N、调性对齐、sample-aware drums、Sample Inbox、分维度反馈、个性化 reranker。
-- **Could**：多 Connector、自动 crate、语义搜索、参考曲风、完整 3–4 分钟扩写、移动端 Review。
-- **Won't Now**：全网爬虫、多租户 SaaS、自研基础模型、实时生成、自动母带与发行、自动版权承诺。
-
-## 12. 产品指标
-
-| 层级 | 指标 |
-|---|---|
-| 供给 | Connector 成功率、rights 完整率、去重率、有效新增素材数 |
-| 理解 | 每首 Moment 数、Moment 收藏率、Moment 屏蔽率、类型多样性 |
-| 生成 | 任务成功率、首次试听时间、三个候选差异度、渲染耗时 |
-| 价值 | Kept Beat Rate、Export Rate、Opened in Ableton Rate |
-| 学习 | 个性化排序提升、重复负反馈下降、连续使用次数 |
-| 可靠性 | 失败恢复率、缓存命中率、重复计算率、产物可重建率 |
-
-## 13. 对现有代码的改造
-
-| 现有模块 | 改进方向 |
-|---|---|
-| common.py | 移除 Desktop 硬编码；增加 sources、assets、rights、moments、recipes、feedback、jobs、runs 数据模型 |
-| ingest.py | 改为 Connector 统一入口；写 provenance、rights 与内容哈希；支持增量摄入 |
-| separate.py | 建立 stem cache；按 Moment/Cue 范围处理；输出 phrase 与结构边界 |
-| score.py | 拆成 asset quality、moment ranking、recipe prior 三层评分 |
-| compose.py | Hero Sample 单主角；Loop/Chop/Stem Recipe；sample-aware drums；best-of-N |
-| render.py | 批量渲染三候选与 dry stems；输出完整 manifests；任务可恢复 |
-| report.py | 升级为 Review：Moment 与候选试听、A/B/C、分维度反馈、Keep/Reject/Export |
-
-**新增模块**：`connectors/`、`crawler.py`、`library.py`、`moments.py`、`recipes.py`、`feedback.py`、`arrangement.py`、`daw_export.py`；P2 再加 `api.py`、`worker.py`
-
-## 14. 第一开发里程碑
-
-只实现一个本地目录 Connector，使用 20–50 首来源明确的素材完成闭环：
-
-1. 增量扫描、rights 标记和去重。
-2. 分析歌曲并输出 Sample Moments。
-3. 自动选择一个 Hero Sample。
-4. 生成 Loop、Chop、Stem 三个 Recipe。
-5. 生成三个 60–90 秒候选。
-6. Review 页面完成试听、分维度反馈和 Keep/Reject。
-7. 被保留候选导出 WAV、stems、MIDI、recipe、provenance、arrangement 和自包含 Ableton handoff 包。
-8. 下一次任务使用历史反馈调整 Moment 与 Recipe 排序。
-
-工程可编辑性采用双重验收：Linux 验收清单结构与媒体完整性；MBP 验收 Live 12 的实际打开、保存、回放与编辑。前者不能替代后者。
-
-这个里程碑完成前，不增加外部爬虫数量，不建设复杂服务器集群，也不扩展完整歌曲自动化。
+- [锁定换句工作流](product/locked-workflow.md)：第一条纵向流程的范围化工作流说明；**正在集成，完整验收尚未完成**。
+- [2026-09-27 工作流设计稿](superpowers/specs/2026-09-27-locked-workflow-design.md)。
+- [历史 PRD 存档](product/legacy-prd-20260927.md)：旧方向原文，仅作历史追溯。
+- 仓库根 [README](../README.md)：安装、运行与既有路线的操作说明。

@@ -552,6 +552,25 @@ class HandlerTests(unittest.TestCase):
 
     # ---------- callback ----------
 
+    def test_callback_delivery_visible_after_refresh_without_reexport(self):
+        calls = []
+
+        def cb(decision):
+            calls.append(decision['request_id'])
+            return {'status': 'completed', 'delivery': {'path': '/tmp/test-delivery'}}
+
+        self.start_server(on_decision=cb)
+        payload = {'choice': 'A', 'request_id': 'delivery-visible'}
+        code, _, body = self.post_json(payload)
+        self.assertEqual(code, 200)
+        result = json.loads(body)
+        self.assertEqual(result['callback']['workflow_status'], 'completed')
+        self.assertEqual(result['callback']['delivery_path'], '/tmp/test-delivery')
+        code, _, body = self.request('GET', '/api/decision')
+        self.assertEqual(json.loads(body)['callback'], result['callback'])
+        self.post_json(payload)
+        self.assertEqual(calls, ['delivery-visible'])
+
     def test_callback_success_reported(self):
         calls = []
         self.start_server(on_decision=lambda d: calls.append(d["request_id"]))

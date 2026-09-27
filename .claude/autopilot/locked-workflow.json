@@ -1,6 +1,6 @@
 {
   "task_id": "WORKFLOW-P0-20260927",
-  "status": "running",
+  "status": "awaiting_user_acceptance",
   "authorization": "2026-09-27 direct user: 按这个闭环修改成自动化工作流，可调用Claude Code",
   "notion_page_id": "3e832852-84df-8177-8473-f751527bf88d",
   "branch": "codex/album-execution-20260919",
@@ -17,29 +17,38 @@
     },
     {
       "id": "beatlab-workflow-worker-20260927-a1",
-      "status": "submitted"
+      "status": "adopted_after_independent_verification_and_local_corrections"
     },
     {
       "id": "beatlab-workflow-docs-20260927-a1",
-      "status": "submitted"
+      "status": "adopted_after_independent_verification_and_local_corrections"
     }
   ],
   "concurrency": 2,
   "paid_fallback": false,
   "old_unknowns_replayed": false,
-  "next_step": "Inspect the original wave2 worker/docs requests; do not redispatch running/unknown. Verify actual lifecycle and human Keep export with isolated data.",
+  "next_step": "Await user listening or a specific real score song / interval / approved phrase selection; do not auto-Keep or start a new direction.",
   "verification": {
     "baseline_tests": 272,
     "locked_edit_tests": 29,
-    "blind_review_tests": 43,
+    "blind_review_tests": 44,
     "browser_fast_switch_red_green": true,
     "live_open": "unverified",
-    "user_keep": "not_recorded"
+    "user_keep": "not_recorded",
+    "final_tests": 400,
+    "workflow_tests": 52,
+    "real_cli_and_browser_keep_export": true,
+    "formal_root_mixes_preserved": 15
   },
   "automation": {
     "id": "beatlab",
     "prompt_updated_for_current_task": true,
     "same_daily_22_schedule": true,
     "readback_verified": true
-  }
+  },
+  "active_requests": 0,
+  "code_push_status": "pending_final_push",
+  "demo_job": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/locked-reply-demo-20260927",
+  "demo_url": "http://127.0.0.1:8798/",
+  "report": "docs/research/2026-09-27-locked-workflow-result.md"
 }

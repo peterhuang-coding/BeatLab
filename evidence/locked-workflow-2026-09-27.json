@@ -1,11 +1,11 @@
 {
   "task_id": "WORKFLOW-P0-20260927",
-  "phase": "wave1_verified_wave2_running",
+  "phase": "vertical_slice_technically_verified",
   "baseline_tests": 272,
   "wave1_tests": 347,
   "wave1_seconds": 28.243,
   "locked_edit_tests": 29,
-  "blind_review_tests": 43,
+  "blind_review_tests": 44,
   "live_verification": "unverified",
   "subjective_listening": "pending_user",
   "real_user_keep_recorded": false,
@@ -232,5 +232,125 @@
       }
     }
   },
-  "formal_music_baseline_count": 15
+  "formal_music_baseline_count": 15,
+  "final_tests": 400,
+  "final_seconds": 34.833,
+  "workflow_tests": 52,
+  "formal_root_mixes_preserved": 15,
+  "formal_root_mix_scope": "/Volumes/SanDisk2TB/BeatLab/beats/**/full_mix.wav; not the previous wider inventory",
+  "workflow_lifecycle": {
+    "demo_job": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/locked-reply-demo-20260927",
+    "keep_test_job": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/technical-keep-only-20260927",
+    "cancel_test_job": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/technical-cancel-only-20260927",
+    "demo_state": "awaiting_review",
+    "candidates": 2,
+    "attempts": 2,
+    "repeat_no_new_attempts": true,
+    "parent_sha_mtime_preserved": true,
+    "real_cli": true,
+    "user_keep_recorded": false,
+    "browser_test_keep_export": true,
+    "keep_test_delivery": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/technical-keep-only-20260927/delivery",
+    "delivery_file_count": 22,
+    "repeated_finish_byte_mtime_preserved": true,
+    "live_open": "unverified",
+    "browser_refresh_shows_delivery": true
+  },
+  "delegation_wave2": {
+    "worker": {
+      "status": "verifying",
+      "changed_files": [
+        {
+          "path": "pipeline/creative_workflow.py",
+          "sha256": "917b76d77fbc8c5f3d4eaceb083933f8f201c359157fd2c846552fbf51961f9f"
+        },
+        {
+          "path": "tests/test_creative_workflow.py",
+          "sha256": "1ed03a3e5c0a0272ee7b5853f0ad3f08775e7f621c547cf3eb61ede7c18f6633"
+        },
+        {
+          "path": "docs/product/locked-workflow.md",
+          "sha256": "6aa60770cd6a1f906f051aca22d82b39c46e357b23806bec575b9e5af90fdd35"
+        }
+      ],
+      "input_hashes": {
+        "pipeline/ableton_export.py": "b0af909844edb8560ef249c6244e477b7e37ca3d43df5a6d5b3860be6424f5bf",
+        "pipeline/blind_review.py": "0f64cb168c33d5065c643885a512c9ecf22404c0110fbcd5ce8d322eb77c54a9",
+        "pipeline/locked_edit.py": "ba44bcba0444d3c1dcce0de488d62b27c5720004053f0120f918b26f1eacc0bb",
+        "pipeline/song.py": "76f3b2235c920f92a1649ad83aae27a360a14b78d118a513ceeec1eb2bd9ba0e",
+        "tests/test_blind_review.py": "92162a3a5bb869b5ebf39d30d88045f7e8e7e7ce9fb1deb0126363902fe6ce74",
+        "tests/test_locked_edit.py": "5aed05e829925fd3aaff39499dde6a61937fb6892a08e579ff749cdc833ab535"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "elapsed_seconds": 1512.39,
+      "adopted": true,
+      "primary_corrections": "workflow recovery/input/preview/delivery binding and integration"
+    },
+    "docs": {
+      "status": "verifying",
+      "changed_files": [
+        {
+          "path": "README.md",
+          "sha256": "e2dd97362ef9803ed7701d8ab8d07a848985586b143540f27b6750b45a98ad37"
+        },
+        {
+          "path": "docs/PRD.md",
+          "sha256": "3c75538413f5b8c1c5b90b52834e0eda4cfb37f12656b3f2b897fe1b63eb15eb"
+        },
+        {
+          "path": "docs/product/legacy-prd-20260927.md",
+          "sha256": "c899131dc56289cbcc38cc44093acdad15d2d64d589d2d9a707d62bf7cb76917"
+        }
+      ],
+      "input_hashes": {
+        "README.md": "2cf38d1441ea907484cd0db4d184003c2dc3a5bf835600caf07953b1a572085b",
+        "docs/PRD.md": "8f0f59fef631a06c50e4a129bc1ec268fb18878b942575723767da6f9875ac40",
+        "docs/superpowers/specs/2026-09-27-locked-workflow-design.md": "b4f46c652749ee3f836c8f576eca38e6d7a5f2238a1dd7ac7f6cfd2ac98797ee"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "elapsed_seconds": 672.678,
+      "adopted": true,
+      "primary_corrections": "align scope wording; preserve verbatim historical PRD"
+    }
+  },
+  "delegation_summary": {
+    "requests": 4,
+    "waves": 2,
+    "maximum_concurrency": 2,
+    "provider": "Coding Plan via claude_plan.py",
+    "model": "doubao-seed-evolving",
+    "paid_fallback": false,
+    "active_requests": 0,
+    "billing_note": "Client USD estimates are not provider charges; no pay-as-you-go fallback was invoked."
+  },
+  "quality_corrections": [
+    "Source failure isolation and missing identity await confirmation",
+    "Request fingerprint and exact request ID reservation",
+    "Frozen child recipe and audition media verification",
+    "Interrupted pending folder does not spend extra budget",
+    "Complete delivery recovery, collected MIDI/recipe/reference hashes",
+    "Transient export retry uses saved decision",
+    "Cancellation before and after export blocks delivery publication",
+    "Keep callback returns actual delivery path and survives refresh"
+  ],
+  "log_sha256": {
+    "baseline.log": "b9a4f54e2f0da17b12d57ed15ffbc03fb08a733410b812c1767de1252e3b3d26",
+    "worker-original-green.log": "2b8cfcd89d4e3f5aeb9bd4619414fd1adeb74faa49480f701621baa8d6bdb245",
+    "worker-quality-red.log": "1e764fe5f0bdfc64a8dacc6a2125aa16f7a4f0b16be94a68cc028eec2a442bc8",
+    "worker-quality-green.log": "7f8d53ea529d01516645a9b0360f9ab3986b392a6cdcef463086c3b5ec2ea7e6",
+    "worker-green.log": "a00132c939bdff46695ba5f5c017f9a83a9f98b34868c19c639349d3e42a0cf4",
+    "keep-ui-red.log": "2b0f063d9f45c992034fb971f0395e18f27c74244fc198c22b7908cb7306c28d",
+    "full-regression-final.log": "3a01057d08fc8dcd493bf051b94bd44742e53fc1a2b1f592c26860bfa4ecd44b"
+  },
+  "current_code_sha256": {
+    "pipeline/creative_workflow.py": "d42be809fc232cf7a6ffb42452cd1d2469ce257eed3ccd2fefe9c5ed02155390",
+    "pipeline/locked_edit.py": "ba44bcba0444d3c1dcce0de488d62b27c5720004053f0120f918b26f1eacc0bb",
+    "pipeline/blind_review.py": "cc5ac2ad4b9c3ba10ace104e4f0c6d836af422fc9a487a4990ed0e2332503f96",
+    "pipeline/ableton_export.py": "b0af909844edb8560ef249c6244e477b7e37ca3d43df5a6d5b3860be6424f5bf",
+    "pipeline/pipeline.py": "3cc97857c4866f01c2761e339ac697d77fbf4e7b960a2211f468c36a19545086"
+  }
 }

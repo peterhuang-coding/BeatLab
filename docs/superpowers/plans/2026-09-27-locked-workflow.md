@@ -4,7 +4,7 @@
 
 1. 基线与恢复：核对真实song/revision/validate_song契约、原请求与Git；安全只读检查凭据。历史两份文档提交正常push并核验。新请求不重发旧F03/ALGO unknown。
 2. 第一波两路cc-plan（doubao-seed-evolving）：beatlab-locked-edit-20260927-a1负责locked_edit.py及真实音频测试；beatlab-blind-review-20260927-a1负责blind_review.py及HTTP/音量匹配/投票测试。各任务独立暂存白名单，先红后绿，父代理检查原输入hash与实际工具结果后顺序采用。
-3. 第二波单路cc-plan：以第一波实际API为依据实现creative_workflow.py、CLI任务生命周期、取消/恢复/有限预算和说明/示例；不与第一波并行修改。使用真实合成音频集成测试，必要时只针对失败点一次质量修正，每逻辑任务累计最多3尝试。
+3. 第二波两路cc-plan（worker 与独立文档包）：以第一波实际API为依据实现creative_workflow.py、CLI任务生命周期、取消/恢复/有限预算和说明/示例；不与第一波并行修改。使用真实合成音频集成测试，必要时只针对失败点一次质量修正，每逻辑任务累计最多3尝试。
 4. 主代理接入旧CLI，拒绝用旧gain重渲染stem-splice配方；独立复验，负面场景、原作品保护、浏览器同秒切换/投票，临时Keep导出回读。正式演示不写用户意见。
 5. 更新README和PRD：保留原命令，撤销固定单Hero/固定三模板等与新版不符的未来约束；清楚区分已交付、技术检查、听感和Live未验。保存证据、轮次、主线、状态、MVP计划、Notion和Hub。commit普通push执行分支并核验，不合main。
 
@@ -26,3 +26,11 @@
 - 第二波并发2：beatlab-workflow-worker-20260927-a1串联任务生命周期；beatlab-workflow-docs-20260927-a1更新README/PRD并保存历史方案。均已提交，先查原请求，不能重复派发。
 
 - 第一波整体347项回归通过（28.243秒）。已生成证据 `evidence/locked-workflow-2026-09-27.json`；第二波工作仍在执行，尚未宣称整条工作流交付。
+
+## 最终技术验收
+
+两波共 4 个原请求均已结束并采用，最大并发 2，doubao-seed-evolving 套餐，无按量或重发旧 unknown。worker 原 41 测试独立通过，一次本地质量修正补足请求/素材失败隔离、冻结试听与配方、导出中断恢复/取消，现 52 项；盲听 44 项。完整回归 400 项/34.833秒通过。
+
+真实 CLI 提交/运行得到两候选，重复运行仍仅两次尝试，取消任务零生成；隔离浏览器 Keep 自动导出并刷新显示工程路径，重复 finish 文件 SHA/mtime 不变。正式演示未投票，原有 15 份媒体根主混音保持。README/PRD 与历史存档、CLI 指南、结果/证据已更新。
+
+技术结果见 `docs/research/2026-09-27-locked-workflow-result.md` 与 `evidence/locked-workflow-2026-09-27.json`。本轮只完成首条结构化 score 换句闭环，完整乐句地图、自动内容识别、原生逐切片 Clip 与发声 MIDI 乐器、Live 实机和音乐喜好仍未完成。下一步唯一事项为用户试听/选择正式作品及明确修改范围；不自动展开新的 PRD 方向。

@@ -17,9 +17,12 @@
 
 WORKFLOW-P0-20260927：用户2026-09-27提供新版PRD并要求按闭环改成自动化工作流。目标为指定段落替换不同内容家族回答句，鼓/Bass/非目标区域锁定；有限候选、真实保护检查、RMS匹配盲听、人选Keep后导出。现有设计已在对话明确，按用户直接实施授权推进；详见docs/superpowers/specs/2026-09-27-locked-workflow-design.md和实施计划。
 
-状态.claude/autopilot/locked-workflow.json；Notion https://app.notion.com/p/3e83285284df81778473f751527bf88d 。独立F03转回待定方向，不再自动恢复旧两请求；旧算法unknown也不重发。本机凭据本轮读取成功，历史1946dd9/cfa4437已补push并核验远端cfa4437。新两路cc-plan已同波派发，真实结果待验收。
+状态 `.claude/autopilot/locked-workflow.json`：首条闭环技术验收完成，待用户试听。Notion https://app.notion.com/p/3e83285284df81778473f751527bf88d 。两波 4 个 cc-plan 请求均已结束并采用，最大并发 2、无按量、旧 unknown 未重发。400 项回归通过；真实合成音频/CLI/浏览器 Keep 自动导出与刷新通过。原有 15 份主混音保持。正式演示 http://127.0.0.1:8798/ 未代填用户意见；为本地合成人声技术测试，非新专辑成品。
+
+第一波8d9b1f1已推送；最终代码/文档提交推送状态见 locked-workflow.json。独立F03维持待定方向。完整结果与边界：docs/research/2026-09-27-locked-workflow-result.md。
 
 ## 历史：F03独立对比与F01/F02交付
+以下为2026-09-20时间点记录，凭据与F03状态已被上方2026-09-27新事实更新，不作为当前排队或恢复指令。
 FEATURE-F03环境阻塞，Notion仍执行中但未交付：2026-09-20夜班完成最新卡片/依赖核验与两路cc-plan派发。两个本地客户端均在凭据helper退出51时结束，未进入模型执行、未改文件、未跑新测试。直接只读凭据检查同样退出51且不可用；具体原因未确认，不推断套餐过期或服务端401。状态与固定请求ID见feature-refinement.json的comparison；恢复计划docs/superpowers/plans/2026-09-20-version-comparison.md。
 
 上一批：
@@ -32,7 +35,7 @@ cc-plan三逻辑包四请求，初波并发2，无按量；笔记包unknown时�
 
 F03本地计划提交1946dd96e3d173aa9c1b8e7a52770b618b87838e普通push失败（GitHub凭据不可读取），远端仍760ad831fdaf28dc7d9e7ca17f5d70f2829ebede；前面的已推送结论仅指F01/F02历史成果，不指本轮。
 
-## 当前算法进度
+## 历史算法进度（原窗口已结束）
 三个opt-in接入已验证，完整184项测试通过。22条素材125→67片段，同源超阈值重叠56→0，全部素材仍有候选、0异常、源SHA/mtime保持；原循环性/综合评分略降，不宣布好听。未改默认选句/编排。证据 `evidence/algorithm-integration-2026-09-20.json`。wave-04已完成：194测试通过；Crazy Blues两版68.326秒实际A/B，v1门长/尾休止/MIDI一致，旧24音频保持。证据 `evidence/algorithm-audio-midi-2026-09-20.json`。
 
 ## 前轮创作结果
@@ -46,7 +49,7 @@ F03本地计划提交1946dd96e3d173aa9c1b8e7a52770b618b87838e普通push失败（
 Live 界面访问超时，真实打开/发声/重开/回渲染未验。R01–R05 仍待定，R06 保留研究且商业后置；完整自动选好句、自然语言反馈重编与全链路恢复仍未完成。Afterglow v3 听感仍待验。原素材/音乐/DB 不入 Git，不合 main，不发布音乐，不为推进工作自动付费。
 
 ## 下一步（唯一）
-核验本轮原始两路cc-plan结果，再接入有界任务worker与闭环验收；以locked-workflow.json恢复，不执行旧F03排队逻辑。
+等待用户试听演示，或明确一份正式 score 工程、目标区间与核验过的回答句；随后在该范围执行。不得代填 Keep，不自动展开全量 PRD、旧 F03 或旧算法请求。
 
 最新 feature 轮次：[2026-09-20 试听反馈与来源](rounds/2026-09-20-feature-refinement.md)。
 

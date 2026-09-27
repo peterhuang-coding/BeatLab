@@ -52,3 +52,7 @@ R01–R06 的批准只覆盖调研及其卡片里的验证范围。研究报告�
 ## 2026-09-20 更新
 
 用户直接要求持续用 plan 细化现有 feature；FEATURE-20260920 首批为时间点反馈和来源展示。新增已授权任务先按最新 task-tiering 使用 cc-plan，两路独立包同波并行，固定 ID/暂存目录，主代理验收后采用；已有 unknown 不改入口重发。ALGO-4H 已到期，不因新 feature 授权恢复旧请求。后续方向与状态以 Notion 对应卡为准。
+
+## 2026-09-27 更新
+
+用户直接要求按新版 PRD 修改成自动工作流，可调用 Claude Code。当前唯一主线为 [WORKFLOW-P0 锁定换句与盲听](https://app.notion.com/p/3e83285284df81778473f751527bf88d)，恢复文件为 `.claude/autopilot/locked-workflow.json`。原 F03 改为待定方向；凭据阻塞已解除，但旧 unknown 请求仍不重发。技术交付后等待用户试听与 Keep，不由夜班自动填偏好、扩写歌曲或发布。每日 22 点原调度保留，提示词已更新并读回。
