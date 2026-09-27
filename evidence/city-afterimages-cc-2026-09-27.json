@@ -1,0 +1,139 @@
+{
+  "delegable_packages": 2,
+  "actual_requests": 3,
+  "normal_requests": 2,
+  "quality_corrections": 1,
+  "peak_parallel": 2,
+  "adopted_logical_packages": 2,
+  "composition_adoption": "partial6of10",
+  "paid_fallback": false,
+  "probe_count": 0,
+  "jobs": [
+    {
+      "task_id": "beatlab-ten-compose-20260927-a1",
+      "status": "unknown",
+      "elapsed_seconds": 1200.134,
+      "returncode": 143,
+      "requested_model": "doubao-seed-evolving",
+      "thinking": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "original_input_hashes_match": {
+        "contract.md": true,
+        "pipeline/song.py": true,
+        "track_specs.json": true
+      },
+      "adoption": "original rejected; all10 failed independent gate",
+      "changed_files": [
+        {
+          "path": "examples/ten_beat_scores.py",
+          "sha256": "3e98a366f52036f88a4deb964f7f00dcdc0dbf37a38f91928c5f541b8209e338"
+        }
+      ],
+      "usage": null
+    },
+    {
+      "task_id": "beatlab-ten-review-20260927-a1",
+      "status": "verifying",
+      "elapsed_seconds": 839.524,
+      "returncode": 0,
+      "requested_model": "doubao-seed-evolving",
+      "thinking": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "original_input_hashes_match": {
+        "contract.md": true
+      },
+      "adoption": "adopted; primary fixed corrupt-feedback error helper and UI copy;33 independent rerun tests",
+      "changed_files": [
+        {
+          "path": "examples/album_audition.py",
+          "sha256": "c02bcab444927d28ddd7a42fdba2a7982b3f0e1ad0f256e77e2e352fb7ef5517"
+        },
+        {
+          "path": "tests/test_album_audition.py",
+          "sha256": "dda2ae7c43f3fa82b84172d3ff1134d02b5baaa2eab3e43b22861a0797f48975"
+        },
+        {
+          "path": "docs/album-audition.md",
+          "sha256": "fe6c094b5014e24f9887d337d1b07b5a1e9ff8224c64d507cc389749f1eb4ac6"
+        }
+      ],
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 336856,
+        "inference_geo": "",
+        "input_tokens": 48242,
+        "iterations": [],
+        "output_tokens": 39605,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      }
+    },
+    {
+      "task_id": "beatlab-ten-compose-20260927-qfix1",
+      "status": "blocked",
+      "elapsed_seconds": 579.994,
+      "returncode": 1,
+      "requested_model": "doubao-seed-evolving",
+      "thinking": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving",
+        "<synthetic>"
+      ],
+      "original_input_hashes_match": {
+        "contract.md": true,
+        "examples/ten_beat_scores.py": true,
+        "review_score_contract.py": true,
+        "synthetic-prepared.json": true
+      },
+      "adoption": "partial01–06 adopted only;07–10excluded; quota429 stopped sole quality correction",
+      "changed_files": [
+        {
+          "path": "examples/ten_beat_scores.py",
+          "sha256": "1088f5b891965e4ef8e043b58272a99597bf64ae842bb2a651f3b88b9ad6f53c"
+        }
+      ],
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 808768,
+        "inference_geo": "",
+        "input_tokens": 56768,
+        "iterations": [],
+        "output_tokens": 28511,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      }
+    }
+  ],
+  "parent_scope": "source licensing inspection,local audio preparation/render/export,independent QA,small helper/UI fixes,documentation and synchronization",
+  "pending_extra": "prepared only; awaiting explicit user override of one-quality-repair limit",
+  "quota_reset": "2026-09-27T21:58:10+08:00"
+}

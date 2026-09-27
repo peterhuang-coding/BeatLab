@@ -1,0 +1,146 @@
+{
+  "task_id": "MUSIC-TEN-20260927",
+  "status": "partial_six_delivered_four_awaiting_extra_attempt_approval",
+  "concept": "城市余像 / City Afterimages (working title)",
+  "format": "10 thematic 45–60-second first drafts (up to62 seconds with tail)",
+  "goal": "commercially viable editable beats; human first audition then targeted revision",
+  "approval": "direct user request latest 2026-09-27",
+  "keep": null,
+  "cc_requests": [
+    "beatlab-ten-compose-20260927-a1",
+    "beatlab-ten-review-20260927-a1"
+  ],
+  "wave_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927",
+  "max_parallel": 2,
+  "previous_pilot": "deprioritized pending repairs, original deadline unchanged",
+  "tracks": [
+    {
+      "number": "01",
+      "title": "车窗第一束光",
+      "slug": "first-light",
+      "bpm": 92,
+      "bars": 20,
+      "direction": "bright soul flip; open chorus and syncopated boom bap"
+    },
+    {
+      "number": "02",
+      "title": "玻璃电梯",
+      "slug": "glass-elevator",
+      "bpm": 98,
+      "bars": 20,
+      "direction": "crisp staccato jazz chops; elegant offbeat pocket"
+    },
+    {
+      "number": "03",
+      "title": "夜市的回声",
+      "slug": "night-market",
+      "bpm": 88,
+      "bars": 18,
+      "direction": "blues call response; loose head nod with spacious turn"
+    },
+    {
+      "number": "04",
+      "title": "红灯起跑",
+      "slug": "red-light",
+      "bpm": 106,
+      "bars": 24,
+      "direction": "urgent brass chops; bold drum switch"
+    },
+    {
+      "number": "05",
+      "title": "天台电台",
+      "slug": "rooftop-radio",
+      "bpm": 140,
+      "bars": 28,
+      "direction": "half time modern drums; airy sliced melodic pauses"
+    },
+    {
+      "number": "06",
+      "title": "失物招领",
+      "slug": "lost-found",
+      "bpm": 84,
+      "bars": 18,
+      "direction": "intimate fragmented phrase; stripped bass then full return"
+    },
+    {
+      "number": "07",
+      "title": "镜面舞池",
+      "slug": "mirror-floor",
+      "bpm": 112,
+      "bars": 24,
+      "direction": "bright broken funk; syncopated dance pulse"
+    },
+    {
+      "number": "08",
+      "title": "午夜便利店",
+      "slug": "midnight-store",
+      "bpm": 96,
+      "bars": 20,
+      "direction": "playful ragtime cuts; clean bounce and surprise stops"
+    },
+    {
+      "number": "09",
+      "title": "逆行霓虹",
+      "slug": "reverse-neon",
+      "bpm": 128,
+      "bars": 28,
+      "direction": "2 step syncopation; selective reverse pickups, strong hook"
+    },
+    {
+      "number": "10",
+      "title": "日出后再说",
+      "slug": "after-sunrise",
+      "bpm": 90,
+      "bars": 20,
+      "direction": "warm closing soul; long phrase contrasted with confident chopped reprise"
+    }
+  ],
+  "cc_submitted_count": 3,
+  "cc_adopted_count": 2,
+  "actual_project_parallel": 2,
+  "automation": "daily22 unchanged; updated retry gate and readback verified",
+  "prepared_index": "/Volumes/SanDisk2TB/BeatLab/library/instruments/city-afterimages-20260927/prepared-index.json",
+  "real_source_count": 19,
+  "prepared_cut_count": 100,
+  "stretch_ratio_range": [
+    0.8034777285,
+    1.250113389
+  ],
+  "old_mix_baseline": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/old-mixes.json",
+  "collection_dir": "/Volumes/SanDisk2TB/BeatLab/exports/city-afterimages-20260927",
+  "feedback_path": "/Volumes/SanDisk2TB/BeatLab/exports/city-afterimages-20260927/feedback.json",
+  "planned_review_url": "http://127.0.0.1:8800/",
+  "feedback_last_consumed_sha256": null,
+  "original_compose_status": "timeout143; unknown retained; dead PID and frozen output verified",
+  "quality_correction": "beatlab-ten-compose-20260927-qfix1",
+  "quality_correction_submitted": true,
+  "quality_correction_max": 1,
+  "review_browser_check": "isolated fixture rating4 and1.5snote saved/reloaded; actual music ratings remain empty",
+  "notion_page": "https://app.notion.com/p/3e83285284df8159938af8f14156e2c0",
+  "quality_correction_result": "blocked429; process stopped; six recipes independently pass;07–10 failed",
+  "quota_reset": "2026-09-27T21:58:10+08:00",
+  "pending_numbers": [
+    "07",
+    "08",
+    "09",
+    "10"
+  ],
+  "compose_adoption": "partial01–06 only;07–10 excluded; no further CC retry authorized",
+  "delivered_numbers": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06"
+  ],
+  "delivered_count": 6,
+  "review_url": "http://127.0.0.1:8800/",
+  "cc_in_flight": 0,
+  "pending_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/compose-extra-pending.json",
+  "extra_attempt_authorized": false,
+  "report": "docs/research/2026-09-27-city-afterimages-result.md",
+  "evidence": "evidence/city-afterimages-delivery-2026-09-27.json",
+  "publication": "not published",
+  "live_verified": false
+}

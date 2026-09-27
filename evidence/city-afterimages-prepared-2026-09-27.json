@@ -1,0 +1,1429 @@
+{
+  "collection": "city-afterimages-20260927",
+  "source_count": 19,
+  "cuts": 100,
+  "original_md5_matches_meta": true,
+  "identity_note": "meta md5 identifies original download, not resampled source.wav. Both identities checked separately.",
+  "actual_slice_frames_verified": true,
+  "global_stretch_min": 0.803477728544776,
+  "global_stretch_max": 1.250113388969521,
+  "tracks": [
+    {
+      "number": "01",
+      "title": "车窗第一束光",
+      "bpm": 92,
+      "bars": 20,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "9c6c32d17de4128c",
+          "start_seconds": 1.18421768707483,
+          "end_seconds": 2.7399546485260773,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8384115428293315,
+          "bass_midi": 41,
+          "sha256": "847c9e9491b606a2d649f5182a71e04f813eaea9deb1bdeb3b0e2f7020e82a4a",
+          "source_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "9c6c32d17de4128c",
+          "start_seconds": 2.7399546485260773,
+          "end_seconds": 4.20281179138322,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8916440217391306,
+          "bass_midi": 39,
+          "sha256": "c8b4804837be60f479d4e3166a4098f3866b1f243983cd42942e325aa65fdbd2",
+          "source_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "9c6c32d17de4128c",
+          "start_seconds": 4.20281179138322,
+          "end_seconds": 5.712108843537415,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8642088210702342,
+          "bass_midi": 39,
+          "sha256": "f9b6d3b1dd9690c2d769519753c20399aa796d058582f3563ec89238e8058e46",
+          "source_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "9c6c32d17de4128c",
+          "start_seconds": 5.712108843537415,
+          "end_seconds": 7.151746031746032,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.9060253769284712,
+          "bass_midi": 39,
+          "sha256": "8b903e5f9212dc9a32236ce08028f3b9e04af0a07e9f45b792e14c12893e50de",
+          "source_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "9c6c32d17de4128c",
+          "start_seconds": 24.52027210884354,
+          "end_seconds": 27.654965986394558,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8322010869565222,
+          "bass_midi": 31,
+          "sha256": "4bc826209fae2dd51d121e385d52a84225f5dd9c685198197e5d4191119041b6",
+          "source_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 1.0216780045351475,
+          "end_seconds": 2.48453514739229,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8916440217391306,
+          "bass_midi": 41,
+          "sha256": "a9adb54b1fea04a39e99e5a9e56d196d6c2b3ef5b125d302d6458969a8917c65",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 2.48453514739229,
+          "end_seconds": 3.947392290249433,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8916440217391303,
+          "bass_midi": 39,
+          "sha256": "b87a5b92782e713eeda9c7958d4996bff9445a2d2c5dbabe2df9103e15e90b53",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 3.947392290249433,
+          "end_seconds": 5.363809523809524,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.9208782519600858,
+          "bass_midi": 34,
+          "sha256": "5514a669be785158d42cf929fc3a9ae69092977519f8973e31b6a9d3d781bb41",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 5.363809523809524,
+          "end_seconds": 6.8034467120181406,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.9060253769284712,
+          "bass_midi": 41,
+          "sha256": "e3f6ae5e58b490babfb2687da97556dfe3fea627fd9e6265e78d1e7d620b04f1",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 25.68126984126984,
+          "end_seconds": 28.862403628117914,
+          "semitones": 3,
+          "reverse": false,
+          "stretch_ratio": 0.8200521659790544,
+          "bass_midi": 39,
+          "sha256": "84ee342894bb09ef1cd954f01a6751f5f07199306f2ab3cfd6d165941dc46818",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "玻璃电梯",
+      "bpm": 98,
+      "bars": 20,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "b99037ea894abe28",
+          "start_seconds": 1.7647165532879818,
+          "end_seconds": 2.8792743764172335,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.0986328125,
+          "bass_midi": 40,
+          "sha256": "2fdfe0ae6199399cfb95139a3aa64d15b229f2d96519a84ccc5b37080a77f807",
+          "source_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "b99037ea894abe28",
+          "start_seconds": 2.8792743764172335,
+          "end_seconds": 3.9938321995464854,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.0986328124999998,
+          "bass_midi": 39,
+          "sha256": "5bb8ee13425d705c1c18542684036d2b4e4812821e4bf654342d8b87d0a63437",
+          "source_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "b99037ea894abe28",
+          "start_seconds": 3.9938321995464854,
+          "end_seconds": 5.201269841269841,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.0141225961538463,
+          "bass_midi": 31,
+          "sha256": "04d8478eae840f7a9bc9dc973a2a86d0dc42a16ea487075e5725a6984a44202b",
+          "source_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "b99037ea894abe28",
+          "start_seconds": 5.201269841269841,
+          "end_seconds": 6.2693877551020405,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.1463994565217395,
+          "bass_midi": 40,
+          "sha256": "2d50605f25997495c4518ea066d319aa1fc5e9c0e66429ed0dd3f1a3f39250fd",
+          "source_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "b99037ea894abe28",
+          "start_seconds": 25.495510204081633,
+          "end_seconds": 27.74784580498866,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.0873067010309287,
+          "bass_midi": 39,
+          "sha256": "f6d8c30d6042fcc6e96595a4fa9a470667bdb5052ae32f59dc986bdab53b994e",
+          "source_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "0e68a23c225b7946",
+          "start_seconds": 1.787936507936508,
+          "end_seconds": 2.8792743764172335,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.1220079787234043,
+          "bass_midi": 39,
+          "sha256": "b2dd87288adf87a3dc8ba658f85b9284c3b705ced8ed2e3ff887152ee444a3b5",
+          "source_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "0e68a23c225b7946",
+          "start_seconds": 2.8792743764172335,
+          "end_seconds": 3.9938321995464854,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0986328124999998,
+          "bass_midi": 38,
+          "sha256": "94cca12996254d3873c396b58a7774d8bb57c3b6b705caa26f5fc2b88b3bda86",
+          "source_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "0e68a23c225b7946",
+          "start_seconds": 3.9938321995464854,
+          "end_seconds": 5.085170068027211,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.122007978723404,
+          "bass_midi": 34,
+          "sha256": "db966073b0b4e8fde952d6454882872b966e8c5154525e8e2a3215a4e8925dc2",
+          "source_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "0e68a23c225b7946",
+          "start_seconds": 5.085170068027211,
+          "end_seconds": 6.130068027210885,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.171875,
+          "bass_midi": 35,
+          "sha256": "2477ac4b41c969efe8ab51d88ed109d5c99214b97a79189b0defb2cb64727b64",
+          "source_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "0e68a23c225b7946",
+          "start_seconds": 9.914920634920636,
+          "end_seconds": 12.167256235827665,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0873067010309279,
+          "bass_midi": 38,
+          "sha256": "5695faab5b066cbe0e37a0a17a69da8125e64c1282109df8d5a49ed1c491d980",
+          "source_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6"
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "夜市的回声",
+      "bpm": 88,
+      "bars": 18,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "37baf98ef2b9d8a4",
+          "start_seconds": 1.4396371882086167,
+          "end_seconds": 2.809614512471655,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 0.9953714849768875,
+          "bass_midi": 40,
+          "sha256": "9b4fad18227af05a68e5178df76400eec6fd20ffc84ca31ba2d0fa7b0763ac33",
+          "source_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "37baf98ef2b9d8a4",
+          "start_seconds": 2.809614512471655,
+          "end_seconds": 4.20281179138322,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 0.9787819602272726,
+          "bass_midi": 32,
+          "sha256": "c946a981eb9185ee3fdea4fcf55b6f2ba966ae32b423229ceb5446f1bd9184a4",
+          "source_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "37baf98ef2b9d8a4",
+          "start_seconds": 4.20281179138322,
+          "end_seconds": 5.596009070294785,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 0.9787819602272726,
+          "bass_midi": 40,
+          "sha256": "ce45dbd646a9c56538a1971ba98ea5a6ef3aa9230c7bbfa2400b72cb55fcccc1",
+          "source_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "37baf98ef2b9d8a4",
+          "start_seconds": 5.596009070294785,
+          "end_seconds": 6.942766439909297,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0125330623040751,
+          "bass_midi": 40,
+          "sha256": "1b641bcc5510eb82a9b9a397638c3dbeec3899a9eb8a34c05c63a9cefcb53435",
+          "source_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "37baf98ef2b9d8a4",
+          "start_seconds": 26.842267573696144,
+          "end_seconds": 29.60544217687075,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 0.9870070187165769,
+          "bass_midi": 40,
+          "sha256": "1b8987ef8092ff31d82129d900e1c21c320eb3e9c74860289ca9e6a4173dcfe2",
+          "source_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "775722a4dfc85b66",
+          "start_seconds": 2.8328344671201813,
+          "end_seconds": 4.08671201814059,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.087535511363636,
+          "bass_midi": 35,
+          "sha256": "d3a0c101c55ada3e3cf2a46d1ab53a993d8cf133dcd84381324313573c3435fa",
+          "source_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "775722a4dfc85b66",
+          "start_seconds": 4.08671201814059,
+          "end_seconds": 5.340589569160998,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0875355113636362,
+          "bass_midi": 40,
+          "sha256": "353666e98270310fe26934da821c456e3f88668e2d390ca79df73f32ce65e44e",
+          "source_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "775722a4dfc85b66",
+          "start_seconds": 5.340589569160998,
+          "end_seconds": 6.664126984126984,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0302968002392348,
+          "bass_midi": 35,
+          "sha256": "5f961db476bbc7623244f2c41ac8e5c76e21a5a89251106e856ee2bc168f4324",
+          "source_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "775722a4dfc85b66",
+          "start_seconds": 6.664126984126984,
+          "end_seconds": 7.964444444444444,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0486949573863635,
+          "bass_midi": 40,
+          "sha256": "c56f8f8cfd64291a64a3c048eff76ca18f72e561f0f43cfadea8bb4bb7e820ee",
+          "source_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "775722a4dfc85b66",
+          "start_seconds": 26.610068027210886,
+          "end_seconds": 29.164263038548754,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0677621384297524,
+          "bass_midi": 30,
+          "sha256": "4e2958814c77ee7370512b8694f0651cfc75c9022845911ac64572a51aa394f3",
+          "source_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6"
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "title": "红灯起跑",
+      "bpm": 106,
+      "bars": 24,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "a53f5e44f8e3a005",
+          "start_seconds": 2.36843537414966,
+          "end_seconds": 3.274013605442177,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.250113388969521,
+          "bass_midi": 30,
+          "sha256": "47a724913be097a49e025754b6d6f9cffb69e1d537dd67a3a6904a69f7399c86",
+          "source_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "a53f5e44f8e3a005",
+          "start_seconds": 3.274013605442177,
+          "end_seconds": 4.2260317460317465,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.189132248044178,
+          "bass_midi": 39,
+          "sha256": "01de14d434e319401575efac0b397eed703f3a8537ce4f9121855d4793048e37",
+          "source_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "a53f5e44f8e3a005",
+          "start_seconds": 4.2260317460317465,
+          "end_seconds": 5.178049886621316,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.1891322480441786,
+          "bass_midi": 35,
+          "sha256": "035e4844dcf2e9bd7cbff610375fe74d7033bb38bef11a438b89367f6cb010c7",
+          "source_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "a53f5e44f8e3a005",
+          "start_seconds": 5.178049886621316,
+          "end_seconds": 6.130068027210885,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.1891322480441786,
+          "bass_midi": 34,
+          "sha256": "9d1b7187370c67b644909079e1841ca52014f797754671e5303b1c233aed8224",
+          "source_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "a53f5e44f8e3a005",
+          "start_seconds": 6.130068027210885,
+          "end_seconds": 7.964444444444444,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.2342891688559832,
+          "bass_midi": 30,
+          "sha256": "230be5a3824da52e287b346c359ce7e9ac67888cf23a2d496ece33db640917e9",
+          "source_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "9a7e495a5224d187",
+          "start_seconds": 1.509297052154195,
+          "end_seconds": 2.716734693877551,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9375850417271406,
+          "bass_midi": 30,
+          "sha256": "52e8da8c9d6b5909158bd69fff8be81865107fa2b9e2a6e83cec013f690994b5",
+          "source_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "9a7e495a5224d187",
+          "start_seconds": 2.716734693877551,
+          "end_seconds": 3.9706122448979593,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9028596698113208,
+          "bass_midi": 35,
+          "sha256": "cacb93561d0d1b4c1778dced44744a4015eb6c7fc10925d2094ad00a4c2271cc",
+          "source_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "9a7e495a5224d187",
+          "start_seconds": 3.9706122448979593,
+          "end_seconds": 5.294149659863946,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.8553407398212513,
+          "bass_midi": 35,
+          "sha256": "3be0650d64b414d0371da555b5fd3d72bb58450b6454171de256cd9b89a70643",
+          "source_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "9a7e495a5224d187",
+          "start_seconds": 5.294149659863946,
+          "end_seconds": 6.501587301587302,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9375850417271409,
+          "bass_midi": 39,
+          "sha256": "97b5388f7202bfa9063f0acc2c14aa884b38f8bb86af4c3335f8583a9dd33567",
+          "source_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "9a7e495a5224d187",
+          "start_seconds": 26.470748299319727,
+          "end_seconds": 28.978503401360545,
+          "semitones": 1,
+          "reverse": true,
+          "stretch_ratio": 0.9028596698113202,
+          "bass_midi": 35,
+          "sha256": "4bd5fe060dab47c75f01e42f4d0740a48998a409b31e81343232c564faad7497",
+          "source_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c"
+        }
+      ]
+    },
+    {
+      "number": "05",
+      "title": "天台电台",
+      "bpm": 140,
+      "bars": 28,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "2ab51a3bee3af4f1",
+          "start_seconds": 1.811156462585034,
+          "end_seconds": 2.5309750566893423,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.1907762096774195,
+          "bass_midi": 40,
+          "sha256": "669d5234777eaf8dc182220f33d36038bd94daa49e2e3943feffd4e481334d72",
+          "source_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "2ab51a3bee3af4f1",
+          "start_seconds": 2.5309750566893423,
+          "end_seconds": 3.2275736961451247,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.2304687499999998,
+          "bass_midi": 40,
+          "sha256": "2b1b7944e51e04e0e28401342af014208a932e5cae450230d9d02abeab8081f8",
+          "source_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "2ab51a3bee3af4f1",
+          "start_seconds": 3.2275736961451247,
+          "end_seconds": 3.947392290249433,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.190776209677419,
+          "bass_midi": 36,
+          "sha256": "4b90ae7f894148ed5b6ed714fe8b415a18e19d0e3aa146ef58b61e2da89e0e06",
+          "source_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "2ab51a3bee3af4f1",
+          "start_seconds": 3.947392290249433,
+          "end_seconds": 4.6439909297052155,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.2304687499999998,
+          "bass_midi": 31,
+          "sha256": "956cf6443686f97d2043643a28992f1602dee227753004e3cc2af6d6092bc487",
+          "source_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "2ab51a3bee3af4f1",
+          "start_seconds": 22.709115646258503,
+          "end_seconds": 24.102312925170068,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 1.2304687499999998,
+          "bass_midi": 40,
+          "sha256": "7fc32b5bce17496647ad38e9255f5f8fb353d3d187d012d3a311b2fddefffa2a",
+          "source_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "628ccd77bbcd10be",
+          "start_seconds": 0.8591383219954648,
+          "end_seconds": 1.6718367346938776,
+          "semitones": 0,
+          "reverse": false,
+          "stretch_ratio": 1.0546874999999998,
+          "bass_midi": 38,
+          "sha256": "d7e2a1552e8dd36a9977e99451158a7d2d82a5d1576ec2ca7f6e8ed96d7319e4",
+          "source_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "628ccd77bbcd10be",
+          "start_seconds": 1.6718367346938776,
+          "end_seconds": 2.5541950113378684,
+          "semitones": 0,
+          "reverse": false,
+          "stretch_ratio": 0.9714226973684211,
+          "bass_midi": 40,
+          "sha256": "aedc100632f4d73fa2843f769d4ff164dc6fb2ba7520ccb7b23f73ca1683a4f8",
+          "source_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "628ccd77bbcd10be",
+          "start_seconds": 2.5541950113378684,
+          "end_seconds": 3.320453514739229,
+          "semitones": 0,
+          "reverse": false,
+          "stretch_ratio": 1.1186079545454544,
+          "bass_midi": 34,
+          "sha256": "c114a3e0bc69b63c5ae026e8e2034ed8ac68f573bec93010a386448f5ca7ad3e",
+          "source_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "628ccd77bbcd10be",
+          "start_seconds": 3.320453514739229,
+          "end_seconds": 4.133151927437642,
+          "semitones": 0,
+          "reverse": false,
+          "stretch_ratio": 1.0546874999999996,
+          "bass_midi": 41,
+          "sha256": "688694b90884046bfa3bcf79bb7324b9e261cec65b5de234ece94f869ef8bc83",
+          "source_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "628ccd77bbcd10be",
+          "start_seconds": 27.980045351473922,
+          "end_seconds": 29.512562358276643,
+          "semitones": 0,
+          "reverse": false,
+          "stretch_ratio": 1.1186079545454548,
+          "bass_midi": 38,
+          "sha256": "2da325caed5d12036a4a8854d3928cb25b631295006318f22bd004682c373f4a",
+          "source_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25"
+        }
+      ]
+    },
+    {
+      "number": "06",
+      "title": "失物招领",
+      "bpm": 84,
+      "bars": 18,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 1.509297052154195,
+          "end_seconds": 2.948934240362812,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9923135080645161,
+          "bass_midi": 36,
+          "sha256": "f2222ee21fbe1384fce85250a721721e81b8534f9191faad497e6fc197304855",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 2.948934240362812,
+          "end_seconds": 4.435011337868481,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9613037109374999,
+          "bass_midi": 39,
+          "sha256": "d7c0aaaa5e4bbcbdb2490090f2e7f17b9097780fc9f68f977266c6075c1d2b3d",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 4.435011337868481,
+          "end_seconds": 5.828208616780046,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 1.025390625,
+          "bass_midi": 41,
+          "sha256": "41912f524015cfe0250b50e7a71cadaed8f36b9d89a0c2d5be186dbd73241380",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 5.828208616780046,
+          "end_seconds": 7.314285714285714,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9613037109375004,
+          "bass_midi": 36,
+          "sha256": "6dc5e8f7a9644a560ced2023427f53c29dd71b03bebc7b9eaf9f190611fb79af",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "dfd615072f6fec57",
+          "start_seconds": 25.68126984126984,
+          "end_seconds": 28.862403628117914,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.8981523722627739,
+          "bass_midi": 34,
+          "sha256": "d9a79e126db3e784305f2c5559abe20d3e7b6de3d5a3a073d2444d8274f2624c",
+          "source_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "bded27c143a65d4c",
+          "start_seconds": 1.253877551020408,
+          "end_seconds": 2.8328344671201813,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9047564338235294,
+          "bass_midi": 37,
+          "sha256": "b266c8d659bd4f598cd4b039882350741cca16a3be6bdac94fdca0c7f4b1478f",
+          "source_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "bded27c143a65d4c",
+          "start_seconds": 2.8328344671201813,
+          "end_seconds": 4.388571428571429,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9182602611940297,
+          "bass_midi": 34,
+          "sha256": "ed72bbbde7d8a19d5e67c292e9d1834e6fc9d2bd586f9f3824db6ae46406a2d7",
+          "source_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "bded27c143a65d4c",
+          "start_seconds": 4.388571428571429,
+          "end_seconds": 6.013968253968254,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.8789062500000002,
+          "bass_midi": 32,
+          "sha256": "22865286d1674c7ae949313f2827dca8b152b403717c2d86b113a05f545a4ed0",
+          "source_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "bded27c143a65d4c",
+          "start_seconds": 6.013968253968254,
+          "end_seconds": 7.592925170068027,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9047564338235292,
+          "bass_midi": 36,
+          "sha256": "9bc73a34b6eee11df32f0dfa2704140139b97199f0f010d98637f4c466854a32",
+          "source_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "bded27c143a65d4c",
+          "start_seconds": 25.93668934240363,
+          "end_seconds": 29.094603174603176,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9047564338235292,
+          "bass_midi": 36,
+          "sha256": "99c73cf5d41b5b35bb4ca37ae77ee342fcda3b8fe776c3a9721c4ec9ad743ecf",
+          "source_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1"
+        }
+      ]
+    },
+    {
+      "number": "07",
+      "title": "镜面舞池",
+      "bpm": 112,
+      "bars": 24,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "3849c9beedd6e62a",
+          "start_seconds": 1.3699773242630386,
+          "end_seconds": 2.345215419501134,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0986328125,
+          "bass_midi": 40,
+          "sha256": "e66888aa7324ff967362a0414695fb093b828eb6af50b46b2125b6b831651ae8",
+          "source_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "3849c9beedd6e62a",
+          "start_seconds": 2.345215419501134,
+          "end_seconds": 3.3436734693877552,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0730832122093024,
+          "bass_midi": 32,
+          "sha256": "fe7bfb44a9243cd03add35c01e280d5955a17c68d1f6e8ac67b57facf7f9e419",
+          "source_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "3849c9beedd6e62a",
+          "start_seconds": 3.3436734693877552,
+          "end_seconds": 4.342131519274377,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0730832122093024,
+          "bass_midi": 34,
+          "sha256": "88fcc11cc6a684038dc42faa594f97540411e9a8693d9dda798963c809e7b3b5",
+          "source_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "3849c9beedd6e62a",
+          "start_seconds": 4.342131519274377,
+          "end_seconds": 5.340589569160998,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0730832122093024,
+          "bass_midi": 35,
+          "sha256": "72838e38f65ecf838dcef4bbac815365630deec6d92821f8334ccfbf2c40e0d2",
+          "source_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "3849c9beedd6e62a",
+          "start_seconds": 27.608526077097505,
+          "end_seconds": 29.60544217687075,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 1.0730832122093013,
+          "bass_midi": 34,
+          "sha256": "57718fadfbfba76eaaad8bc8dc9ed930a36dc0383ef602904d72e71624188515",
+          "source_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "e5d77696593a43f4",
+          "start_seconds": 1.7182766439909296,
+          "end_seconds": 2.9257142857142857,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.8873572716346153,
+          "bass_midi": 39,
+          "sha256": "6ae40cb47674d2e71053eced01dfb62c158155d5a32da1597df93de830a4e86b",
+          "source_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "e5d77696593a43f4",
+          "start_seconds": 2.9257142857142857,
+          "end_seconds": 4.133151927437642,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.8873572716346151,
+          "bass_midi": 39,
+          "sha256": "e8ec7e8c993ef82d68f71ab7dcb9eb0afe3d4a63551bedf2c82457bb492fcedf",
+          "source_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "e5d77696593a43f4",
+          "start_seconds": 4.133151927437642,
+          "end_seconds": 5.317369614512471,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9047564338235299,
+          "bass_midi": 39,
+          "sha256": "6a893c98b64c08b00cabb64e678f1df1b766be7bc0802cdee4d20c85a0f0328d",
+          "source_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "e5d77696593a43f4",
+          "start_seconds": 5.317369614512471,
+          "end_seconds": 6.455147392290249,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9416852678571427,
+          "bass_midi": 34,
+          "sha256": "418e20f4bc0f5b17d4722db94675ccb4db8707020ec72dc33a8b5e3aa30b54ac",
+          "source_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "e5d77696593a43f4",
+          "start_seconds": 24.171972789115646,
+          "end_seconds": 26.540408163265305,
+          "semitones": -2,
+          "reverse": false,
+          "stretch_ratio": 0.9047564338235299,
+          "bass_midi": 31,
+          "sha256": "f0f80b8dbb62687d812655d71cad4d8a74a093f04eefc08aa451ba9ef52af937",
+          "source_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399"
+        }
+      ]
+    },
+    {
+      "number": "08",
+      "title": "午夜便利店",
+      "bpm": 96,
+      "bars": 20,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "ca20d479c4f78d92",
+          "start_seconds": 2.48453514739229,
+          "end_seconds": 3.9706122448979593,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 0.8411407470703124,
+          "bass_midi": 31,
+          "sha256": "7ecb4ce590b5ae3df08d3111a709d3e2028d445afd38a1b9be9cd4904cbfb45b",
+          "source_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "ca20d479c4f78d92",
+          "start_seconds": 3.9706122448979593,
+          "end_seconds": 5.526349206349207,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 0.803477728544776,
+          "bass_midi": 31,
+          "sha256": "8d1858ba76d7facac0d0b5ab1b85ca318dc02b8a5588df562508c180a84e010e",
+          "source_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "ca20d479c4f78d92",
+          "start_seconds": 5.526349206349207,
+          "end_seconds": 7.012426303854875,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 0.8411407470703128,
+          "bass_midi": 36,
+          "sha256": "68429ebb564dd7c90201e1ace6a632e8ef50a3abada6a9c9b32c19c7e853a1ba",
+          "source_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "ca20d479c4f78d92",
+          "start_seconds": 7.012426303854875,
+          "end_seconds": 8.40562358276644,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 0.8972167968749999,
+          "bass_midi": 36,
+          "sha256": "b002b017f5a6b2e464ed6198456b55409e743d5c1dfcf4dd44fc743f8454664c",
+          "source_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "ca20d479c4f78d92",
+          "start_seconds": 26.33142857142857,
+          "end_seconds": 29.141043083900225,
+          "semitones": 2,
+          "reverse": false,
+          "stretch_ratio": 0.8898017820247938,
+          "bass_midi": 31,
+          "sha256": "112c8d7cb06a3b4a228e93950a9c146b5891574377b40673d5c826fe102e02c8",
+          "source_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "a4d39d404c04ebe7",
+          "start_seconds": 3.877732426303855,
+          "end_seconds": 5.224489795918367,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 0.9281553071120693,
+          "bass_midi": 37,
+          "sha256": "f4daa436eeaf5f6344b78c301eb859397dd4a679412cc8f9df40a7fd53f8d12a",
+          "source_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "a4d39d404c04ebe7",
+          "start_seconds": 5.224489795918367,
+          "end_seconds": 6.5712471655328795,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 0.928155307112069,
+          "bass_midi": 38,
+          "sha256": "bf1f0a35352093f2b1fe133679a7ab37f7b133c8c7ef77798cfbe49df77d069f",
+          "source_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "a4d39d404c04ebe7",
+          "start_seconds": 6.5712471655328795,
+          "end_seconds": 7.87156462585034,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 0.9613037109375,
+          "bass_midi": 35,
+          "sha256": "23b6632b2bb102cad1bf4f30b53baf0a192f4b97575323da4cc278d3a5f2dc94",
+          "source_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "a4d39d404c04ebe7",
+          "start_seconds": 7.87156462585034,
+          "end_seconds": 9.218321995464853,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 0.9281553071120683,
+          "bass_midi": 30,
+          "sha256": "ee7bd676da0a51ff6d8c680f46a7bee82759ba88abf3ceb9f4157f5ba28084d0",
+          "source_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "a4d39d404c04ebe7",
+          "start_seconds": 26.63328798185941,
+          "end_seconds": 29.373242630385487,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 0.9124238612288138,
+          "bass_midi": 38,
+          "sha256": "6414c083e861bede5be600b39c4a1532afd5d0a5068bd8868b7ad433877aff89",
+          "source_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232"
+        }
+      ]
+    },
+    {
+      "number": "09",
+      "title": "逆行霓虹",
+      "bpm": 128,
+      "bars": 28,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "222e558101758b3a",
+          "start_seconds": 0.9984580498866213,
+          "end_seconds": 1.9040362811791383,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0352501502403848,
+          "bass_midi": 33,
+          "sha256": "513e86e92e1bb5c7e4c13ba3b8da4c24715fb721d05fdce9ec43536142c29ac5",
+          "source_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "222e558101758b3a",
+          "start_seconds": 1.9040362811791383,
+          "end_seconds": 2.786394557823129,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0624935752467106,
+          "bass_midi": 38,
+          "sha256": "3bfc9c1d86639a18485b526a4e636a0b9fac9d160e4a623534d328d1584dcad8",
+          "source_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "222e558101758b3a",
+          "start_seconds": 2.786394557823129,
+          "end_seconds": 3.7151927437641725,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0093688964843746,
+          "bass_midi": 30,
+          "sha256": "c500d63da60fdce2064c72ac3f8f22cbb3776d7a8c9252928604e205d6bdeef6",
+          "source_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "222e558101758b3a",
+          "start_seconds": 3.7151927437641725,
+          "end_seconds": 4.574331065759637,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0912096178209467,
+          "bass_midi": 38,
+          "sha256": "19f6c1588fd19ee7a42d8211a979a1dbc4b88774a926cca895c1809f6d92549e",
+          "source_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "222e558101758b3a",
+          "start_seconds": 9.079002267573696,
+          "end_seconds": 10.89015873015873,
+          "semitones": -1,
+          "reverse": false,
+          "stretch_ratio": 1.0352501502403848,
+          "bass_midi": 30,
+          "sha256": "a14d23a0502ce1fbc7e7623905c9d7ee3285d08d178b129ec752c1215abe5601",
+          "source_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "7c7579c8d6260e56",
+          "start_seconds": 0.8823582766439909,
+          "end_seconds": 1.6718367346938776,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 1.1874928193933822,
+          "bass_midi": 31,
+          "sha256": "c925c651ea442753905f64e4d6f967590bb10cc69b7bdb64ec31ec031ff77a2e",
+          "source_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "7c7579c8d6260e56",
+          "start_seconds": 1.6718367346938776,
+          "end_seconds": 2.48453514739229,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 1.1535644531250002,
+          "bass_midi": 40,
+          "sha256": "f2b18a3ca4fba9107e6121ddb184bc278f1ddbcc1e6e1a888a381aead1bd43e6",
+          "source_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "7c7579c8d6260e56",
+          "start_seconds": 2.48453514739229,
+          "end_seconds": 3.3668934240362813,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 1.0624935752467102,
+          "bass_midi": 30,
+          "sha256": "6c4e1a815f9f2d1cd39cd28088e60b6ca258c9bfae9948a29a68ba5a01f30bb6",
+          "source_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "7c7579c8d6260e56",
+          "start_seconds": 3.3668934240362813,
+          "end_seconds": 4.156371882086168,
+          "semitones": 4,
+          "reverse": false,
+          "stretch_ratio": 1.1874928193933827,
+          "bass_midi": 33,
+          "sha256": "b53c9c8a5af84303b19204cde950b0bc7e9f1b58ed73324fe7f845d03e67adda",
+          "source_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "7c7579c8d6260e56",
+          "start_seconds": 21.36235827664399,
+          "end_seconds": 22.941315192743765,
+          "semitones": 4,
+          "reverse": true,
+          "stretch_ratio": 1.187492819393382,
+          "bass_midi": 30,
+          "sha256": "786c3bfff2053c9f6849aea90898621246d1cd480975d6001f69c54d5a165375",
+          "source_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "title": "日出后再说",
+      "bpm": 90,
+      "bars": 20,
+      "cuts": [
+        {
+          "id": "lead_a",
+          "source_id": "d3bde0061ccb9a71",
+          "start_seconds": 1.1609977324263039,
+          "end_seconds": 2.5774149659863945,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9413422131147541,
+          "bass_midi": 37,
+          "sha256": "0ee3bd5b43e7629513e8cd4ecc14617da9166f30240ee2964129bf0e69b62ab5",
+          "source_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2"
+        },
+        {
+          "id": "lead_b",
+          "source_id": "d3bde0061ccb9a71",
+          "start_seconds": 2.5774149659863945,
+          "end_seconds": 3.9706122448979593,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9570312499999999,
+          "bass_midi": 40,
+          "sha256": "216ff480ebcf6db8f72579330b35f583483b7fd930f15262ab971c9f108f8de6",
+          "source_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2"
+        },
+        {
+          "id": "lead_c",
+          "source_id": "d3bde0061ccb9a71",
+          "start_seconds": 3.9706122448979593,
+          "end_seconds": 5.410249433106576,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9261592741935485,
+          "bass_midi": 30,
+          "sha256": "e3fc244c22ea75f0acc45aa0e016d7a0e18d00f4d2d8251ad13f728a7f3968fa",
+          "source_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2"
+        },
+        {
+          "id": "lead_d",
+          "source_id": "d3bde0061ccb9a71",
+          "start_seconds": 5.410249433106576,
+          "end_seconds": 6.826666666666667,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9413422131147536,
+          "bass_midi": 30,
+          "sha256": "ba450aab0b763392572e3c5c2c2f36905b68e044cb65c6fdf7b2ffefbb8010ac",
+          "source_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2"
+        },
+        {
+          "id": "turn_a",
+          "source_id": "d3bde0061ccb9a71",
+          "start_seconds": 26.470748299319727,
+          "end_seconds": 29.280362811791385,
+          "semitones": 1,
+          "reverse": false,
+          "stretch_ratio": 0.9491219008264454,
+          "bass_midi": 40,
+          "sha256": "8fbf6d15106fe35f7ff3d346d3c96b34045d4cfc1649305660754653d1b94bfc",
+          "source_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2"
+        },
+        {
+          "id": "answer_a",
+          "source_id": "f5b03032a3898708",
+          "start_seconds": 2.2755555555555556,
+          "end_seconds": 3.8080725623582765,
+          "semitones": -3,
+          "reverse": false,
+          "stretch_ratio": 0.8700284090909091,
+          "bass_midi": 39,
+          "sha256": "43441101fa495172b71641f881ee5e2f1a409afc1c482ae1798a5af145bbe554",
+          "source_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9"
+        },
+        {
+          "id": "answer_b",
+          "source_id": "f5b03032a3898708",
+          "start_seconds": 3.8080725623582765,
+          "end_seconds": 5.317369614512471,
+          "semitones": -3,
+          "reverse": false,
+          "stretch_ratio": 0.8834134615384616,
+          "bass_midi": 40,
+          "sha256": "f7833ce0a865941b5664a1a55d6e3f33956f5a8dc4c7c9c14a1380451a8ab0b1",
+          "source_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9"
+        },
+        {
+          "id": "answer_c",
+          "source_id": "f5b03032a3898708",
+          "start_seconds": 5.317369614512471,
+          "end_seconds": 6.780226757369615,
+          "semitones": -3,
+          "reverse": false,
+          "stretch_ratio": 0.9114583333333328,
+          "bass_midi": 35,
+          "sha256": "fc0a1d5ee08cfb31057080c7630c8eaa5b681f240284b5d7cfe4c69bbf12bb89",
+          "source_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9"
+        },
+        {
+          "id": "answer_d",
+          "source_id": "f5b03032a3898708",
+          "start_seconds": 6.780226757369615,
+          "end_seconds": 8.289523809523809,
+          "semitones": -3,
+          "reverse": false,
+          "stretch_ratio": 0.8834134615384621,
+          "bass_midi": 37,
+          "sha256": "b3dc340520788bf633ca342559f4136a6f712f273d6eceaa0d2cff2eb105c77b",
+          "source_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9"
+        },
+        {
+          "id": "turn_b",
+          "source_id": "f5b03032a3898708",
+          "start_seconds": 7.546485260770975,
+          "end_seconds": 10.518639455782314,
+          "semitones": -3,
+          "reverse": false,
+          "stretch_ratio": 0.8972167968749998,
+          "bass_midi": 38,
+          "sha256": "d2750df2935ccc680e4f031c762fa6ffbf93e03ffdd0802575dd8d6b6f953ad9",
+          "source_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9"
+        }
+      ]
+    }
+  ],
+  "source_identity": [
+    {
+      "id": "9c6c32d17de4128c",
+      "original_download_sha256": "65c87d6b556672460a6beba36fdb90318e13950ed338060d6a3b51e81d92c4dd",
+      "ingested_sha256": "c98a33cc7696e93f534cd56d1e4d9d4c9ad04f6d3129cd12343db1be15e45714",
+      "original_md5": "9c6c32d17de4128c847844d21c7c68d0",
+      "source_url": "https://www.loc.gov/item/jukebox-313413/"
+    },
+    {
+      "id": "dfd615072f6fec57",
+      "original_download_sha256": "6aabe4d125690a239e758baa0b1b961b0a556558fbea3ab3a31722f1baaa6b7b",
+      "ingested_sha256": "f9ea2c000f8d472672ec07b0c81d87de9a4b54d68fe13674541ce36c89021263",
+      "original_md5": "dfd615072f6fec57fd91ab162bb8c611",
+      "source_url": "https://www.loc.gov/item/jukebox-31525/"
+    },
+    {
+      "id": "b99037ea894abe28",
+      "original_download_sha256": "975eb95b20e24ef6eabe9fea7a0fb4060577d78e7878b331209407b7cc3ab3d9",
+      "ingested_sha256": "fa34da619c3a753edcb83037d5194736d17a313eb020693f515d5ca5b8065a61",
+      "original_md5": "b99037ea894abe28c9f1e22eb15d9d30",
+      "source_url": "https://www.loc.gov/item/jukebox-20378/"
+    },
+    {
+      "id": "0e68a23c225b7946",
+      "original_download_sha256": "7d4a479d5fc8b4ee069301bfe2196af84af0862b8253ef9852065733accc8ed7",
+      "ingested_sha256": "a7379db9579f8b111a0d431675ab668c66c1e7b08ab7c728a7abe9bed0b623b6",
+      "original_md5": "0e68a23c225b7946e887bf64da476720",
+      "source_url": "https://www.loc.gov/item/jukebox-33747/"
+    },
+    {
+      "id": "37baf98ef2b9d8a4",
+      "original_download_sha256": "8405b97f6e770cbd4b83c08bb3965545fcdf4d64e09b4f09d87f1d24197c0b9e",
+      "ingested_sha256": "41d489cc494b4792c4c694ee4b6ba780b7145208d18716358b39bf86f3e9b530",
+      "original_md5": "37baf98ef2b9d8a490ba5f64c9120374",
+      "source_url": "https://www.loc.gov/item/jukebox-41616/"
+    },
+    {
+      "id": "775722a4dfc85b66",
+      "original_download_sha256": "021600030a380c9f86242fa5ccd81d2e8dd935dc9a50cfa9ee2a77d3b91a8951",
+      "ingested_sha256": "71668e911498143ff02a8898cc84490be860fd772a1565ac93c57978ac93a1d6",
+      "original_md5": "775722a4dfc85b665f3124ff44a9e304",
+      "source_url": "https://www.loc.gov/item/jukebox-19795/"
+    },
+    {
+      "id": "a53f5e44f8e3a005",
+      "original_download_sha256": "7347828f5c7e6dfddc7e6e238d2e847738667a1167a7332ae4a3179513291a91",
+      "ingested_sha256": "0780e13778c18695c99b817d56f5c902f4bac2d964c6f44919e15a3277715bbd",
+      "original_md5": "a53f5e44f8e3a00552c4048fa91de6df",
+      "source_url": "https://www.loc.gov/item/jukebox-29613/"
+    },
+    {
+      "id": "9a7e495a5224d187",
+      "original_download_sha256": "b6a4724415ce8190fc5466f6ddd63c6d144a98be1c73c96db0cd7362cfb0ebbf",
+      "ingested_sha256": "73721e8b83d59c4ddcda2f225ffa23069bd224bf4db4d7266a40d8183678c11c",
+      "original_md5": "9a7e495a5224d1879310fb0ae65c279e",
+      "source_url": "https://www.loc.gov/item/jukebox-188857/"
+    },
+    {
+      "id": "2ab51a3bee3af4f1",
+      "original_download_sha256": "540555ff9406473064bafa71453edcfe0078df9d02ccb83fa67c73c5e37e1fb6",
+      "ingested_sha256": "ec0fc6641ae5e09f692ec1f2d12cc098e4877c4355f7fba7131398780eb4592c",
+      "original_md5": "2ab51a3bee3af4f1da324573ac3181c9",
+      "source_url": "https://www.loc.gov/item/jukebox-39532/"
+    },
+    {
+      "id": "628ccd77bbcd10be",
+      "original_download_sha256": "9537a2647c5219b922f2683345c094df4f075c7dedb75ff1effdd2f9a1598c7a",
+      "ingested_sha256": "cf9226c5b57197c055690f27ad6c699d2ab5f708f0aed435c025bae305631a25",
+      "original_md5": "628ccd77bbcd10bea277493209a93379",
+      "source_url": "https://www.loc.gov/item/jukebox-12779/"
+    },
+    {
+      "id": "bded27c143a65d4c",
+      "original_download_sha256": "01b070dc46352996827e553bb0a60dd882ad430bd39bb8f73815a069adb3baa7",
+      "ingested_sha256": "3a666388362c4417742a39dd32c68165a3d181bd299dcf478140b47ec7f8f1e1",
+      "original_md5": "bded27c143a65d4ccd980c2be61250ba",
+      "source_url": "https://www.loc.gov/item/jukebox-185940/"
+    },
+    {
+      "id": "3849c9beedd6e62a",
+      "original_download_sha256": "75653fd6e99794004938e53d1be9956ed57d6f9d44efb387965d73cbf26c26a4",
+      "ingested_sha256": "adfbdf9d542f9664154caeb7e1c12171c9233f554bea451b5aa1cae9ae29006e",
+      "original_md5": "3849c9beedd6e62a490b97e46afe952e",
+      "source_url": "https://www.loc.gov/item/jukebox-34115/"
+    },
+    {
+      "id": "e5d77696593a43f4",
+      "original_download_sha256": "d2dd097e924dc81eed0c697d59e041c138789924721eabfeecfb7f12ae2aeba6",
+      "ingested_sha256": "db42b1bd8140a24131114c0d81d5125f9e7381d07b0fa26ac9475b49bd9b8399",
+      "original_md5": "e5d77696593a43f4bb1a9204f89557f8",
+      "source_url": "https://www.loc.gov/item/jukebox-43156/"
+    },
+    {
+      "id": "ca20d479c4f78d92",
+      "original_download_sha256": "518a20cff4d6af064554426e40234da061a720d9b09326db46a0019f58d6decb",
+      "ingested_sha256": "6f59af5197937266da7ac7f73965dcad89e22f2f247984d3199d61d3273dc500",
+      "original_md5": "ca20d479c4f78d920ecb4517cf66d3a6",
+      "source_url": "https://www.loc.gov/item/jukebox-129854/"
+    },
+    {
+      "id": "a4d39d404c04ebe7",
+      "original_download_sha256": "6575008c38782dba5bb1a6c588f214b53fc09c437a29c8fc6ca970d739186941",
+      "ingested_sha256": "a12ffd4a0956741ad6b29447831d82ac8e32cc379267c3ee4f6dd9fc3e4b0232",
+      "original_md5": "a4d39d404c04ebe78741ca826f3755e2",
+      "source_url": "https://www.loc.gov/item/jukebox-38191/"
+    },
+    {
+      "id": "222e558101758b3a",
+      "original_download_sha256": "dfb629b204b458afe519d2ac6f56674ac7548959e5d1d0599618055cd251be84",
+      "ingested_sha256": "830a7e8c51a6598db02cb1fd1d4e04f16d446efc76c82b7f3c5f53cff46b4b1d",
+      "original_md5": "222e558101758b3a277877b490e997e2",
+      "source_url": "https://www.loc.gov/item/jukebox-131021/"
+    },
+    {
+      "id": "7c7579c8d6260e56",
+      "original_download_sha256": "8576cf389845485301b37ce7563860b9bec53f9318db68f85853dc128887684a",
+      "ingested_sha256": "bf9dfd3632af9ec1c140f82d70b8f25651c55e1e56c297de2c09dea743c7c1f9",
+      "original_md5": "7c7579c8d6260e568dbedc49bc73ab79",
+      "source_url": "https://www.loc.gov/item/jukebox-130221/"
+    },
+    {
+      "id": "d3bde0061ccb9a71",
+      "original_download_sha256": "3716fa28b37a1d652aac492e361f74f75cfd81fee227170092943ead4b8115f2",
+      "ingested_sha256": "648e646aac3e2df85e5829b0d18b45cd3da0e8e9ad61648a791bc57a940d2fa2",
+      "original_md5": "d3bde0061ccb9a716339ddac883da70a",
+      "source_url": "https://www.loc.gov/item/jukebox-40562/"
+    },
+    {
+      "id": "f5b03032a3898708",
+      "original_download_sha256": "dd031edd9bed4902f5981bd3bdcd2c2a03c57cdc705cf1c77bc44821617c95d7",
+      "ingested_sha256": "60686d113ebfdd78ccf32ddc973007ce992444996dd9e20791b02af81d3405c9",
+      "original_md5": "f5b03032a389870855fe6eccdc0a13aa",
+      "source_url": "https://www.loc.gov/item/jukebox-119704/"
+    }
+  ],
+  "lyric_identity": "not verified",
+  "musical_taste": "pending user"
+}

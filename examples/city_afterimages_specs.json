@@ -1,0 +1,82 @@
+[
+  {
+    "number": "01",
+    "title": "车窗第一束光",
+    "slug": "first-light",
+    "bpm": 92,
+    "bars": 20,
+    "direction": "bright soul flip; open chorus and syncopated boom bap"
+  },
+  {
+    "number": "02",
+    "title": "玻璃电梯",
+    "slug": "glass-elevator",
+    "bpm": 98,
+    "bars": 20,
+    "direction": "crisp staccato jazz chops; elegant offbeat pocket"
+  },
+  {
+    "number": "03",
+    "title": "夜市的回声",
+    "slug": "night-market",
+    "bpm": 88,
+    "bars": 18,
+    "direction": "blues call response; loose head nod with spacious turn"
+  },
+  {
+    "number": "04",
+    "title": "红灯起跑",
+    "slug": "red-light",
+    "bpm": 106,
+    "bars": 24,
+    "direction": "urgent brass chops; bold drum switch"
+  },
+  {
+    "number": "05",
+    "title": "天台电台",
+    "slug": "rooftop-radio",
+    "bpm": 140,
+    "bars": 28,
+    "direction": "half time modern drums; airy sliced melodic pauses"
+  },
+  {
+    "number": "06",
+    "title": "失物招领",
+    "slug": "lost-found",
+    "bpm": 84,
+    "bars": 18,
+    "direction": "intimate fragmented phrase; stripped bass then full return"
+  },
+  {
+    "number": "07",
+    "title": "镜面舞池",
+    "slug": "mirror-floor",
+    "bpm": 112,
+    "bars": 24,
+    "direction": "bright broken funk; syncopated dance pulse"
+  },
+  {
+    "number": "08",
+    "title": "午夜便利店",
+    "slug": "midnight-store",
+    "bpm": 96,
+    "bars": 20,
+    "direction": "playful ragtime cuts; clean bounce and surprise stops"
+  },
+  {
+    "number": "09",
+    "title": "逆行霓虹",
+    "slug": "reverse-neon",
+    "bpm": 128,
+    "bars": 28,
+    "direction": "2 step syncopation; selective reverse pickups, strong hook"
+  },
+  {
+    "number": "10",
+    "title": "日出后再说",
+    "slug": "after-sunrise",
+    "bpm": 90,
+    "bars": 20,
+    "direction": "warm closing soul; long phrase contrasted with confident chopped reprise"
+  }
+]
