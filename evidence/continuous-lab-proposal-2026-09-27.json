@@ -1,0 +1,60 @@
+{
+  "task_id": "LAB-PROPOSAL-20260927",
+  "status": "proposal_delivered_not_activated",
+  "start_commit": "9cce1c1354a90ca3f3b7bc4639b8ebd9b804e553",
+  "delegated_packages": 2,
+  "actual_requests": 2,
+  "parallel_cc_processes": 2,
+  "jobs": [
+    {
+      "task_id": "beatlab-continuous-pool-20260927-a1",
+      "status": "verifying",
+      "outcome": "completed",
+      "elapsed_seconds": 201.24,
+      "model": [
+        "doubao-seed-evolving"
+      ],
+      "source_sha256": "354f4d6c17196b40c83bda1f3e0835b87049ca453f73c95b94ab868e22fec0ac",
+      "adopted_document": "docs/product/continuous-task-pool.md",
+      "adopted_sha256": "346ef3f877537085119d4b75a02570b8dbd4f76cd85dd50445a72ccdb0aec926",
+      "worker_tests": 0,
+      "accepted_after_primary_content_review": true
+    },
+    {
+      "task_id": "beatlab-continuous-operations-20260927-a1",
+      "status": "verifying",
+      "outcome": "completed",
+      "elapsed_seconds": 164.387,
+      "model": [
+        "doubao-seed-evolving"
+      ],
+      "source_sha256": "0c9d20b0416cbf0ed4f1c756022178f2999cba14987e55f355a45330a724d6ff",
+      "adopted_document": "docs/product/continuous-operations.md",
+      "adopted_sha256": "0bd321dce17edf85d914d599096114ac9e6305830d21214ad5d01917254db7ed",
+      "worker_tests": 0,
+      "accepted_after_primary_content_review": true
+    }
+  ],
+  "paid_fallback": false,
+  "resubmitted_unknown_requests": false,
+  "production_code_changed": false,
+  "music_rendered": false,
+  "automation_changed": false,
+  "automation_existing_schedule": "daily22:00 Asia/Shanghai ACTIVE",
+  "tests_run": 0,
+  "checks": [
+    "both runners completed; exact output SHA/whitelist verified",
+    "independent semantic review and corrections",
+    "existing automation all fields unchanged",
+    "Markdown local links and JSON parse checked before commit"
+  ],
+  "primary_corrections": [
+    "adjacent windows/performance identity is not lyric identity",
+    "unheard output is not failure; keep taste separate from technical acceptance",
+    "no daily retry of unchanged Live UI blocker",
+    "correct cc worker versus outer unknown status contract",
+    "trial expiry restores original automation; does not expire user artworks",
+    "no promise independent scheduling after primary quota exhaustion"
+  ],
+  "official_schedule_reference": "https://learn.chatgpt.com/docs/automations?surface=app"
+}

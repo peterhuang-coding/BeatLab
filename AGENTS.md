@@ -1,5 +1,7 @@
 # BeatLab 项目约定
 
+- 2026-09-27 用户提出Coding Plan长期水下执行、定时更新与主代理定期review。已形成持续任务池与7天试运行提案，见 `docs/superpowers/specs/2026-09-27-continuous-lab-design.md`；本轮仅方案，未启用新频率或自动批准池内方向。原每日22点夜班与音乐Keep边界保持；不得把提案当执行指令。
+
 - 2026-09-27 用户对《尘里有金》继续要求“更复杂，整体不用都lofi”。v2已生成待试听：保留真实翻采主题，增加清晰钢琴/颤音琴与鼓组、段落反差；不把所有采样作品预设为lofi，不把复杂度等同轨数或噪声。计划 `docs/superpowers/plans/2026-09-27-prism-cut-v2.md`；v1保留。
 
 - 2026-09-27 用户在闭环演示后反馈“有点那个味儿”，但明确下一首要由真实录音自行裁切，想要 Kanye 风格 beats，可将水下工作交 Coding Plan。当前创作任务 MUSIC-20260927 / 尘里有金，计划 `docs/superpowers/plans/2026-09-27-real-record-flip.md`，状态 `real-record-flip.json`。主旋律和人声用可追溯录音翻采；合成声音仍可用于技术测试，但不能把技术演示作为新音乐交付。风格参考不等于使用 Kanye 歌曲或人声；新作品仍待用户试听。

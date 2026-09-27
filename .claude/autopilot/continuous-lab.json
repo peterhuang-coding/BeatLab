@@ -1,0 +1,30 @@
+{
+  "task_id": "LAB-PROPOSAL-20260927",
+  "status": "proposal_only",
+  "trial_enabled": false,
+  "approval_scope": null,
+  "planned_execution_local_times": [
+    "22:00",
+    "00:00",
+    "02:00"
+  ],
+  "planned_review_local_time": "09:00",
+  "timezone": "Asia/Shanghai",
+  "trial_days_proposed": 7,
+  "start": null,
+  "deadline": null,
+  "automation_id": "beatlab",
+  "automation_modified": false,
+  "requires_before_activation": [
+    "user selection of scope and cadence",
+    "queue/shared concurrency/review backlog/expiry recovery verified offline"
+  ],
+  "proposal": "docs/superpowers/specs/2026-09-27-continuous-lab-design.md",
+  "requests": [
+    "beatlab-continuous-pool-20260927-a1",
+    "beatlab-continuous-operations-20260927-a1"
+  ],
+  "requests_completed": 2,
+  "requests_adopted": 2,
+  "next_step": "Wait for selected scope and trial cadence; do not automatically start proposed pool or retry old unknown jobs."
+}
