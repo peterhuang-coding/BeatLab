@@ -142,5 +142,10 @@
   "report": "docs/research/2026-09-27-city-afterimages-result.md",
   "evidence": "evidence/city-afterimages-delivery-2026-09-27.json",
   "publication": "not published",
-  "live_verified": false
+  "live_verified": false,
+  "delivery_commit": "78a3a3425ec1464b0d023bb8b480709a7f5076f7",
+  "remote_sha_verified": true,
+  "notion_sync": "partial6of10 marked待你验收; result link/readback verified; no extra-attempt decision",
+  "staged_diff_check": "24 files including all untracked additions passed",
+  "unit_tests": "33 review +15 composition/preparation/render; source/export30+30 isolated; mixedimportcollision documented"
 }
