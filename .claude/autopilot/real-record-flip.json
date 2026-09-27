@@ -20,6 +20,9 @@
   "requests_completed": 2,
   "requests_adopted": 2,
   "tests_passed": 46,
-  "remote_sync": "pending",
-  "next_step": "Wait for feedback on this exact mix; do not auto-extend or mark Keep."
+  "remote_sync": "code_commit_verified",
+  "next_step": "Wait for feedback on this exact mix; do not auto-extend or mark Keep.",
+  "code_commit": "a95d85968436cbefe3136588e1dfc3509f49d943",
+  "notion_sync": "verified_pending_review",
+  "automation": "original_daily_22_active_preserved_current_music_recovery_updated"
 }

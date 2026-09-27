@@ -15,7 +15,7 @@
 
 ## 当前任务
 
-MUSIC-20260927：真实录音翻采《尘里有金》v1已交付，92 BPM / 54.174秒，待用户试听；状态 `real-record-flip.json`。三份录音裁出10片段，17分轨、ALS、ChopRack与原录音对照已生成。两路cc-plan正常结束并采用，46项相关测试及真实音频/HTTP/浏览器通过，旧15份主混音保持。Live打开操作后的界面读取超时，发声/保存/回渲染未验。报告 `docs/research/2026-09-27-real-record-flip-result.md`。Notion https://app.notion.com/p/3e83285284df81408241ff0d6b11bf13 。本轮不代填Keep、不自动扩曲。
+MUSIC-20260927：真实录音翻采《尘里有金》v1已交付，92 BPM / 54.174秒，待用户试听；状态 `real-record-flip.json`。三份录音裁出10片段，17分轨、ALS、ChopRack与原录音对照已生成。两路cc-plan正常结束并采用，46项相关测试及真实音频/HTTP/浏览器通过，旧15份主混音保持。Live打开操作后的界面读取超时，发声/保存/回渲染未验。报告 `docs/research/2026-09-27-real-record-flip-result.md`。Notion https://app.notion.com/p/3e83285284df81408241ff0d6b11bf13 。本轮不代填Keep、不自动扩曲。代码/计划/证据a95d859已普通push并核对远端；Notion已回填待你验收并读回；原每天22点夜班恢复入口已同步且时刻/状态保持。
 
 ## 上一阶段：闭环技术交付
 
