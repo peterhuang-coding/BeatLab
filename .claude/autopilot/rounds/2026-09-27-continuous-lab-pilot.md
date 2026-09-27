@@ -12,3 +12,5 @@
 详情与复现：[报告](../../../docs/research/2026-09-27-continuous-lab-pilot-result.md)，[实施计划](../../../docs/superpowers/plans/2026-09-27-continuous-lab-pilot.md)，[证据](../../../evidence/continuous-lab-pilot-2026-09-27.json)。
 
 下一步唯一：按固定ID检查并执行两个定向修正，然后独立验收。旧ALGO与编曲unknown不动，Prism v2仍待听感。
+
+报告/完整计划/证据提交 `27ff1567f813f9a7d7092f87bd6f1172e87b83bc` 已普通push并核对远端；Notion项目已回填实际拒收原因、两个未提交修正、原22点恢复与窗口截止，读回验证。此处记录首波交付SHA，不宣称草稿已合格。
