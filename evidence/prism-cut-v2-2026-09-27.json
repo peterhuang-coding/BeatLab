@@ -1,0 +1,188 @@
+{
+  "run_id": "gold-from-dust-20260927-v2",
+  "parent": "gold-from-dust-20260927-v1",
+  "user_feedback": "more complex; not all lofi",
+  "mix_sha256": "87862a242d9855e896a6d6f437e5799ac00c044876f39465d7b55de3653ffc5f",
+  "duration_seconds": 54.17392290249433,
+  "bpm": 92,
+  "bars": 20,
+  "sections": [
+    {
+      "name": "opening",
+      "start_bar": 0,
+      "bars": 2
+    },
+    {
+      "name": "A",
+      "start_bar": 2,
+      "bars": 6
+    },
+    {
+      "name": "break",
+      "start_bar": 8,
+      "bars": 2
+    },
+    {
+      "name": "B",
+      "start_bar": 10,
+      "bars": 6
+    },
+    {
+      "name": "finale",
+      "start_bar": 16,
+      "bars": 4
+    }
+  ],
+  "track_events": {
+    "long_memory": 2,
+    "lead_a": 8,
+    "answer_a": 5,
+    "lead_b": 3,
+    "answer_b": 4,
+    "lead_c": 4,
+    "answer_c": 3,
+    "reverse_brass": 1,
+    "lead_d": 5,
+    "answer_d": 3,
+    "kick": 38,
+    "snare": 28,
+    "hat": 131,
+    "open_hat": 5,
+    "shaker": 44,
+    "rim": 2,
+    "bass": 47,
+    "piano": 109,
+    "vibes": 7,
+    "clap": 7
+  },
+  "chop_placements": 38,
+  "historical_cuts_preserved_byte_for_byte": 10,
+  "new_instruments": [
+    {
+      "id": "piano",
+      "file": "/Volumes/SanDisk2TB/BeatLab/library/instruments/gold-from-dust-20260927-v2/piano.aif",
+      "original_source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Piano & Keys/Grand Piano C3 f.aif",
+      "sha256": "a59e11902b4fda0c4d1902c62d5b4bb1fb2b4dd61772b5681b538d212c1f7b72",
+      "license_source": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+      "commercial_status": "needs_review",
+      "current_use": "local composition using installed Core one-shot, no isolated sample redistribution"
+    },
+    {
+      "id": "vibes",
+      "file": "/Volumes/SanDisk2TB/BeatLab/library/instruments/gold-from-dust-20260927-v2/vibes.aif",
+      "original_source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Instrument/Mallets/Vibraphone C3.aif",
+      "sha256": "548a1728776f23fee88af2757448f2b714457988335a0d12fade83952ce73734",
+      "license_source": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+      "commercial_status": "needs_review",
+      "current_use": "local composition using installed Core one-shot, no isolated sample redistribution"
+    },
+    {
+      "id": "clap",
+      "file": "/Volumes/SanDisk2TB/BeatLab/library/instruments/gold-from-dust-20260927-v2/clap.wav",
+      "original_source": "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Core Library/Samples/One Shots/Drums/Clap/Clap Layered.wav",
+      "sha256": "59726eb7b21e9dd3ed77bfa5d21b19908c74b4924a4da21f4cdeb91af04db41a",
+      "license_source": "https://help.ableton.com/hc/en-us/articles/209768885-Commercial-Use-rights-for-Live-content",
+      "commercial_status": "needs_review",
+      "current_use": "local composition using installed Core one-shot, no isolated sample redistribution"
+    }
+  ],
+  "register_check": [
+    {
+      "file": "piano.aif",
+      "strongest_100_600_hz": 261.4265441894531,
+      "midi_at_peak": 59.98682532258355,
+      "note": "single-note root register sanity check, not melody/key estimation"
+    },
+    {
+      "file": "vibes.aif",
+      "strongest_100_600_hz": 260.41717529296875,
+      "midi_at_peak": 59.91985293542395,
+      "note": "single-note root register sanity check, not melody/key estimation"
+    }
+  ],
+  "stem_sum": {
+    "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+    "peak_error": 7.152557373046875e-07,
+    "rms_error": 1.8111227514070713e-07,
+    "relative_rms_db": -114.2144892918316,
+    "tolerance": 2.6226043701171875e-06,
+    "passed": true
+  },
+  "input_loudness": {
+    "integrated_lufs": -18.77,
+    "true_peak_dbtp": -0.98,
+    "lra_lu": 4.6,
+    "method": "FFmpeg loudnorm input analysis; not a taste score"
+  },
+  "checks": {
+    "old_mixes": 16,
+    "all_old_mix_hashes_and_mtimes_unchanged": true,
+    "matched_comparison": {
+      "v1": {
+        "integrated_lufs": -19.77,
+        "true_peak_dbtp": -2.51
+      },
+      "v2": {
+        "integrated_lufs": -19.77,
+        "true_peak_dbtp": -1.98
+      }
+    },
+    "http_range": {
+      "status": 206,
+      "bytes": 64,
+      "content_range": "bytes 0-63/14334464"
+    }
+  },
+  "browser": {
+    "title": "尘里有金 · Prism Cut v2 · BeatLab",
+    "duration": 54.173923,
+    "playing_time": 33.015369,
+    "ready_state": 4,
+    "sources_matched": 20,
+    "missing": 0,
+    "suspect": 0,
+    "notes_or_keep_submitted": false,
+    "paused_after_test": true
+  },
+  "package": {
+    "path": "/Volumes/SanDisk2TB/BeatLab/exports/gold-from-dust-20260927-v2",
+    "files": 73,
+    "hashed_files": 72,
+    "manifest_sha256": "2a17d6081762e52b5c8d6bb21fb3e5b6d57718aeee6104833c4200b8d348ac3f",
+    "midi_ticks": 76800
+  },
+  "coding_plan": {
+    "request_id": "beatlab-prism-cut-compose-20260927-a1",
+    "original_status": "unknown",
+    "worker_outcome": "timeout",
+    "worker_returncode": 143,
+    "local_worker_absent": true,
+    "staged_file_still_matches_recorded_sha256": true,
+    "elapsed_seconds": 1200.14,
+    "tests_supplied_by_worker": 0,
+    "reissued": false,
+    "model": [
+      "doubao-seed-evolving"
+    ],
+    "paid_fallback": false,
+    "adoption": "stopped-worker stable composition draft, locally repaired and independently verified; not a successful complete CC handoff",
+    "primary_corrections": [
+      "actual source catalog id field",
+      "replace inherited instrument gains",
+      "piano duration table meets its own validator",
+      "harmonic roots follow source annotations rather than fixed incompatible table",
+      "clean piano-only break and all-part half-bar gap",
+      "normal package import without sys.path mutation"
+    ],
+    "tests": {
+      "new_tests": 6,
+      "reused_tools_tests": 46,
+      "new_log_sha256": "4de96fd3cc497c2d74c0f74895452f7a5a4d8856fac0b56460d960379d2f6ad7",
+      "reuse_log_sha256": "086021860a424c7422c322716f166066e380ff12b87e0fb4590cb0543a149237"
+    },
+    "adopted_composition_draft": true
+  },
+  "live_verified": false,
+  "live_note": "Prior native UI timeout was not retried without environment change; static/numerical export only.",
+  "keep": null
+}

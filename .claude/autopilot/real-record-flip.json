@@ -21,8 +21,26 @@
   "requests_adopted": 2,
   "tests_passed": 46,
   "remote_sync": "code_commit_verified",
-  "next_step": "Wait for feedback on this exact mix; do not auto-extend or mark Keep.",
+  "next_step": "Wait for user listening feedback on Prism Cut v2; do not resend timed-out a1.",
   "code_commit": "a95d85968436cbefe3136588e1dfc3509f49d943",
   "notion_sync": "verified_pending_review",
-  "automation": "original_daily_22_active_preserved_current_music_recovery_updated"
+  "automation": "original_daily_22_active_preserved_current_music_recovery_updated",
+  "revision": {
+    "run_id": "gold-from-dust-20260927-v2",
+    "status": "awaiting_user_audition",
+    "user_feedback": "More complex; not all lofi",
+    "request_id": "beatlab-prism-cut-compose-20260927-a1",
+    "prepared": "/Volumes/SanDisk2TB/BeatLab/library/instruments/gold-from-dust-20260927-v2/prepared.json",
+    "plan": "docs/superpowers/plans/2026-09-27-prism-cut-v2.md",
+    "cache": ".cache/prism-cut-20260927",
+    "keep": null,
+    "request_outcome": "unknown_worker_timeout143_stable_draft_recovered",
+    "request_reissued": false,
+    "adopted_after_local_verification": true,
+    "song": "/Volumes/SanDisk2TB/BeatLab/beats/gold-from-dust-20260927-v2",
+    "delivery": "/Volumes/SanDisk2TB/BeatLab/exports/gold-from-dust-20260927-v2",
+    "report": "docs/research/2026-09-27-prism-cut-v2-result.md",
+    "tests_new": 6,
+    "tests_reused": 46
+  }
 }
