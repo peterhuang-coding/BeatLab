@@ -47,8 +47,13 @@
     "readback_verified": true
   },
   "active_requests": 0,
-  "code_push_status": "pending_final_push",
+  "code_push_status": "verified",
   "demo_job": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/locked-workflow-20260927/demo-speech/jobs/locked-reply-demo-20260927",
   "demo_url": "http://127.0.0.1:8798/",
-  "report": "docs/research/2026-09-27-locked-workflow-result.md"
+  "report": "docs/research/2026-09-27-locked-workflow-result.md",
+  "code_commit": "e6b3f9f2f37fcdf38b7545bc022637b46053eda4",
+  "remote_code_sha_verified": "e6b3f9f2f37fcdf38b7545bc022637b46053eda4",
+  "notion_synced": true,
+  "notion_status": "待你验收",
+  "hub_summary_path": "/Volumes/SanDisk2TB/claude-pm-hub/projects/beatlab/latest.md"
 }
