@@ -1,0 +1,232 @@
+{
+  "task_id": "LAB-PILOT-20260927",
+  "authorization": "2026-09-27 user requested more actual CC work and to try it; engineering scope as plan.",
+  "base_sha": "80727dffed444dce15393595f7c8ba459acd6544",
+  "actual_peak_project_concurrency": 2,
+  "concurrency": "Staggered first wave because unrelated CC jobs occupied capacity. Later observed other projects starting new jobs; no global account lock claimed. New correction wave held while occupied.",
+  "business_requests": 2,
+  "probes": 0,
+  "quality_correction_requests_submitted": 0,
+  "adopted": 0,
+  "results": [
+    {
+      "task_id": "beatlab-lab-queue-20260927-a1",
+      "runner_status": "blocked",
+      "process_returncode": 0,
+      "elapsed_seconds": 996.136,
+      "model": [
+        "doubao-seed-evolving"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "changed_files": [
+        {
+          "path": "pipeline/lab_queue.py",
+          "sha256": "afe5d1969dc1ab26293e9d45829cd0f5809fb005de7989c449afbfc83a55f27d"
+        },
+        {
+          "path": "tests/test_lab_queue.py",
+          "sha256": "3602cfb08b1b0d21ceef515a09c9321bc9b14438049b55e4ca03b8d46cccc1fc"
+        },
+        {
+          "path": "docs/product/lab-queue.md",
+          "sha256": "f35d53d139da7fe56be0162c59f39e4ec1b15742983976bf3d800cea3e444fba"
+        }
+      ],
+      "independent_original_tests": 43,
+      "independent_contract_failed": 4,
+      "adopted": false,
+      "quality_correction_id": "beatlab-lab-queue-20260927-qfix1",
+      "quality_correction_submitted": false
+    },
+    {
+      "task_id": "beatlab-lab-baseline-20260927-a1",
+      "runner_status": "verifying",
+      "process_returncode": 0,
+      "elapsed_seconds": 675.035,
+      "model": [
+        "doubao-seed-evolving"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "changed_files": [
+        {
+          "path": "pipeline/lab_audio_baseline.py",
+          "sha256": "095f646c9731e7c63209cdc621f2a7af6daac29fc05136fd6e275e630636ed5f"
+        },
+        {
+          "path": "tests/test_lab_audio_baseline.py",
+          "sha256": "c207b567a55925630971986e4ab12632b1a944dd1a8bb469553d16999211e8ac"
+        },
+        {
+          "path": "docs/product/lab-audio-baseline.md",
+          "sha256": "13d7382b8eac55d9c613b7269102de75532d007bed78ef194fdf72466dd732ed"
+        }
+      ],
+      "independent_original_tests": 22,
+      "independent_contract_failed": 4,
+      "adopted": false,
+      "quality_correction_id": "beatlab-lab-baseline-20260927-qfix1",
+      "quality_correction_submitted": false
+    }
+  ],
+  "real_audio_cli_exit": 0,
+  "real_audio_checks": [
+    {
+      "id": "slice_pitch_frequency",
+      "status": "passed",
+      "actual": {
+        "dominant_hz": 879.9999946748194
+      }
+    },
+    {
+      "id": "slice_pitch_duration",
+      "status": "passed",
+      "actual": {
+        "frames": 5512
+      }
+    },
+    {
+      "id": "slice_unpitched_crop",
+      "status": "passed",
+      "actual": {
+        "dominant_hz": 220.00005863161846,
+        "frames": 11025
+      }
+    },
+    {
+      "id": "slice_reverse_asymmetry",
+      "status": "passed",
+      "actual": {
+        "forward_early_late_ratio": 114.17105467437145,
+        "reverse_early_late_ratio": 0.00875878744268511,
+        "interior_flip_max_abs_diff": 0.0
+      }
+    },
+    {
+      "id": "slice_invalid_inputs",
+      "status": "passed",
+      "actual": {
+        "rejected_scenarios": 6,
+        "errors": [
+          "nonfinite_start: ValueError",
+          "nonfinite_duration: ValueError",
+          "reversed_range: ValueError",
+          "pitch_out_of_range: ValueError",
+          "outside_source: ValueError",
+          "nonfinite_audio: ValueError"
+        ]
+      }
+    },
+    {
+      "id": "beatgrid_irregular_missing",
+      "status": "passed",
+      "actual": {
+        "period": 0.5,
+        "offset": 0.10000000000000009,
+        "residual": 0.0028571428571428875,
+        "confidence": 0.9285714285714278,
+        "source_kind": "provided_beats"
+      }
+    },
+    {
+      "id": "beatgrid_sparse_fallback",
+      "status": "passed",
+      "actual": {
+        "source_kind": "fallback_equal",
+        "confidence": 0.0,
+        "offset": 0.0,
+        "period": 1.0
+      }
+    },
+    {
+      "id": "beatgrid_invalid_inputs",
+      "status": "passed",
+      "actual": {
+        "rejected_scenarios": 4,
+        "errors": [
+          "end_before_start: ValueError",
+          "nonfinite_events: ValueError",
+          "events_outside_region: ValueError",
+          "invalid_bpm_range: ValueError"
+        ]
+      }
+    },
+    {
+      "id": "song_validate_readonly",
+      "status": "passed",
+      "actual": {
+        "validated": true,
+        "sample_rate": 44100,
+        "frames": 2389070,
+        "channels": 2,
+        "duration_seconds": 54.17392290249433,
+        "finite_audio": true,
+        "stem_sum": {
+          "comparison": "decoded source stems summed versus source full_mix; not a Live render",
+          "peak_error": 7.152557373046875e-07,
+          "rms_error": 1.8111227514070713e-07,
+          "relative_rms_db": -114.2144892918316,
+          "tolerance": 2.6226043701171875e-06,
+          "passed": true
+        },
+        "live_verification": {
+          "open": "unverified",
+          "reopen": "unverified",
+          "relocated_open": "unverified",
+          "rerender": "unverified"
+        },
+        "lyric_identity": "unverified",
+        "musical_quality": "unverified"
+      }
+    },
+    {
+      "id": "song_hashes_unchanged",
+      "status": "passed",
+      "actual": {
+        "mismatches": 0,
+        "files": []
+      }
+    }
+  ],
+  "preserved_mix_count": 17,
+  "preservation": "SHA256, mtime_ns and byte length identical for17 original mixes; all3 original code input hashes unchanged.",
+  "technical_test_counts": {
+    "queue_original": 43,
+    "audio_original": 22,
+    "queue_independent_contract": {
+      "pass": 0,
+      "fail": 4
+    },
+    "audio_independent_contract": {
+      "pass": 0,
+      "failure": 1,
+      "error": 3
+    }
+  },
+  "current_failure_reports": [
+    ".cache/continuous-lab-pilot-20260927/queue-review-a1.json",
+    ".cache/continuous-lab-pilot-20260927/baseline-review-a1.json"
+  ],
+  "trial_high_frequency_enabled": false,
+  "window_start": "2026-09-27T12:24:56+00:00",
+  "deadline": "2026-10-04T12:24:56+00:00",
+  "subjective_keep": null,
+  "live": "unverified",
+  "extra_paid_route_used": false,
+  "next_step": "On original 22:00 heartbeat, inspect capacity and stable request state; dispatch the sole targeted correction wave, independently verify, then activate remaining trial cadence only if gates pass. Do not reset deadline.",
+  "automation": {
+    "id": "beatlab",
+    "prompt_updated": true,
+    "readback_verified": true,
+    "cadence": "original_daily22:00Asia/Shanghai",
+    "high_frequency_enabled": false,
+    "restore_required": true
+  }
+}

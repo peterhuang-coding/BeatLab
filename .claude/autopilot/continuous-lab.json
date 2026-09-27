@@ -1,8 +1,8 @@
 {
-  "task_id": "LAB-PROPOSAL-20260927",
-  "status": "proposal_only",
+  "task_id": "LAB-PILOT-20260927",
+  "status": "first_wave_reviewed_waiting_capacity_for_corrections",
   "trial_enabled": false,
-  "approval_scope": null,
+  "approval_scope": "User 2026-09-27: 多让 cc 跑，让它跑跑试试. Execute queue/recovery and audio correctness baseline; trial activation gated on verification.",
   "planned_execution_local_times": [
     "22:00",
     "00:00",
@@ -11,24 +11,90 @@
   "planned_review_local_time": "09:00",
   "timezone": "Asia/Shanghai",
   "trial_days_proposed": 7,
-  "start": null,
-  "deadline": null,
+  "start": "2026-09-27T12:24:56+00:00",
+  "deadline": "2026-10-04T12:24:56+00:00",
   "automation_id": "beatlab",
-  "automation_modified": false,
+  "automation_modified": true,
   "requires_before_activation": [
-    "user selection of scope and cadence",
-    "queue/shared concurrency/review backlog/expiry recovery verified offline",
-    "Verify current cc-plan entry explicitly requests supported thinking/high before new dispatch; existing ended jobs are not replayed."
+    "Independent queue/deadline/review-backlog/unknown recovery tests and actual CLI acceptance.",
+    "Synthetic audio correctness and read-only real Prism v2 baseline pass.",
+    "Original automation backup, explicit trial bounds and native update/readback."
   ],
   "proposal": "docs/superpowers/specs/2026-09-27-continuous-lab-design.md",
   "requests": [
-    "beatlab-continuous-pool-20260927-a1",
-    "beatlab-continuous-operations-20260927-a1"
+    "beatlab-lab-queue-20260927-a1",
+    "beatlab-lab-baseline-20260927-a1"
   ],
   "requests_completed": 2,
-  "requests_adopted": 2,
-  "next_step": "Wait for selected scope and trial cadence; do not automatically start proposed pool or retry old unknown jobs.",
+  "requests_adopted": 0,
+  "next_step": "Run two fixed targeted correction handoffs when capacity is available; independently verify before adoption or higher-frequency activation.",
   "proposal_commit": "ce3f2bc3513b21be6e8f426c2cc503cbcad921a1",
-  "remote_sha_verified": true,
-  "notion_sync": "project_proposal_readback_verified"
+  "remote_sha_verified": false,
+  "notion_sync": "execution_started; final_result_pending",
+  "implementation_plan": "docs/superpowers/plans/2026-09-27-continuous-lab-pilot.md",
+  "current_wave": {
+    "requests": [
+      "beatlab-lab-queue-20260927-a1",
+      "beatlab-lab-baseline-20260927-a1"
+    ],
+    "status": "both_originals_collected; both_require_semantic_correction",
+    "submitted_count": 2,
+    "max_concurrency": 2,
+    "first_dispatch_external_active_observed": 1,
+    "second_dispatch_external_active_observed": 0,
+    "actual_peak_project_concurrency": 2,
+    "queue_a1": "completed_process; independent43pass; four gate failures; not adopted",
+    "quality_correction_prepared": "beatlab-lab-queue-20260927-qfix1",
+    "baseline_a1": "completed/verifying; independent22pass; real10checks pass; four negative-contract checks fail; not adopted"
+  },
+  "proposal_record": {
+    "task_id": "LAB-PROPOSAL-20260927",
+    "requests": [
+      "beatlab-continuous-pool-20260927-a1",
+      "beatlab-continuous-operations-20260927-a1"
+    ],
+    "requests_completed": 2,
+    "requests_adopted": 2,
+    "proposal_commit": "ce3f2bc3513b21be6e8f426c2cc503cbcad921a1",
+    "remote_sha_verified": true,
+    "notion_sync": "project_proposal_readback_verified"
+  },
+  "actual_requested_profile": {
+    "model": "doubao-seed-evolving",
+    "thinking_enabled": true,
+    "reasoning_effort": "high",
+    "basis": "dry-run and actual launch.json; requested, not a server-side reasoning-quality measurement"
+  },
+  "concurrency_note": "Staggered same-wave start because another project occupied one slot. Observed total never intentionally exceeded 2. Project queue cannot lock non-participating clients.",
+  "correction_wave": {
+    "requests": [
+      "beatlab-lab-queue-20260927-qfix1",
+      "beatlab-lab-baseline-20260927-qfix1"
+    ],
+    "status": "prepared_not_submitted_due_external_capacity",
+    "submitted_count": 0,
+    "maximum_quality_corrections_per_task": 1,
+    "handoffs": {
+      "queue": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/continuous-lab-pilot-20260927/queue-correction.json",
+      "baseline": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/continuous-lab-pilot-20260927/baseline-correction.json"
+    }
+  },
+  "trial_phase": "engineering_preparation_on_original_daily_cadence",
+  "previous_automation": {
+    "version": 1,
+    "id": "beatlab",
+    "kind": "heartbeat",
+    "name": "BeatLab 夜班执行",
+    "prompt": "最新2026-09-27：用户反馈更复杂、整体不必都lofi。MUSIC-20260927《尘里有金》Prism Cut v2已生成54.174秒音频、20轨/38次切片、73文件工程包及LUFS匹配对照，6项新测试+46项复用工具测试通过；16份旧混音保持。一次cc-plan编曲a1超时退出143，确认本地worker结束和输出稳定后经本地定向修正/实测采用；原unknown保留，不重发。恢复real-record-flip.json的revision，不误用v1状态。Live未验、Keep为空；当前创作与前一WORKFLOW技术交付均待用户验收。没有新的明确反馈或今晚执行项时静默，不重复生成、不自动扩曲、不代填Keep。继续 BeatLab 已授权闭环开发与夜班执行。用户2026-09-27直接授权按新版采样生成PRD修改为自动化工作流，可调用Claude Code。执行目录 /Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919，分支 codex/album-execution-20260919；媒体根 /Volumes/SanDisk2TB/BeatLab。先读AGENTS.md、.claude/autopilot/mainline.md、.claude/autopilot/real-record-flip.json、.claude/autopilot/locked-workflow.json、最近两份rounds和git status，按wrapup恢复本项目Hub；遵循docs/product/day-night-workflow.md。读取Notion项目 https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180 与当前创作卡 https://app.notion.com/p/3e83285284df81408241ff0d6b11bf13 及闭环卡 https://app.notion.com/p/3e83285284df81778473f751527bf88d，数据源a8654337-61da-4ad5-8587-413880656b6c；查询不可用按docs/product/notion-links.json已知页面逐项fetch，不猜快照。暂停/取消优先，每轮只恢复一个主线对应且仍执行中的已授权任务，否则选择一个今晚执行项。当前WORKFLOW-P0-20260927范围为指定段落换真正不同的回答句，鼓/Bass与非目标段落保持，有限候选、真实保护核验、RMS匹配盲听、明确Keep后可编辑音频工程导出；范围与验收见docs/superpowers/plans/2026-09-27-locked-workflow.md。技术交付后等待用户试听，不代填Keep、不自动发展整张专辑或实施未选方向。旧F03独立排队已让位于此直接授权，不能恢复旧默认排序。成块工作按最新task-tiering走scripts/claude_plan.py，最小公开/合成材料、白名单文件、精确测试，默认已验证套餐doubao-seed-evolving；独立包同波最多两路，原输入哈希与真实测试核验后顺序采用。已有请求先核查status/日志/进程/产物，running或unknown不重发、不换ID绕过；每逻辑任务最多3次、质量修正最多1次，无按量兜底。2026-09-27本机凭据检查已恢复，历史cfa4437已推送；后续以真实检查为准。ALGO-4H已结束，不恢复旧冲刺、不重发4个unknown修正。主根旧分支不能宣称执行分支的新修复。R01–R06仅批准调研，商业后置。使用隔离音频/测试DB，保留认可作品；核验真实HTTP/音频及必要浏览器结果，机器检查不等于好听，Live打开/保存/回渲染单独验收。不付费、不对外发消息、不发布音乐、不强推或合main。完成后代码/报告/证据/完整计划commit普通push执行分支并核对远端SHA，回填Notion结果、验证与待你验收，更新rounds/主线/状态/Hub。环境阻塞或连续三次同样失败无进展时保留具体恢复点，不原样无限重试。状态未变或无可行动事项保持安静，只在实质进展、完成、失败或需用户行动时通知。",
+    "status": "ACTIVE",
+    "rrule": "FREQ=DAILY;BYHOUR=22;BYMINUTE=0;BYSECOND=0",
+    "target_thread_id": "01a08c24-19e7-73b3-a193-78ba96b5f010",
+    "created_at": 1789402034377,
+    "updated_at": 1790509244116
+  },
+  "automation_restore_required": true,
+  "automation_update": "original_daily_cadence_preserved_prompt_updated_and_readback_verified",
+  "report": "docs/research/2026-09-27-continuous-lab-pilot-result.md",
+  "evidence": "evidence/continuous-lab-pilot-2026-09-27.json",
+  "git_delivery": "pending_report_commit_no_product_code_adopted"
 }

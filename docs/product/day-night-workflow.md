@@ -1,6 +1,8 @@
 # BeatLab 白天定方向、夜间执行
 
-2026-09-27补充：[持续任务池与7天复审提案](../superpowers/specs/2026-09-27-continuous-lab-design.md)已整理，当前仅方案。本文每日22点实际调度继续有效；提案的22/00/02执行及09点复审未启用。
+2026-09-27最新：已按“多让cc跑”完成[工程试运行首波](../research/2026-09-27-continuous-lab-pilot-result.md)，两包待唯一质量修正。原每日22点prompt更新为恢复continuous-lab.json，频率不变；通过门禁才启用剩余7天窗口的高频，截止不延长。
+
+2026-09-27较早补充：[持续任务池与7天复审提案](../superpowers/specs/2026-09-27-continuous-lab-design.md)已整理，当前仅方案。本文每日22点实际调度继续有效；提案的22/00/02执行及09点复审未启用。
 
 [Notion 项目入口](https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180) · [待办数据库](https://app.notion.com/p/0af73a05815446578863e4914c1cf7ac) · [Git 调研待办](research-backlog.md) · [执行主线](../../.claude/autopilot/mainline.md)
 

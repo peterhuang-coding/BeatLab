@@ -1,5 +1,7 @@
 # BeatLab MVP Implementation Plan
 
+2026-09-27最新：用户要求实际多跑CC，[持续试运行首波](../../research/2026-09-27-continuous-lab-pilot-result.md)已完成两路代码委派与独立复审。原43+22测试、真实音频10检查通过，但8项独立反例未过，代码尚未采用；两个固定定向修正包排原22点夜班。高频阶段仍待门禁，音乐Keep/Live分别验收，截止与恢复见continuous-lab.json。
+
 > 2026-09-27 当前范围：[新版 PRD](../../PRD.md) 与 [锁定换句工作流实施计划](2026-09-27-locked-workflow.md) 优先。用户授权先打通指定人声区间换句、鼓/Bass 保护、有限生成、音量匹配盲听、明确 Keep 后工程交付。下列固定模板/候选数/曲长和商业阶段是历史计划，不再作为默认验收；专辑概念仍待用户确认。首条闭环 400 项回归及真实串联已通过，详见[交付结果](../../research/2026-09-27-locked-workflow-result.md)；音乐和 Live 待验，不能标记所有 P0 完成。
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
