@@ -1,6 +1,6 @@
 {
   "task_id": "LAB-PILOT-20260927",
-  "status": "deprioritized_for_user_ten_beat_batch",
+  "status": "expired_without_trial_activation",
   "trial_enabled": false,
   "approval_scope": "User 2026-09-27: 多让 cc 跑，让它跑跑试试. Execute queue/recovery and audio correctness baseline; trial activation gated on verification.",
   "planned_execution_local_times": [
@@ -27,7 +27,7 @@
   ],
   "requests_completed": 2,
   "requests_adopted": 0,
-  "next_step": "Latest directly authorized ten-beat batch first; original repair IDs remain unsubmitted, original deadline unchanged.",
+  "next_step": "Pilot window expired; do not dispatch its unsubmitted correction jobs. Music batch separately awaits existing extra-attempt decision or feedback.",
   "proposal_commit": "ce3f2bc3513b21be6e8f426c2cc503cbcad921a1",
   "remote_sha_verified": true,
   "notion_sync": "first_wave_results_and_followup_readback_verified",
@@ -71,7 +71,7 @@
       "beatlab-lab-queue-20260927-qfix1",
       "beatlab-lab-baseline-20260927-qfix1"
     ],
-    "status": "prepared_not_submitted_due_external_capacity",
+    "status": "not_submitted_window_expired",
     "submitted_count": 0,
     "maximum_quality_corrections_per_task": 1,
     "handoffs": {
@@ -79,7 +79,7 @@
       "baseline": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/continuous-lab-pilot-20260927/baseline-correction.json"
     }
   },
-  "trial_phase": "engineering_preparation_on_original_daily_cadence",
+  "trial_phase": "closed_after_original_deadline",
   "previous_automation": {
     "version": 1,
     "id": "beatlab",
@@ -92,8 +92,8 @@
     "created_at": 1789402034377,
     "updated_at": 1790509244116
   },
-  "automation_restore_required": true,
-  "automation_update": "daily22 unchanged; partial6of10 and retry gate updated/readback verified",
+  "automation_restore_required": false,
+  "automation_update": "saved steady-state restored/readback verified; expiration wording updated/readback verified; daily22 ACTIVE unchanged",
   "report": "docs/research/2026-09-27-continuous-lab-pilot-result.md",
   "evidence": "evidence/continuous-lab-pilot-2026-09-27.json",
   "git_delivery": "report_plan_evidence_pushed; no_product_code_adopted",
@@ -103,11 +103,28 @@
     "id": "beatlab",
     "kind": "heartbeat",
     "name": "BeatLab 夜班执行",
-    "prompt": "继续 BeatLab 最新用户授权 MUSIC-TEN-20260927：最终目标是用户认可、方便修改且可商业化的beats，当前按主题做约10首短草稿，先收风格评分再定向修订。执行目录 /Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919，分支 codex/album-execution-20260919，媒体根 /Volumes/SanDisk2TB/BeatLab。先读AGENTS.md、.claude/autopilot/mainline.md、ten-beats.json、continuous-lab.json、最近rounds和git status，按wrapup恢复本项目Hub。城市余像当前仅01–06已交付真实录音裁切的50–56秒草稿，试听http://127.0.0.1:8800/，本地exports/city-afterimages-20260927；07–10仍失败未交付，不能说10首完成。原CC编排a1超时退出143，唯一qfix1在修到06后429退出1，原unknown和blocked保留；试听页a1采用。两个逻辑任务共3次CC，项目峰值并发2，当前无在途。套餐提示2026-09-27 21:58:10北京时间额度恢复，但恢复不授权重试。已向用户询问是否额外授权一次20分钟续修剩余四首；在ten-beats.json无明确新授权前，不提交.cache/ten-beats-20260927/compose-extra-pending.json，不改ID绕限次，不自行重做四首或让旧修正自动重发。获明确批准后仅该额外一次，冻结01–06输出，保留原尝试账本；先查状态，再用最小公开/合成材料、白名单、精确冻结验收，已验证cc-plan Seed Evolving/thinking enabled/high，同波最多2，无按量兜底。真实音频、DB和私有资料不发下游、不进Git。评分文件为exports/city-afterimages-20260927/feedback.json；关联真实版本SHA，不代填Keep或把机器验收当好听，未变化静默。明确时间点修改要求才生成保留父版的子版本，冻结非目标内容并做真实保护和对照检查。评分本身不自动授权全曲重做。素材供给按缺口先现有库再有界扩源，不无限抓取。旧LAB-PILOT修正仍未提交且降级，原截止2026-10-04 20:24:56北京时间不延长，高频未启用；期限恢复用continuous-lab.json.steady_state_automation的最新每日22点配置，previous_automation留历史，读回后automation_restore_required=false。旧ALGO四unknown/Prism编曲unknown不重发。Live打开/发声/保存/重开/回渲染另验，环境未变不重复AX超时。发布流程可准备本地校验，本批未选成品/目标平台/价格，不对外发布、付费、发消息、强推或合main。实质改动连同完整计划/证据commit普通push执行分支，核远端SHA，更新Notion项目https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180和本批卡https://app.notion.com/p/3e83285284df8159938af8f14156e2c0及状态/rounds/Hub。暂停取消优先；无新授权、无新反馈、状态未变或不可行动时保持安静，只实质完成、状态变化或新需用户行动通知，不重复提醒已问过的同一续修许可。",
+    "prompt": "继续 BeatLab 最新用户授权 MUSIC-TEN-20260927：最终目标是用户认可、方便修改且可商业化的beats，当前按主题做约10首短草稿，先收风格评分再定向修订。执行目录 /Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919，分支 codex/album-execution-20260919，媒体根 /Volumes/SanDisk2TB/BeatLab。先读AGENTS.md、.claude/autopilot/mainline.md、ten-beats.json、continuous-lab.json、最近rounds和git status，按wrapup恢复本项目Hub。城市余像当前仅01–06已交付真实录音裁切的50–56秒草稿，试听http://127.0.0.1:8800/，本地exports/city-afterimages-20260927；07–10仍失败未交付，不能说10首完成。原CC编排a1超时退出143，唯一qfix1在修到06后429退出1，原unknown和blocked保留；试听页a1采用。两个逻辑任务共3次CC，项目峰值并发2，当前无在途。套餐提示2026-09-27 21:58:10北京时间额度恢复，但恢复不授权重试。已向用户询问是否额外授权一次20分钟续修剩余四首；在ten-beats.json无明确新授权前，不提交.cache/ten-beats-20260927/compose-extra-pending.json，不改ID绕限次，不自行重做四首或让旧修正自动重发。获明确批准后仅该额外一次，冻结01–06输出，保留原尝试账本；先查状态，再用最小公开/合成材料、白名单、精确冻结验收，已验证cc-plan Seed Evolving/thinking enabled/high，同波最多2，无按量兜底。真实音频、DB和私有资料不发下游、不进Git。评分文件为exports/city-afterimages-20260927/feedback.json；关联真实版本SHA，不代填Keep或把机器验收当好听，未变化静默。明确时间点修改要求才生成保留父版的子版本，冻结非目标内容并做真实保护和对照检查。评分本身不自动授权全曲重做。素材供给按缺口先现有库再有界扩源，不无限抓取。旧LAB-PILOT窗口已于2026-10-04 20:24:56北京时间到期，并在2026-10-08恢复检查时完成收尾：高频从未启用，两个修正仍未提交且不再获本窗口授权，不延长、不补跑。最新每日22点配置已通过原生工具恢复并读回，continuous-lab.json.automation_restore_required=false；previous_automation留历史。旧ALGO四unknown/Prism编曲unknown不重发。Live打开/发声/保存/重开/回渲染另验，环境未变不重复AX超时。发布流程可准备本地校验，本批未选成品/目标平台/价格，不对外发布、付费、发消息、强推或合main。实质改动连同完整计划/证据commit普通push执行分支，核远端SHA，更新Notion项目https://app.notion.com/p/3db3285284df81f4aa50ebe2047b6180和本批卡https://app.notion.com/p/3e83285284df8159938af8f14156e2c0及状态/rounds/Hub。暂停取消优先；无新授权、无新反馈、状态未变或不可行动时保持安静，只实质完成、状态变化或新需用户行动通知，不重复提醒已问过的同一续修许可。",
     "status": "ACTIVE",
     "rrule": "FREQ=DAILY;BYHOUR=22;BYMINUTE=0;BYSECOND=0",
     "target_thread_id": "01a08c24-19e7-73b3-a193-78ba96b5f010",
     "created_at": 1789402034377,
-    "updated_at": 1790517089197
+    "updated_at": 1791389380929
+  },
+  "closed_at": "2026-10-07T16:09:40.894402+00:00",
+  "closure": {
+    "deadline_unchanged": "2026-10-04T12:24:56+00:00",
+    "detected_at": "2026-10-07T16:09:40.894402+00:00",
+    "late_detection": true,
+    "high_frequency_ever_enabled": false,
+    "corrections_dispatched": 0,
+    "restored_configuration_source": "steady_state_automation",
+    "restore_readback": {
+      "kind": true,
+      "name": true,
+      "prompt": true,
+      "rrule": true,
+      "status": true,
+      "target_thread_id": true
+    }
   }
 }

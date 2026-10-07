@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-10-07T16:09:40.894402+00:00",
+  "original_deadline": "2026-10-04T12:24:56+00:00",
+  "late_detection": true,
+  "status": "expired_without_trial_activation",
+  "high_frequency_ever_enabled": false,
+  "native_restore_readback": {
+    "kind": true,
+    "name": true,
+    "prompt": true,
+    "rrule": true,
+    "status": true,
+    "target_thread_id": true
+  },
+  "original_backup_preserved": true,
+  "pending_request_directories_absent": {
+    "beatlab-lab-queue-20260927-qfix1": true,
+    "beatlab-lab-baseline-20260927-qfix1": true,
+    "beatlab-ten-compose-20260927-extra1-pending": true
+  },
+  "new_cc_requests": 0,
+  "music_delivered": 6,
+  "music_target": 10,
+  "new_feedback": false,
+  "extra_attempt_authorized": false,
+  "preview": {
+    "initial": "connection_refused",
+    "restarted_existing_server": true,
+    "http_after": 200,
+    "track_count": 6,
+    "feedback_count": 0,
+    "six_matched_audio_hashes_unchanged": true,
+    "all_six_actual_mp3_ranges": 206
+  },
+  "final_prompt_expiration_readback": true
+}

@@ -1,5 +1,7 @@
 # Coding Plan 实际试运行：首波与独立验收
 
+> 2026-10-08收尾：原窗口已在2026-10-04 20:24:56北京时间结束，高频从未启用，两个修正包未提交且不再由旧窗口授权。已用原生工具恢复最新每日22点steady_state配置并读回，automation_restore_required=false；旧草稿与历史配置保留，不延长或补跑。当前音乐仍为城市余像6/10待试听和额外续修决定。详见 `.claude/autopilot/rounds/2026-10-08-pilot-expiry-close.md`（仓库根相对路径）。
+
 用户明确要求“多让 cc 跑，让它跑跑试试”。本轮已实际运行两个独立 CC 代码包，实测本项目最高并发2；主代理完成独立验收，两份草稿均需定向修正，**尚未采用进产品代码，也未启用高频夜班**。
 
 执行分支 `codex/album-execution-20260919`，基础提交 `80727dffed444dce15393595f7c8ba459acd6544`。实施范围：[完整计划](../superpowers/plans/2026-09-27-continuous-lab-pilot.md)。机器证据：[首波结果](../../evidence/continuous-lab-pilot-2026-09-27.json)。

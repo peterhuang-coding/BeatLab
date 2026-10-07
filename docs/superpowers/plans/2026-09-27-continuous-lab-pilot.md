@@ -1,5 +1,7 @@
 # BeatLab Continuous Lab Pilot Implementation Plan
 
+> 2026-10-08收尾：原窗口已在2026-10-04 20:24:56北京时间结束，高频从未启用，两个修正包未提交且不再由旧窗口授权。已用原生工具恢复最新每日22点steady_state配置并读回，automation_restore_required=false；旧草稿与历史配置保留，不延长或补跑。当前音乐仍为城市余像6/10待试听和额外续修决定。详见 `.claude/autopilot/rounds/2026-10-08-pilot-expiry-close.md`（仓库根相对路径）。
+
 > **For agentic workers:** Execute the two independent packages through the current task-tiering cc-plan entry; primary review and adoption are sequential. User explicitly requested “多让 cc 跑，让它跑跑试试”.
 
 **Goal:** Run real Coding Plan engineering work, then enable a bounded seven-day trial with independently reviewed evidence.
