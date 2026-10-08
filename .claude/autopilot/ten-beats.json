@@ -144,9 +144,9 @@
   "evidence": "evidence/city-afterimages-extra1-2026-10-09.json",
   "publication": "not published",
   "live_verified": false,
-  "delivery_commit": "78a3a3425ec1464b0d023bb8b480709a7f5076f7",
+  "delivery_commit": "4bb340ece22746ca8df270f46bb8e3641f3ce9e9",
   "remote_sha_verified": true,
-  "notion_sync": "pending readback: ten-draft delivery awaiting user audition; not commercial clearance",
+  "notion_sync": "card and project updated/readback verified 2026-10-09; card remains待你验收; report commit 4bb340ece22746ca8df270f46bb8e3641f3ce9e9",
   "staged_diff_check": "24 files including all untracked additions passed",
   "unit_tests": "33 review +15 composition/preparation/render; source/export30+30 isolated; mixedimportcollision documented",
   "extra_attempt_authorization": {
