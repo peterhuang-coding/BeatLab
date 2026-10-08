@@ -23,10 +23,6 @@ class CityScores(unittest.TestCase):
                 signature=[(t['id'],[(e['beat'],e['duration_beats']) for e in t['events']]) for t in s['tracks'] if t['id'] in ('kick','snare','rim','clap')]
                 signatures.add(hashlib.sha256(json.dumps(signature).encode()).hexdigest())
         self.assertEqual(len(signatures),6)
-    def test_unverified_recipes_are_unavailable(self):
-        for p in fixtures[6:]:
-            with self.assertRaises(ValueError): m.build_score(p)
-
     def test_half_time_snare_is_on_beat_three(self):
         snare=m.FEELS['halftime']['snare'];self.assertEqual(snare[0][0],2)
 

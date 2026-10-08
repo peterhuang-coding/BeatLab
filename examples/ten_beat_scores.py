@@ -1,11 +1,11 @@
-"""Verified sample-flip audition recipes 01–06 from prepared recording cuts.
+"""Ten distinct sample-flip audition scores from prepared real recording cuts.
 
 One pure deterministic entry point :func:`build_score` turns a *prepared*
 payload (absolute cut WAVs + ready-to-use pipeline.song instrument dicts) into
 a standard render-ready score.  No audio is opened, no randomness is drawn from
 global state, and the prepared payload is never mutated.
 
-Each adopted piece has an explicit CC-authored arrangement recipe: phrase
+Each of the ten pieces has an explicit arrangement recipe: hand-authored phrase
 grids (question / answer pairs, long turns, selective retriggers), a named drum
 feel and a middle switch into a contrasting section, with a deliberate hook
 return.  A small common engine only realises those recipes - it never invents
@@ -218,8 +218,6 @@ def _bars(*cells):
     return _cells(*[(1, cell) for cell in cells])
 
 
-# Only independently verified recipes 01–06 are adopted.
-# Incomplete 07–10 remain quarantined in the original CC artifact.
 RECIPES = {
     "01": {
         "keys": ("piano",),
@@ -431,6 +429,179 @@ RECIPES = {
             ("outro", 2,
              [(0, "lead_b", 2, 1.0)],
              "backbeat", ("kick",), 0.7, "soft"),
+        ],
+    },
+    "07": {
+        "keys": ("vibes",),
+        "sections": [
+            ("intro", 2,
+             _bars(
+                 _pair("lead_c", "answer_c", 1.0),
+                 [(0, "lead_c", 0.5, 1.0), (0.5, "lead_c", 0.5, 0.95),
+                  (1, "answer_c", 1, 0.9), (2, "answer_c", 2, 0.9)]),
+             "brokenfunk", ("kick", "hat"), 0.8, "soft"),
+            ("funk", 8,
+             _bars(
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_a", "answer_a"),
+                 [(0, "lead_c", 0.75, 0.95), (0.75, "answer_c", 0.75, 0.9),
+                  (2, "lead_d", 2, 0.9)],
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_b", "answer_b"),
+                 [(0, "lead_d", 1, 0.95), (1.5, "answer_d", 1, 0.9),
+                  (3, "lead_c", 1, 0.95)],
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_a", "answer_a")),
+             "brokenfunk", ("kick", "snare", "clap", "hat"), 1.0, "drive"),
+            ("switch", 6,
+             [(0, "turn_a", 4, 1.0), (8, "lead_c", 2, 0.95),
+              (10, "answer_c", 2, 0.9), (16, "turn_b", 4, 0.9)],
+             "intimate", ("kick", "rim"), 0.75, "roots"),
+            ("return", 6,
+             # Six one-bar cells - _bars puts cell i on bar i; joining with +
+             # stacked every cell on bar 0 (overlap at the section downbeat).
+             _bars(
+                 _pair("lead_c", "answer_c", 1.0),
+                 [(0, "lead_c", 0.5, 1.0), (0.5, "answer_c", 0.5, 0.9),
+                  (1, "lead_a", 1, 0.9), (2, "answer_a", 2, 0.9)],
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_c", "answer_c", 1.0),
+                 _pair("lead_b", "answer_b"),
+                 _pair("lead_c", "answer_c")),
+             "brokenfunk", ("kick", "snare", "clap", "hat"), 1.0, "drive"),
+            ("outro", 2,
+             [(0, "lead_c", 1, 1.0)],
+             "brokenfunk", ("kick",), 0.7, "soft"),
+        ],
+    },
+    "08": {
+        "keys": ("piano",),
+        "sections": [
+            ("intro", 2,
+             # Two one-bar cells.  The final answer was left at the absolute
+             # beat 10 of an older draft, outside this 2-bar section; as a
+             # bar-local cell phrase it sits on local beat 2 (a .75 retrigger
+             # of answer_d right after the beat-1 answer ends).
+             _bars(
+                 _pair("lead_d", "answer_d", 1.0),
+                 [(0, "lead_d", 0.75, 0.95), (1, "answer_d", 1, 0.9),
+                  (2, "answer_d", 0.75, 0.85)]),
+             "bounce", ("kick", "rim", "hat"), 0.8, "soft"),
+            ("bounce", 8,
+             # Eight one-bar cells sequenced with _bars (cell i on bar i).
+             _bars(
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_a", "answer_a"),
+                 _pair("lead_d", "answer_d"),
+                 [(0, "lead_c", 1, 0.95), (1.5, "answer_c", 1, 0.9),
+                  (3, "lead_d", 1, 0.95)],
+                 _pair("lead_b", "answer_b"),
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_c", "answer_c")),
+             "bounce", ("kick", "snare", "rim", "hat", "open_hat"), 1.0,
+             "roots"),
+            ("middle", 4,
+             # Surprise stops: delayed turn, answer cut dead, late long phrase.
+             [(1, "turn_b", 3, 1.0), (4, "answer_d", 2, 0.95),
+              (10, "turn_a", 2, 0.95)],
+             "brokenswitch", ("kick", "rim"), 0.8, "roots"),
+            ("return", 4,
+             # Four one-bar cells sequenced with _bars (cell i on bar i).
+             _bars(
+                 _pair("lead_d", "answer_d", 1.0),
+                 _pair("lead_a", "answer_a"),
+                 [(0, "lead_d", 0.5, 1.0), (0.5, "answer_d", 0.5, 0.9),
+                  (1, "lead_c", 1, 0.9), (2, "answer_c", 2, 0.9)],
+                 _pair("lead_d", "answer_d", 1.0)),
+             "bounce", ("kick", "snare", "rim", "hat", "open_hat"), 1.0,
+             "roots"),
+            ("outro", 2,
+             [(0, "answer_d", 1, 0.95)],
+             "bounce", ("kick",), 0.7, "none"),
+        ],
+    },
+    "09": {
+        "keys": ("vibes",),
+        "sections": [
+            ("intro", 4,
+             # turn_b is the prepared reverse-cut pickup in this collection.
+             [(0, "turn_b", 2, 0.8), (2, "lead_a", 2, 1.0),
+              (4, "turn_b", 2, 0.7), (6, "answer_a", 2, 0.9),
+              (8, "lead_a", 2, 1.0)],
+             "twostep", ("kick", "hat"), 0.7, "soft"),
+            ("twostep", 8,
+             # Eight one-bar cells sequenced with _bars (cell i on bar i).
+             _bars(
+                 _pair("lead_a", "answer_a"),
+                 _pair("lead_b", "answer_b"),
+                 [(0, "lead_d", 1, 0.95), (2, "answer_d", 1, 0.9)],
+                 _pair("lead_a", "answer_a"),
+                 _pair("lead_c", "answer_c"),
+                 [(0, "lead_a", 0.75, 1.0), (0.75, "lead_a", 0.75, 0.9),
+                  (2, "answer_a", 2, 0.9)],
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_a", "answer_a")),
+             "twostep", ("kick", "snare", "hat", "open_hat", "shaker"), 1.0,
+             "roots"),
+            ("middle", 6,
+             [(0, "turn_a", 4, 1.0), (8, "turn_b", 2, 0.75),
+              (10, "lead_a", 2, 1.0), (16, "turn_b", 4, 0.9)],
+             "intimate", ("kick", "rim"), 0.8, "roots"),
+            ("return", 8,
+             # Eight one-bar cells sequenced with _bars (cell i on bar i).
+             # The first cell keeps the turn_b pickup into lead_a.
+             _bars(
+                 [(0, "turn_b", 2, 0.8), (2, "lead_a", 2, 1.0)],
+                 _pair("lead_a", "answer_a", 1.0),
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_a", "answer_a", 1.0),
+                 [(0, "lead_a", 0.5, 1.0), (0.5, "answer_a", 0.5, 0.9),
+                  (1, "lead_b", 1, 0.9), (2, "answer_b", 2, 0.9)],
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_a", "answer_a", 1.0),
+                 _pair("lead_b", "answer_b")),
+             "twostep", ("kick", "snare", "hat", "open_hat", "shaker"), 1.0,
+             "roots"),
+            ("outro", 2,
+             [(0, "lead_a", 2, 1.0)],
+             "twostep", ("kick",), 0.7, "soft"),
+        ],
+    },
+    "10": {
+        "keys": ("piano",),
+        "sections": [
+            ("intro", 2,
+             [(0, "turn_a", 4, 1.0)],
+             "soul", ("kick", "hat"), 0.7, "soft"),
+            ("verse", 6,
+             # Six one-bar pair cells sequenced with _bars (cell i on bar i).
+             _bars(
+                 _pair("lead_a", "answer_a"),
+                 _pair("lead_b", "answer_b"),
+                 _pair("lead_a", "answer_a"),
+                 _pair("lead_c", "answer_c"),
+                 _pair("lead_d", "answer_d"),
+                 _pair("lead_a", "answer_a")),
+             "soul", ("kick", "snare", "hat", "open_hat"), 1.0, "roots"),
+            ("middle", 4,
+             [(0, "turn_b", 4, 1.0), (8, "turn_a", 4, 0.95)],
+             "intimate", ("kick", "rim"), 0.8, "roots"),
+            ("reprise", 6,
+             # Six one-bar cells sequenced with _bars (cell i on bar i).
+             _bars(
+                 _pair("lead_a", "answer_a", 1.0),
+                 [(0, "lead_a", 0.75, 1.0), (0.75, "answer_a", 0.75, 0.95),
+                  (2, "lead_d", 2, 0.9)],
+                 _pair("lead_a", "answer_a", 1.0),
+                 [(0, "lead_b", 1, 0.95), (1.5, "answer_b", 1, 0.9),
+                  (3, "lead_a", 1, 0.95)],
+                 _pair("lead_a", "answer_a", 1.0),
+                 _pair("lead_c", "answer_c")),
+             "soul", ("kick", "snare", "hat", "open_hat"), 1.0, "roots"),
+            ("outro", 2,
+             [(0, "lead_a", 2, 1.0)],
+             "soul", ("kick",), 0.7, "soft"),
         ],
     },
 }

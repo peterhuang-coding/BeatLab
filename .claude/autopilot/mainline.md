@@ -15,12 +15,12 @@
 
 ## 当前任务
 
-2026-10-09：用户明确说“用 token plan 继续做”。按之前准备的固定范围，授权一次额外20分钟Coding Plan续修07–10；先六首冻结保护，不扩为一般重试或发布授权。固定任务ID `beatlab-ten-compose-20260927-extra1-pending`，提交前状态账本无目录、无请求。Seed Evolving/thinking enabled/high，独立合成材料，不带音频/数据库。交接包 dry-run 验证白名单和三条验收命令通过，当前准备提交。授权记录见ten-beats.json与本轮摘要。
+2026-10-09：用户授权“用 token plan 继续做”，按已准备范围提交唯一一次额外20分钟Coding Plan请求，固定ID `beatlab-ten-compose-20260927-extra1-pending`。CC运行406.715秒后因入口Read/Write工具能力不匹配被主代理停止，留下编排代码和测试；主代理审查补正测试后独立通过总谱、首六首哈希保护及10项单元测试，随后本地真实渲染07–10。十首真实翻采草稿已交付试听，评分与Keep空、Live未验，不代表商业清权或用户认可。报告与精确证据见 [十首交付](../../docs/research/2026-10-09-city-afterimages-ten-delivery.md)；本次只使用一个套餐请求，不再派发额外修正。
 
 
 2026-10-08恢复核验：旧LAB-PILOT窗口已在10月4日20:24:56到期，高频从未启用，两个修正未提交且本窗口不再执行。通过原生工具恢复steady_state_automation并逐字段读回，清除automation_restore_required；每日22点ACTIVE保持，历史原配置保留。六首试听服务恢复，六份试听WAV哈希和实际MP3 Range检查通过，评分仍空；Notion卡仍待你验收、无额外续修决定。本轮CC派发0，十首目标仍仅6/10。见[到期收尾](rounds/2026-10-08-pilot-expiry-close.md)。
 
-最新直接授权 MUSIC-TEN-20260927：约10首工作主题《城市余像》，当前仅01–06已交付50–56秒真实翻采草稿、分轨/ALS/ChopRack和评分页 http://127.0.0.1:8800/；07–10仍失败。两包同波并发2，实际3次CC（含唯一qfix1），试听采用、编排部分采用。qfix1因套餐429退出，恢复时间2026-09-27 21:58:10但不得自动重试；用户2026-10-09已明确授权一次额外20分钟续修，当前按固定任务包提交。状态ten-beats.json，完整计划2026-09-27-ten-themed-beats.md，结果docs/research/2026-09-27-city-afterimages-result.md。用户Keep为空、Live未验，原17份混音不变；LAB-PILOT现已到期收尾，不补跑，旧unknown不重发。
+最新直接授权 MUSIC-TEN-20260927：约10首工作主题《城市余像》，当前01–10均已交付50–56秒真实翻采草稿、分轨/ALS/ChopRack和评分页 http://127.0.0.1:8800/；剩余四首于2026-10-09通过修正后渲染。四次CC请求累计，实际包括本次唯一20分钟额外请求；本次CLI工具边界阻塞，代码经主代理独立验收采用。状态ten-beats.json，完整计划2026-09-27-ten-themed-beats.md，结果docs/research/2026-09-27-city-afterimages-result.md。用户Keep为空、Live未验，原17份混音不变；LAB-PILOT现已到期收尾，不补跑，旧unknown不重发。
 
 以下为此前工程任务历史：
 

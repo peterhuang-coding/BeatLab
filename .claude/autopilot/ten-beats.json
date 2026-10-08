@@ -1,6 +1,6 @@
 {
   "task_id": "MUSIC-TEN-20260927",
-  "status": "partial_six_delivered_four_awaiting_extra_attempt_approval",
+  "status": "ten_drafts_delivered_awaiting_user_feedback",
   "concept": "城市余像 / City Afterimages (working title)",
   "format": "10 thematic 45–60-second first drafts (up to62 seconds with tail)",
   "goal": "commercially viable editable beats; human first audition then targeted revision",
@@ -8,7 +8,9 @@
   "keep": null,
   "cc_requests": [
     "beatlab-ten-compose-20260927-a1",
-    "beatlab-ten-review-20260927-a1"
+    "beatlab-ten-compose-20260927-qfix1",
+    "beatlab-ten-review-20260927-a1",
+    "beatlab-ten-compose-20260927-extra1-pending"
   ],
   "wave_dir": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927",
   "max_parallel": 2,
@@ -95,8 +97,8 @@
       "direction": "warm closing soul; long phrase contrasted with confident chopped reprise"
     }
   ],
-  "cc_submitted_count": 3,
-  "cc_adopted_count": 2,
+  "cc_submitted_count": 4,
+  "cc_adopted_count": 3,
   "actual_project_parallel": 2,
   "automation": "daily22 unchanged; updated retry gate and readback verified",
   "prepared_index": "/Volumes/SanDisk2TB/BeatLab/library/instruments/city-afterimages-20260927/prepared-index.json",
@@ -119,33 +121,32 @@
   "notion_page": "https://app.notion.com/p/3e83285284df8159938af8f14156e2c0",
   "quality_correction_result": "blocked429; process stopped; six recipes independently pass;07–10 failed",
   "quota_reset": "2026-09-27T21:58:10+08:00",
-  "pending_numbers": [
-    "07",
-    "08",
-    "09",
-    "10"
-  ],
-  "compose_adoption": "partial01–06 only; extra1 authorized for 07–10; adoption pending independent validation",
+  "pending_numbers": [],
+  "compose_adoption": "recipes 01–10 independently passed structural gates and rendered from actual local recording cuts; first six frozen outputs preserved",
   "delivered_numbers": [
     "01",
     "02",
     "03",
     "04",
     "05",
-    "06"
+    "06",
+    "07",
+    "08",
+    "09",
+    "10"
   ],
-  "delivered_count": 6,
+  "delivered_count": 10,
   "review_url": "http://127.0.0.1:8800/",
   "cc_in_flight": 0,
-  "pending_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/compose-extra-pending.json",
+  "pending_handoff": null,
   "extra_attempt_authorized": true,
-  "report": "docs/research/2026-09-27-city-afterimages-result.md",
-  "evidence": "evidence/city-afterimages-delivery-2026-09-27.json",
+  "report": "docs/research/2026-10-09-city-afterimages-ten-delivery.md",
+  "evidence": "evidence/city-afterimages-extra1-2026-10-09.json",
   "publication": "not published",
   "live_verified": false,
   "delivery_commit": "78a3a3425ec1464b0d023bb8b480709a7f5076f7",
   "remote_sha_verified": true,
-  "notion_sync": "partial6of10 marked待你验收; result link/readback verified; no extra-attempt decision",
+  "notion_sync": "pending readback: ten-draft delivery awaiting user audition; not commercial clearance",
   "staged_diff_check": "24 files including all untracked additions passed",
   "unit_tests": "33 review +15 composition/preparation/render; source/export30+30 isolated; mixedimportcollision documented",
   "extra_attempt_authorization": {
@@ -155,5 +156,23 @@
     "task_id": "beatlab-ten-compose-20260927-extra1-pending",
     "deadline_seconds": 1200,
     "not_a_general_retry_or_publish_authorization": true
-  }
+  },
+  "extra_attempt_consumed": true,
+  "additional_attempts_remaining": 0,
+  "extra_attempt_outcome": {
+    "task_id": "beatlab-ten-compose-20260927-extra1-pending",
+    "status": "interrupted_after_406_715_seconds",
+    "observed_model": "doubao-seed-evolving",
+    "observed_stderr": "unrecognized_model warning; session continued",
+    "tool_blocker": "Claude Code session exposed Bash/Edit/Read without Write; Read calls were denied under dontAsk. No handoff-result.json or arrangement notes were produced.",
+    "changed_files": [
+      "examples/ten_beat_scores.py",
+      "tests/test_ten_beat_scores.py"
+    ],
+    "parent_action": "Reviewed actual diff, corrected an overbroad beat-10 test assertion, independently ran contract/preservation/unit gates and rendered four missing songs locally.",
+    "adopted_after_verification": true,
+    "no_more_coding_plan_attempts_without_new_user_decision": true
+  },
+  "extra_attempt_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/compose-extra-pending.json",
+  "handoff_status": "extra1 submitted once; interrupted after 406.715 seconds; no further request pending"
 }

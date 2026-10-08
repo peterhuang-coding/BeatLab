@@ -1,6 +1,6 @@
 # BeatLab 白天定方向、夜间执行
 
-> 2026-10-08收尾：原窗口已在2026-10-04 20:24:56北京时间结束，高频从未启用，两个修正包未提交且不再由旧窗口授权。已用原生工具恢复最新每日22点steady_state配置并读回，automation_restore_required=false；旧草稿与历史配置保留，不延长或补跑。当前音乐仍为城市余像6/10待试听和额外续修决定。详见 `.claude/autopilot/rounds/2026-10-08-pilot-expiry-close.md`（仓库根相对路径）。
+> 2026-10-09更新：旧LAB-PILOT按10月4日原截止收尾，不延长。用户现授权并完成一次独立的MUSIC-TEN续修：城市余像10首真实录音裁切草稿现可本机整体试听，评分/Keep仍空；技术和商业验收边界仍按批次卡保留。Coding Plan会话受Read/Write工具能力限制而中断，主代理复核代码、修正测试并完成本地渲染和资产验证；不继续发同一任务的CC修正。详见 `.claude/autopilot/rounds/2026-10-09-extra-four-authorization.md`。
 
 2026-09-27最新：已按“多让cc跑”完成[工程试运行首波](../research/2026-09-27-continuous-lab-pilot-result.md)，两包待唯一质量修正。原每日22点prompt更新为恢复continuous-lab.json，频率不变；通过门禁才启用剩余7天窗口的高频，截止不延长。
 
