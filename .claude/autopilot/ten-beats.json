@@ -125,7 +125,7 @@
     "09",
     "10"
   ],
-  "compose_adoption": "partial01–06 only;07–10 excluded; no further CC retry authorized",
+  "compose_adoption": "partial01–06 only; extra1 authorized for 07–10; adoption pending independent validation",
   "delivered_numbers": [
     "01",
     "02",
@@ -138,7 +138,7 @@
   "review_url": "http://127.0.0.1:8800/",
   "cc_in_flight": 0,
   "pending_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/compose-extra-pending.json",
-  "extra_attempt_authorized": false,
+  "extra_attempt_authorized": true,
   "report": "docs/research/2026-09-27-city-afterimages-result.md",
   "evidence": "evidence/city-afterimages-delivery-2026-09-27.json",
   "publication": "not published",
@@ -147,5 +147,13 @@
   "remote_sha_verified": true,
   "notion_sync": "partial6of10 marked待你验收; result link/readback verified; no extra-attempt decision",
   "staged_diff_check": "24 files including all untracked additions passed",
-  "unit_tests": "33 review +15 composition/preparation/render; source/export30+30 isolated; mixedimportcollision documented"
+  "unit_tests": "33 review +15 composition/preparation/render; source/export30+30 isolated; mixedimportcollision documented",
+  "extra_attempt_authorization": {
+    "date": "2026-10-09",
+    "user_quote": "用 token plan 继续做",
+    "interpretation": "Authorize the one prepared 20-minute Coding Plan continuation for tracks 07–10 only; tracks 01–06 remain frozen.",
+    "task_id": "beatlab-ten-compose-20260927-extra1-pending",
+    "deadline_seconds": 1200,
+    "not_a_general_retry_or_publish_authorization": true
+  }
 }
