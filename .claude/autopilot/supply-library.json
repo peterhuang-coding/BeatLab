@@ -52,5 +52,9 @@
   "candidate_library": "/Volumes/SanDisk2TB/BeatLab/library/candidates",
   "automation_readback": "name/prompt/daily22/ACTIVE/target verified 2026-10-11",
   "report": "docs/research/2026-10-11-source-supply.md",
-  "evidence": "evidence/source-supply-2026-10-11.json"
+  "evidence": "evidence/source-supply-2026-10-11.json",
+  "delivery_commit": "e64452d09e1f884789421b324642ce6a5f676389",
+  "remote_sha_verified": true,
+  "notion_sync": "project update and readback verified",
+  "hub_sync": "latest and session20261011-154605-76536 byte-equal verified"
 }
