@@ -1,0 +1,53 @@
+{
+  "batch": "supply-20261011",
+  "downloads": 4,
+  "download_bytes": 18756080,
+  "source_sha_verified": true,
+  "standardized_audio_finite_44100": true,
+  "resume_zero_network": true,
+  "source_sha_mtime_preserved": true,
+  "protected_existing_mix_files": 20,
+  "phrase_candidates": 10,
+  "cut_export_verified": true,
+  "human_review": "pending",
+  "source_titles": [
+    "Dardanella blues",
+    "Anytime, anyday, anywhere",
+    "Everybody's crazy 'bout the doggone blues, but I'm happy",
+    "Apple blossoms"
+  ],
+  "cuts": 10,
+  "max_abs_sample_error": 1.4833119343915513e-08,
+  "candidate_hashes": true,
+  "same_output_rerun_rejected_and_unchanged": true,
+  "boundaries_clamped_to_real_frames": [
+    {
+      "asset_id": "19e8275cc69679e5",
+      "old_end": 30.059002268,
+      "new_end": 30.059002267573696,
+      "overshoot_seconds": 4.263043251739873e-10
+    },
+    {
+      "asset_id": "d6484e0ab7793cfa",
+      "old_end": 7.372018141,
+      "new_end": 7.372018140589569,
+      "overshoot_seconds": 4.1043080045710667e-10
+    },
+    {
+      "asset_id": "5539029e64670877",
+      "old_end": 30.11600907,
+      "new_end": 30.115986394557822,
+      "overshoot_seconds": 2.267544217815498e-05
+    }
+  ],
+  "exporter_sha256": "40c0696bb26abf37f584e89bf88c3b4a03d5a312a4aba92593d1e903b2cd3966",
+  "same_source_overlap_above_half_second": 0,
+  "adopted_exporter_sha256": "76cef152892d73dc8f24411fea94aaf57732793e886f5c24858e1384e85ef559",
+  "final_audio_samples_identical_to_independently_checked": true,
+  "wav_header_note": "FLOAT WAV peak chunk timestamps can change file SHA across separate exports; final manifest hashes separately verified.",
+  "independent_unit_tests": 22,
+  "cc_request": "beatlab-supply-cuts-20261011-a1",
+  "cc_result": "completed/verifying; parent accepted with runbook corrections",
+  "cc_model": "doubao-seed-evolving",
+  "project_peak_parallel": 1
+}

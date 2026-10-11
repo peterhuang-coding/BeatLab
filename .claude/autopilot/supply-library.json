@@ -1,0 +1,56 @@
+{
+  "task_id": "SUPPLY-20261011",
+  "status": "daily_supply_ready",
+  "authorization": {
+    "date": "2026-10-11",
+    "user_quote": "我觉得比如像音源下载啊或者切片的一些简单的工作都可以交给 plan 来做你来 check",
+    "scope": "Routine bounded source download and candidate slicing delegated to Coding Plan; parent verification. Continue within existing daily22 heartbeat after first-batch gates."
+  },
+  "limits": {
+    "sources_per_batch": 4,
+    "bytes_per_source": 33554432,
+    "download_timeout_seconds": 240,
+    "cuts_per_source": 6,
+    "cc_timeout_seconds": 900,
+    "max_parallel": 2,
+    "unconsumed_candidate_cap": 96,
+    "unreviewed_batch_cap": 2
+  },
+  "source_allowlist": [
+    "Citizen DJ LOC Blues",
+    "Citizen DJ LOC Jazz"
+  ],
+  "data_boundary": "Only synthetic contracts/public code to CC; local worker handles real audio and SQLite. No real audio/DB in Git.",
+  "current_batch": "supply-20261011",
+  "current_stage": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011",
+  "cc_requests": [
+    "beatlab-supply-cuts-20261011-a1"
+  ],
+  "cc_in_flight": 0,
+  "cc_submitted_count": 1,
+  "actual_project_peak_parallel": 1,
+  "external_active_at_start": 1,
+  "batches": [
+    {
+      "id": "supply-20261011",
+      "downloads": 4,
+      "candidate_windows": 10,
+      "exported_cuts": 10,
+      "parent_review": "technical_pass_listening_pending",
+      "directory": "/Volumes/SanDisk2TB/BeatLab/library/candidates/supply-20261011"
+    }
+  ],
+  "download_test": "4/4; SHA/finite44100; completed resume blocked network and succeeded; 20 delivered mix/listening files unchanged",
+  "automation_enabled_for_supply": true,
+  "music_batch": "MUSIC-TEN 10/10 delivered; keep/ratings still separate; no music changes from supply authorization",
+  "next_step": "Next daily22: inspect fixed current batch and backlog, then at most one new bounded supply batch; parent verifies each.",
+  "registry_root": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011",
+  "next_daily_batch_rule": "Reuse isolated registry DB so earlier daily downloads are remembered. Fixed supply-YYYYMMDD ID; inspect existing manifest before any network. Stop new downloads when export/review blocked.",
+  "scope_decision": "Independent supply work may continue while ten-beat subjective review is pending; music revisions remain feedback-driven.",
+  "cc_adopted_count": 1,
+  "cc_outcome": "accepted_with_changes; runbook corrected; implementation/tests unchanged",
+  "candidate_library": "/Volumes/SanDisk2TB/BeatLab/library/candidates",
+  "automation_readback": "name/prompt/daily22/ACTIVE/target verified 2026-10-11",
+  "report": "docs/research/2026-10-11-source-supply.md",
+  "evidence": "evidence/source-supply-2026-10-11.json"
+}
