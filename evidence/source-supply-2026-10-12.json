@@ -1,0 +1,167 @@
+{
+  "batch_id": "supply-20261012",
+  "date": "2026-10-12",
+  "status": "technical_pass_listening_pending",
+  "code_sha": "c7dc06fb57407bbda680b58c0f1fe60309c7875e",
+  "delegation": "Reused accepted Plan implementation; no new CC request",
+  "sources": [
+    {
+      "asset_id": "c819b8dd5217936f",
+      "title": "Gypsy blues",
+      "source_url": "https://www.loc.gov/item/jukebox-42414/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-12T22:06:15",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "b83e95bebf4e05aa058b9b2c4311e9b030bf9611b7fe06c02eb766c044899f55",
+      "standardized_sha256": "84a792a01d241c4d905bf076f0a042eb1226db7f0e5373a83fd37ce0fa858a13",
+      "download_bytes": 5802476
+    },
+    {
+      "asset_id": "84def5a0cb5d10dd",
+      "title": "At the jazz band ball",
+      "source_url": "https://www.loc.gov/item/jukebox-28219/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-12T22:06:19",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "c26adf989797aec5c239121b5781afdd39e2681611aa2470f6784c866ebc62a8",
+      "standardized_sha256": "950cfb1512953dd359199aeedd584d1da0107813012de2ba0a0f720438b664af",
+      "download_bytes": 5766764
+    },
+    {
+      "asset_id": "b8d9e87e74891401",
+      "title": "Hesitation blues",
+      "source_url": "https://www.loc.gov/item/jukebox-19406/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-12T22:06:23",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "33dd017dc9b758b40384abae9672481e14a7c9a95b6ed40b362a5e135e443499",
+      "standardized_sha256": "3435af206ee32677f3064e4658ec40601367631838e5b12f220c71ddccf926ab",
+      "download_bytes": 5802476
+    },
+    {
+      "asset_id": "e260100e8dfe79d2",
+      "title": "Avalon",
+      "source_url": "https://www.loc.gov/item/jukebox-37794/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-12T22:06:26",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "949cbb173921381631fbc93d23cbd30849f8f2366021837eafce9a237b7dbab4",
+      "standardized_sha256": "d4923541086e26268c07655d54fd385e7f868b33001a53faf6537cafef339fcf",
+      "download_bytes": 5764460
+    }
+  ],
+  "analyzed_windows": 10,
+  "rejected_windows": [
+    {
+      "asset_id": "c819b8dd5217936f",
+      "start_sec": 15.395,
+      "end_sec": 30.221043084,
+      "duration": 30.221020408163266,
+      "overshoot_samples": 1.0000044000324948,
+      "reason": "exceeds_one_source_sample"
+    },
+    {
+      "asset_id": "b8d9e87e74891401",
+      "start_sec": 22.291,
+      "end_sec": 30.221043084,
+      "duration": 30.221020408163266,
+      "overshoot_samples": 1.0000044000324948,
+      "reason": "exceeds_one_source_sample"
+    },
+    {
+      "asset_id": "e260100e8dfe79d2",
+      "start_sec": 20.782,
+      "end_sec": 30.023038549,
+      "duration": 30.023015873015872,
+      "overshoot_samples": 1.0000108999946633,
+      "reason": "exceeds_one_source_sample"
+    }
+  ],
+  "boundary_corrections": [
+    {
+      "asset_id": "84def5a0cb5d10dd",
+      "original_end": 30.035011338,
+      "corrected_end": 30.035011337868482,
+      "overshoot_samples": 5.799939728490244e-06
+    }
+  ],
+  "cuts": [
+    {
+      "filename": "c819b8dd5217936f_00.wav",
+      "sha256": "c0c3bde9037fd60f51187aedd2d95315ebc8c6a394b3b21196e1622852685c37",
+      "frames": 678919,
+      "peak": 0.709442138671875,
+      "rms_db": -20.1929629942202,
+      "max_sample_error": 3.6742589248905944e-09
+    },
+    {
+      "filename": "84def5a0cb5d10dd_00.wav",
+      "sha256": "82dc862568f97bdc2a7e909e44ca8aa3c162de486425d90207d279cb9474bb28",
+      "frames": 475134,
+      "peak": 0.63836669921875,
+      "rms_db": -18.360347712916617,
+      "max_sample_error": 1.3880533722421262e-08
+    },
+    {
+      "filename": "84def5a0cb5d10dd_01.wav",
+      "sha256": "96dd21fa061763ae3bc631a5bc5c3223a2e1698bddcd334d1be12debfa562c8f",
+      "frames": 631292,
+      "peak": 0.707427978515625,
+      "rms_db": -18.43095956701956,
+      "max_sample_error": 7.212434177672478e-09
+    },
+    {
+      "filename": "b8d9e87e74891401_00.wav",
+      "sha256": "68216256f020a724b17014a8a01cd9948217f77c5a08f6f2cbaa3c64cfa6220e",
+      "frames": 183279,
+      "peak": 0.680450439453125,
+      "rms_db": -17.978190869094185,
+      "max_sample_error": 3.5041543416935994e-09
+    },
+    {
+      "filename": "b8d9e87e74891401_01.wav",
+      "sha256": "eb58337826ad5a70b85ac2ba40160b95e6be9352d6e241a5941b13d377960679",
+      "frames": 167933,
+      "peak": 0.634979248046875,
+      "rms_db": -19.16058514835239,
+      "max_sample_error": 7.280476027604621e-09
+    },
+    {
+      "filename": "e260100e8dfe79d2_00.wav",
+      "sha256": "ab7ee5791f9b9f89e1f0e272529c92bc59fdc05ec75376558433fb8518a05c5a",
+      "frames": 172034,
+      "peak": 0.709320068359375,
+      "rms_db": -19.48688311715503,
+      "max_sample_error": 1.3880533722421262e-08
+    },
+    {
+      "filename": "e260100e8dfe79d2_01.wav",
+      "sha256": "d34dc781c4446ffa216e34207e256ae49f61b71362211312ead378da02d5731c",
+      "frames": 185352,
+      "peak": 0.607574462890625,
+      "rms_db": -20.271120792259488,
+      "max_sample_error": 1.4697035755073529e-08
+    }
+  ],
+  "max_sample_error": 1.4697035755073529e-08,
+  "checks": {
+    "original_standardized_candidate_sha": true,
+    "current_rights_snapshot_sha": true,
+    "same_source_overlap_above_half_second": 0,
+    "duplicates_against_main_and_prior_batch": 0,
+    "exact_five_ms_fade_with_float32_tolerance": true,
+    "repeat_export_exit": 2,
+    "repeat_export_unchanged": true,
+    "completed_resume_network_calls": 0,
+    "completed_resume_audio_unchanged": true,
+    "protected_files_unchanged": 32
+  },
+  "historical_tests": "22 passed 2026-10-11; not rerun today; production code unchanged",
+  "unverified": [
+    "listening quality",
+    "lyric/content identity",
+    "final commercial-use clearance",
+    "Live open/play/save/reopen/rerender"
+  ],
+  "backlog_candidates": 17
+}
