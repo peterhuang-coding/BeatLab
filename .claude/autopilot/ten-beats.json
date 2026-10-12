@@ -250,7 +250,13 @@
     "new_music_rendered": 0,
     "evidence": "evidence/city-feedback-revision-2026-10-13.json",
     "report": "docs/research/2026-10-13-city-feedback-revision.md",
-    "no_blind_replay": true
+    "no_blind_replay": true,
+    "delivery_commit": "15521a8fa6167accbebcc1199fb7e3f3494ee414",
+    "remote_sha_verified": true,
+    "notion_sync": "project/card latest revision block and SHA readback verified",
+    "hub_sync": "latest/session20261013-004724-89626 exact bytes verified",
+    "observability": "score rejected recorded; delivery partial rejected by review_requires_finished, original unknown retained; independent evidence preserved",
+    "automation_sync": "daily22 ACTIVE/name/target retained; latest feedback and blocked revision recovery readback verified"
   },
   "explicit_keep_v1_numbers": [
     "03"
