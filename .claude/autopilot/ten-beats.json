@@ -253,11 +253,11 @@
     "evidence": "evidence/city-feedback-v2-2026-10-13.json",
     "report": "docs/research/2026-10-13-city-feedback-v2.md",
     "no_blind_replay": true,
-    "delivery_commit": null,
-    "remote_sha_verified": false,
-    "notion_sync": "pending final report",
-    "hub_sync": "pending final report",
-    "observability": "score rejected recorded; delivery partial rejected by review_requires_finished, original unknown retained; independent evidence preserved",
+    "delivery_commit": "0665a699d6aee2a1735f3575d7ab223f03cd326d",
+    "remote_sha_verified": true,
+    "notion_sync": "project and card final report/8801/待你验收 readback verified",
+    "hub_sync": "latest/session20261013-012355-95454 exact bytes verified",
+    "observability": "score-a2/delivery-qfix1 partial reviews recorded against immutable evidence; independent verified code adopted; native blocked/max-turns retained",
     "automation_sync": "daily22/name/ACTIVE/target retained; v2 delivery recovery prompt readback verified",
     "continuation_authorization": {
       "date": "2026-10-13",
@@ -318,7 +318,8 @@
     "comparison_entries": 20,
     "audition_url": "http://127.0.0.1:8801/",
     "new_feedback_file": "exports/city-afterimages-20261013-v2/feedback.json",
-    "user_keep": null
+    "user_keep": null,
+    "staged_diff_check": "13 files including all new files passed"
   },
   "explicit_keep_v1_numbers": [
     "03"
