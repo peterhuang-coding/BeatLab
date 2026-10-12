@@ -1,6 +1,6 @@
 {
   "task_id": "MUSIC-TEN-20260927",
-  "status": "ten_drafts_delivered_awaiting_user_feedback",
+  "status": "feedback_revision_blocked",
   "concept": "城市余像 / City Afterimages (working title)",
   "format": "10 thematic 45–60-second first drafts (up to62 seconds with tail)",
   "goal": "commercially viable editable beats; human first audition then targeted revision",
@@ -112,7 +112,7 @@
   "collection_dir": "/Volumes/SanDisk2TB/BeatLab/exports/city-afterimages-20260927",
   "feedback_path": "/Volumes/SanDisk2TB/BeatLab/exports/city-afterimages-20260927/feedback.json",
   "planned_review_url": "http://127.0.0.1:8800/",
-  "feedback_last_consumed_sha256": null,
+  "feedback_last_consumed_sha256": "e15c59c69931c78fb9a31e180df51bec17d79f124b9cce5aa60e53985c58efc2",
   "original_compose_status": "timeout143; unknown retained; dead PID and frozen output verified",
   "quality_correction": "beatlab-ten-compose-20260927-qfix1",
   "quality_correction_submitted": true,
@@ -174,5 +174,85 @@
     "no_more_coding_plan_attempts_without_new_user_decision": true
   },
   "extra_attempt_handoff": "/Volumes/SanDisk2TB/BeatLab/.cache/album-execution-20260919/.cache/ten-beats-20260927/compose-extra-pending.json",
-  "handoff_status": "extra1 submitted once; interrupted after 406.715 seconds; no further request pending"
+  "handoff_status": "extra1 submitted once; interrupted after 406.715 seconds; no further request pending",
+  "revision": {
+    "task_id": "CITY-REVISION-20261013",
+    "authorized_at": "2026-10-13",
+    "user_quote": "我都提交了，你看看是不是可以总体改一下",
+    "feedback_sha256": "e15c59c69931c78fb9a31e180df51bec17d79f124b9cce5aa60e53985c58efc2",
+    "feedback_verified_tracks": 10,
+    "status": "blocked_no_v2_audio",
+    "cc_requests": [
+      "beatlab-city-feedback-20261013-score-a1",
+      "beatlab-city-feedback-20261013-delivery-a1"
+    ],
+    "actual_parallel": 2,
+    "new_collection_id": "city-afterimages-20261013-v2",
+    "frozen_old_files": 990,
+    "plan": "docs/superpowers/plans/2026-10-13-city-feedback-revision.md",
+    "parent_keep": {
+      "03": "keep"
+    },
+    "new_version_keep": null,
+    "cc_in_flight": 0,
+    "cc_submitted": 2,
+    "cc_adopted": 0,
+    "outcomes": [
+      {
+        "task_id": "beatlab-city-feedback-20261013-score-a1",
+        "status": "blocked",
+        "elapsed_seconds": 865.019,
+        "returncode": 1,
+        "pid_confirmed_ended": true,
+        "requested_model": "doubao-seed-evolving",
+        "requested_thinking": true,
+        "requested_effort": "high",
+        "observed_models": [
+          "doubao-seed-evolving",
+          "<synthetic>"
+        ],
+        "receipt_sha256": "b7a51c3ae2cb5cc535f3f69da397cf46c91783ebc8075073ac46a495f4a4118a",
+        "changes": [],
+        "adopted": false
+      },
+      {
+        "task_id": "beatlab-city-feedback-20261013-delivery-a1",
+        "status": "unknown",
+        "elapsed_seconds": 1200.115,
+        "returncode": 143,
+        "pid_confirmed_ended": true,
+        "requested_model": "doubao-seed-evolving",
+        "requested_thinking": true,
+        "requested_effort": "high",
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "receipt_sha256": "6a4d673dfa42d13d59076350039b7e0ce25e5e948c0f2f609bf5edd2fe80b780",
+        "changes": [
+          {
+            "path": "examples/render_city_feedback.py",
+            "sha256": "7214c6b57baab1559fcdd721b18c7a78b6d645b72e8dbefcaea58ec2ee39b8ca"
+          },
+          {
+            "path": "tests/test_city_feedback_delivery.py",
+            "sha256": "cc6732650fc2ac9a3e50372077df6cc059b2d756416e0376e2c6de6159ce7070"
+          },
+          {
+            "path": "docs/city-feedback-delivery.md",
+            "sha256": "30da48c28212226b132d855f4f2f9c90b2d0342681064a022ee6c75d642d21d7"
+          }
+        ],
+        "adopted": false
+      }
+    ],
+    "blocker": "score request-burst protection; delivery timed out and fails4/13 parent tests",
+    "quality_correction_submitted": false,
+    "new_music_rendered": 0,
+    "evidence": "evidence/city-feedback-revision-2026-10-13.json",
+    "report": "docs/research/2026-10-13-city-feedback-revision.md",
+    "no_blind_replay": true
+  },
+  "explicit_keep_v1_numbers": [
+    "03"
+  ]
 }

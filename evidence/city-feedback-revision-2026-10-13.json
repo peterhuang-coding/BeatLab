@@ -1,0 +1,81 @@
+{
+  "task_id": "CITY-REVISION-20261013",
+  "status": "blocked_no_v2_audio",
+  "feedback_records_verified": 10,
+  "feedback_sha256": "e15c59c69931c78fb9a31e180df51bec17d79f124b9cce5aa60e53985c58efc2",
+  "frozen_files_verified": 990,
+  "actual_cc_parallel": 2,
+  "cc_requests": [
+    {
+      "task_id": "beatlab-city-feedback-20261013-score-a1",
+      "status": "blocked",
+      "elapsed_seconds": 865.019,
+      "returncode": 1,
+      "pid_confirmed_ended": true,
+      "requested_model": "doubao-seed-evolving",
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving",
+        "<synthetic>"
+      ],
+      "receipt_sha256": "b7a51c3ae2cb5cc535f3f69da397cf46c91783ebc8075073ac46a495f4a4118a",
+      "changes": [],
+      "adopted": false
+    },
+    {
+      "task_id": "beatlab-city-feedback-20261013-delivery-a1",
+      "status": "unknown",
+      "elapsed_seconds": 1200.115,
+      "returncode": 143,
+      "pid_confirmed_ended": true,
+      "requested_model": "doubao-seed-evolving",
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "receipt_sha256": "6a4d673dfa42d13d59076350039b7e0ce25e5e948c0f2f609bf5edd2fe80b780",
+      "changes": [
+        {
+          "path": "examples/render_city_feedback.py",
+          "sha256": "7214c6b57baab1559fcdd721b18c7a78b6d645b72e8dbefcaea58ec2ee39b8ca"
+        },
+        {
+          "path": "tests/test_city_feedback_delivery.py",
+          "sha256": "cc6732650fc2ac9a3e50372077df6cc059b2d756416e0376e2c6de6159ce7070"
+        },
+        {
+          "path": "docs/city-feedback-delivery.md",
+          "sha256": "30da48c28212226b132d855f4f2f9c90b2d0342681064a022ee6c75d642d21d7"
+        }
+      ],
+      "adopted": false
+    }
+  ],
+  "score_blocker": "API Error: System protection triggered by request burst. Please slow down traffic growth and increase requests gradually before retrying.",
+  "delivery_blocker": "timeout1200; original unknown retained; child PID ended and stable outputs verified",
+  "parent_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_city_feedback_delivery.py -v",
+    "environment": "isolated CC workspace, synthetic mocks only",
+    "count": 13,
+    "passed": 9,
+    "failures": 4,
+    "exit_code": 1,
+    "failure_tests": [
+      "test_mapping_version_identity_and_manifest_contract",
+      "test_render_evidence_binds_parent_and_artifacts",
+      "test_missing_builder_is_import_error_with_no_v1_fallback",
+      "test_parent_mix_hash_mismatch_rejected_before_render"
+    ]
+  },
+  "review_findings": [
+    "No score implementation produced; rendering dependency absent.",
+    "Test fixtures/assertions require repair: identical fake mix bytes; required word mismatch; comment text detected as fallback import; leaked global render counter.",
+    "Preview SHA inequality check is not a valid zero-gain matching requirement; remove it and check PCM/gain/loudness.",
+    "Completed MP3 resume only checks nonempty file, not content hash/decode; needs verification."
+  ],
+  "new_music_rendered": 0,
+  "production_code_adopted": 0,
+  "next_step": "Preserve artifacts; resolve service protection and review a bounded continuation using unchanged logical IDs and verified eligible route; do not blindly replay failed attempts or paid-fallback."
+}
