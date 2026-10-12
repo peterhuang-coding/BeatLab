@@ -1,6 +1,6 @@
 # 当前主线 CITY-REVISION-20261013
 
-用户已提交十首反馈，并2026-10-13直接要求“总体改一下”。十份反馈已与实际v1混音SHA一致；03明确Keep并提出鼓过重，其余分开保留原选择。批准本轮十首v2修订，原歌曲/评分完整保护；评分本身不授权的旧边界由这次直接指令满足。两路固定CC score/delivery-a1均已结束：编排服务端request-burst保护、无代码；交付1200秒超时unknown，已核查PID结束和稳定草稿，主代理13测试4失败，未采用，新音频0，状态ten-beats.json.revision，计划docs/superpowers/plans/2026-10-13-city-feedback-revision.md。范围：逐首解决主次/鼓型/乐句组织，保留03主段、08非鼓、09编排，真实音频与反馈不外发；新版本听感仍等用户。
+2026-10-13用户提交十份反馈并明确“你就现在让 plan 改”，现已交付十首v2及20项v1/v2量匹配对照：http://127.0.0.1:8801/，媒体exports/city-afterimages-20261013-v2。原版/评分8800保留，03的v1 Keep不自动转给v2。Plan score-a2/delivery-qfix1均因32回合上限结束，原blocked回执保留；稳定代码经过主代理41测试、真实十首结构及PCM保护、516工程SHA、20 Range206、完成恢复0重渲染验证后采用。新音频10，旧990文件未变，无CC在途；不要重发旧请求或再消费v1反馈。当前等待v2具体反馈，Live/听感/可售另验；日常有界素材供给可独立继续。完整报告docs/research/2026-10-13-city-feedback-v2.md，状态ten-beats.json.revision。
 
 # 当前补充主线 SUPPLY-20261011
 

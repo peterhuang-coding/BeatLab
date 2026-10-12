@@ -1,0 +1,534 @@
+{
+  "task_id": "CITY-REVISION-20261013",
+  "date": "2026-10-13",
+  "authorization": "Explicit same-scope immediate Coding Plan continuation after prior requests ended",
+  "new_collection": "city-afterimages-20261013-v2",
+  "audio_count": 10,
+  "comparison_entries": 20,
+  "cc": [
+    {
+      "task_id": "beatlab-city-feedback-20261013-score-a2",
+      "status": "blocked",
+      "final_subtype": "error_max_turns",
+      "elapsed_seconds": 1181.013,
+      "inputs_unchanged": true,
+      "output_hashes_verified": true,
+      "changed_files": [
+        {
+          "path": "examples/city_feedback_scores.py",
+          "sha256": "30f8222e0986380995dfa1033e99ba09ded9dfe16ae589b9e845b07b9e6f135c"
+        },
+        {
+          "path": "tests/test_city_feedback_scores.py",
+          "sha256": "8b6b1e6a659fa4a1d616f0804c0251237ef966bf9104f48d8feb0febd137d19e"
+        },
+        {
+          "path": "docs/city-feedback-arrangements.md",
+          "sha256": "2705f58749a3687e45990e780e035ba4a67dd07eb445311a40adf28e3b488d29"
+        }
+      ],
+      "receipt_sha256": "46c9275175d8262b71aa6b30ac77cad3e40b2863ac623896d3ee062333780c1b",
+      "adopted_after_parent_verification": true,
+      "observability_review": "partial: launcher final handoff missing; independent verified code adopted"
+    },
+    {
+      "task_id": "beatlab-city-feedback-20261013-delivery-qfix1",
+      "status": "blocked",
+      "final_subtype": "error_max_turns",
+      "elapsed_seconds": 896.234,
+      "inputs_unchanged": true,
+      "output_hashes_verified": true,
+      "changed_files": [
+        {
+          "path": "examples/render_city_feedback.py",
+          "sha256": "3ea21667b0b8b21cb47fb5f15f8067147ecd315dfde6f199082f03232eb75563"
+        },
+        {
+          "path": "tests/test_city_feedback_delivery.py",
+          "sha256": "ca3d9e4159f3652b0d61a6d8fad695d42c86407839c32af7a1c36d9188ff47ed"
+        }
+      ],
+      "receipt_sha256": "fb4b95f8a0b1993900170907383a0db709f0764435f76a45d08adfab823a89fe",
+      "adopted_after_parent_verification": true,
+      "observability_review": "partial: launcher final handoff missing; independent verified code adopted"
+    }
+  ],
+  "actual_peak_cc": 2,
+  "tests": {
+    "score": 21,
+    "delivery": 20,
+    "combined": 41,
+    "combined_result": "pass",
+    "parent_test_fix": "Replaced sys.modules global absence assertion with a v1-builder call sentinel, preserving no-fallback behavior in combined discovery."
+  },
+  "score_contracts": [
+    {
+      "number": "01",
+      "old_drum_events": 192,
+      "new_drum_events": 124,
+      "phrase_events": 31,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "02",
+      "old_drum_events": 160,
+      "new_drum_events": 71,
+      "phrase_events": 37,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "03",
+      "old_drum_events": 156,
+      "new_drum_events": 156,
+      "phrase_events": 25,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "04",
+      "old_drum_events": 248,
+      "new_drum_events": 88,
+      "phrase_events": 42,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "05",
+      "old_drum_events": 236,
+      "new_drum_events": 124,
+      "phrase_events": 28,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "06",
+      "old_drum_events": 80,
+      "new_drum_events": 44,
+      "phrase_events": 21,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "07",
+      "old_drum_events": 374,
+      "new_drum_events": 97,
+      "phrase_events": 26,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "08",
+      "old_drum_events": 172,
+      "new_drum_events": 94,
+      "phrase_events": 36,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "09",
+      "old_drum_events": 278,
+      "new_drum_events": 278,
+      "phrase_events": 45,
+      "structure_protection": "pass"
+    },
+    {
+      "number": "10",
+      "old_drum_events": 192,
+      "new_drum_events": 82,
+      "phrase_events": 24,
+      "structure_protection": "pass"
+    }
+  ],
+  "audio": {
+    "tracks": [
+      {
+        "number": 1,
+        "mix_sha256": "8b19218e37e12e94211ac08ba08104c2a695228a62218261184eb5b20bcf85fe",
+        "seconds": 54.17392290249433,
+        "peak": 0.8912509679794312,
+        "preserved_stems": []
+      },
+      {
+        "number": 2,
+        "mix_sha256": "12380dc7772bd7349a5ab78be7c8c83eee9f1cbec026b06781c24e8b373065e1",
+        "seconds": 50.97959183673469,
+        "peak": 0.8912509679794312,
+        "preserved_stems": []
+      },
+      {
+        "number": 3,
+        "mix_sha256": "bbc250d60cd58b607f9dffbb391930c376d452660e91dcf9c3473fb399e2038c",
+        "seconds": 51.09090702947846,
+        "peak": 0.8912508487701416,
+        "preserved_stems": []
+      },
+      {
+        "number": 4,
+        "mix_sha256": "a16cfcbec82e396d9599d66219272d25ae34e95d6e2bc95407135c4f45987783",
+        "seconds": 56.339614512471655,
+        "peak": 0.8912509679794312,
+        "preserved_stems": []
+      },
+      {
+        "number": 5,
+        "mix_sha256": "0e17700fa698e2f238ad254c17423687c62d40c2954d69e0eab83da3531150ee",
+        "seconds": 50.0,
+        "peak": 0.8912508487701416,
+        "preserved_stems": []
+      },
+      {
+        "number": 6,
+        "mix_sha256": "7b7c85e9eb03e12243302cda0864334254b71307a758e0326c9b5ef12d24f596",
+        "seconds": 53.42857142857143,
+        "peak": 0.8912509679794312,
+        "preserved_stems": []
+      },
+      {
+        "number": 7,
+        "mix_sha256": "a65f53a4da851afe07f62744399ce8d398ffc1e95049996f2684ead75e4fb370",
+        "seconds": 53.42857142857143,
+        "peak": 0.8912509679794312,
+        "preserved_stems": []
+      },
+      {
+        "number": 8,
+        "mix_sha256": "0a80e6c310fde7d6dd5629148c84ea0052ee1b91a71886e956db75063bd48a38",
+        "seconds": 52.0,
+        "peak": 0.8912509679794312,
+        "preserved_stems": [
+          {
+            "id": "lead_a",
+            "pcm_max_error": 7.735186895174717e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_b",
+            "pcm_max_error": 7.675744526786099e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_c",
+            "pcm_max_error": 7.926540934732884e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_d",
+            "pcm_max_error": 7.859588545267027e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_a",
+            "pcm_max_error": 7.791185176186932e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_b",
+            "pcm_max_error": 7.843988113209743e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_c",
+            "pcm_max_error": 7.756265975322751e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_d",
+            "pcm_max_error": 7.794284853646083e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "turn_a",
+            "pcm_max_error": 7.7399416459345e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "turn_b",
+            "pcm_max_error": 8.022949821162584e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "bass",
+            "pcm_max_error": 8.099931514404801e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "piano",
+            "pcm_max_error": 7.538456254715942e-08,
+            "tolerance": 1.5338241760695043e-07,
+            "gain_delta_db": 0
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "mix_sha256": "6f343632af2dabfed8e470167fd9c2ee08952a601d24c2f9f475c93dc02a606e",
+        "seconds": 54.5,
+        "peak": 0.8912509679794312,
+        "preserved_stems": [
+          {
+            "id": "lead_a",
+            "pcm_max_error": 7.427958503836152e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_b",
+            "pcm_max_error": 7.472288350574008e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_c",
+            "pcm_max_error": 7.391377848664504e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "lead_d",
+            "pcm_max_error": 7.436945016758845e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_a",
+            "pcm_max_error": 7.811272487168175e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_b",
+            "pcm_max_error": 7.518391266503333e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_c",
+            "pcm_max_error": 7.241320948425667e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "answer_d",
+            "pcm_max_error": 7.349273901946507e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "turn_a",
+            "pcm_max_error": 7.518780320570073e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "turn_b",
+            "pcm_max_error": 7.554120465269598e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          },
+          {
+            "id": "kick",
+            "pcm_max_error": 1.0199165539903632e-07,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "snare",
+            "pcm_max_error": 7.838219381883782e-08,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "hat",
+            "pcm_max_error": 6.244080889648383e-08,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "bass",
+            "pcm_max_error": 7.656468634098523e-08,
+            "tolerance": 1.3915191387179736e-07,
+            "gain_delta_db": -1
+          },
+          {
+            "id": "shaker",
+            "pcm_max_error": 6.251102399151528e-08,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "rim",
+            "pcm_max_error": 6.512532738436883e-08,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "open_hat",
+            "pcm_max_error": 6.238986814156855e-08,
+            "tolerance": 1.315263031485759e-07,
+            "gain_delta_db": -2
+          },
+          {
+            "id": "vibes",
+            "pcm_max_error": 7.138460778304684e-08,
+            "tolerance": 1.477079898285748e-07,
+            "gain_delta_db": 0
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "mix_sha256": "63532969a8d490f88844e48f70c797b51b98d6526dd1c02670d5db6bed068599",
+        "seconds": 55.333333333333336,
+        "peak": 0.8912508487701416,
+        "preserved_stems": []
+      }
+    ],
+    "old_files_unchanged": 990,
+    "preview_pcm_and_mp3": "pass",
+    "subjective_listening": "pending"
+  },
+  "http": {
+    "homepage": 200,
+    "collection_tracks": 20,
+    "media_checks": [
+      {
+        "id": "city-01-first-light-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-01-first-light-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-02-glass-elevator-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-02-glass-elevator-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-03-night-market-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-03-night-market-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-04-red-light-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-04-red-light-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-05-rooftop-radio-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-05-rooftop-radio-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-06-lost-found-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-06-lost-found-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-07-mirror-floor-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-07-mirror-floor-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-08-midnight-store-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-08-midnight-store-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-09-reverse-neon-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-09-reverse-neon-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-10-after-sunrise-20260927-v1",
+        "status": 206,
+        "bytes": 4096
+      },
+      {
+        "id": "city-10-after-sunrise-20260927-v2-20261013",
+        "status": 206,
+        "bytes": 4096
+      }
+    ],
+    "new_feedback": {
+      "collection_id": "city-afterimages-20261013-v2",
+      "ratings": {}
+    },
+    "package_files_sha_verified": 516
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8801/",
+    "visible_pairs": 10,
+    "version_labels": true,
+    "ratings": "empty; not submitted by agent"
+  },
+  "automation": {
+    "daily22_active_preserved": true,
+    "latest_prompt_readback": true
+  },
+  "limits": {
+    "human_preference": "pending",
+    "ableton_live_open_save_reopen": "not verified",
+    "commercial_release": "not cleared or published"
+  },
+  "adoption": "Both native receipts retain blocked/max-turns status; code independently reviewed, tested and used locally. No extra requests or fallback.",
+  "logs": {
+    "integrated-tests.log": "6470e7881cd21b9342687e4e9e7f144b007630d207a872a88f7bda77ad221fc7",
+    "real-render.log": "783490e5d1bb791e13549f01c6954c6fa25f64d885397b274257b062debca72d",
+    "audio-check.log": "e37ec9930ea5963aecaafa958ca62b8393e76778f13ede678c49ef713073172e",
+    "real-resume.log": "c810fa7bf3b2c030608d4bce96b1b1ef1ae2d65d652a32f7ba8cf7492c839a0e"
+  },
+  "resume": {
+    "completed_resume": true,
+    "render_calls": 0,
+    "export_calls": 0,
+    "preview_and_delivery_files_unchanged": 51
+  }
+}
