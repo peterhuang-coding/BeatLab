@@ -1,0 +1,182 @@
+{
+  "batch_id": "supply-20261013",
+  "date": "2026-10-13",
+  "status": "technical_pass_listening_pending",
+  "code_sha": "ae00c79b1c089825e04d14c6dd30b70d0a4045df",
+  "delegation": "Reused accepted Plan code; new CC requests 0; local byte operations and independent parent verification",
+  "sources": [
+    {
+      "asset_id": "a8fc2c76368c485e",
+      "title": "Home again blues",
+      "source_url": "https://www.loc.gov/item/jukebox-39384/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-13T22:03:08",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "a63c17f64bfcb7ea2d63ce930c6e7c1fe79c90c9c2eb223ab474095e71b6680e",
+      "standardized_sha256": "651e73fc02a73f383c693353330db1d2c6f90c543d38480fe28380c835329242",
+      "download_bytes": 5780012
+    },
+    {
+      "asset_id": "94c0496f53d0a666",
+      "title": "Behind your silken veil",
+      "source_url": "https://www.loc.gov/item/jukebox-34215/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-13T22:03:12",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "5e651446a6572830c2bbcf60cd1ce5eb9e4c4daf951e898ac42794fd50d15b50",
+      "standardized_sha256": "f3e2bee947e7f9dc1a1a5b9effc194b56b3d8219bc1fe665d34d024cc725fd43",
+      "download_bytes": 5811308
+    },
+    {
+      "asset_id": "c0b70024755af613",
+      "title": "Home again blues",
+      "source_url": "https://www.loc.gov/item/jukebox-40650/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-13T22:03:15",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "070a30001fdcdda6de17b3069b2f8e5e494282988709241060efd0db599c43c1",
+      "standardized_sha256": "5695063783f25c132499f7892c3dc2e083cf05a28a4b0a5ec1fdd887b7545e45",
+      "download_bytes": 1157036
+    },
+    {
+      "asset_id": "616a9d577ca39758",
+      "title": "Best ever medley",
+      "source_url": "https://www.loc.gov/item/jukebox-37822/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-13T22:03:19",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "570f6d89043a93ea237adaedbc58910cb5c90a5b5f5044b745e9f99c9cd3e171",
+      "standardized_sha256": "d4583b81fcb1c360dc3a47fede15ad26d0280dc084253c70fd4bbd937e1a5b1d",
+      "download_bytes": 5791340
+    }
+  ],
+  "analyzed_windows": 11,
+  "rejected_windows": [
+    {
+      "asset_id": "616a9d577ca39758",
+      "start_sec": 26.401,
+      "end_sec": 30.163038549,
+      "overshoot_samples": 1.0000108999946633,
+      "reason": "exceeds_one_source_sample"
+    }
+  ],
+  "boundary_corrections": [
+    {
+      "asset_id": "a8fc2c76368c485e",
+      "original_end": 30.104036281,
+      "corrected_end": 30.104013605442177,
+      "overshoot_samples": 0.9999920999739231
+    },
+    {
+      "asset_id": "c0b70024755af613",
+      "original_end": 6.025986395,
+      "corrected_end": 6.025986394557823,
+      "overshoot_samples": 1.9500004011518968e-05
+    }
+  ],
+  "cuts": [
+    {
+      "filename": "a8fc2c76368c485e_00.wav",
+      "sha256": "380a35ea0464fc1fff7dafd97056f4b8e4c74f943a6cdd14cdaf46a3456e976a",
+      "frames": 174062,
+      "peak": 0.594085693359375,
+      "rms_db": -17.78263422540728,
+      "max_sample_error": 1.428878471099182e-08
+    },
+    {
+      "filename": "a8fc2c76368c485e_01.wav",
+      "sha256": "1adfe1d9a1f46301acafa2fbf466060a7a47da7c4be98ef09e963fe25e35ac0c",
+      "frames": 462874,
+      "peak": 0.703460693359375,
+      "rms_db": -17.38116532460169,
+      "max_sample_error": 1.4288784766502971e-08
+    },
+    {
+      "filename": "a8fc2c76368c485e_02.wav",
+      "sha256": "8915528dc39bf4e1d1ebbed537f6897a28dfc846193f23d7159266c68b4c5920",
+      "frames": 690651,
+      "peak": 0.6190185546875,
+      "rms_db": -18.283440142123894,
+      "max_sample_error": 7.348517822025613e-09
+    },
+    {
+      "filename": "94c0496f53d0a666_00.wav",
+      "sha256": "1d7429afbd325f21ac693e77e36c45e67be4d4e5f4c9521dc5af1c2693e8b15b",
+      "frames": 327663,
+      "peak": 0.713470458984375,
+      "rms_db": -18.071619723780575,
+      "max_sample_error": 7.008308683387199e-09
+    },
+    {
+      "filename": "94c0496f53d0a666_01.wav",
+      "sha256": "a3c5db2743198904b889660f6f3d62598e5c78cab2f8eed39cf503bf9cdcd6c0",
+      "frames": 211945,
+      "peak": 0.63116455078125,
+      "rms_db": -18.69155667775995,
+      "max_sample_error": 6.940266861210631e-09
+    },
+    {
+      "filename": "c0b70024755af613_00.wav",
+      "sha256": "6fa68058741f1bcf4214fa3c2e4e1e7a4a18e28bca414279c6eada27fb75e2ab",
+      "frames": 164845,
+      "peak": 0.7060546875,
+      "rms_db": -19.49066877200737,
+      "max_sample_error": 6.600057694816641e-09
+    },
+    {
+      "filename": "c0b70024755af613_01.wav",
+      "sha256": "7f57b4859473e1bdde4f1c95ffee2cb8b26e46ad617be4c0401ded5c81ecd438",
+      "frames": 100901,
+      "peak": 0.655426025390625,
+      "rms_db": -21.01711008830563,
+      "max_sample_error": 7.14439235549591e-09
+    },
+    {
+      "filename": "616a9d577ca39758_00.wav",
+      "sha256": "c1af185b7e71e2986cfb8790b2690ad64fe5ef4ef0c80bee39d76bb1cf776b95",
+      "frames": 371718,
+      "peak": 0.684783935546875,
+      "rms_db": -24.343977703186248,
+      "max_sample_error": 3.7082798359788782e-09
+    },
+    {
+      "filename": "616a9d577ca39758_01.wav",
+      "sha256": "a3d35a8ee876e6afa3da634c633125fe768622ce2c9564ccf6b606501ee8dc8a",
+      "frames": 130051,
+      "peak": 0.356475830078125,
+      "rms_db": -24.50829194805767,
+      "max_sample_error": 3.7082798359788782e-09
+    },
+    {
+      "filename": "616a9d577ca39758_02.wav",
+      "sha256": "a3c5341c25267e09809a871612f0885bb8b828b1e5f5e472874d9853fb3afdc6",
+      "frames": 179179,
+      "peak": 0.472503662109375,
+      "rms_db": -24.257439029215476,
+      "max_sample_error": 7.280476027604621e-09
+    }
+  ],
+  "max_sample_error": 1.4288784766502971e-08,
+  "checks": {
+    "original_standardized_candidate_sha": true,
+    "current_rights_snapshot_sha": true,
+    "same_source_overlap_above_half_second": 0,
+    "duplicates_against_main_and_prior_batch": 0,
+    "exact_five_ms_fade_with_float32_tolerance": true,
+    "repeat_export_exit": 2,
+    "repeat_export_unchanged": true,
+    "completed_resume_network_calls": 0,
+    "completed_resume_audio_unchanged": true,
+    "protected_files_unchanged": 1216
+  },
+  "historical_tests": "22 passed 2026-10-11; no production-code changes today; not rerun",
+  "local_operation_correction": "First analysis inspection treated library_path as a directory; corrected to documented file path before export. No network retry or code change.",
+  "v2_feedback": "GET 8801/api/feedback returns empty ratings; no music revision dispatched",
+  "unverified": [
+    "listening quality",
+    "lyric/content identity",
+    "final commercial-use clearance",
+    "Live open/play/save/reopen/rerender"
+  ],
+  "backlog_candidates": 27
+}
