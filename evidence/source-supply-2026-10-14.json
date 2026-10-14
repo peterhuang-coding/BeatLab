@@ -1,0 +1,199 @@
+{
+  "batch_id": "supply-20261014",
+  "date": "2026-10-14",
+  "status": "technical_pass_listening_pending",
+  "code_sha": "980657b4a681ba97147d88133ef18e4a170f31ee",
+  "delegation": "Reused accepted Plan code; new CC requests 0; local byte operations and independent parent verification",
+  "sources": [
+    {
+      "asset_id": "891039ed9268a582",
+      "title": "I've got the A-B-C-D blues",
+      "source_url": "https://www.loc.gov/item/jukebox-37619/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-14T21:57:10",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "0853bc37e153b49a22f762c219cd86a9b1086a5f09d624800dfb70e9ffa60d7d",
+      "standardized_sha256": "77fcc0b7729d504798e28ace293d6aa53f01f4ac9bec34c891a250abfe8a3dd4",
+      "download_bytes": 5760044
+    },
+    {
+      "asset_id": "fcf8b5f90b594b1a",
+      "title": "Biddy",
+      "source_url": "https://www.loc.gov/item/jukebox-38122/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-14T21:57:14",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "7e31a4d29b287c458c94fb56f6aa0afc6dd38cf1f0fdee6704a01737ded8d0a8",
+      "standardized_sha256": "5aefdeb4c6820c89657592a7fdbf114cf90dac4bfd3cc96a9dfb3c15890b1172",
+      "download_bytes": 5775596
+    },
+    {
+      "asset_id": "c9564b5a513c7b24",
+      "title": "Jazz me blues",
+      "source_url": "https://www.loc.gov/item/jukebox-40212/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-14T21:57:18",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "92b3989a59b6c4bee338886c208e90a0dc460d56a9533b20a41b814e75fe743d",
+      "standardized_sha256": "f87f4eedbb50d193ef4296cd6d2fc47c262b302a75aa39dcfb211860ad63119e",
+      "download_bytes": 5784620
+    },
+    {
+      "asset_id": "e6f30ad3523b1069",
+      "title": "Black and white",
+      "source_url": "https://www.loc.gov/item/jukebox-127667/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-14T21:57:22",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "ececbd304244e0c9da49f544fdb20cf1420d9735efe4ddc74f4285e8a846fd65",
+      "standardized_sha256": "93fa1965784f2ab7723e69e5f42ff5d81520a19fac4f6fee6fd6b6001a7c7979",
+      "download_bytes": 5793644
+    }
+  ],
+  "analyzed_windows": 14,
+  "rejected_windows": [
+    {
+      "asset_id": "fcf8b5f90b594b1a",
+      "start_sec": 20.712,
+      "end_sec": 30.081043084,
+      "overshoot_samples": 1.0000044000324948,
+      "reason": "exceeds_one_source_sample"
+    }
+  ],
+  "boundary_corrections": [
+    {
+      "asset_id": "e6f30ad3523b1069",
+      "original_end": 30.175011338,
+      "corrected_end": 30.17501133786848,
+      "overshoot_samples": 5.800096403163479e-06
+    }
+  ],
+  "cuts": [
+    {
+      "filename": "891039ed9268a582_00.wav",
+      "sha256": "d6a26a7b9ba45f852ae85823c87857ba9b7d8de3698da561d50203c12cee9fa2",
+      "frames": 407572,
+      "peak": 0.644317626953125,
+      "rms_db": -21.571501327554756,
+      "max_sample_error": 3.7082798359788782e-09
+    },
+    {
+      "filename": "891039ed9268a582_01.wav",
+      "sha256": "5056290faf1c4c1ba2cc9f1fe03d7f00eebf47eeb755c5e37d2f909dbb2c3fdb",
+      "frames": 666615,
+      "peak": 0.701873779296875,
+      "rms_db": -21.88876023311697,
+      "max_sample_error": 3.7082798359788782e-09
+    },
+    {
+      "filename": "891039ed9268a582_02.wav",
+      "sha256": "886422da31bf4a5f48c3a7ce812ddbc945a2fddb660e3c3d28ed8a7f32c6a865",
+      "frames": 248813,
+      "peak": 0.411163330078125,
+      "rms_db": -23.190734251182263,
+      "max_sample_error": 2.8577569338716913e-09
+    },
+    {
+      "filename": "fcf8b5f90b594b1a_00.wav",
+      "sha256": "1a9bb4f47ed12390b8726ec517fe59a8b8c5cffd8799178c4c5d9ac608278f9c",
+      "frames": 215031,
+      "peak": 0.51947021484375,
+      "rms_db": -22.812138127312274,
+      "max_sample_error": 1.8031085444181194e-09
+    },
+    {
+      "filename": "fcf8b5f90b594b1a_01.wav",
+      "sha256": "8424595a4d20cfd8c2ba592344047979da3153bc0f2404b38861132feabec5f3",
+      "frames": 642052,
+      "peak": 0.5791015625,
+      "rms_db": -20.739182196746825,
+      "max_sample_error": 7.008308683387199e-09
+    },
+    {
+      "filename": "c9564b5a513c7b24_00.wav",
+      "sha256": "08e872770e16a49bd0109350191db048497f73919423d51055e80d792c4e51f4",
+      "frames": 323605,
+      "peak": 0.688720703125,
+      "rms_db": -17.830928005654442,
+      "max_sample_error": 3.7082798359788782e-09
+    },
+    {
+      "filename": "c9564b5a513c7b24_01.wav",
+      "sha256": "8207642da0492d1926080d15930f4bb7c5b9aefbb6bd0deef989ebfda8041c75",
+      "frames": 184294,
+      "peak": 0.557464599609375,
+      "rms_db": -19.10330433762901,
+      "max_sample_error": 7.348517849781189e-09
+    },
+    {
+      "filename": "c9564b5a513c7b24_02.wav",
+      "sha256": "a789f2cc2d7530ef515fc9b7441357ccc816fe6102cb273aae4705415c004053",
+      "frames": 154614,
+      "peak": 0.69390869140625,
+      "rms_db": -19.629720613774815,
+      "max_sample_error": 7.14439235549591e-09
+    },
+    {
+      "filename": "c9564b5a513c7b24_03.wav",
+      "sha256": "4a36696d07fef7a55251a4734caba7f9b42598536357b8073de694471d3cb3e8",
+      "frames": 370705,
+      "peak": 0.516693115234375,
+      "rms_db": -18.898395505437694,
+      "max_sample_error": 1.3200115389633282e-08
+    },
+    {
+      "filename": "e6f30ad3523b1069_00.wav",
+      "sha256": "bc9db39e030b1135a40109a9e36d6c57aa4fae58d95895b331bbef4f4e573d86",
+      "frames": 124935,
+      "peak": 0.265594482421875,
+      "rms_db": -24.4027346405122,
+      "max_sample_error": 3.6742589248905944e-09
+    },
+    {
+      "filename": "e6f30ad3523b1069_01.wav",
+      "sha256": "f651933118730613acd9f341d580dedf3fec742fb533d5ffc3906354ca2315f7",
+      "frames": 107516,
+      "peak": 0.707733154296875,
+      "rms_db": -26.292857689908267,
+      "max_sample_error": 1.8371294624452972e-09
+    },
+    {
+      "filename": "e6f30ad3523b1069_02.wav",
+      "sha256": "0a7ae85d4e0ce4569e47a4a6ad1462f0a6961a4355fdcea7f510f80c1eafe023",
+      "frames": 280564,
+      "peak": 0.693023681640625,
+      "rms_db": -23.40473959149236,
+      "max_sample_error": 5.579430223390247e-09
+    },
+    {
+      "filename": "e6f30ad3523b1069_03.wav",
+      "sha256": "5c54d6455e583951ba3e334e5dff3d3c594d8a8cabc8ce619a358a4dd9d2b7e6",
+      "frames": 688667,
+      "peak": 0.34735107421875,
+      "rms_db": -26.071176808290957,
+      "max_sample_error": 6.80418318910192e-09
+    }
+  ],
+  "max_sample_error": 1.3200115389633282e-08,
+  "checks": {
+    "original_standardized_candidate_sha": true,
+    "current_rights_snapshot_sha": true,
+    "same_source_overlap_above_half_second": 0,
+    "duplicates_against_main_and_prior_batch": 0,
+    "exact_five_ms_fade_with_float32_tolerance": true,
+    "repeat_export_exit": 2,
+    "repeat_export_unchanged": true,
+    "completed_resume_network_calls": 0,
+    "completed_resume_audio_unchanged": true,
+    "protected_files_unchanged": 1228
+  },
+  "historical_tests": "22 passed 2026-10-11; no production-code changes today; not rerun",
+  "v2_feedback": "GET 8801/api/feedback returns empty ratings; no music revision dispatched",
+  "unverified": [
+    "listening quality",
+    "lyric/content identity",
+    "final commercial-use clearance",
+    "Live open/play/save/reopen/rerender"
+  ],
+  "backlog_candidates": 40
+}
