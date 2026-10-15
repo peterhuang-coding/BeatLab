@@ -54,3 +54,13 @@ CC 使用固定交接包、最小合成材料，在暂存目录实现脚本与�
 - [x] 交付3a26de4e81018a4426be9ec763e807b79bf8ccc5普通push，远端SHA一致；Notion新段落与固定SHA读回，Hub latest/session/input字节一致。
 
 详见 `docs/research/2026-10-14-source-supply.md`；KO II/MIDI导入讨论不扩大本批供给范围。
+
+## 2026-10-15 例行批次
+
+- [x] 前4批技术验收/40候选、当前主库比对、固定ID/在途/磁盘检查。
+- [x] 实时用途验证后下载4源；11窗口导出11切片，1舍入校正、无拒收。
+- [x] 来源/SHA/PCM/拒覆盖/零网络恢复及1243旧文件保护通过；累计51候选待试听。
+- [x] v2评分API空、歌曲不改；复用Plan脚本，新CC请求0。
+- [ ] 本轮报告、证据和状态普通push并核对远端，回填Notion与Hub。
+
+详见 `docs/research/2026-10-15-source-supply.md`，每日上限及原有停止条件保持。

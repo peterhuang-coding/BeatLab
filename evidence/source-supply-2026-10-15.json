@@ -1,0 +1,175 @@
+{
+  "batch_id": "supply-20261015",
+  "date": "2026-10-15",
+  "status": "technical_pass_listening_pending",
+  "code_sha": "0a6b6c01eda4d1c85216b43558ad4b619e2423cc",
+  "delegation": "Reused accepted Plan code; new CC requests 0; local byte operations and independent parent verification",
+  "sources": [
+    {
+      "asset_id": "b317ecece9ce360e",
+      "title": "Jolly jingles",
+      "source_url": "https://www.loc.gov/item/jukebox-129897/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-15T22:03:44",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "0be1663feaf202fcf30e615514337c622923d2413da66653e5e30b6e084335d1",
+      "standardized_sha256": "80f5c4bb2391227e7f787395a1ec94f2d70615a2682609b9980b7354d91e6a1b",
+      "download_bytes": 5557292
+    },
+    {
+      "asset_id": "8db7f21f70335226",
+      "title": "Bo-la-bo",
+      "source_url": "https://www.loc.gov/item/jukebox-34364/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-15T22:03:48",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "d8201fa40b937ba3936bfcbd83cc4111dc806d04268ae083531f43cbc55d09f3",
+      "standardized_sha256": "93aff1fabf50f00dc1451bd7b3756772f77156ae00a50cba3fb98e42e7873773",
+      "download_bytes": 5784620
+    },
+    {
+      "asset_id": "d20db393f6e04d81",
+      "title": "Kansas City blues",
+      "source_url": "https://www.loc.gov/item/jukebox-19478/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-15T22:03:51",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "1b23f4f058e7d307f846c09c2d340b09f3b66a085890713087c830ac3166d646",
+      "standardized_sha256": "37800e8071e3295e8e3b4592ed8098dd57a0fdec7d5f32ed96339c2ee3cc8b4a",
+      "download_bytes": 1370924
+    },
+    {
+      "asset_id": "91147f06e0241ee4",
+      "title": "Bright eyes",
+      "source_url": "https://www.loc.gov/item/jukebox-39372/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-15T22:03:55",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "e1e8faed0bbae474cf9e4bcdcbf6acdde2089644ac9302cbdbf3af61988e3e82",
+      "standardized_sha256": "b98fe8ca1399ef292aa337b69829c5431c39f3d25f04fc3b7501f493de65705a",
+      "download_bytes": 5773484
+    }
+  ],
+  "analyzed_windows": 11,
+  "rejected_windows": [],
+  "boundary_corrections": [
+    {
+      "asset_id": "b317ecece9ce360e",
+      "original_end": 28.944036281,
+      "corrected_end": 28.944013605442176,
+      "overshoot_samples": 0.9999920999739231
+    }
+  ],
+  "cuts": [
+    {
+      "filename": "b317ecece9ce360e_00.wav",
+      "sha256": "e06266a9963af3a4698e77ba65f35f6973ba9ef337909b4d7ae027d880251613",
+      "frames": 213003,
+      "peak": 0.355926513671875,
+      "rms_db": -25.70592214138678,
+      "max_sample_error": 3.6742589248905944e-09
+    },
+    {
+      "filename": "b317ecece9ce360e_01.wav",
+      "sha256": "a01a74a1af1fada0692036d457d7bdd3ecc0f9144a926268477d4f34c53dc04f",
+      "frames": 573432,
+      "peak": 0.69427490234375,
+      "rms_db": -25.612717742632064,
+      "max_sample_error": 6.940266861210631e-09
+    },
+    {
+      "filename": "b317ecece9ce360e_02.wav",
+      "sha256": "4a2155fb50acd00c78c8817efd071b55f1b57f3178a4e22a655538ea1da356fa",
+      "frames": 359415,
+      "peak": 0.328338623046875,
+      "rms_db": -25.64636281820174,
+      "max_sample_error": 3.538175266659671e-09
+    },
+    {
+      "filename": "b317ecece9ce360e_03.wav",
+      "sha256": "3ecaac916e8093d0a06a99ec059f705815b2fa95801031d02bf36914a8683a14",
+      "frames": 130581,
+      "peak": 0.34716796875,
+      "rms_db": -24.591205580204853,
+      "max_sample_error": 1.5989830501328406e-09
+    },
+    {
+      "filename": "8db7f21f70335226_00.wav",
+      "sha256": "5d03dc35b2cc14ef5160cb547d1cc2385036086617452029931f3e138c9199f3",
+      "frames": 634863,
+      "peak": 0.70843505859375,
+      "rms_db": -15.715788847454329,
+      "max_sample_error": 7.212434177672478e-09
+    },
+    {
+      "filename": "8db7f21f70335226_01.wav",
+      "sha256": "0b8fa9362475b6ce21cc014fea44dde3268df42b2f35e5d9174cf26b7f635773",
+      "frames": 337938,
+      "peak": 0.677581787109375,
+      "rms_db": -16.53058045435444,
+      "max_sample_error": 7.4165596719577564e-09
+    },
+    {
+      "filename": "8db7f21f70335226_02.wav",
+      "sha256": "d87299a61e6123f7801ce10049daeb14a1d6a40bd0dfd6c608a9f955fbc6bcfc",
+      "frames": 103415,
+      "peak": 0.692230224609375,
+      "rms_db": -16.622575957664424,
+      "max_sample_error": 1.4833119399426664e-08
+    },
+    {
+      "filename": "d20db393f6e04d81_00.wav",
+      "sha256": "d40d9e5055cd863ceff6bc5be64c81652b95e9ac80c5abe98397c365805aa2fb",
+      "frames": 103415,
+      "peak": 0.48309326171875,
+      "rms_db": -22.0522617663664,
+      "max_sample_error": 7.348517849781189e-09
+    },
+    {
+      "filename": "d20db393f6e04d81_01.wav",
+      "sha256": "d917b98f3af0c4983820355176f590153b0539a12e813c8135b9274e2a4dc630",
+      "frames": 168462,
+      "peak": 0.7078857421875,
+      "rms_db": -20.83248024859008,
+      "max_sample_error": 1.701045804214374e-09
+    },
+    {
+      "filename": "91147f06e0241ee4_00.wav",
+      "sha256": "cd5be662062b369913a85c85755f0c73388243ab8a451be2896d0e57b71b076d",
+      "frames": 162817,
+      "peak": 0.707611083984375,
+      "rms_db": -16.504130613161447,
+      "max_sample_error": 3.6742589248905944e-09
+    },
+    {
+      "filename": "91147f06e0241ee4_01.wav",
+      "sha256": "9f9552207627236988f433e529abd91a6862c2507533c6ad090802a088865dc9",
+      "frames": 349184,
+      "peak": 0.600860595703125,
+      "rms_db": -18.545375409852948,
+      "max_sample_error": 6.80418318910192e-09
+    }
+  ],
+  "max_sample_error": 1.4833119399426664e-08,
+  "checks": {
+    "original_standardized_candidate_sha": true,
+    "current_rights_snapshot_sha": true,
+    "same_source_overlap_above_half_second": 0,
+    "duplicates_against_main_and_prior_batch": 0,
+    "exact_five_ms_fade_with_float32_tolerance": true,
+    "repeat_export_exit": 2,
+    "repeat_export_unchanged": true,
+    "completed_resume_network_calls": 0,
+    "completed_resume_audio_unchanged": true,
+    "protected_files_unchanged": 1243
+  },
+  "historical_tests": "22 passed 2026-10-11; no production-code changes today; not rerun",
+  "v2_feedback": "GET 8801/api/feedback returns empty ratings; no music revision dispatched",
+  "unverified": [
+    "listening quality",
+    "lyric/content identity",
+    "final commercial-use clearance",
+    "Live open/play/save/reopen/rerender"
+  ],
+  "backlog_candidates": 51
+}
