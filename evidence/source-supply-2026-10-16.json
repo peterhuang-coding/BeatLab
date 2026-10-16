@@ -1,0 +1,211 @@
+{
+  "batch_id": "supply-20261016",
+  "date": "2026-10-16",
+  "status": "technical_pass_listening_pending",
+  "code_sha": "d4de0ce25b3eb2bd13d73f5ed8c5f9280266aa6b",
+  "delegation": "Reused accepted Plan code; new CC requests 0; local byte operations and independent parent verification",
+  "sources": [
+    {
+      "asset_id": "7cbd0dbaf5dd4107",
+      "title": "Livery stable blues",
+      "source_url": "https://www.loc.gov/item/jukebox-186254/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-16T22:01:40",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "d7bf3c9c4164889cb966f795aa53dfd0e43114ae20f470e70df8dc39a037e7e3",
+      "standardized_sha256": "4fa798a74898da9e59e2fb30161fe6eea748ab96c56ca2a45dcb2dd130a582b6",
+      "download_bytes": 5766764
+    },
+    {
+      "asset_id": "db758e39b0532d44",
+      "title": "Broadway Rose",
+      "source_url": "https://www.loc.gov/item/jukebox-39314/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-16T22:01:44",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "258cf2b0d099554fd1dc7fe2a611d1f4f381764da74396de8adaf334818d63e1",
+      "standardized_sha256": "e8fa21061f6bbef7596a30fcf0e65c8a3e02f186ae9514cc1d9e7ebe5955719d",
+      "download_bytes": 5789036
+    },
+    {
+      "asset_id": "02e6c981375ffec1",
+      "title": "Money blues",
+      "source_url": "https://www.loc.gov/item/jukebox-19693/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-blues/use/",
+      "rights_retrieved_at": "2026-10-16T22:01:48",
+      "catalog_sha256": "69c53685948cdef3443d912d53670e8f1e71a50dafe48248a2da811d9a034769",
+      "original_sha256": "c7d7a50be83e199d5d215ce6cc2400dd4b0ccb032184958982009e07a54d198d",
+      "standardized_sha256": "6548d3a93000e194603e9c323614def978fd9e442994aa4a866e0b4cece1990c",
+      "download_bytes": 5766764
+    },
+    {
+      "asset_id": "4dc05858bbb614eb",
+      "title": "Canadian capers",
+      "source_url": "https://www.loc.gov/item/jukebox-42409/",
+      "rights_url": "https://citizen-dj.labs.loc.gov/loc-jukebox-jazz/use/",
+      "rights_retrieved_at": "2026-10-16T22:01:51",
+      "catalog_sha256": "74980f45a07691050f305aa31c2353939b79a71fa0cc3d314dd1dff5fabcfce5",
+      "original_sha256": "41d5545e0969b8e2007594f6a59ccb35e22ba69f6ab55e88a26177a5fb41a856",
+      "standardized_sha256": "1a0f8b8d4de932921b3e3794c88dbae95b63c76b5cdb29d1dd74c7126341dc33",
+      "download_bytes": 4170668
+    }
+  ],
+  "analyzed_windows": 14,
+  "rejected_windows": [],
+  "boundary_corrections": [
+    {
+      "asset_id": "7cbd0dbaf5dd4107",
+      "original_end": 30.035011338,
+      "corrected_end": 30.035011337868482,
+      "overshoot_samples": 5.799939728490244e-06
+    },
+    {
+      "asset_id": "02e6c981375ffec1",
+      "original_end": 30.035011338,
+      "corrected_end": 30.035011337868482,
+      "overshoot_samples": 5.799939728490244e-06
+    },
+    {
+      "asset_id": "4dc05858bbb614eb",
+      "original_end": 21.722040816,
+      "corrected_end": 21.72201814058957,
+      "overshoot_samples": 0.9999856000117546
+    }
+  ],
+  "cuts": [
+    {
+      "filename": "7cbd0dbaf5dd4107_00.wav",
+      "sha256": "410a3f458f42c6342043f8ddefec1c48b72f429fa16d0e5e3a9d0736d86b535e",
+      "frames": 289781,
+      "peak": 0.62445068359375,
+      "rms_db": -18.349266162448433,
+      "max_sample_error": 7.348517822025613e-09
+    },
+    {
+      "filename": "7cbd0dbaf5dd4107_01.wav",
+      "sha256": "0a7c38caad40e98c34bfacdeb95556d1b3afb04a0aecebed588d5f0b8a679013",
+      "frames": 535550,
+      "peak": 0.708251953125,
+      "rms_db": -17.394196519479234,
+      "max_sample_error": 7.348517849781189e-09
+    },
+    {
+      "filename": "7cbd0dbaf5dd4107_02.wav",
+      "sha256": "0099f701dfb6473e7aba6ad7669cc6d92c5bc991cff9de24da7588ccefe4e245",
+      "frames": 349714,
+      "peak": 0.626922607421875,
+      "rms_db": -18.875888847731023,
+      "max_sample_error": 6.6000576670610656e-09
+    },
+    {
+      "filename": "db758e39b0532d44_00.wav",
+      "sha256": "ee1cbaa3f762800bd4ad296471bb67120826b30a2f02e6505bc08f53444cd9bf",
+      "frames": 495595,
+      "peak": 0.643524169921875,
+      "rms_db": -19.42942715442235,
+      "max_sample_error": 1.530941221017379e-09
+    },
+    {
+      "filename": "db758e39b0532d44_01.wav",
+      "sha256": "a934ee07c8c1d77a60824bb58e2ffa727de73e6f9c0c8245060d83e4efa2535c",
+      "frames": 339967,
+      "peak": 0.603851318359375,
+      "rms_db": -18.95055933537746,
+      "max_sample_error": 7.14439235549591e-09
+    },
+    {
+      "filename": "db758e39b0532d44_02.wav",
+      "sha256": "22554c5dcf68320fdf5d80c015a9acbb9532b5c8e55966b21598a16ee47c9693",
+      "frames": 114704,
+      "peak": 0.5382080078125,
+      "rms_db": -21.11504862666218,
+      "max_sample_error": 6.940266861210631e-09
+    },
+    {
+      "filename": "db758e39b0532d44_03.wav",
+      "sha256": "0481336717e44e04fcd216cdf4021a412e6db14f52a1674622aad6dbac61a54a",
+      "frames": 379393,
+      "peak": 0.7149658203125,
+      "rms_db": -18.895756894273585,
+      "max_sample_error": 1.3064031745280147e-08
+    },
+    {
+      "filename": "02e6c981375ffec1_00.wav",
+      "sha256": "df3b3bb733521530040122e1106279c3c2e27acea17cfe68b3e47593bdc73154",
+      "frames": 115718,
+      "peak": 0.609130859375,
+      "rms_db": -18.002447628945202,
+      "max_sample_error": 9.525856492498264e-09
+    },
+    {
+      "filename": "02e6c981375ffec1_01.wav",
+      "sha256": "92a4032f4f0d26d18f577f3cc40ddff7d75c1f45bde96ba6f339c22f3910440c",
+      "frames": 89082,
+      "peak": 0.6702880859375,
+      "rms_db": -17.66875960959862,
+      "max_sample_error": 1.4697035699562377e-08
+    },
+    {
+      "filename": "02e6c981375ffec1_02.wav",
+      "sha256": "9826cca9069f40ab4032bcc3f34cbcd21e95b366710dfab4aec7e93ca7d425f2",
+      "frames": 315403,
+      "peak": 0.67486572265625,
+      "rms_db": -18.345031594895204,
+      "max_sample_error": 7.348517849781189e-09
+    },
+    {
+      "filename": "02e6c981375ffec1_03.wav",
+      "sha256": "27792807d36a6d57dbe23309bf18b7f8b2840874d06b49bb4223380d182a56de",
+      "frames": 282109,
+      "peak": 0.675384521484375,
+      "rms_db": -18.860889029642077,
+      "max_sample_error": 7.348517822025613e-09
+    },
+    {
+      "filename": "4dc05858bbb614eb_00.wav",
+      "sha256": "c943abfb0f16f398191f1dea178cf757fa779e79161acb23fc7a99bd5a719346",
+      "frames": 657398,
+      "peak": 0.71343994140625,
+      "rms_db": -20.560244188837558,
+      "max_sample_error": 3.538175266659671e-09
+    },
+    {
+      "filename": "4dc05858bbb614eb_01.wav",
+      "sha256": "4b66e18d9a6c0424cf561f104288a7ca06a6761925e94ebd12592a701b3d0a66",
+      "frames": 208902,
+      "peak": 0.655975341796875,
+      "rms_db": -19.86854632135064,
+      "max_sample_error": 7.348517849781189e-09
+    },
+    {
+      "filename": "4dc05858bbb614eb_02.wav",
+      "sha256": "3aa712c4e5c124de454f91fbc76133cb140438aded997903db53d50e37ea46ee",
+      "frames": 91641,
+      "peak": 0.468658447265625,
+      "rms_db": -24.095224755716526,
+      "max_sample_error": 1.4697035699562377e-08
+    }
+  ],
+  "max_sample_error": 1.4697035699562377e-08,
+  "checks": {
+    "original_standardized_candidate_sha": true,
+    "current_rights_snapshot_sha": true,
+    "same_source_overlap_above_half_second": 0,
+    "duplicates_against_main_and_prior_batch": 0,
+    "exact_five_ms_fade_with_float32_tolerance": true,
+    "repeat_export_exit": 2,
+    "repeat_export_unchanged": true,
+    "completed_resume_network_calls": 0,
+    "completed_resume_audio_unchanged": true,
+    "protected_files_unchanged": 1256
+  },
+  "historical_tests": "22 passed 2026-10-11; no production-code changes today; not rerun",
+  "v2_feedback": "GET 8801/api/feedback returns empty ratings; no music revision dispatched",
+  "unverified": [
+    "listening quality",
+    "lyric/content identity",
+    "final commercial-use clearance",
+    "Live open/play/save/reopen/rerender"
+  ],
+  "backlog_candidates": 65
+}

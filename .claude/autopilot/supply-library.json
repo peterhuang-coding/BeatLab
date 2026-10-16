@@ -21,8 +21,8 @@
     "Citizen DJ LOC Jazz"
   ],
   "data_boundary": "Only synthetic contracts/public code to CC; local worker handles real audio and SQLite. No real audio/DB in Git.",
-  "current_batch": "supply-20261015",
-  "current_stage": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011/library/crates/supply-20261015",
+  "current_batch": "supply-20261016",
+  "current_stage": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011/library/crates/supply-20261016",
   "cc_requests": [
     "beatlab-supply-cuts-20261011-a1"
   ],
@@ -74,9 +74,18 @@
       "rejected_windows": 0,
       "parent_review": "technical_pass_listening_pending",
       "directory": "/Volumes/SanDisk2TB/BeatLab/library/candidates/supply-20261015"
+    },
+    {
+      "id": "supply-20261016",
+      "downloads": 4,
+      "candidate_windows": 14,
+      "exported_cuts": 14,
+      "rejected_windows": 0,
+      "parent_review": "technical_pass_listening_pending",
+      "directory": "/Volumes/SanDisk2TB/BeatLab/library/candidates/supply-20261016"
     }
   ],
-  "download_test": "2026-10-15: 4/4 sources; 11 cuts; 0 rejected boundaries; 1 correction; SHA/PCM/zero-network resume; 1243 protected files unchanged",
+  "download_test": "2026-10-16: 4/4 sources; 14 cuts; 0 rejected boundaries; 3 corrections; SHA/PCM/zero-network resume; 1256 protected files unchanged",
   "automation_enabled_for_supply": true,
   "music_batch": "CITY-REVISION v2 10/10 delivered; fresh API ratings empty; no music regeneration",
   "next_step": "Next daily22: inspect fixed current batch and backlog, then at most one new bounded supply batch; parent verifies each.",
@@ -87,14 +96,14 @@
   "cc_outcome": "accepted_with_changes; runbook corrected; implementation/tests unchanged",
   "candidate_library": "/Volumes/SanDisk2TB/BeatLab/library/candidates",
   "automation_readback": "name/prompt/daily22/ACTIVE/target verified 2026-10-11",
-  "report": "docs/research/2026-10-15-source-supply.md",
-  "evidence": "evidence/source-supply-2026-10-15.json",
-  "delivery_commit": "1fda6c16dc443bab4c9e3233ba8b3d2bc6dd800d",
-  "remote_sha_verified": true,
-  "notion_sync": "2026-10-15 project paragraph and pinned commit readback verified",
-  "hub_sync": "latest/session20261015-220736-50500/input byte-equal verified",
-  "candidate_backlog": 51,
-  "last_checked_at": "2026-10-15T22:06:38.141766+08:00",
+  "report": "docs/research/2026-10-16-source-supply.md",
+  "evidence": "evidence/source-supply-2026-10-16.json",
+  "delivery_commit": null,
+  "remote_sha_verified": false,
+  "notion_sync": "pending this batch",
+  "hub_sync": "pending this batch",
+  "candidate_backlog": 65,
+  "last_checked_at": "2026-10-16T22:04:43.748996+08:00",
   "last_run_cc_requests": 0,
   "last_run_execution": "Reused accepted Plan code; local byte operations and parent verification"
 }
