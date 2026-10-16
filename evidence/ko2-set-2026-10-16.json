@@ -1,0 +1,512 @@
+{
+  "task_id": "KO2-SET-20261016",
+  "verified_at": "2026-10-17T00:22:52.358077+08:00",
+  "audio": {
+    "set_id": "night-market-ko2-v1",
+    "manifest_sha256": "5a8705bfa8d90f9993735928e740045a4252cd53395f724e6e7452500f2b8a14",
+    "pads": [
+      {
+        "id": "lead_a",
+        "sha256": "fdc496ae130cbfd122195c6e8c7a86c2d99b6e64c40ce00f3987434db81b9722",
+        "source_sha256": "740fec93efcd477f1673f315e0f585bb9f679dee857cb87c97f287b75f94ef2a",
+        "frames": 60136,
+        "peak": 0.438323974609375,
+        "pcm_error": 3.0516920445408657e-05
+      },
+      {
+        "id": "lead_b",
+        "sha256": "fc1e14f027b0832282e636d95fa9a67aca77245feb1b9e50681aad1dd779a9c4",
+        "source_sha256": "0fba011f7577d23c83ecf280a42b0537ff9daaf64f33405a06d8702083a33506",
+        "frames": 60136,
+        "peak": 0.454315185546875,
+        "pcm_error": 3.0517011102654257e-05
+      },
+      {
+        "id": "lead_c",
+        "sha256": "2208d7f39aae0e1cb1097ffe7dc3fbbe26a6907b87228a894021270fb84d1e5e",
+        "source_sha256": "983b64c45330bc80e7405f58e658f028005b77b02994935cd008ddd9ed84838f",
+        "frames": 60136,
+        "peak": 0.426025390625,
+        "pcm_error": 3.0515814786032103e-05
+      },
+      {
+        "id": "lead_d",
+        "sha256": "cee9c77c38340e96ad25cb98b1de22965b7d841e425f1051d4b7c45d67a600cb",
+        "source_sha256": "29fb49ae3f2dcb32849059744640c00d6f822c762194e33cab6b6092a184b17b",
+        "frames": 60136,
+        "peak": 0.525970458984375,
+        "pcm_error": 3.0517284717928737e-05
+      },
+      {
+        "id": "answer_a",
+        "sha256": "3dc56bba42cb35f60f9c5d6254e26738b6c206f2f4c44d5f3bc9854d869291d9",
+        "source_sha256": "1f3f7b6f25ed8331c5c1e6edf25e336f351cc74bfec95e3ef1d5164da356ca37",
+        "frames": 60136,
+        "peak": 0.458221435546875,
+        "pcm_error": 3.0516914890657554e-05
+      },
+      {
+        "id": "answer_b",
+        "sha256": "6b3945c0a6d885d410451379ff5f23e679931172837891ed2bf65818655dd712",
+        "source_sha256": "ca50bdd10acc5bff2f2205395b07141b9d042cd97d674006fa3d8de85dd89385",
+        "frames": 60136,
+        "peak": 0.440948486328125,
+        "pcm_error": 3.0516304566303998e-05
+      },
+      {
+        "id": "answer_c",
+        "sha256": "c0473ff5b057f241e1c0fc7f16dca3ef66bd080ed82f8257f3db09a6df63e2d5",
+        "source_sha256": "7723be9aac292f23f616827b5af6254e8ce02a4ac4d877a59ae6fc699cb9c662",
+        "frames": 60136,
+        "peak": 0.4620361328125,
+        "pcm_error": 3.051730109306615e-05
+      },
+      {
+        "id": "answer_d",
+        "sha256": "4a89266556bd36058d03b39d906acf11a5cff2dfdeb857258c25a21b09da53b6",
+        "source_sha256": "660f32b187083c17602d58055d88797f6cab2390f088946cff4efd72bdf7eac3",
+        "frames": 60136,
+        "peak": 0.525787353515625,
+        "pcm_error": 3.0517329927440273e-05
+      },
+      {
+        "id": "turn_a",
+        "sha256": "16221d7658a1166a33c6a0ab9a3953f5b12ea5c273e18745a0c8bc997964ec00",
+        "source_sha256": "2ed03258e7406c29f87b73b08d1312a19cdd3afe5708f9ddcb60be35d07b446a",
+        "frames": 120273,
+        "peak": 0.43341064453125,
+        "pcm_error": 3.0517043460576154e-05
+      },
+      {
+        "id": "turn_b",
+        "sha256": "47e54076f39fb5a57bacdf3acc3f21a02c4307ae0e5cab99cb95e73dc92b81b0",
+        "source_sha256": "23631069503c5526445406c33bbfd721cf5958a77ec1b8cdc0a0d188db676033",
+        "frames": 120273,
+        "peak": 0.529266357421875,
+        "pcm_error": 3.051696249620206e-05
+      },
+      {
+        "id": "kick",
+        "sha256": "be168772a814b9a3c6bffe3e1bfd8ba9f0a15c3b00ae411094581d1fca79467c",
+        "source_sha256": "2776a19d36da3bf84e0e97f91be6f38b536a2cfcba151252ddef12648571622b",
+        "frames": 30870,
+        "peak": 0.5494384765625,
+        "pcm_error": 3.0516405852307887e-05
+      },
+      {
+        "id": "snare",
+        "sha256": "429c5ddf3e9bd55245e0f4dc67ed91024dbdc589b423e267a548c4b9b1ee7923",
+        "source_sha256": "836736fd4caa90f8b8a54c07da7de32588975db793559b14aa829c51e1093d60",
+        "frames": 7473,
+        "peak": 0.343170166015625,
+        "pcm_error": 3.0515748248771755e-05
+      },
+      {
+        "id": "hat",
+        "sha256": "a97e42bc8cc3194e2cec21559b804ec80fe1361fb22f92e4d8215a2a8696e535",
+        "source_sha256": "ebce29560269a5a1933e85332334e3488337b4f13ef2a4cf7d372e4be28a0e28",
+        "frames": 9702,
+        "peak": 0.0655517578125,
+        "pcm_error": 3.051714611059147e-05
+      },
+      {
+        "id": "bass_30",
+        "sha256": "ef1672f6279d9f9ddcb2387e5404fc20ec9f099c1bd82f727d28df3e0981547e",
+        "source_sha256": "3433111b302a21d160f7984e7aae1128c8b53c7988ec022b7ae7d9d7a52460fb",
+        "frames": 37585,
+        "peak": 0.37603759765625,
+        "pcm_error": 3.051643957308059e-05
+      },
+      {
+        "id": "bass_32",
+        "sha256": "97d295923f3d41b9658d96d5c8edbd5aeca5f89e1dd96204e20a49a310915bbb",
+        "source_sha256": "5ca004b9ed649aa91d2407d822b535490b04b364ae7af72b2148c8c318ad5064",
+        "frames": 37585,
+        "peak": 0.374786376953125,
+        "pcm_error": 3.0517229624231175e-05
+      },
+      {
+        "id": "bass_35",
+        "sha256": "b7e644b12451a39264b1ebdccabda316bad1d283e13443e7b8119dc0d6f3b182",
+        "source_sha256": "8df041af9040d64b9d2c8d37320a80c33554edbaee61db14f23b2666aa4999dc",
+        "frames": 37585,
+        "peak": 0.3756103515625,
+        "pcm_error": 3.051714131576365e-05
+      },
+      {
+        "id": "bass_40",
+        "sha256": "e9ded34c8d029d90862deb3567dfe94880f6f7837ab3dbd9f799d2f3cdd348fa",
+        "source_sha256": "a75385f2b9d06dbf1a38ac155928bbae99d101cc684d7229f72e655133869352",
+        "frames": 37585,
+        "peak": 0.379486083984375,
+        "pcm_error": 3.051514269650224e-05
+      },
+      {
+        "id": "rim",
+        "sha256": "9de4cb64383e63a1557d8cef0bf56d03cd0dbb7fe931f64936d2283186cb1612",
+        "source_sha256": "8a1690f09b1d8a4905a83eebb132719831a57cde52fcac5b5a575cb061c0a797",
+        "frames": 22050,
+        "peak": 0.1531982421875,
+        "pcm_error": 3.0516623780534567e-05
+      },
+      {
+        "id": "piano_42",
+        "sha256": "41378482d28348eb4075a8067d736b0acbf1866ba9dee4905cb07bd9055e8bac",
+        "source_sha256": "ff2f8bff176d6d4013526c97785251f1dc0b28644ff3bd5e2bc6a677c77ab996",
+        "frames": 30068,
+        "peak": 0.1611328125,
+        "pcm_error": 3.0517031242509318e-05
+      },
+      {
+        "id": "piano_47",
+        "sha256": "3f629fc61616934c494be7bde117fe9167b93d178a4413f83f1d575cc23d46f1",
+        "source_sha256": "268a05974ed2530fd4f1dbb4dd98107d539881ef572fe4281e38d53ca8d5a703",
+        "frames": 30068,
+        "peak": 0.18975830078125,
+        "pcm_error": 3.051643532640813e-05
+      },
+      {
+        "id": "piano_49",
+        "sha256": "9fa8f2f49c935955606e6d3df50b07019d70d499dedcad79316957c157fd34ac",
+        "source_sha256": "6636b3a3f3f701747ce173fe186fdfbbb1324988aa6ec00d155f83a25565eaf7",
+        "frames": 30068,
+        "peak": 0.203033447265625,
+        "pcm_error": 3.0515073114733508e-05
+      },
+      {
+        "id": "piano_52",
+        "sha256": "7ac776fd39d6df6c4ed64267eb517be07193569221c220170475ec64dd4da5a6",
+        "source_sha256": "6b303f24ab4451381ac015573b324ba2cdcbb1404634da9c2e7c7464ed0f9714",
+        "frames": 30068,
+        "peak": 0.2259521484375,
+        "pcm_error": 3.0516866536354353e-05
+      },
+      {
+        "id": "piano_54",
+        "sha256": "208b728cd19e5c793553f9e5640768d6d19a6f6e99f67836d0ab11652c240873",
+        "source_sha256": "e00074e01e74b80d28f518af7165b54b0109a61421061c47a629b24a8d686ca5",
+        "frames": 30068,
+        "peak": 0.240936279296875,
+        "pcm_error": 3.051700091772063e-05
+      },
+      {
+        "id": "piano_59",
+        "sha256": "a7fd0860233e4bcd891802a9bd9380da567cdcf90dc667fb36420e01ea932d58",
+        "source_sha256": "cd622f6aef0ab36ae21449897e2ed3e7977c06f50ef2d43f248127b7a9ad4f72",
+        "frames": 30068,
+        "peak": 0.281707763671875,
+        "pcm_error": 3.0517117341505307e-05
+      }
+    ],
+    "sample_bytes": 2246010,
+    "max_pcm_error": 3.0517329927440273e-05,
+    "demo_pcm_error": 3.048706054689654e-05,
+    "demo_seconds": 51.09090702947846,
+    "demo_peak": 0.871673583984375,
+    "peak_simultaneous_mono_voices": 6,
+    "midi_note_events": 221,
+    "protected_files": 1213,
+    "hardware_verified": false,
+    "listening_review": "pending"
+  },
+  "package": {
+    "zip_bytes": 9458481,
+    "zip_sha256": "d5ab9a66ececa1089137e823953c9415ba91efe10b42921a91fbe2a5fe1724be",
+    "files": 35,
+    "group_counts": {
+      "A": 4,
+      "B": 5,
+      "C": 5,
+      "D": 10
+    },
+    "zip_crc_and_sample_sha": true,
+    "repeat_export_and_page_refused_without_changes": true
+  },
+  "web": {
+    "http_file_checks": 35,
+    "http_sha_all_equal": true,
+    "browser_download_sha_matches": true,
+    "zip_crc_and_all_members_match": true,
+    "browser": {
+      "assigned_pads": 24,
+      "physical_grid_order": [
+        "7",
+        "8",
+        "9",
+        "4",
+        "5",
+        "6",
+        "1",
+        "2",
+        "3",
+        ".",
+        "0",
+        "ENTER"
+      ],
+      "horizontal_overflow": false,
+      "sample_button_highlights": true,
+      "demo_control_changed_to_pause": true
+    },
+    "files": [
+      {
+        "file": "D.zip",
+        "status": 200,
+        "bytes": 565615
+      },
+      {
+        "file": "set.json",
+        "status": 200,
+        "bytes": 54161
+      },
+      {
+        "file": "A.zip",
+        "status": 200,
+        "bytes": 68176
+      },
+      {
+        "file": "index.html",
+        "status": 200,
+        "bytes": 32385
+      },
+      {
+        "file": "START-HERE.md",
+        "status": 200,
+        "bytes": 1863
+      },
+      {
+        "file": "B.zip",
+        "status": 200,
+        "bytes": 664565
+      },
+      {
+        "file": "C.zip",
+        "status": 200,
+        "bytes": 661083
+      },
+      {
+        "file": "feedback-template.json",
+        "status": 200,
+        "bytes": 371
+      },
+      {
+        "file": "pad-map.csv",
+        "status": 200,
+        "bytes": 2642
+      },
+      {
+        "file": "Demo/performance.wav",
+        "status": 200,
+        "bytes": 9012480
+      },
+      {
+        "file": "Demo/performance.mid",
+        "status": 200,
+        "bytes": 1887
+      },
+      {
+        "file": "Samples/A/02-hat.wav",
+        "status": 200,
+        "bytes": 19448
+      },
+      {
+        "file": "Samples/A/03-rim.wav",
+        "status": 200,
+        "bytes": 44144
+      },
+      {
+        "file": "Samples/A/00-kick.wav",
+        "status": 200,
+        "bytes": 61784
+      },
+      {
+        "file": "Samples/A/01-snare.wav",
+        "status": 200,
+        "bytes": 14990
+      },
+      {
+        "file": "Samples/C/00-answer_a.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/C/04-turn_b.wav",
+        "status": 200,
+        "bytes": 240590
+      },
+      {
+        "file": "Samples/C/01-answer_b.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/C/03-answer_d.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/C/02-answer_c.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/D/09-piano_59.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/03-bass_40.wav",
+        "status": 200,
+        "bytes": 75214
+      },
+      {
+        "file": "Samples/D/00-bass_30.wav",
+        "status": 200,
+        "bytes": 75214
+      },
+      {
+        "file": "Samples/D/07-piano_52.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/04-piano_42.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/05-piano_47.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/02-bass_35.wav",
+        "status": 200,
+        "bytes": 75214
+      },
+      {
+        "file": "Samples/D/06-piano_49.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/08-piano_54.wav",
+        "status": 200,
+        "bytes": 60180
+      },
+      {
+        "file": "Samples/D/01-bass_32.wav",
+        "status": 200,
+        "bytes": 75214
+      },
+      {
+        "file": "Samples/B/02-lead_c.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/B/00-lead_a.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/B/04-turn_a.wav",
+        "status": 200,
+        "bytes": 240590
+      },
+      {
+        "file": "Samples/B/03-lead_d.wav",
+        "status": 200,
+        "bytes": 120316
+      },
+      {
+        "file": "Samples/B/01-lead_b.wav",
+        "status": 200,
+        "bytes": 120316
+      }
+    ]
+  },
+  "unit_tests": {
+    "total": 25,
+    "failures": 0,
+    "log_sha256": "10a9bf90bc3d4f20e992fbcaf35ec31afcaf6bdef9c0c831629322ab15867264"
+  },
+  "cc_requests": [
+    {
+      "task_id": "beatlab-ko2-export-20261016-a1",
+      "original_status": "unknown",
+      "outcome": "timeout",
+      "exit_code": 143,
+      "seconds": 900.13,
+      "result_sha256": "8f45ed72993166089ac3f3de9492d9015bef0a0f66a821718b986ab3363a7263",
+      "input_hashes": {
+        "contract.md": "acc05676cf7cce4e6aed98b66a9d222872274624dd93cf1d3954bd1b551f19b3"
+      },
+      "original_files": [
+        {
+          "path": "pipeline/ko2_set.py",
+          "sha256": "13c89ba188e5627562058cfe823aa8541d6fa5c701a88ba9238c09a9998bbd79"
+        },
+        {
+          "path": "tests/test_ko2_set.py",
+          "sha256": "58cb011353ff882de79a8cd0bfa337f852971da46d272781cb5449e38fb5c660"
+        }
+      ],
+      "permission_denials": [],
+      "disallowed_changes": [],
+      "model": "doubao-seed-evolving",
+      "effort": "high",
+      "thinking_enabled": true,
+      "adoption": "stable artifact independently verified; original receipt preserved",
+      "resubmitted": false
+    },
+    {
+      "task_id": "beatlab-ko2-page-20261016-a1",
+      "original_status": "blocked",
+      "outcome": "completed",
+      "exit_code": 0,
+      "seconds": 682.629,
+      "result_sha256": "7c40ee84aa53debc3afed17bdd40bb6a0a1555bf059fb2851ba9e954ef3c45cb",
+      "input_hashes": {
+        "contract.md": "b675afce5401d446fa9fd28b7cea0613d7cd912ebf20e9f64829d39d27722ac9"
+      },
+      "original_files": [
+        {
+          "path": "examples/ko2_set_page.py",
+          "sha256": "b317b7bcf4e0648f67ca6de3eb8711fa63ed15c6a7d448f988630cfc58656842"
+        },
+        {
+          "path": "tests/test_ko2_set_page.py",
+          "sha256": "7294182a37542d16ec7ecadfecec3a882533b75619515e550ab48cfbc0564141"
+        }
+      ],
+      "permission_denials": [],
+      "disallowed_changes": [],
+      "model": "doubao-seed-evolving",
+      "effort": "high",
+      "thinking_enabled": true,
+      "adoption": "stable artifact independently verified; original receipt preserved",
+      "resubmitted": false
+    }
+  ],
+  "project_peak_parallel": 2,
+  "global_observed_peak": 4,
+  "concurrency_deviation": "Preflight misidentified two pre-existing workers as this wave and read status instead of state; two project workers overlapped with two other workers. No further wave submitted. Future preflight must match launch PID/cwd and state across all projects.",
+  "paid_fallback": false,
+  "parent_changes": [
+    "feedback manifest SHA",
+    "stale play promise race guard with red/green test",
+    "responsive two-column grids and collapsed source details",
+    "local real sample preparation, package assembly and verification"
+  ],
+  "final_code_sha256": {
+    "pipeline/ko2_set.py": "13c89ba188e5627562058cfe823aa8541d6fa5c701a88ba9238c09a9998bbd79",
+    "examples/ko2_set_page.py": "d544a8ed32c1b740dab360843e8d5c63cb634c8ff6edbae8363afbc2fac10ef7",
+    "tests/test_ko2_set.py": "58cb011353ff882de79a8cd0bfa337f852971da46d272781cb5449e38fb5c660",
+    "tests/test_ko2_set_page.py": "7294182a37542d16ec7ecadfecec3a882533b75619515e550ab48cfbc0564141",
+    "tests/test_ko2_set_page_revision.py": "a1963406e66892ef0c4cb42193ec36d46ead3171387bb309f4acdf59514cde45"
+  },
+  "hardware_verified": false,
+  "listening_review": "pending",
+  "observability_export_review": "review_requires_finished; original unknown retained; independent adoption here",
+  "observability_page_review": "partial recorded with independent evidence; original blocked retained"
+}

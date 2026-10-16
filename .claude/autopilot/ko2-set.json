@@ -1,6 +1,6 @@
 {
   "task_id": "KO2-SET-20261016",
-  "status": "cc_running",
+  "status": "delivered_pending_hardware_and_listening",
   "authorization": "用户确认后续按set对接KO II，并要求现在做首个set。",
   "set_id": "night-market-ko2-v1",
   "parent_version": "city-03-night-market-20260927-v2-20261013",
@@ -9,12 +9,24 @@
     "beatlab-ko2-export-20261016-a1",
     "beatlab-ko2-page-20261016-a1"
   ],
-  "cc_in_flight": 2,
+  "cc_in_flight": 0,
   "peak_parallel": 2,
   "new_scheduling": false,
   "hardware_verified": false,
   "listening_review": "pending",
   "created_at": "2026-10-17T00:03:59.415166+08:00",
-  "recovery": ".cache/ko2-set-20261016; inspect fixed CC states before further action; original audio frozen; no real media sent downstream",
-  "plan": "docs/superpowers/plans/2026-10-16-ko2-set.md"
+  "recovery": "Both workers ended; stable artifacts adopted after independent verification; do not reissue. Local pack complete; next user KO II import/play/save/reopen and version-specific feedback.",
+  "plan": "docs/superpowers/plans/2026-10-16-ko2-set.md",
+  "global_observed_peak_parallel": 4,
+  "preview_url": "http://127.0.0.1:8802/night-market-ko2-v1/",
+  "manifest_sha256": "5a8705bfa8d90f9993735928e740045a4252cd53395f724e6e7452500f2b8a14",
+  "samples": 24,
+  "demo_seconds": 51.09090702947846,
+  "report": "docs/research/2026-10-16-ko2-set.md",
+  "evidence": "evidence/ko2-set-2026-10-16.json",
+  "updated_at": "2026-10-17T00:22:52.358077+08:00",
+  "cc_outcomes": {
+    "beatlab-ko2-export-20261016-a1": "unknown",
+    "beatlab-ko2-page-20261016-a1": "blocked"
+  }
 }
