@@ -81,6 +81,6 @@ CC 使用固定交接包、最小合成材料，在暂存目录实现脚本与�
 - [x] 实时用途核验后4源下载；15窗口2超边界拒收，13切片真实导出，无校正。
 - [x] 来源/SHA/PCM/拒覆盖/禁HTTP恢复及1308旧文件（含首套KO II）保护通过；累计78候选。
 - [x] v2评分API空、歌曲和set不改；复用Plan代码，新CC请求0。
-- [ ] 本轮报告、证据、状态普通push核远端；Notion/Hub同步并读回。
+- [x] 交付e58561d4fe8b64c0129bcebc68de3d311d43c224普通push核远端；Notion新段落与固定SHA读回，Hub latest/session/input字节一致。
 
 详见 `docs/research/2026-10-17-source-supply.md`。库存门禁与原每日频率保持。
