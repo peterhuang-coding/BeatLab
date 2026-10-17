@@ -21,8 +21,8 @@
     "Citizen DJ LOC Jazz"
   ],
   "data_boundary": "Only synthetic contracts/public code to CC; local worker handles real audio and SQLite. No real audio/DB in Git.",
-  "current_batch": "supply-20261016",
-  "current_stage": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011/library/crates/supply-20261016",
+  "current_batch": "supply-20261017",
+  "current_stage": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011/library/crates/supply-20261017",
   "cc_requests": [
     "beatlab-supply-cuts-20261011-a1"
   ],
@@ -83,11 +83,20 @@
       "rejected_windows": 0,
       "parent_review": "technical_pass_listening_pending",
       "directory": "/Volumes/SanDisk2TB/BeatLab/library/candidates/supply-20261016"
+    },
+    {
+      "id": "supply-20261017",
+      "downloads": 4,
+      "candidate_windows": 15,
+      "exported_cuts": 13,
+      "rejected_windows": 2,
+      "parent_review": "technical_pass_listening_pending",
+      "directory": "/Volumes/SanDisk2TB/BeatLab/library/candidates/supply-20261017"
     }
   ],
-  "download_test": "2026-10-16: 4/4 sources; 14 cuts; 0 rejected boundaries; 3 corrections; SHA/PCM/zero-network resume; 1256 protected files unchanged",
+  "download_test": "2026-10-17: 4 sources/13 cuts; 2 boundaries rejected; PCM/SHA/zero-network resume/refuse overwrite and 1308 protected files passed",
   "automation_enabled_for_supply": true,
-  "music_batch": "CITY-REVISION v2 10/10 delivered; fresh API ratings empty; no music regeneration",
+  "music_batch": "CITY v2 API ratings empty; KO2 first set remains delivered pending hardware/listening; no regeneration",
   "next_step": "Next daily22: inspect fixed current batch and backlog, then at most one new bounded supply batch; parent verifies each.",
   "registry_root": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011",
   "next_daily_batch_rule": "Reuse isolated registry DB so earlier daily downloads are remembered. Fixed supply-YYYYMMDD ID; inspect existing manifest before any network. Stop new downloads when export/review blocked.",
@@ -96,14 +105,14 @@
   "cc_outcome": "accepted_with_changes; runbook corrected; implementation/tests unchanged",
   "candidate_library": "/Volumes/SanDisk2TB/BeatLab/library/candidates",
   "automation_readback": "name/prompt/daily22/ACTIVE/target verified 2026-10-11",
-  "report": "docs/research/2026-10-16-source-supply.md",
-  "evidence": "evidence/source-supply-2026-10-16.json",
-  "delivery_commit": "6873f18aab93add8566dfc97065b8dc0dfaf44f3",
-  "remote_sha_verified": true,
-  "notion_sync": "2026-10-16 project paragraph and pinned commit readback verified",
-  "hub_sync": "latest/session20261016-220528-36093/input byte-equal verified",
-  "candidate_backlog": 65,
-  "last_checked_at": "2026-10-16T22:04:43.748996+08:00",
+  "report": "docs/research/2026-10-17-source-supply.md",
+  "evidence": "evidence/source-supply-2026-10-17.json",
+  "remote_sha_verified": false,
+  "notion_sync": "pending current batch",
+  "hub_sync": "pending current batch",
+  "candidate_backlog": 78,
+  "last_checked_at": "2026-10-17T22:03:58.045896+08:00",
   "last_run_cc_requests": 0,
-  "last_run_execution": "Reused accepted Plan code; local byte operations and parent verification"
+  "last_run_execution": "Reused accepted Plan code; local byte operations and parent verification",
+  "previous_delivery_commit": "6873f18aab93add8566dfc97065b8dc0dfaf44f3"
 }
