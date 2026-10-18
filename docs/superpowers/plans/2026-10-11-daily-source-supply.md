@@ -92,6 +92,6 @@ CC 使用固定交接包、最小合成材料，在暂存目录实现脚本与�
 - [x] 8窗口导出8切片，1处一采样点内舍入校正、无拒收；累计86候选。
 - [x] 来源/SHA/PCM/拒覆盖/禁HTTP恢复及1323旧文件保护通过；v2评分空，歌曲和set保持。
 - [x] 复用Plan代码，新CC请求0；技术结果与听感/商业用途区分。
-- [ ] 本轮交付普通push核远端，Notion固定SHA与Hub写回核验。
+- [x] 交付e19fb5769b05f49513dd43257cf349894238299a普通push核远端；Notion段落与固定SHA读回、Hub latest/session/input字节一致。
 
 详见 `docs/research/2026-10-18-source-supply.md`。上限96与每日一次保持。

@@ -116,12 +116,13 @@
   "automation_readback": "name/prompt/daily22/ACTIVE/target verified 2026-10-11",
   "report": "docs/research/2026-10-18-source-supply.md",
   "evidence": "evidence/source-supply-2026-10-18.json",
-  "remote_sha_verified": false,
-  "notion_sync": "pending",
-  "hub_sync": "pending",
+  "remote_sha_verified": true,
+  "notion_sync": "2026-10-18 section and pinned commit readback verified",
+  "hub_sync": "latest/session20261018-220243-23935/input byte-equal verified",
   "candidate_backlog": 86,
   "last_checked_at": "2026-10-18T21:59:50.815681+08:00",
   "last_run_cc_requests": 0,
   "last_run_execution": "Reused accepted Plan code; local byte operations and parent verification",
-  "previous_delivery_commit": "e58561d4fe8b64c0129bcebc68de3d311d43c224"
+  "previous_delivery_commit": "e58561d4fe8b64c0129bcebc68de3d311d43c224",
+  "delivery_commit": "e19fb5769b05f49513dd43257cf349894238299a"
 }
