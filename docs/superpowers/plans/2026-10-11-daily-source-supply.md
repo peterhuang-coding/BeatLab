@@ -95,3 +95,14 @@ CC 使用固定交接包、最小合成材料，在暂存目录实现脚本与�
 - [x] 交付e19fb5769b05f49513dd43257cf349894238299a普通push核远端；Notion段落与固定SHA读回、Hub latest/session/input字节一致。
 
 详见 `docs/research/2026-10-18-source-supply.md`。上限96与每日一次保持。
+
+## 2026-10-19 例行批次
+
+- [x] 前8批86候选技术验收/SHA、主库只读比对、固定ID/在途/磁盘核对。
+- [x] 剩余10名额，按每源最多6候选收窄为1源；实时用途核验后一次下载完成。
+- [x] Royal Garden blues的4窗口全部导出，无校正/拒收；累计90候选。
+- [x] 来源/SHA/PCM/拒覆盖/禁HTTP恢复及1333旧文件保护通过；v2评分空，音乐/set保持。
+- [x] 复用Plan代码，新CC请求0；预检字段纠错在下载前完成。
+- [ ] 本轮交付普通push核远端，Notion固定SHA及Hub写回读验。
+
+详见 `docs/research/2026-10-19-source-supply.md`，上限96与每日一次保持。
