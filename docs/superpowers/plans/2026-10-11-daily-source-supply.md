@@ -114,6 +114,6 @@ CC 使用固定交接包、最小合成材料，在暂存目录实现脚本与�
 - [x] St. Louis blues的2候选全部导出，无校正/拒收，累计92候选。
 - [x] 来源/SHA/PCM/拒覆盖/禁HTTP恢复和1339旧文件保护通过；v2评分空，音乐/set保持。
 - [x] 复用Plan工具，新CC请求0；记录用户对当前生成式体验差异的质疑，KO II回传修订建议不冒充已实现或新授权。
-- [ ] 本轮交付普通push核远端，Notion固定SHA和Hub读回核验。
+- [x] 交付bb8930aa5f9e5df05c661bf8a320004e8562f0d7普通push核远端；Notion段落与固定SHA、Hub latest/session/input读回一致。
 
 详见 `docs/research/2026-10-20-source-supply.md`。库存92，接近96停止线，后续不得超额补库；素材库存不作为创作闭环成果。

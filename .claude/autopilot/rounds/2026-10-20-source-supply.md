@@ -6,4 +6,4 @@
 
 最大PCM误差1.4697035699562377e-08；拒覆盖exit2、禁HTTP恢复0调用。报告docs/research/2026-10-20-source-supply.md，证据evidence/source-supply-2026-10-20.json，完整计划2026-10-11-daily-source-supply.md。
 
-下一步：下次每日窗口先查反馈、固定批次/失败/库存门禁，再决定供给；不自动改音乐或set。本轮无新增技术方法。同步待完成。
+下一步：下次每日窗口先查反馈、固定批次/失败/库存门禁，再决定供给；不自动改音乐或set。本轮无新增技术方法。交付bb8930aa5f9e5df05c661bf8a320004e8562f0d7普通push核远端；Notion新段落与固定SHA读回，Hub latest/session20261020-220902-5324/input字节一致。
