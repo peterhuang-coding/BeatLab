@@ -1,0 +1,27 @@
+{
+  "task_id": "beatlab-standalone-crawler-20261020-a1",
+  "logical_task_id": "standalone-crawler-20261020",
+  "status": "incomplete_timeout",
+  "project_paused": true,
+  "automation_status": "PAUSED",
+  "source_confirmation": "先做现有音源来源",
+  "execution": "cc-plan Seed Evolving thinking enabled/high",
+  "submitted_count": 1,
+  "quality_corrections": 0,
+  "actual_parallel": 1,
+  "real_network_execution": false,
+  "handoff_sha256": "f6ceab3c5a99484795cab2ca2133d1e59f288f380cb36143ba51800b9a180881",
+  "input_sha256": {
+    "contract.md": "c30a9d28a82cfd0d2c89a962d121e12d920f24cc5881b698601a91643e7ce167",
+    "reference_citizen_dj.py": "753651ad62f45b57e2f688fdc6cea3021d668259a369817a3340e81111603582"
+  },
+  "native_status": "unknown",
+  "cc_in_flight": 0,
+  "worker_pid_confirmed_ended": true,
+  "elapsed_seconds": 900.124,
+  "adopted_count": 0,
+  "evidence": "evidence/standalone-crawler-2026-10-20.json",
+  "blocker": "900s timeout; only test draft exists, crawler.py absent; independent test import fails.",
+  "next_step": "Do not replay unknown. Preserve draft and contract; a later explicitly resumed continuation must first inspect this receipt and reduce scope.",
+  "finished_at": "2026-10-20T16:06:22.936960+00:00"
+}

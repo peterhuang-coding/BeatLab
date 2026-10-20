@@ -1,0 +1,38 @@
+{
+  "task_id": "beatlab-standalone-crawler-20261020-a1",
+  "status": "incomplete_not_adopted",
+  "automation_status": "PAUSED",
+  "new_requests": 1,
+  "actual_parallel": 1,
+  "model": [
+    "doubao-seed-evolving"
+  ],
+  "thinking_enabled": true,
+  "effort": "high",
+  "elapsed_seconds": 900.124,
+  "native_status": "unknown",
+  "worker_outcome": "timeout",
+  "returncode": 143,
+  "pid_confirmed_ended": true,
+  "changed_files": [
+    {
+      "path": "tests/test_standalone_crawler.py",
+      "sha256": "b1070d24efda679483a1d4b5d8cf91218d131ef0132146eba29775335114da3d"
+    }
+  ],
+  "inputs_unchanged": {
+    "contract.md": true,
+    "reference_citizen_dj.py": true
+  },
+  "receipt_sha256": "6175aa0eb7ece32d0a1e1073084664fd06a0dc0f2565c5270a5a0df42d1d5ee1",
+  "parent_test": {
+    "command": "python -B -m unittest discover -s tests -p test_standalone_crawler.py -v",
+    "exit": 1,
+    "result": "ImportError: ModuleNotFoundError: No module named crawler; no implemented behavior tested"
+  },
+  "adopted_files": [],
+  "actual_crawls": 0,
+  "music_or_ko2_changes": 0,
+  "paid_fallback": false,
+  "retry_submitted": false
+}

@@ -1,6 +1,6 @@
 {
   "task_id": "SUPPLY-20261011",
-  "status": "daily_supply_ready",
+  "status": "paused_by_user",
   "authorization": {
     "date": "2026-10-11",
     "user_quote": "我觉得比如像音源下载啊或者切片的一些简单的工作都可以交给 plan 来做你来 check",
@@ -122,9 +122,9 @@
     }
   ],
   "download_test": "2026-10-20: 1 source/2 cuts; no correction/rejection; PCM/SHA/zero-network resume/refuse overwrite and 1339 protected files passed",
-  "automation_enabled_for_supply": true,
+  "automation_enabled_for_supply": false,
   "music_batch": "CITY v2 API ratings empty; KO2 first set remains delivered pending hardware/listening; no regeneration",
-  "next_step": "Next daily22: inspect fixed current batch and backlog, then at most one new bounded supply batch; parent verifies each.",
+  "next_step": "Wait for explicit user resume; independent crawler programming is separately authorized.",
   "registry_root": "/Volumes/SanDisk2TB/BeatLab/library/supply-staging/supply-20261011",
   "next_daily_batch_rule": "Reuse isolated registry DB so earlier daily downloads are remembered. Fixed supply-YYYYMMDD ID; inspect existing manifest before any network. Stop new downloads when export/review blocked.",
   "scope_decision": "Independent supply work may continue while ten-beat subjective review is pending; music revisions remain feedback-driven.",
@@ -142,5 +142,7 @@
   "last_run_cc_requests": 0,
   "last_run_execution": "Reused accepted Plan code; local byte operations and parent verification",
   "previous_delivery_commit": "4250a4a5611e904f622d42867d1a80940c8b79b6",
-  "delivery_commit": "bb8930aa5f9e5df05c661bf8a320004e8562f0d7"
+  "delivery_commit": "bb8930aa5f9e5df05c661bf8a320004e8562f0d7",
+  "paused_at": "2026-10-20",
+  "pause_reason": "User: 这个项目暂停先；独立现有音源爬虫交Plan，KO2后续再接。"
 }
