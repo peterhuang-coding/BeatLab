@@ -23,5 +23,10 @@
   "evidence": "evidence/standalone-crawler-2026-10-20.json",
   "blocker": "900s timeout; only test draft exists, crawler.py absent; independent test import fails.",
   "next_step": "Do not replay unknown. Preserve draft and contract; a later explicitly resumed continuation must first inspect this receipt and reduce scope.",
-  "finished_at": "2026-10-20T16:06:22.936960+00:00"
+  "finished_at": "2026-10-20T16:06:22.936960+00:00",
+  "delivery_commit": "c8cf8ff05a222a1ac191921bde8367afdd928126",
+  "remote_sha_verified": true,
+  "notion_sync": "pause/failed attempt and pinned commit readback verified",
+  "hub_sync": "latest/session20261021-000822-15269/input bytes equal",
+  "observability": "review_requires_finished; unknown receipt preserved; local parent evidence saved"
 }
