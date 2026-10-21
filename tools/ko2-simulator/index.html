@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>拍出你的组合 · KO II 浏览器练习台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <h1>拍出你的组合</h1>
+      <p class="subtitle">KO II · 浏览器练习台</p>
+    </header>
+
+    <div id="error-banner" class="error-banner" role="alert" hidden></div>
+
+    <main class="app-grid">
+      <!-- Left column: physical instrument -->
+      <section class="panel instrument" aria-label="鼓垫机身">
+        <div class="lcd" id="lcd" aria-live="polite">
+          <div class="lcd-row lcd-title" id="lcd-title">等待素材清单…</div>
+          <div class="lcd-row" id="lcd-source"></div>
+          <div class="lcd-row lcd-meta">
+            <span id="lcd-duration"></span>
+            <span id="lcd-group-slot"></span>
+          </div>
+          <div class="lcd-row lcd-status" id="load-status">读取 set.json…</div>
+        </div>
+
+        <div class="group-bar" id="group-bar" role="tablist" aria-label="采样分组"></div>
+        <div class="pad-grid" id="pad-grid" role="grid" aria-label="物理鼓垫 3 列 4 行"></div>
+
+        <p class="hint">选鼓垫 → 点亮格子 → 播放循环</p>
+      </section>
+
+      <!-- Right column: 16-step sequencer -->
+      <section class="panel sequencer" aria-label="十六步序列编辑器">
+        <div class="transport">
+          <button type="button" id="btn-play" class="tbtn play" disabled>播放</button>
+          <button type="button" id="btn-stop" class="tbtn stop" disabled>停止</button>
+          <label class="ctl">
+            <span class="ctl-name">BPM</span>
+            <input type="range" id="bpm" min="60" max="160" step="1" value="88" disabled>
+            <span class="ctl-val lcd-num" id="bpm-val">88</span>
+          </label>
+          <label class="ctl">
+            <span class="ctl-name">音量</span>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.65" disabled>
+            <span class="ctl-val lcd-num" id="volume-val">0.65</span>
+          </label>
+          <button type="button" id="btn-clear" class="tbtn ghost" disabled>清空当前鼓垫</button>
+          <button type="button" id="btn-example" class="tbtn ghost" disabled>载入示例（替换当前）</button>
+        </div>
+
+        <div class="editor-head">
+          <h2>16 步循环</h2>
+          <span class="editor-sub" id="editor-sub">浏览器练习格 · 非设备操作方式</span>
+        </div>
+        <div class="editor" id="editor" aria-label="所选鼓垫的 16 步格子"></div>
+
+        <h2 class="rows-head">组合总览（跨组一起播放）</h2>
+        <div class="rows" id="rows" aria-label="所有分组的活跃节奏行"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      浏览器练习，不是硬件仿真；采样保持原速，BPM只改变触发间隔。刷新页面会恢复示例组合。
+    </footer>
+  </div>
+
+  <script src="model.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+async (page) => {
+  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:8803/');
+  await page.locator('#btn-play').click();
+  await page.waitForFunction(()=>window.simulator && window.simulator.snapshot().ready);
+  await page.locator('#btn-stop').click();
+  const snap=()=>page.evaluate(()=>window.simulator.snapshot());
+  const assert=(ok,m)=>{if(!ok)throw new Error(m);};
+  let initial=await snap(); assert(initial.decodedCount===24,'24 samples decoded');
+  assert(await page.locator('#pad-grid button').count()===12,'12 physical pads');
+  await page.getByRole('tab',{name:/B/}).click();
+  await page.locator('#pad-grid button').filter({hasText:'主句一'}).click();
+  let selected=await snap();assert(selected.selectedId==='lead_a','pad selection');
+  const before=selected.patterns.lead_a.slice();
+  await page.locator('#editor button').nth(1).click();
+  let edited=await snap();assert(edited.patterns.lead_a[1]!==before[1],'step toggle');
+  await page.getByRole('tab',{name:/A/}).click();
+  assert((await snap()).patterns.lead_a[1]===edited.patterns.lead_a[1],'group switch protects pattern');
+  await page.locator('#btn-play').click();
+  await page.waitForTimeout(1100);
+  const running=await snap();assert(running.playing,'playing');assert(running.currentStep>0 && running.activeVoices>0,'audio scheduling active');
+  await page.locator('#btn-stop').click();
+  await page.waitForTimeout(200);
+  let stopped=await snap();assert(!stopped.playing && stopped.activeVoices===0,'stop clears sources');
+  await page.locator('#btn-play').click();await page.locator('#btn-stop').click();
+  await page.waitForTimeout(250);assert(!(await snap()).playing,'rapid start stop');
+  await page.setViewportSize({width:1280,height:900});
+  await page.screenshot({path:'output/playwright/ko2-desktop.png',fullPage:true});
+  await page.setViewportSize({width:390,height:844});
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mobile no horizontal overflow');
+  await page.screenshot({path:'output/playwright/ko2-mobile.png',fullPage:true});
+  assert(errors.length===0,JSON.stringify(errors));
+  return {initial,selected: selected.selectedId,running,stopped,errors,mobileWidth:390};
+}

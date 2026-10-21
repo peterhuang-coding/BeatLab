@@ -1,0 +1,48 @@
+{
+  "task_id": "KO2-HTML-20261022",
+  "plan_request": "beatlab-ko2-simulator-20261022-a1",
+  "plan_status": "verifying",
+  "adoption": "accepted_with_changes",
+  "plan_elapsed_seconds": 823.163,
+  "plan_model": "doubao-seed-evolving",
+  "thinking": "enabled/high",
+  "attempts": 1,
+  "project_peak_concurrency": 1,
+  "other_project_active_at_dispatch": 1,
+  "global_observed_dispatch_count": 2,
+  "input_hashes_verified": true,
+  "source_files_unchanged": 26,
+  "local_and_http_sample_sha_verified": 24,
+  "unit_tests_passed": 19,
+  "browser": {
+    "decoded": 24,
+    "pads_per_group": 12,
+    "pattern_edit_and_group_retention": true,
+    "running_step": 6,
+    "active_voices": 5,
+    "stop_voices": 0,
+    "page_errors": [],
+    "mobile_width": 390,
+    "no_horizontal_overflow": true,
+    "stopDuringLoad": true,
+    "restartAfterLoad": true,
+    "outputPeak": 0.28092533349990845,
+    "auditionStop": true,
+    "missingAudioGate": true
+  },
+  "parent_corrections": [
+    "Baked gain preserved; no duplicate gain_db",
+    "Enable first Play and Stop for auditions/loading",
+    "Stop cancels start intent without poisoning completed audio load",
+    "Await AudioContext.resume; clean source connections",
+    "Group selection updates editor; bigger step targets; focus styles"
+  ],
+  "hardware_verified": false,
+  "listening_review": "pending",
+  "automation": "PAUSED",
+  "limitations": [
+    "Browser practice only; no device connection/export",
+    "No time stretch; samples play at original speed",
+    "Patterns reset to example on reload"
+  ]
+}

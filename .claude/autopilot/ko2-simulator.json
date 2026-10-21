@@ -1,0 +1,17 @@
+{
+  "task_id": "KO2-HTML-20261022",
+  "status": "delivered_pending_user_trial",
+  "user_scope": "HTML pad audition and combinations prototype only; other work remains paused",
+  "request_id": "beatlab-ko2-simulator-20261022-a1",
+  "source_set": "night-market-ko2-v1",
+  "source_manifest_sha": "5a8705bfa8d90f9993735928e740045a4252cd53395f724e6e7452500f2b8a14",
+  "output_directory": "/Volumes/SanDisk2TB/BeatLab/exports/ko2-simulator-20261022",
+  "url": "http://127.0.0.1:8803/",
+  "hardware_verified": false,
+  "listening_review": "pending",
+  "gain_contract_correction": "Original export pipeline bakes gain_db into PCM; parent must remove second gain during integration. No inflight input mutation.",
+  "plan_status": "verifying",
+  "adoption": "accepted_with_changes",
+  "evidence": "evidence/ko2-simulator-2026-10-22.json",
+  "tests": "19 unit tests; real browser24 sample decode/pattern/group/loop/stop/race/missing-audio/output/mobile passed"
+}
